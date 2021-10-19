@@ -32,7 +32,7 @@ let dummyImage = [
   },
 ];
 
-const Brand = () => {
+const Brand2 = () => {
   const mql = matchMedia('screen and(max-width:768').matches;
 
   console.log(mql);
@@ -79,20 +79,7 @@ const Brand = () => {
     ],
   };
 
-  return (
-    <div className="slide">
-      <i className="slide-prev" onClick={() => slider?.current?.slickPrev()}>
-        <MdArrowBackIos />
-      </i>
-
-      <i className="slide-next" onClick={() => slider?.current?.slickPrev()}>
-        <MdArrowForwardIos />
-      </i>
-      <Slider className="silder-img" arrows={false} ref={slider} {...set}>
-        {maps}
-      </Slider>
-    </div>
-  );
+  return <div className="slide">{maps}</div>;
 };
 
-export default Brand;
+export default Brand2;
