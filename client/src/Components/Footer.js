@@ -5,9 +5,10 @@ const Foot = styled.div`
   display: flex;
   left: 0px;
   bottom: 0px;
-  height: 100px;
+  height: 20vh;
   width: 100%;
-  background-color: purple;
+
+  background-color: #cb6ce6;
   color: white;
 
   left: 0;

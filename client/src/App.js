@@ -37,6 +37,7 @@ const App = () => {
       <Route path="/account/register">
         <Register />
       </Route>
+      <Footer />
     </>
   );
 };
