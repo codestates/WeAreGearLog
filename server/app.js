@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
+const router = require("./router");
 
 app.use(express.json());
+app.use(router);
 
 app.get("/", (req, res) => {
   res.send("GearLog 서버 정상적으로 작동중입니다.");
