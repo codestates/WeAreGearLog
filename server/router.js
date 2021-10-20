@@ -1,25 +1,31 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("./controller");
+const { userController } = require("./controller");
+const { postController } = require("./controller");
+const { messageController } = require("./controller");
 
 // user routing
-// router.get("/user/userinfo", controller.user.userinfo);
-// router.post("/user/signin", controller.user.signin);
-// router.post("/user/signup", controller.user.signup);
-// router.post("/user/update", controller.user.update);
-// router.get("/user/logout", controller.user.logout);
-// router.delete("/user/signout", controller.user.signout);
+router.get("/user/userinfo", userController.userinfo);
+router.post("/user/login", userController.login);
+router.post("/user/signup", userController.signup);
+router.post("/user/update", userController.update);
+router.get("/user/logout", userController.logout);
+router.delete("/user/signout", userController.signout);
 
 // post routing
-// router.get("/post", controller.post.get);
-// router.post("/post", controller.post.post);
-// router.get("/post:id", controller.post.getById);
-// router.put("/post:id", controller.post.put);
-// router.delete("/post:id", controller.post.delete);
+// router.get("/post", postController.get);
+// router.post("/post", postController.post);
+// router.get("/post:id", postController.getById);
+// router.put("/post:id", postController.put);
+// router.delete("/post:id", postController.delete);
 
 //message routing
-// router.get("/message/chatlist", controller.message.chatlist);
-// router.get("/message", controller.message.get);
-// router.post("/message", controller.message.post);
+// router.get("/message/chatlist", messageController.chatlist);
+// router.get("/message", messageController.get);
+// router.post("/message", messageController.post);
+
+router.get("/", (req, res) => {
+  res.send("GearLog 서버 정상적으로 작동중입니다.");
+});
 
 module.exports = router;
