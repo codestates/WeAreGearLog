@@ -5,10 +5,10 @@ const { postController } = require("./controller");
 const { messageController } = require("./controller");
 
 // user routing
-router.get("/user/userinfo", userController.userinfo);
+router.get("/user/auth", userController.auth);
 router.post("/user/login", userController.login);
 router.post("/user/signup", userController.signup);
-router.post("/user/update", userController.update);
+router.put("/user/update", userController.update);
 router.get("/user/logout", userController.logout);
 router.delete("/user/signout", userController.signout);
 
