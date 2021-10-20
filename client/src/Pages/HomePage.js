@@ -8,7 +8,7 @@ import BrandCover from '../Components/BrandCover';
 import Intro from '../Components/Intro';
 import IntroCover from '../Components/IntroCover';
 
-import { Route, Switch } from 'react-router';
+import { Route } from 'react-router';
 
 import Navbar from '../Components/Nevbar';
 

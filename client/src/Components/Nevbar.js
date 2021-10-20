@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import * as FaIcons from 'react-icons/fa';
+
 import { Link, useHistory } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -28,7 +28,9 @@ const NavBar = () => {
           </Link>
           <div className="nav-list">
             <li className="nav-pad-1">브랜드</li>
+
             <li className="nav-pad-1">게이머장비</li>
+
             <li className="nav-pad-1">게시판</li>
           </div>
           <div>
@@ -53,6 +55,7 @@ const NavBar = () => {
                 <li key={index} className={item.cName}>
                   <Link to={item.path}>
                     <span>{item.title}</span>
+                    <hr></hr>
                   </Link>
                 </li>
               );

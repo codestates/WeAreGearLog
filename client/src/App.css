@@ -35,13 +35,21 @@ i:hover {
   justify-content: space-between;
 }
 .close {
+  margin-top: 50px;
+  font-size: 40px;
+  height: 80px;
   color: aliceblue;
 }
 .menu-bars {
   margin-left: 30px;
   display: none;
   font-size: 50px;
+  padding-bottom: 50px;
 }
+.nav-menu-items {
+  font-size: 20px;
+}
+
 .nav-menu {
   background-color: black;
   width: 100%;
@@ -59,22 +67,19 @@ i:hover {
   height: 100vh;
   z-index: 9999;
 }
-
+.nav-pad-1 {
+  margin: 0;
+  display: flex;
+}
 .nav-text {
-  margin-left: 30px;
-  font-size: 50px;
-  padding: 8px 0px 50px 16px;
+  height: 100px;
+
+  margin-left: 50px;
+  margin-right: 50px;
 }
-.nav-text a {
-  text-decoration: none;
-  color: #cb6ce6;
-  font-size: 50px;
-  width: 100%;
-  align-items: center;
-  padding: 30px;
-}
-.nav-text a:hover {
-  color: aliceblue;
+
+.nav-text :hover {
+  color: wheat;
 }
 
 .nav-menu-items {
@@ -90,7 +95,9 @@ i:hover {
 .span {
   margin-left: 16px;
 }
-
+hr {
+  padding-right: 50px;
+}
 #navbar {
   width: 100%;
   position: fixed;
@@ -103,25 +110,15 @@ i:hover {
   position: absolute;
   font-size: 50px;
 }
-.nav-userinfo {
-  color: aliceblue;
-  width: 100%;
-  position: fixed;
-  background-color: black;
-  height: 80px;
-  display: flex;
 
-  justify-content: space-between;
-}
 .nav-list {
-  width: 200px;
+  justify-content: space-between;
+  margin-left: 250px;
+  margin-right: 150px;
+  display: flex;
+  width: 400px;
 }
 
-.nav-userinfo-service {
-  justify-content: space-between;
-  width: 100px;
-  margin-right: 30px;
-}
 .nav-selector {
   display: flex;
   text-align: center;
@@ -131,12 +128,6 @@ i:hover {
   padding-left: 20px;
 }
 
-.nav-bar {
-  list-style: none;
-  justify-content: space-between;
-  display: flex;
-  width: 500px;
-}
 .padding {
   background-color: white;
   height: 80px;
