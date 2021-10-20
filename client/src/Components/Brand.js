@@ -7,11 +7,8 @@ import Slider from 'react-slick';
 import still from '../Img/still.png';
 import '../App.css';
 
-import back from '../Img/back.png';
-
 import { MdArrowForwardIos, MdArrowBackIos } from 'react-icons/md';
 
-console.log(MdArrowForwardIos);
 let dummyImage = [
   {
     id: 1,
@@ -36,12 +33,15 @@ let dummyImage = [
 ];
 
 const Brand = () => {
+  const mql = matchMedia('screen and(max-width:768').matches;
+
+  console.log(mql);
   const [img, setIag] = useState(dummyImage);
   const slider = useRef(null);
-  let Carousel = require('react-responsive-carousel').Carousel;
+
   const maps = img.map((el) => {
     return (
-      <a className="brand-link">
+      <a key={el.id} className="brand-link">
         <img className="brand-image-name" key={el.id} src={el.src} alt="" />
       </a>
     );
@@ -84,10 +84,11 @@ const Brand = () => {
       <i className="slide-prev" onClick={() => slider?.current?.slickPrev()}>
         <MdArrowBackIos />
       </i>
+
       <i className="slide-next" onClick={() => slider?.current?.slickPrev()}>
         <MdArrowForwardIos />
       </i>
-      <Slider arrows={false} ref={slider} {...set}>
+      <Slider className="silder-img" arrows={false} ref={slider} {...set}>
         {maps}
       </Slider>
     </div>
@@ -95,12 +96,3 @@ const Brand = () => {
 };
 
 export default Brand;
-
-{
-  /* <i className="before">
-        <MdArrowBackIos size="100"></MdArrowBackIos>
-      </i>
-       <i className="next">
-       <MdArrowForwardIos size="100"></MdArrowForwardIos>
-     </i> */
-}

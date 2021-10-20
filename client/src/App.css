@@ -1,11 +1,13 @@
 * {
   box-sizing: border-box;
+
   vertical-align: bottom;
   padding: 0;
   list-style: none;
   justify-content: center;
   align-items: center;
   padding: 0;
+  color: aliceblue;
 }
 #root {
   background-color: black;
@@ -25,6 +27,77 @@ i:hover {
   padding-right: 10px;
 }
 
+.navbar {
+  background-color: black;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.close {
+  margin-top: 50px;
+  font-size: 40px;
+  height: 80px;
+  color: aliceblue;
+}
+.menu-bars {
+  margin-left: 30px;
+  display: none;
+  font-size: 50px;
+  padding-bottom: 50px;
+}
+.nav-menu-items {
+  font-size: 20px;
+}
+
+.nav-menu {
+  background-color: black;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  position: fixed;
+  left: -100%;
+  top: 0;
+  transition: 200ms;
+}
+
+.nav-menu.active {
+  left: 0;
+  transition: 350ms;
+  height: 100vh;
+  z-index: 9999;
+}
+.nav-pad-1 {
+  margin: 0;
+  display: flex;
+}
+.nav-text {
+  height: 100px;
+
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.nav-text :hover {
+  color: wheat;
+}
+
+.nav-menu-items {
+  width: 100%;
+}
+.nav-toggle {
+  background-color: black;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: start;
+}
+.span {
+  margin-left: 16px;
+}
+hr {
+  padding-right: 50px;
+}
 #navbar {
   width: 100%;
   position: fixed;
@@ -34,24 +107,18 @@ i:hover {
   height: 80px;
 }
 .Logo-name {
-  background-color: black;
+  position: absolute;
   font-size: 50px;
 }
-.nav-userinfo {
-  color: aliceblue;
-  width: 100%;
-  position: fixed;
-  background-color: black;
-  height: 80px;
-  display: flex;
 
+.nav-list {
   justify-content: space-between;
+  margin-left: 250px;
+  margin-right: 150px;
+  display: flex;
+  width: 400px;
 }
-.nav-userinfo-service {
-  justify-content: space-between;
-  width: 100px;
-  margin-right: 30px;
-}
+
 .nav-selector {
   display: flex;
   text-align: center;
@@ -61,12 +128,6 @@ i:hover {
   padding-left: 20px;
 }
 
-.nav-bar {
-  list-style: none;
-  justify-content: space-between;
-  display: flex;
-  width: 500px;
-}
 .padding {
   background-color: white;
   height: 80px;
@@ -81,6 +142,7 @@ i:hover {
   font-size: 20px;
   height: 20px;
   width: 80px;
+  z-index: 0;
   color: aliceblue;
 }
 .brand-cover {
@@ -90,6 +152,7 @@ i:hover {
   text-align: center;
   width: 100%;
   height: 30px;
+  border-bottom: blanchedalmond;
 }
 
 .brand-name {
@@ -104,19 +167,22 @@ i:hover {
 .door {
   width: 100%;
 }
-
+.slider {
+  background-color: black;
+}
 .slide {
   overflow: hidden;
   font-size: 50px;
   text-align: center;
   background-color: black;
-
+  padding-bottom: 150px;
   justify-content: center;
 }
 
 .slick-slide {
   display: inline-block;
 }
+
 .slide-prev {
   color: aliceblue;
   font-size: 50px;
@@ -158,12 +224,13 @@ h1 {
 }
 .AuthPage {
   background-color: blanchedalmond;
-  height: 10px;
+
   width: 100%;
 }
 .AuthPage-1 {
+  top: 30%;
   background-color: white;
-  width: 100%;
+  width: 100vh;
   height: 100%;
 }
 .AuthPage-2 {
@@ -210,6 +277,7 @@ h1 {
   color: darkgray;
   background-color: white;
   margin-top: 20px;
+  margin-bottom: 50px;
 }
 .social {
   margin-top: 20px;
@@ -286,12 +354,24 @@ h1 {
     width: 812%;
   }
   .Logo-name {
-    display: none;
+    left: 37%;
+    font-size: 30px;
   }
   .nav-pad-1 {
     display: none;
   }
-  .hamburgur {
+  .menu-bars {
+    font-size: 20px;
     display: block;
+    z-index: 9999;
+  }
+  .nav-menu.active {
+    left: 0;
+    transition: 100ms;
+    height: 100vh;
+    z-index: 9999;
+  }
+  .icons {
+    display: none;
   }
 }
