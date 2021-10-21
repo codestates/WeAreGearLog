@@ -7,7 +7,7 @@ const Sponsor = () => {
       <div className="brand-cover">
         <div className="brand-names">Sponsors</div>
       </div>
-      <img className="spon" src={spon}></img>
+      <img className="spon" src={spon} alt=""></img>
     </div>
   );
 };
