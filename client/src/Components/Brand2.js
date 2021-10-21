@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState, useRef } from 'react';
 import corsair from '../Img/corsair.png';
 import logi from '../Img/logi.png';
@@ -30,11 +31,7 @@ let dummyImage = [
 ];
 
 const Brand2 = () => {
-  const mql = matchMedia('screen and(max-width:768').matches;
-
-  console.log(mql);
   const [img, setIag] = useState(dummyImage);
-  const slider = useRef(null);
 
   const maps = img.map((el) => {
     return (

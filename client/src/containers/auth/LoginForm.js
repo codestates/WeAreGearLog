@@ -1,13 +1,19 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeField, initializeForm } from '../../modules/auth';
-import AuthForm from '../../Auth/AuthForm';
+import {withRouter} from 'react-router-dom'
 
-const LoginForm = () => {
+import { changeField, initializeForm,login } from '../../modules/auth';
+import AuthForm from '../../Auth/AuthForm';
+import {check} from '../../modules/user'
+
+const LoginForm = ({history}) => {
   const dispatch = useDispatch();
 
-  const { form } = useSelector(({ auth }) => ({
+  const { form,auth,authError,user } = useSelector(({ auth }) => ({
     form: auth.login,
+    auth:auth.auth,
+    authError:auth.authError,
+    user:user.user
   }));
 
   const onChange = (e) => {
@@ -23,6 +29,8 @@ const LoginForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    const {email,password} = form;
+    dispatch(login({email,password}))
   };
 
   useEffect(() => {
