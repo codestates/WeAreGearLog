@@ -1,6 +1,5 @@
-//루트 리듀서
-import { combineReducers } from 'redux';
 import auth from './auth';
+import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({ auth });
 

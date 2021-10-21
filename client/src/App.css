@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-
   vertical-align: bottom;
   padding: 0;
   list-style: none;
@@ -9,15 +8,20 @@
   padding: 0;
   color: aliceblue;
 }
-#root {
+
+.homepage {
   background-color: black;
 }
+
 a:hover {
   cursor: pointer;
 }
 
 i:hover {
   cursor: pointer;
+}
+.board {
+  color: black;
 }
 
 .icons {
@@ -217,37 +221,45 @@ h1 {
   color: black;
 }
 /*Auth page*/
+
+.SignIn {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
 .Auth {
   text-align: center;
   background-color: white;
   display: flex;
 }
 .AuthPage {
-  background-color: blanchedalmond;
-
   width: 100%;
 }
 .AuthPage-1 {
   top: 30%;
-  background-color: white;
+
   width: 100vh;
   height: 100%;
 }
 .AuthPage-2 {
-  height: 100%;
-  background-color: white;
+  position: absolute;
+  top: 17%;
+  left: 0%;
+
   width: 100%;
 }
 
 .email {
   border: 1px solid gainsboro;
-  background-color: white;
+
   border-radius: 20px;
   height: 50px;
   margin-bottom: 30px;
   margin-left: 15%;
   margin-right: 15%;
-  width: 40%;
+  width: 35%;
   padding: 15px;
   color: black;
 }
@@ -259,7 +271,7 @@ h1 {
   margin-bottom: 30px;
   margin-left: 15%;
   margin-right: 15%;
-  width: 40%;
+  width: 35%;
   padding: 15px;
   color: black;
 }
@@ -276,8 +288,8 @@ h1 {
 .socialtag {
   color: darkgray;
   background-color: white;
-  margin-top: 20px;
-  margin-bottom: 50px;
+  margin-top: 40px;
+  margin-bottom: 10px;
 }
 .social {
   margin-top: 20px;
@@ -286,7 +298,6 @@ h1 {
   height: 50px;
 }
 .socialB {
-  background-color: white;
 }
 .socialBt {
   margin-top: 10px;
@@ -300,7 +311,6 @@ h1 {
 }
 
 .type-selector {
-  background-color: white;
   width: 100%;
   display: flex;
   list-style: none;
@@ -309,20 +319,17 @@ h1 {
 .type-selector-1 {
   width: 170px;
   color: tomato;
-  background-color: white;
 }
 .type-selector-2 {
   color: tomato;
-  background-color: white;
 }
 .type-selector-3 {
   margin-top: 15px;
   color: tomato;
-  background-color: white;
 }
 .type-selector-slash {
   width: 25px;
-  background-color: white;
+
   color: black;
 }
 .hamburgur {
@@ -337,7 +344,7 @@ h1 {
   margin-bottom: 30px;
   margin-left: 15%;
   margin-right: 15%;
-  width: 40%;
+  width: 35%;
   padding: 15px;
 }
 @media screen and (max-width: 768px) {
@@ -354,7 +361,7 @@ h1 {
     width: 812%;
   }
   .Logo-name {
-    left: 37%;
+    left: 34%;
     font-size: 30px;
   }
   .nav-pad-1 {
