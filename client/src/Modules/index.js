@@ -1,7 +1,6 @@
-//루트 리듀서
+import reducer from './reducer';
 import { combineReducers } from 'redux';
-import auth from './auth';
 
-const rootReducer = combineReducers({ auth });
+const rootReducer = combineReducers({ reducer });
 
 export default rootReducer;
