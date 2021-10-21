@@ -3,11 +3,12 @@ import styled from 'styled-components';
 
 const Foot = styled.div`
   display: flex;
+
   left: 0px;
   bottom: 0px;
-  height: 100px;
+  height: 10vh;
   width: 100%;
-  background-color: purple;
+  background-color: black;
   color: white;
 
   left: 0;
