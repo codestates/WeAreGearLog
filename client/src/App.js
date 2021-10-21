@@ -6,6 +6,7 @@ import Footer from './Components/Footer';
 import { Route, Switch } from 'react-router';
 import Register from './Auth/Register';
 import Board from './Pages/Board';
+import PostEditor from './Components/write/PostEditor';
 
 const App = () => {
   return (
@@ -20,6 +21,9 @@ const App = () => {
         </Route>
         <Route path="/board">
           <Board />
+        </Route>
+        <Route path="/board/writepage">
+          <PostEditor />
         </Route>
         <Footer />
       </Switch>

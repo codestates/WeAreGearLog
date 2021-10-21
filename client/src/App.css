@@ -339,6 +339,9 @@ h1 {
 .board-list {
   color: black;
 }
+.board-Editor {
+  color: black;
+}
 @media screen and (max-width: 768px) {
   .email {
     width: 70%;
