@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-
   vertical-align: bottom;
   padding: 0;
   list-style: none;
@@ -9,9 +8,7 @@
   padding: 0;
   color: aliceblue;
 }
-#root {
-  background-color: black;
-}
+
 a:hover {
   cursor: pointer;
 }
@@ -213,7 +210,6 @@ hr {
 }
 h1 {
   background-color: white;
-
   color: black;
 }
 /*Auth page*/
@@ -339,6 +335,9 @@ h1 {
   margin-right: 15%;
   width: 40%;
   padding: 15px;
+}
+.board-list {
+  color: black;
 }
 @media screen and (max-width: 768px) {
   .email {
