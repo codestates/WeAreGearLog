@@ -19,8 +19,5 @@ app.use(router);
 const HTTP_PORT = process.env.PORT || 8080;
 
 app.listen(HTTP_PORT, () => {
-  console.log(
-    HTTP_PORT,
-    "번 포트에서 서버가 실행중 입니다. 아직 잘 작동중입니다."
-  );
+  console.log(HTTP_PORT, "번 포트에서 서버가 실행중 입니다.");
 });
