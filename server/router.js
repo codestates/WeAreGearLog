@@ -8,7 +8,7 @@ const { messageController } = require("./controller");
 router.get("/user/auth", userController.auth);
 router.post("/user/login", userController.login);
 router.post("/user/signup", userController.signup);
-router.put("/user/update", userController.update);
+router.put("/user/username", userController.update.username);
 router.get("/user/logout", userController.logout);
 router.delete("/user/signout", userController.signout);
 
