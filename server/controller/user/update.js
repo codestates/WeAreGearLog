@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     if (data) {
       return res.status(202).json({ message: "이미 존재하는 username입니다" });
     } else {
-      await user.update(
+      user.update(
         { username: newname },
         {
           where: {
@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
     }
   }
   if (newPassword) {
-    await user.update(
+    user.update(
       { password: newPassword },
       {
         where: {
@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
     );
   }
   if (newImg) {
-    await user.update(
+    user.update(
       { profile_img: newImg },
       {
         where: {
