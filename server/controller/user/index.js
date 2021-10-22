@@ -1,5 +1,5 @@
 module.exports = {
-  auth: require("./auth"),
+  userinfo: require("./userinfo"),
   login: require("./login"),
   signup: require("./signup"),
   update: require("./update"),
