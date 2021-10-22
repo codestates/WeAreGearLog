@@ -1,5 +1,6 @@
 const { user } = require("../../models");
 const { generateAccessToken } = require("../tokenFunctions");
+const crypto = require("crypto");
 
 module.exports = {
   username: (req, res) => {
@@ -34,13 +35,12 @@ module.exports = {
                   },
                 })
                 .then((data) => {
-                  // console.log(data);
                   const newToken = generateAccessToken(data.dataValues);
                   res.clearCookie("accessToken");
                   res
                     .cookie("accessToken", newToken, {
                       httpOnly: true,
-                      expiresIn: "180m",
+                      expiresIn: "300m",
                       sameSite: "Strict",
                     })
                     .status(200)
@@ -54,5 +54,48 @@ module.exports = {
         }
       });
   },
-  password: (req, res) => {},
+  password: (req, res) => {
+    const { username, newPassword } = req.body;
+    const hashPassword = crypto
+      .createHash("sha512")
+      .update(newPassword)
+      .digest("hex");
+
+    user
+      .update(
+        { password: hashPassword },
+        {
+          where: {
+            username: username,
+          },
+        }
+      )
+      .then(() => {
+        user
+          .findOne({
+            where: {
+              username: username,
+            },
+          })
+          .then((data) => {
+            const newToken = generateAccessToken(data.dataValues);
+            res.clearCookie("accessToken");
+            res
+              .cookie("accessToken", newToken, {
+                httpOnly: true,
+                expiresIn: "300m",
+                sameSite: "Strict",
+              })
+              .status(200)
+              .json({
+                message: `password가 변경되었습니다.`,
+                token: `${newToken}`,
+              });
+          })
+          .catch((err) => console.log(err));
+      });
+  },
+  profileImg: (req, res) => {
+    res.send("RESPONDING... OK!");
+  },
 };
