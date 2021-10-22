@@ -1,5 +1,5 @@
 import React from 'react';
-
+import AuthForm from './AuthForm';
 import '../App.css';
 import RegisterForm from '../containers/auth/RegisterForm';
 
@@ -8,7 +8,7 @@ import AuthTemplate from './AuthTemplate';
 const Register = ({ form, onChange, onSubmit }) => {
   return (
     <AuthTemplate>
-      <RegisterForm />
+      <AuthForm type="login" />
     </AuthTemplate>
   );
 };

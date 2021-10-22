@@ -1,15 +1,24 @@
 /* eslint-disable react/jsx-no-duplicate-props */
-import React from 'react';
+import { useState } from 'react';
 import kakaoB from '../Img/kakao.png';
 import { Link } from 'react-router-dom';
 import googleB from '../Img/google.png';
 import '../App.css';
+import styled from 'styled-components';
+
+const ErrorMessage = styled.div`
+  color: red;
+  text-align: center;
+  font-size: 0.875rem;
+  margin-bottom: 10px;
+`;
+
 const textMap = {
   login: '로그인',
   register: '회원가입',
 };
 
-const AuthForm = ({ type, form, onChange, onSubmit }) => {
+const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
   const text = textMap[type];
 
   return (
@@ -53,6 +62,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
               ></input>
             </>
           )}
+          {error && <errorErrorMessage>에러</errorErrorMessage>}
           <button className="loginButton">{text}</button>
         </form>
         {type === 'login' ? (
