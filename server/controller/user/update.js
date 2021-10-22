@@ -41,14 +41,15 @@ module.exports = async (req, res) => {
     );
   }
 
-  let findname = "";
+  let name = "";
   if (newname) {
-    findName = newname;
+    name = newname;
   } else {
-    findname = username;
+    name = username;
   }
-  let userData = await user.findOne({ where: { username: findname } });
-  let newToken = generateAccessToken(userData.dataValues);
+  const userData = await user.findOne({ where: { username: name } });
+  console.log("#!@#!", userData);
+  const newToken = generateAccessToken(userData.dataValues);
   res.clearCookie("accessToken");
   res
     .cookie("accessToken", newToken, {
