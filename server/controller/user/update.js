@@ -4,21 +4,6 @@ const { generateAccessToken } = require("../tokenFunctions");
 module.exports = async (req, res) => {
   const { username, newname, newPassword, newImg } = req.body;
 
-  if (newname) {
-    let data = await user.findOne({ where: { username: newname } });
-    if (data) {
-      return res.status(202).json({ message: "이미 존재하는 username입니다" });
-    } else {
-      user.update(
-        { username: newname },
-        {
-          where: {
-            username: username,
-          },
-        }
-      );
-    }
-  }
   if (newPassword) {
     user.update(
       { password: newPassword },
@@ -38,6 +23,21 @@ module.exports = async (req, res) => {
         },
       }
     );
+  }
+  if (newname) {
+    let data = await user.findOne({ where: { username: newname } });
+    if (data) {
+      return res.status(202).json({ message: "이미 존재하는 username입니다" });
+    } else {
+      user.update(
+        { username: newname },
+        {
+          where: {
+            username: username,
+          },
+        }
+      );
+    }
   }
 
   if (newname) {
