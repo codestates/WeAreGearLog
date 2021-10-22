@@ -1,5 +1,4 @@
 const { user } = require("../../models");
-const { generateAccessToken } = require("../tokenFunctions");
 const crypto = require("crypto");
 
 module.exports = (req, res) => {
