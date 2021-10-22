@@ -25,7 +25,9 @@ router.delete("/user/signout", userController.signout);
 // router.post("/message", messageController.post);
 
 router.get("/", (req, res) => {
-  res.send("GearLog 서버 정상적으로 작동중입니다.");
+  res.send(
+    "GearLog 서버 정상적으로 작동중입니다. 배포 자동화 후에도 잘 작동합니다."
+  );
 });
 
 module.exports = router;
