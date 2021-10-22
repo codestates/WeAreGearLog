@@ -1,65 +1,58 @@
 const { user } = require("../../models");
 const { generateAccessToken } = require("../tokenFunctions");
 
-module.exports = async (req, res) => {
-  const { username, newname, newPassword, newImg } = req.body;
+module.exports = {
+  username: (req, res) => {
+    const { username, newname } = req.body;
 
-  if (newname) {
-    let data = await user.findOne({ where: { username: newname } });
-    if (data) {
-      return res.status(202).json({ message: "이미 존재하는 username입니다" });
-    }
-  }
-  if (newPassword) {
-    user.update(
-      { password: newPassword },
-      {
+    user
+      .findOne({
         where: {
-          username: username,
+          username: newname,
         },
-      }
-    );
-  }
-  if (newImg) {
-    user.update(
-      { profile_img: newImg },
-      {
-        where: {
-          username: username,
-        },
-      }
-    );
-  }
-  if (newname) {
-    user.update(
-      { username: newname },
-      {
-        where: {
-          username: username,
-        },
-      }
-    );
-  }
-
-  let name = "";
-  if (newname) {
-    name = newname;
-  } else {
-    name = username;
-  }
-  const userData = await user.findOne({ where: { username: name } });
-  console.log("#!@#!", userData);
-  const newToken = generateAccessToken(userData.dataValues);
-  res.clearCookie("accessToken");
-  res
-    .cookie("accessToken", newToken, {
-      httpOnly: true,
-      expiresIn: "300m",
-      sameSite: "Strict",
-    })
-    .status(200)
-    .json({
-      message: `회원정보가 성공적으로 변경되었습니다.`,
-      token: `${newToken}`,
-    });
+      })
+      .then((data) => {
+        if (data) {
+          return res
+            .status(202)
+            .json({ message: "이미 존재하는 username입니다" });
+        } else {
+          user
+            .update(
+              { username: newname },
+              {
+                where: {
+                  username: username,
+                },
+              }
+            )
+            .then(() => {
+              user
+                .findOne({
+                  where: {
+                    username: newname,
+                  },
+                })
+                .then((data) => {
+                  // console.log(data);
+                  const newToken = generateAccessToken(data.dataValues);
+                  res.clearCookie("accessToken");
+                  res
+                    .cookie("accessToken", newToken, {
+                      httpOnly: true,
+                      expiresIn: "180m",
+                      sameSite: "Strict",
+                    })
+                    .status(200)
+                    .json({
+                      message: `username이 ${newname}(으)로 변경되었습니다.`,
+                      token: `${newToken}`,
+                    });
+                })
+                .catch((err) => console.log(err));
+            });
+        }
+      });
+  },
+  password: (req, res) => {},
 };
