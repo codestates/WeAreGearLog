@@ -12,12 +12,20 @@ import { Route } from 'react-router';
 
 import Navbar from '../Components/Nevbar';
 
-const HomePage = () => {
+const HomePage = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
   const isMobile = useMediaQuery('(max-width: 768px)');
-  console.log(isMobile);
+
+  const [newPassword, setNewPassWord] = useState('');
+  const [error, setError] = useState(false);
+
   return (
     <>
-      <Navbar />
+      <Navbar
+        authRegi={authRegi}
+        setAuthRegi={setAuthRegi}
+        isLogin={isLogin}
+        setIsLogin={setIsLogin}
+      />
 
       <Route exact path="/">
         <Home />
