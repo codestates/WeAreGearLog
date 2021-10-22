@@ -26,6 +26,8 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
             placeholder="이메일"
           ></input>
           <input
+            onChange={onChange}
+            value={form.password}
             name="password"
             type="password"
             className="password"
@@ -35,47 +37,74 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
           {type === 'register' && (
             <>
               <input
+                type="password"
+                value={form.passwordConfirm}
                 onChange={onChange}
                 name="passwordConfirm"
                 className="password"
                 placeholder="비밀번호 확인"
               ></input>
-              <input className="password" placeholder="유저네임"></input>
+              <input
+                name="username"
+                value={form.username}
+                onChange={onChange}
+                className="password"
+                placeholder="유저네임"
+              ></input>
             </>
           )}
-
           <button className="loginButton">{text}</button>
+        </form>
+        {type === 'login' ? (
+          <div>
+            <div className="type-selector">
+              <div className="type-selector-1">Forgot your password?</div>
+              <li className="type-selector-slash">/</li>
+              <Link to="/account/register">
+                <div className="type-selector-2">Create account</div>
+              </Link>
+            </div>
+            <div>
+              <div className="socialB">
+                <div className="socialtag">소셜 로그인</div>
 
-          {type === 'login' ? (
-            <>
-              <div>
-                <div className="type-selector">
-                  <div className="type-selector-1">Forgot your password?</div>
-                  <li className="type-selector-slash">/</li>
-                  <Link to="/account/register">
-                    <div className="type-selector-2">Create account</div>
-                  </Link>
-                </div>
-                <div>
-                  <div className="socialB">
-                    <div className="socialtag">소셜 로그인</div>
+                <img className="socialBt" src={kakaoB} alt=""></img>
 
-                    <img className="socialBt" src={kakaoB} alt=""></img>
-
-                    <img className="socialBt" src={googleB} alt=""></img>
-                  </div>
-                </div>
+                <img className="socialBt" src={googleB} alt=""></img>
               </div>
-            </>
-          ) : (
+            </div>
+          </div>
+        ) : (
+          <>
             <Link to="/account/login">
               <div className="type-selector-3">sign in here</div>
             </Link>
-          )}
-        </form>
+          </>
+        )}
       </div>
     </div>
   );
 };
 
 export default AuthForm;
+
+{
+  /* <div>
+<div className="type-selector">
+  <div className="type-selector-1">Forgot your password?</div>
+  <li className="type-selector-slash">/</li>
+  <Link to="/account/register">
+    <div className="type-selector-2">Create account</div>
+  </Link>
+</div>
+<div>
+  <div className="socialB">
+    <div className="socialtag">소셜 로그인</div>
+
+    <img className="socialBt" src={kakaoB} alt=""></img>
+
+    <img className="socialBt" src={googleB} alt=""></img>
+  </div>
+</div>
+</div> */
+}
