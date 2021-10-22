@@ -12,7 +12,14 @@ import { Route } from 'react-router';
 
 import Navbar from '../Components/Nevbar';
 
-const HomePage = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
+const HomePage = ({
+  isLogin,
+  setIsLogin,
+  setAuthRegi,
+  authRegi,
+  isOpen,
+  setIsOpen,
+}) => {
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   const [newPassword, setNewPassWord] = useState('');

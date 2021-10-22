@@ -12,6 +12,7 @@ import InfoMd from './InfoMd';
 const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
   const history = useHistory();
   const [sidebar, setSidebar] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
 
