@@ -80,7 +80,7 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
           let token = res.data.token;
           localStorage.setItem('token', token);
           setAuthRegi(authRegi.email);
-          setAuthRegi(authRegi.password);
+
           setAuthRegi(authRegi.username);
 
           setIsLogin(true);
@@ -151,6 +151,7 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
                 className="password"
                 placeholder="비밀번호 확인"
               ></input>
+
               <input
                 value={authRegi.username}
                 name="username"
@@ -158,37 +159,40 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
                 className="password"
                 placeholder="유저네임"
               ></input>
+
+              <p
+                className="type-3"
+                onClick={() => history.push('/account/login')}
+              >
+                Login here
+              </p>
             </>
           )}
 
           <button className="loginButton">{text}</button>
-        </form>
-        {type === 'login' ? (
-          <div>
-            <div className="type-selector">
-              <div className="type-selector-1">Forgot your password?</div>
-              <li className="type-selector-slash">/</li>
-              <Link to="/account/register">
-                <div className="type-selector-2">Create account</div>
-              </Link>
-            </div>
+          <br></br>
+
+          {type === 'login' ? (
             <div>
-              <div className="socialB">
-                <div className="socialtag">소셜 로그인</div>
+              <div className="type-selector">
+                <div className="type-selector-1">Forgot your password?</div>
+                <li className="type-selector-slash">/</li>
+                <Link to="/account/register">
+                  <div className="type-selector-2">Create account</div>
+                </Link>
+              </div>
+              <div>
+                <div className="socialB">
+                  <div className="socialtag">소셜 로그인</div>
 
-                <img className="socialBt" src={kakaoB} alt=""></img>
+                  <img className="socialBt" src={kakaoB} alt=""></img>
 
-                <img className="socialBt" src={googleB} alt=""></img>
+                  <img className="socialBt" src={googleB} alt=""></img>
+                </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <>
-            <Link to="/account/login">
-              <div className="type-selector-3">sign in here</div>
-            </Link>
-          </>
-        )}
+          ) : null}
+        </form>
       </div>
     </div>
   );

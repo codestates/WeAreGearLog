@@ -32,6 +32,8 @@ i:hover {
 }
 
 .navbar {
+  z-index: 3;
+  position: fixed;
   background-color: black;
   height: 80px;
   width: 100%;
@@ -238,6 +240,7 @@ h1 {
   width: 100%;
 }
 .AuthPage-1 {
+  text-align: center;
   top: 30%;
 
   width: 100vh;
@@ -311,6 +314,7 @@ h1 {
 }
 
 .type-selector {
+  color: tomato;
   width: 100%;
   display: flex;
   list-style: none;
@@ -323,8 +327,7 @@ h1 {
 .type-selector-2 {
   color: tomato;
 }
-.type-selector-3 {
-  margin-top: 15px;
+.type-3 {
   color: tomato;
 }
 .type-selector-slash {
@@ -341,6 +344,7 @@ h1 {
   background-color: #cb6ce6;
   border-radius: 20px;
   height: 50px;
+  margin-top: 20px;
   margin-bottom: 30px;
   margin-left: 15%;
   margin-right: 15%;
@@ -372,7 +376,45 @@ h1 {
 .userinfo :hover {
   color: #cb6ce6;
 }
+.my {
+  display: flex;
+  text-align: center;
 
+  height: 50vh;
+}
+.mypage {
+  margin: 100px;
+  width: 500px;
+}
+.acc {
+  display: flex;
+}
+.mypage-acc {
+  color: black;
+}
+.mypage-acc-logout {
+  color: tomato;
+  border-bottom: 1px solid tomato;
+
+  margin-left: 20px;
+}
+.ac-detail-wrap {
+  color: black;
+  display: flex;
+}
+
+.ac-detail {
+  font-size: 20px;
+  color: darkgray;
+}
+.ac-detail-1 {
+  font-size: 15px;
+  color: tomato;
+}
+
+.change-username {
+  color: black;
+}
 @media screen and (max-width: 768px) {
   .email {
     width: 70%;
@@ -384,7 +426,7 @@ h1 {
     width: 70%;
   }
   .AuthPage-1 {
-    width: 812%;
+    width: 100%;
   }
   .Logo-name {
     left: 34%;
@@ -409,6 +451,7 @@ h1 {
   }
 
   .userinfo {
+    display: none;
     border: 1px solid #cb6ce6;
     border-radius: 20px;
     text-align: center;
@@ -417,5 +460,8 @@ h1 {
     position: absolute;
     background-color: aliceblue;
     width: 100px;
+  }
+  .my {
+    width: 100%;
   }
 }
