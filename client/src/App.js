@@ -10,6 +10,7 @@ import { Route, Switch } from 'react-router';
 import Register from './Auth/Register';
 import Board from './Pages/Board';
 import Mypage from './Pages/Mypage';
+import PassChange from './Pages/PassChange';
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -19,6 +20,8 @@ const App = () => {
     password: '',
     passwordCornfirm: '',
   });
+
+  console.log(authRegi.password);
   const authorization = () => {
     let token = localStorage.getItem('token');
     axios
@@ -26,7 +29,6 @@ const App = () => {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log('123123', res);
         let totoken = res.config.headers.authorization.split(' ')[1];
         if (token === totoken) {
           // console.log(res.data.data.userinfo.username);
@@ -36,7 +38,6 @@ const App = () => {
           });
           setIsLogin(true);
         }
-        console.log('1231321', res);
       })
       .catch((err) => {
         console.log(err);
@@ -56,7 +57,6 @@ const App = () => {
     }
   };
 
-  const url = new URL(window.location.href); //전역으로
   useEffect(() => {
     localStorage.setItem('name', authRegi.username);
     localStorage.setItem('mail', authRegi.email);
@@ -94,13 +94,26 @@ const App = () => {
           />
         </Route>
         <Route path="/account/mypage">
-          <Mypage />
+          <Mypage
+            authRegi={authRegi}
+            isLogin={isLogin}
+            setAuthRegi={setAuthRegi}
+            setIsLogin={setIsLogin}
+            authorization={authorization}
+          />
         </Route>
         <Route path="/b/board">
           <Board />
         </Route>
-        <Footer />
+        <Route path="/account/pwc">
+          <PassChange
+            authorization={authorization}
+            authRegi={authRegi}
+            setIsLogin={setIsLogin}
+          />
+        </Route>
       </Switch>
+      <Footer />
     </>
   );
 };
