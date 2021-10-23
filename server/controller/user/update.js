@@ -55,45 +55,57 @@ module.exports = {
       });
   },
   password: (req, res) => {
-    const { username, newPassword } = req.body;
+    const { username, password, newPassword } = req.body;
     const hashPassword = crypto
+      .createHash("sha512")
+      .update(password)
+      .digest("hex");
+    const hashNewPassword = crypto
       .createHash("sha512")
       .update(newPassword)
       .digest("hex");
 
-    user
-      .update(
-        { password: hashPassword },
-        {
-          where: {
-            username: username,
-          },
-        }
-      )
-      .then(() => {
+    user.findOne({ where: { username: username } }).then((data) => {
+      if (data.dataValues.password !== hashPassword) {
+        res
+          .status(202)
+          .json({ message: "변경 전 패스워드가 일치하지 않습니다." });
+      } else {
         user
-          .findOne({
-            where: {
-              username: username,
-            },
-          })
-          .then((data) => {
-            const newToken = generateAccessToken(data.dataValues);
-            res.clearCookie("accessToken");
-            res
-              .cookie("accessToken", newToken, {
-                httpOnly: true,
-                expiresIn: "300m",
-                sameSite: "Strict",
+          .update(
+            { password: hashNewPassword },
+            {
+              where: {
+                username: username,
+              },
+            }
+          )
+          .then(() => {
+            user
+              .findOne({
+                where: {
+                  username: username,
+                },
               })
-              .status(200)
-              .json({
-                message: `password가 변경되었습니다.`,
-                token: `${newToken}`,
-              });
-          })
-          .catch((err) => console.log(err));
-      });
+              .then((data) => {
+                const newToken = generateAccessToken(data.dataValues);
+                res.clearCookie("accessToken");
+                res
+                  .cookie("accessToken", newToken, {
+                    httpOnly: true,
+                    expiresIn: "300m",
+                    sameSite: "Strict",
+                  })
+                  .status(200)
+                  .json({
+                    message: `password가 변경되었습니다.`,
+                    token: `${newToken}`,
+                  });
+              })
+              .catch((err) => console.log(err));
+          });
+      }
+    });
   },
   profileImg: (req, res) => {
     res.send("RESPONDING... OK!");
