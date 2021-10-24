@@ -7,9 +7,9 @@ module.exports = async (req, res) => {
   const { email, password } = req.body;
 
   const hashPassword = crypto
-    .createHash("sha512")
+    .createHash("sha256")
     .update(password)
-    .digest("hex");
+    .digest("base64");
 
   let data = await user.findOne({
     where: {

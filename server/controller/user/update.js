@@ -57,13 +57,13 @@ module.exports = {
   password: (req, res) => {
     const { username, password, newPassword } = req.body;
     const hashPassword = crypto
-      .createHash("sha512")
+      .createHash("sha256")
       .update(password)
-      .digest("hex");
+      .digest("base64");
     const hashNewPassword = crypto
-      .createHash("sha512")
+      .createHash("sha256")
       .update(newPassword)
-      .digest("hex");
+      .digest("base64");
 
     user.findOne({ where: { username: username } }).then((data) => {
       if (data.dataValues.password !== hashPassword) {

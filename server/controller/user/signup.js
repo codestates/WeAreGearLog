@@ -4,9 +4,9 @@ const crypto = require("crypto");
 module.exports = (req, res) => {
   const { username, email, password } = req.body;
   const hashPassword = crypto
-    .createHash("sha512")
+    .createHash("sha256")
     .update(password)
-    .digest("hex");
+    .digest("base64");
 
   if (!email || !password || !username) {
     return res.status(422).send("모든 정보는 필수 입력 사항입니다.");
