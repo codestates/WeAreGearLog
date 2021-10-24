@@ -5,4 +5,5 @@ module.exports = {
   update: require("./update"),
   logout: require("./logout"),
   signout: require("./signout"),
+  findpass: require("./findpass"),
 };
