@@ -50,29 +50,32 @@ module.exports = {
     //체인지 콜백함수는 클라이언트에서 인증코드, 이메일을 받음
     //인증코드가 auth테이블에 있는것과 일치한다면 비밀번호를 임시비밀번호로 변경 & 임시비밀번호를 응답으로 전송
     //클라이언트에서 이용자에게 임시비밀번호를 알려줌!
-    const { email, code } = req.body;
+    const { code } = req.body;
     const tempPassword = crypto.randomBytes(20).toString("base64");
     const hashTemp = crypto
       .createHash("sha256")
       .update(tempPassword)
       .digest("base64");
 
-    let data = await authcode.findOne({ where: { email: email } });
-    console.log(data);
+    let data = await authcode.findOne({ where: { code: code } });
+    // console.log(data);
 
     if (data.dataValues.code === code) {
       user
-        .update({ password: hashTemp }, { where: { email: email } })
+        .update(
+          { password: hashTemp },
+          { where: { email: data.dataValues.email } }
+        )
         .then(() => {
           authcode.destroy({
             where: {
-              email: email,
+              email: data.dataValues.email,
             },
           });
         })
         .then(() => {
           res.status(200).json({
-            data: { tempPassword: tempPassword },
+            tempPassword: tempPassword,
           });
         });
     } else {
