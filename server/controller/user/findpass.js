@@ -29,7 +29,7 @@ module.exports = {
     const emailOptions = {
       from: "gearlogservice@gmail.com",
       to: email,
-      subject: "비밀번호 초기화 이메일입니다.",
+      subject: "GearLog - 비밀번호 찾기를 위한 인증코드를 발급합니다.",
       html: `인증코드를 발급해 드립니다. 
     입력창에 인증코드를 입력해 주세요.
     
@@ -74,8 +74,31 @@ module.exports = {
           });
         })
         .then(() => {
-          res.status(200).json({
-            tempPassword: tempPassword,
+          const transporter = nodemailer.createTransport({
+            service: "gmail",
+            host: "smtp.gmail.com",
+            port: 587,
+            secure: false,
+            auth: {
+              user: "gearlogservice@gmail.com",
+              pass: process.env.MAIL_PASSWORD,
+            },
+          });
+
+          const emailOptions = {
+            from: "gearlogservice@gmail.com",
+            to: data.dataValues.email,
+            subject: "GearLog - 임시 비밀번호를 발급합니다.",
+            html: `인증코드가 확인되어 임시 비밀번호를 보내드립니다.
+            임시 비밀번호로 로그인 하신 후에 새 비밀번호로 바꾸는 것을 권장합니다.
+          
+          [임시 비밀번호]: $${hashTemp}`,
+          };
+
+          transporter.sendMail(emailOptions).then(() => {
+            res.status(200).json({
+              message: "ok",
+            });
           });
         });
     } else {
