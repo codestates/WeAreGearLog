@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import corsair from '../Img/corsair.png';
 import logi from '../Img/logi.png';
 import razer from '../Img/razer.png';

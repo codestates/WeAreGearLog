@@ -1,13 +1,40 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-const InfoMd = ({ postLogout }) => {
+import { useEffect, useRef } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+
+const InfoMd = ({ postLogout, isOpen, setIsOpen }) => {
+  const history = useHistory();
+  const modalFalse = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const outsideRef = useRef(null);
+  const useOutsideClick = (ref) => {
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setIsOpen(!isOpen);
+        }
+      };
+
+      document.addEventListener('mousedown', handleClickOutside);
+
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [ref]);
+  };
+  useOutsideClick(outsideRef);
   return (
-    <div className="userinfo">
-      <Link to="/account/mypage">
-        <li className="userinfo-mypage">MYpage</li>
-      </Link>
+    <div ref={outsideRef} onClick={modalFalse} className="userinfo">
+      <li
+        onClick={() => history.push('/account/mypage')}
+        className="userinfo-mypage"
+      >
+        계정
+      </li>
+
       <li onClick={() => postLogout()} className="userinfo-mypage">
-        Logout
+        로그아웃
       </li>
     </div>
   );

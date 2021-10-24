@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useMediaQuery } from '@material-ui/core';
 import '../App.css';
 import Home from '../Components/Home';
@@ -21,9 +21,6 @@ const HomePage = ({
   setIsOpen,
 }) => {
   const isMobile = useMediaQuery('(max-width: 768px)');
-
-  const [newPassword, setNewPassWord] = useState('');
-  const [error, setError] = useState(false);
 
   return (
     <>
