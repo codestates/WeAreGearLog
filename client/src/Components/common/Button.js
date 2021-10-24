@@ -35,8 +35,5 @@ const StyledButton = styled.button`
 `;
 
 const Button = (props) => <StyledButton {...props} />;
-/*
-{...props}를 설정해주는 이유는 Button이 받아오는 props를 모두 styledButton에 전달한다는의미
-Button을 컴포넌트로서 활용
-*/
+
 export default Button;

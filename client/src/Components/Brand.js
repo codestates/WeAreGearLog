@@ -33,9 +33,6 @@ let dummyImage = [
 ];
 
 const Brand = () => {
-  const mql = matchMedia('screen and(max-width:768').matches;
-
-  console.log(mql);
   const [img, setIag] = useState(dummyImage);
   const slider = useRef(null);
 
