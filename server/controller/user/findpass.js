@@ -59,6 +59,9 @@ module.exports = {
 
     let data = await authcode.findOne({ where: { code: code } });
     // console.log(data);
+    if (!data) {
+      return res.status(404).json({ message: "인증코드가 일치하지 않습니다." });
+    }
 
     if (data.dataValues.code === code) {
       user
@@ -95,14 +98,15 @@ module.exports = {
           [임시 비밀번호]: $${hashTemp}`,
           };
 
-          transporter.sendMail(emailOptions).then(() => {
-            res.status(200).json({
-              message: "ok",
-            });
-          });
+          transporter
+            .sendMail(emailOptions)
+            .then(() => {
+              res.status(200).json({
+                message: "ok",
+              });
+            })
+            .catch((err) => console.log(err));
         });
-    } else {
-      return res.status(404).json({ message: "인증코드가 일치하지 않습니다." });
     }
   },
 };
