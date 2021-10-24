@@ -51,10 +51,10 @@ module.exports = {
     //인증코드가 auth테이블에 있는것과 일치한다면 비밀번호를 임시비밀번호로 변경 & 임시비밀번호를 응답으로 전송
     //클라이언트에서 이용자에게 임시비밀번호를 알려줌!
     const { code } = req.body;
-    const randomNum = Math.random(1000000, 9999999);
+    const tempPassword = crypto.randomBytes(20).toString("base64");
     const hashTemp = crypto
       .createHash("sha256")
-      .update(randomNum)
+      .update(tempPassword)
       .digest("base64");
 
     let data = await authcode.findOne({ where: { code: code } });
@@ -95,7 +95,7 @@ module.exports = {
             html: `인증코드가 확인되어 임시 비밀번호를 보내드립니다.
             임시 비밀번호로 로그인 하신 후에 새 비밀번호로 바꾸는 것을 권장합니다.
           
-          [임시 비밀번호]: $${randomNum}`,
+          [임시 비밀번호]: ${tempPassword}`,
           };
 
           transporter
