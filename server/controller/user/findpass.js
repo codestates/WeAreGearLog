@@ -51,7 +51,7 @@ module.exports = {
     //인증코드가 auth테이블에 있는것과 일치한다면 비밀번호를 임시비밀번호로 변경 & 임시비밀번호를 응답으로 전송
     //클라이언트에서 이용자에게 임시비밀번호를 알려줌!
     const { code } = req.body;
-    const randomNum = Math.random(1000000 - 9999999);
+    const randomNum = Math.random(1000000, 9999999);
     const hashTemp = crypto
       .createHash("sha256")
       .update(randomNum)
