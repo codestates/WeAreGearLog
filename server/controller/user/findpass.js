@@ -1,7 +1,8 @@
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 const { user, authcode } = require("../../models");
-// auth테이블 모델불러오기
+const dotenv = require("dotenv");
+dotenv.config();
 
 module.exports = {
   send: async (req, res) => {
@@ -21,7 +22,7 @@ module.exports = {
       secure: false,
       auth: {
         user: "gearlogservice@gmail.com",
-        pass: "admin1!!",
+        pass: process.env.MAIL_PASSWORD,
       },
     });
 
