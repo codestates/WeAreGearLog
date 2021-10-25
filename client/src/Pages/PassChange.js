@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { passwordCheck } from '../AuthModule/Verifi';
 import { useHistory } from 'react-router';
-const PassChange = ({ authRegi, authorization }) => {
+import AuthTemplate from '../Auth/AuthTemplate';
+const PassChange = ({ authRegi, authorization, setIsLogin }) => {
   const history = useHistory();
   const [checkPass, setCheckPass] = useState('');
   const [newPass, setNewPass] = useState('');
@@ -52,40 +53,41 @@ const PassChange = ({ authRegi, authorization }) => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="my">
-      <div className="mypage">
-        <h1>비밀번호 변경</h1>
-        <span className="type-selector-2">
-          개인정보 보호를 위해 비밀번호를 주기적으로 변경해주세요.
-        </span>
-        <br></br>
-        <br></br>
+    <AuthTemplate>
+      <form onSubmit={onSubmit} className="my">
+        <div className="mypage">
+          <h1>비밀번호 변경</h1>
+          <span className="type-selector-2">
+            개인정보 보호를 위해 비밀번호를 주기적으로 변경해주세요.
+          </span>
+          <br></br>
+          <br></br>
 
-        <input
-          type="password"
-          onChange={check}
-          value={checkPass}
-          className="email"
-          placeholder="현재비밀번호"
-        ></input>
-        <input
-          onChange={passCheck}
-          type="password"
-          value={newPass}
-          className="email"
-          placeholder="신규 비밀번호"
-        ></input>
-        <input
-          onChange={passCff}
-          type="password"
-          value={passCf}
-          className="email"
-          placeholder="신규 비밀번호 확인"
-        ></input>
-        <button className="loginButton">변경하기</button>
-        <div className="type-selector-2">회원탈퇴</div>
-      </div>
-    </form>
+          <input
+            type="password"
+            onChange={check}
+            value={checkPass}
+            className="email"
+            placeholder="현재비밀번호"
+          ></input>
+          <input
+            onChange={passCheck}
+            type="password"
+            value={newPass}
+            className="email"
+            placeholder="신규 비밀번호"
+          ></input>
+          <input
+            onChange={passCff}
+            type="password"
+            value={passCf}
+            className="email"
+            placeholder="신규 비밀번호 확인"
+          ></input>
+          <button className="loginButton">변경하기</button>
+        </div>
+      </form>
+    </AuthTemplate>
   );
 };
 

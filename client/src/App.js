@@ -12,6 +12,8 @@ import Board from './Pages/Board';
 import Mypage from './Pages/Mypage';
 import PassChange from './Pages/PassChange';
 
+import FindPass from './Pages/FindPass';
+
 const App = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [authRegi, setAuthRegi] = useState({
@@ -113,6 +115,7 @@ const App = () => {
             setIsLogin={setIsLogin}
           />
         </Route>
+        <Route path="/find/reset-password/send-email" component={FindPass} />
       </Switch>
       <Footer />
     </>

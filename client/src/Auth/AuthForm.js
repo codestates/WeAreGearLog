@@ -1,19 +1,19 @@
 /* eslint-disable react/jsx-no-duplicate-props */
-import { useState } from 'react';
+
 import kakaoB from '../Img/kakao.png';
-import { Link, Switch, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import googleB from '../Img/google.png';
 import '../App.css';
 import styled from 'styled-components';
 import { emailCheck, passwordCheck } from '../AuthModule/Verifi';
 import axios from 'axios';
-import Nevbar from '../Components/Nevbar';
-const ErrorMessage = styled.div`
-  color: red;
-  text-align: center;
-  font-size: 0.875rem;
-  margin-bottom: 10px;
-`;
+
+// const ErrorMessage = styled.div`
+//   color: red;
+//   text-align: center;
+//   font-size: 0.875rem;
+//   margin-bottom: 10px;
+// `;
 
 const textMap = {
   login: '로그인',
@@ -175,7 +175,15 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
           {type === 'login' ? (
             <div>
               <div className="type-selector">
-                <div className="type-selector-1">Forgot your password?</div>
+                <div
+                  onClick={() =>
+                    history.push('/find/reset-password/send-email')
+                  }
+                  className="ac-detail-1"
+                  className="type-selector-1"
+                >
+                  Forgot your password?
+                </div>
                 <li className="type-selector-slash">/</li>
                 <Link to="/account/register">
                   <div className="type-selector-2">Create account</div>

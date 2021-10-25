@@ -33,6 +33,18 @@ i:hover {
   padding-left: 10px;
   padding-right: 10px;
 }
+.icons2 {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  border-left: 1px solid white;
+  width: 120px;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
 .navbar {
   z-index: 3;
@@ -245,7 +257,7 @@ h1 {
   text-align: center;
   top: 30%;
 
-  width: 100vh;
+  width: 100%;
   height: 100%;
 }
 .AuthPage-2 {
@@ -264,7 +276,7 @@ h1 {
   margin-bottom: 30px;
   margin-left: 15%;
   margin-right: 15%;
-  width: 35%;
+  width: 40%;
   padding: 15px;
   color: black;
 }
@@ -276,7 +288,7 @@ h1 {
   margin-bottom: 30px;
   margin-left: 15%;
   margin-right: 15%;
-  width: 35%;
+  width: 40%;
   padding: 15px;
   color: black;
 }
@@ -350,7 +362,7 @@ h1 {
   margin-bottom: 30px;
   margin-left: 15%;
   margin-right: 15%;
-  width: 35%;
+  width: 40%;
   padding: 15px;
 }
 <<<<<<< HEAD
@@ -361,14 +373,15 @@ h1 {
 =======
 
 .userinfo {
+  position: absolute;
   border: 3px solid #cb6ce6;
   border-radius: 20px;
-  text-align: center;
+  text-align: left;
   font-size: 20px;
-  top: 5%;
-  position: absolute;
+  top: 100%;
+  margin-left: 20px;
   background-color: black;
-  width: 100px;
+  width: 120px;
   color: aliceblue;
   z-index: 3;
 }
@@ -377,6 +390,8 @@ h1 {
 }
 
 .userinfo-mypage {
+  z-index: 9999;
+  margin-left: 20px;
   padding: 2px;
   height: 30px;
   color: white;
@@ -419,20 +434,38 @@ h1 {
   font-size: 15px;
   color: tomato;
 }
-
+.modal {
+  color: black;
+}
 .change-username {
 >>>>>>> e35db08ac44ab5dc288a3180f2dec99e2c8e33f0
   color: black;
 }
+.err {
+  margin: ;
+  color: red;
+}
+.Team-select {
+  position: absolute;
+  margin-left: 2px;
+  margin-right: 2px;
+  left: 30%;
+  top: 100%;
+  font-size: 16px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: aliceblue;
+}
+
 @media screen and (max-width: 768px) {
   .email {
-    width: 70%;
+    width: 85%;
   }
   .password {
-    width: 70%;
+    width: 85%;
   }
   .loginButton {
-    width: 70%;
+    width: 85%;
   }
   .AuthPage-1 {
     width: 100%;
