@@ -6,6 +6,7 @@ const { messageController } = require("./controller");
 
 // user routing
 router.get("/user", userController.userinfo);
+router.get("/user/logout", userController.logout);
 router.post("/user/login", userController.login);
 router.post("/user/signup", userController.signup);
 router.post("/user/code", userController.findpass.send);
@@ -13,7 +14,6 @@ router.patch("/user/temp", userController.findpass.change);
 router.patch("/user/username", userController.update.username);
 router.patch("/user/password", userController.update.password);
 router.patch("/user/profileImg", userController.update.profileImg);
-router.get("/user/logout", userController.logout);
 router.delete("/user", userController.signout);
 
 // post routing
