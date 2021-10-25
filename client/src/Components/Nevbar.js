@@ -77,7 +77,7 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
           <div className="nav-list">
             <li className="nav-pad-1">브랜드</li>
 
-            <Dropdown className="nav-pad-1" />
+            {/* <Dropdown className="nav-pad-1" /> */}
 
             <li className="nav-pad-1">게시판</li>
           </div>
