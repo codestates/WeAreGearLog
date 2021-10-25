@@ -6,6 +6,7 @@ import roccat from '../Img/roccat.png';
 import Slider from 'react-slick';
 import still from '../Img/still.png';
 import '../App.css';
+import { useHistory, Link } from 'react-router-dom';
 
 import { MdArrowForwardIos, MdArrowBackIos } from 'react-icons/md';
 
@@ -13,33 +14,41 @@ let dummyImage = [
   {
     id: 1,
     src: corsair,
+    path: '/brands/cosair',
   },
   {
     id: 2,
     src: logi,
+    path: '/brands/list/logitech',
   },
   {
     id: 3,
     src: razer,
+    path: '/brands/razer',
   },
   {
     id: 4,
     src: roccat,
+    path: '/brands/roccat',
   },
   {
     id: 5,
     src: still,
+    path: '/brands/still',
   },
 ];
 
 const Brand = () => {
+  const history = useHistory();
   const [img, setIag] = useState(dummyImage);
   const slider = useRef(null);
 
   const maps = img.map((el) => {
     return (
       <a key={el.id} className="brand-link">
-        <img className="brand-image-name" key={el.id} src={el.src} alt="" />
+        <Link to={el.path}>
+          <img className="brand-image-name" key={el.id} src={el.src} alt="" />
+        </Link>
       </a>
     );
   });
