@@ -6,7 +6,7 @@ const Foot = styled.div`
 
   left: 0px;
   bottom: 0px;
-  height: 10vh;
+  height: 42vh;
   width: 100%;
   background-color: black;
   color: white;

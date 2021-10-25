@@ -5,12 +5,16 @@ const { postController } = require("./controller");
 const { messageController } = require("./controller");
 
 // user routing
-router.get("/user/auth", userController.auth);
+router.get("/user", userController.userinfo);
 router.post("/user/login", userController.login);
 router.post("/user/signup", userController.signup);
-router.put("/user/update", userController.update);
+router.post("/user/code", userController.findpass.send);
+router.patch("/user/temp", userController.findpass.change);
+router.patch("/user/username", userController.update.username);
+router.patch("/user/password", userController.update.password);
+router.patch("/user/profileImg", userController.update.profileImg);
 router.get("/user/logout", userController.logout);
-router.delete("/user/signout", userController.signout);
+router.delete("/user", userController.signout);
 
 // post routing
 // router.get("/post", postController.get);
@@ -24,10 +28,9 @@ router.delete("/user/signout", userController.signout);
 // router.get("/message", messageController.get);
 // router.post("/message", messageController.post);
 
+//check if server is running...
 router.get("/", (req, res) => {
-  res.send(
-    "GearLog 서버 정상적으로 작동중입니다. 배포 자동화 후에도 잘 작동합니다."
-  );
+  res.send("GearLog 서버 정상적으로 작동중입니다. 배포 자동화 OK!!!");
 });
 
 module.exports = router;
