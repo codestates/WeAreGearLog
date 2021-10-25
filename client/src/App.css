@@ -312,8 +312,7 @@ h1 {
   width: 50px;
   height: 50px;
 }
-.socialB {
-}
+
 .socialBt {
   margin-top: 10px;
   margin-left: 10px;
@@ -378,9 +377,6 @@ h1 {
   z-index: 3;
 }
 
-.userinfo.active {
-}
-
 .userinfo-mypage {
   z-index: 9999;
   margin-left: 20px;
@@ -433,7 +429,6 @@ h1 {
   color: black;
 }
 .err {
-  margin: ;
   color: red;
 }
 .Team-select {
@@ -446,6 +441,9 @@ h1 {
   border: none;
   background-color: rgba(0, 0, 0, 0.5);
   color: aliceblue;
+}
+.loading {
+  color: tomato;
 }
 
 @media screen and (max-width: 768px) {
