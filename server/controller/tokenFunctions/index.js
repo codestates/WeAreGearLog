@@ -9,7 +9,7 @@ module.exports = {
     res
       .cookie("accessToken", accessToken, {
         httpOnly: true,
-        expiresIn: "180m",
+        expiresIn: "300m",
         sameSite: "Strict",
       })
       .status(200)

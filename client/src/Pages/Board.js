@@ -7,7 +7,7 @@ const Board = () => {
 
     return (
           <div className="board-list">
-            ㅁㄴㅇㅁㄴㅇㅁㄴㅇ
+            
         </div>
     )
 }
