@@ -6,12 +6,12 @@ import axios from 'axios';
 import HomePage from './Pages/HomePage';
 
 import Footer from './Components/Footer';
-import { Route, Switch } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 import Register from './Auth/Register';
 import Board from './Pages/Board';
 import Mypage from './Pages/Mypage';
 import PassChange from './Pages/PassChange';
-
+import Logi from './Pages/Brands/Logi';
 import FindPass from './Pages/FindPass';
 import ReturnHome from './Pages/ReturnHome';
 
@@ -87,7 +87,6 @@ const App = () => {
             setAuthRegi={setAuthRegi}
           />
         </Route>
-
         <Route path="/account/register">
           <Register
             authRegi={authRegi}
@@ -115,9 +114,13 @@ const App = () => {
             setIsLogin={setIsLogin}
           />
         </Route>
+
+        <Route path="/brands/list/logitech" component={Logi} />
+
         <Route path="/find/reset-password/send-email" component={FindPass} />
         <Route path="/find/reset-password/rtlogin" component={ReturnHome} />
       </Switch>
+
       <Footer />
     </>
   );
