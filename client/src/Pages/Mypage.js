@@ -104,7 +104,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
           });
 
           setIsLogin(false);
-
+          history.push('/');
           alert('로그아웃되었습니다');
         }
       })

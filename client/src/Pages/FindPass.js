@@ -15,12 +15,15 @@ const FindPass = () => {
   };
 
   const postEmail = () => {
+    setTrues(!trues);
+    console.log(trues);
     axios
       .post('http://52.79.233.29:8080/user/code', {
         email: change,
       })
       .then((res) => {
         if (res.status === 200) {
+          setTrues(trues);
           setIsOpen(!isOpen);
           onChange('');
         }
@@ -34,18 +37,16 @@ const FindPass = () => {
   };
 
   const subMitCode = () => {
+    setTrues(!trues);
     axios
       .patch('http://52.79.233.29:8080/user/temp', {
         code: change,
       })
       .then((res) => {
-        console.log(res);
-        if (!res.data.message) {
-          setTrues(!true);
-        } else {
-          setTrues(true);
-          alert('다시로그인해주세요');
-          history.push('/account/login');
+        if (res.status === 200) {
+          setTrues(trues);
+
+          history.push('/find/reset-password/rtlogin');
         }
       })
       .catch((err) => console.log(err));
@@ -67,6 +68,7 @@ const FindPass = () => {
               ></input>
 
               {error ? null : <p className="err">정보가 없습니다</p>}
+              {trues ? null : <p className="loading">잠시만기다려주세요</p>}
               <button onClick={postEmail} className="loginButton">
                 이메일 보내기
               </button>
@@ -84,7 +86,7 @@ const FindPass = () => {
                 className="email"
                 placeholder="코드를 입력하세요"
               ></input>
-              {trues ? null : <p>잠시만기다려주세요</p>}
+              {trues ? null : <p className="loading">잠시만기다려주세요</p>}
               <button onClick={subMitCode} className="loginButton">
                 인증코드 제출하기
               </button>
