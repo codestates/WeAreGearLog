@@ -2,7 +2,7 @@ import React from 'react';
 
 const AuthTemplate = ({ children }) => {
   return (
-    <div className="Auth">
+    <div className="M">
       <div className="AuthPage-1">{children}</div>
     </div>
   );

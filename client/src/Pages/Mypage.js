@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -7,7 +7,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
   const history = useHistory();
   const [changeName, setChangeName] = useState('');
   const [istrue, setIsTrue] = useState(true);
-  console.log(authRegi);
+
   const onUsernameChange = (event) => {
     setChangeName(event.target.value);
   };
@@ -19,7 +19,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
       );
     }
 
-    let confirm = window.confirm('회원탈퇴하실거에요?');
+    let confirm = window.confirm('정말로 회원탈퇴 하시겠습니까?');
 
     if (confirm) {
       axios
@@ -35,7 +35,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
             alert('탈퇴가 완료되었습니다');
             history.push('/');
           } else {
-            alert('처리에 문제가있습니다 고객센터로 연락주세요');
+            alert('처리에 문제가 있습니다 고객센터로 연락주세요');
           }
         });
     } else {
@@ -104,7 +104,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
           });
 
           setIsLogin(false);
-
+          history.push('/');
           alert('로그아웃되었습니다');
         }
       })
@@ -154,7 +154,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
         <p className="ac-detail">ACCOUNT DETAILS</p>
         <div className="ac-detail-wrap">
           <p onClick={() => setIsTrue(!istrue)} className="ac-detail-1">
-            change Username
+            유저이름 변경
           </p>
           <p className="type-selector-slash">/</p>
 
@@ -162,8 +162,9 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
             onClick={() => history.push('/account/pwc')}
             className="ac-detail-1"
           >
-            change Password
+            비밀번호 변경
           </p>
+          <p className="type-selector-slash">/</p>
         </div>
         <div onClick={ondeleteUser} className="type-selector-2">
           회원탈퇴

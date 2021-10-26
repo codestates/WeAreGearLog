@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useMediaQuery } from '@material-ui/core';
 import '../App.css';
 import Home from '../Components/Home';
@@ -12,18 +12,8 @@ import { Route } from 'react-router';
 
 import Navbar from '../Components/Nevbar';
 
-const HomePage = ({
-  isLogin,
-  setIsLogin,
-  setAuthRegi,
-  authRegi,
-  isOpen,
-  setIsOpen,
-}) => {
+const HomePage = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
   const isMobile = useMediaQuery('(max-width: 768px)');
-
-  const [newPassword, setNewPassWord] = useState('');
-  const [error, setError] = useState(false);
 
   return (
     <>

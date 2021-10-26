@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
@@ -6,15 +7,25 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { SidebarData } from './common/SidebarData';
 import { IconContext } from 'react-icons';
 import { FaUserCircle } from 'react-icons/fa';
-import { RiSearchLine } from 'react-icons/ri';
+
 import InfoMd from './InfoMd';
 
+import Dropdown from './Dropdown';
+
 const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
+  const modalFalse = () => {
+    setIsOpen(!isOpen);
+  };
+
   const history = useHistory();
   const [sidebar, setSidebar] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
+
   const showSidebar = () => setSidebar(!sidebar);
+  useEffect(() => {
+    setIsOpen(true);
+  }, [isLogin]);
 
   const postLogout = () => {
     return axios
@@ -27,7 +38,6 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
       )
       .then((res) => {
         if (res.data.message === '로그아웃 성공') {
-          console.log(res);
           localStorage.clear();
           setAuthRegi({
             email: '',
@@ -59,22 +69,16 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
               <GiHamburgerMenu className="close" onClick={showSidebar} />
             </Link>
           </i>
-
           <Link className="Logo-name" to="/">
             GEARLOG
           </Link>
           <div className="nav-list">
             <li className="nav-pad-1">브랜드</li>
 
-            <li className="nav-pad-1">게이머장비</li>
-
             <li className="nav-pad-1">게시판</li>
-            {isLogin ? <li>login</li> : null}
           </div>
+
           <div>
-            <i className="icons">
-              <RiSearchLine />
-            </i>
             {!isLogin ? (
               <i
                 className="icons"
@@ -83,11 +87,21 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
                 <FaUserCircle />
               </i>
             ) : (
-              <i className="icons" onClick={() => setIsOpen(!isOpen)}>
-                <FaUserCircle />
+              <i>
+                {
+                  <div className="icons2" onClick={() => setIsOpen(!isOpen)}>
+                    <div>{authRegi.username} ▿</div>
+                  </div>
+                }
               </i>
             )}
-            {isLogin && !isOpen ? <InfoMd postLogout={postLogout} /> : null}
+            {isLogin && !isOpen ? (
+              <InfoMd
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                postLogout={postLogout}
+              />
+            ) : null}
           </div>
         </div>
 

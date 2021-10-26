@@ -1,19 +1,19 @@
 /* eslint-disable react/jsx-no-duplicate-props */
-import { useState } from 'react';
+
 import kakaoB from '../Img/kakao.png';
-import { Link, Switch, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import googleB from '../Img/google.png';
 import '../App.css';
 import styled from 'styled-components';
 import { emailCheck, passwordCheck } from '../AuthModule/Verifi';
 import axios from 'axios';
-import Nevbar from '../Components/Nevbar';
-const ErrorMessage = styled.div`
-  color: red;
-  text-align: center;
-  font-size: 0.875rem;
-  margin-bottom: 10px;
-`;
+
+// const ErrorMessage = styled.div`
+//   color: red;
+//   text-align: center;
+//   font-size: 0.875rem;
+//   margin-bottom: 10px;
+// `;
 
 const textMap = {
   login: '로그인',
@@ -118,6 +118,17 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
       postSignUp();
     }
   };
+  // 카카오 소셜로그인버튼 이벤트핸들러함수
+  const kakaoHandler = () => {
+    let currentSocial = 'kakao';
+    localStorage.setItem('social', currentSocial);
+    const REDIRECT_URI =
+      process.env.REACT_APP_CLIENT_URL ||
+      'http://gearlog-db.s3-website.ap-northeast-2.amazonaws.com';
+    window.location.assign(
+      `https://kauth.kakao.com/oauth/authorize?client_id=196d7d1ae4d083329ceda11a092319d4&redirect_uri=${REDIRECT_URI}&response_type=code`,
+    );
+  };
 
   return (
     <div className="Auth">
@@ -175,7 +186,15 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
           {type === 'login' ? (
             <div>
               <div className="type-selector">
-                <div className="type-selector-1">Forgot your password?</div>
+                <div
+                  onClick={() =>
+                    history.push('/find/reset-password/send-email')
+                  }
+                  className="ac-detail-1"
+                  className="type-selector-1"
+                >
+                  Forgot your password?
+                </div>
                 <li className="type-selector-slash">/</li>
                 <Link to="/account/register">
                   <div className="type-selector-2">Create account</div>
@@ -185,7 +204,12 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
                 <div className="socialB">
                   <div className="socialtag">소셜 로그인</div>
 
-                  <img className="socialBt" src={kakaoB} alt=""></img>
+                  <img
+                    className="socialBt"
+                    src={kakaoB}
+                    alt=""
+                    onClick={kakaoHandler}
+                  ></img>
 
                   <img className="socialBt" src={googleB} alt=""></img>
                 </div>
