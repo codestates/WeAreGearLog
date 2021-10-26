@@ -118,6 +118,17 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
       postSignUp();
     }
   };
+  // 카카오 소셜로그인버튼 이벤트핸들러함수
+  const kakaoHandler = () => {
+    let currentSocial = 'kakao';
+    localStorage.setItem('social', currentSocial);
+    const REDIRECT_URI =
+      process.env.REACT_APP_CLIENT_URL ||
+      'http://gearlog-db.s3-website.ap-northeast-2.amazonaws.com';
+    window.location.assign(
+      `https://kauth.kakao.com/oauth/authorize?client_id=196d7d1ae4d083329ceda11a092319d4&redirect_uri=${REDIRECT_URI}&response_type=code`,
+    );
+  };
 
   return (
     <div className="Auth">
@@ -193,7 +204,12 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
                 <div className="socialB">
                   <div className="socialtag">소셜 로그인</div>
 
-                  <img className="socialBt" src={kakaoB} alt=""></img>
+                  <img
+                    className="socialBt"
+                    src={kakaoB}
+                    alt=""
+                    onClick={kakaoHandler}
+                  ></img>
 
                   <img className="socialBt" src={googleB} alt=""></img>
                 </div>

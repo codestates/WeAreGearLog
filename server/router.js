@@ -3,12 +3,14 @@ const router = express.Router();
 const { userController } = require("./controller");
 const { postController } = require("./controller");
 const { messageController } = require("./controller");
+const { callbackController } = require("./controller");
 
 // user routing
 router.get("/user", userController.userinfo);
 router.post("/user/login", userController.login);
 router.post("/user/signup", userController.signup);
 router.post("/user/code", userController.findpass.send);
+router.post("/callback/kakao", callbackController.kakao);
 router.patch("/user/temp", userController.findpass.change);
 router.patch("/user/username", userController.update.username);
 router.patch("/user/password", userController.update.password);
