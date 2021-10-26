@@ -64,7 +64,7 @@ const App = () => {
 
   const getKakaoToken = (code) => {
     axios
-      .post('http://52.79.233.29/callback/kakao', {
+      .post('http://52.79.233.29:8080/callback/kakao', {
         authorizationCode: code,
       })
       .then((res) => {
