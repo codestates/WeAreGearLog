@@ -82,6 +82,27 @@ const App = () => {
       });
   };
 
+  const getGoogleToken = (code) => {
+    axios
+      .post('http://localhost:8080/callback/google', {
+        authorizationCode: code,
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        if (res.data.data) {
+          setAuthRegi({
+            email: res.data.data.email,
+            username: res.data.data.id,
+          });
+          setIsLogin(true);
+          history.push('/');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     const url = new URL(window.location.href);
     const authorizationCode = url.searchParams.get('code');
@@ -90,9 +111,9 @@ const App = () => {
       if (social === 'kakao') {
         getKakaoToken(authorizationCode);
       }
-      // if (social === 'google') {
-      //   getGoogleToken(authorizationCode);
-      // }
+      if (social === 'google') {
+        getGoogleToken(authorizationCode);
+      }
     } else {
       if (!social) {
         authorization();
@@ -103,7 +124,7 @@ const App = () => {
         }
         localStorage.setItem('name', authRegi.username);
         localStorage.setItem('mail', authRegi.email);
-        getLocalInfo();
+        // getLocalInfo();
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -129,6 +129,17 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
       `https://kauth.kakao.com/oauth/authorize?client_id=196d7d1ae4d083329ceda11a092319d4&redirect_uri=${REDIRECT_URI}&response_type=code`,
     );
   };
+  // 구글 소셜로그인버튼 이벤트핸들러함수
+  const googleHandler = () => {
+    let currentSocial = 'google';
+    localStorage.setItem('social', currentSocial);
+    const REDIRECT_URI =
+      process.env.REACT_APP_CLIENT_URL ||
+      'http://gearlog-db.s3-website.ap-northeast-2.amazonaws.com';
+    window.location.assign(
+      `https://accounts.google.com/o/oauth2/auth?client_id=538187650428-i2erq5l0c7hesj7srkqnldure0mg4o7p.apps.googleusercontent.com&redirect_uri=${REDIRECT_URI}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email&approval_prompt=force&access_type=offline`,
+    );
+  };
 
   return (
     <div className="Auth">
@@ -211,7 +222,12 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
                     onClick={kakaoHandler}
                   ></img>
 
-                  <img className="socialBt" src={googleB} alt=""></img>
+                  <img
+                    className="socialBt"
+                    src={googleB}
+                    alt=""
+                    onClick={googleHandler}
+                  ></img>
                 </div>
               </div>
             </div>
