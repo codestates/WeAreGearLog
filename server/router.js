@@ -12,6 +12,7 @@ router.post("/user/login", userController.login);
 router.post("/user/signup", userController.signup);
 router.post("/user/code", userController.findpass.send);
 router.post("/callback/kakao", callbackController.kakao);
+router.post("/callback/google", callbackController.google);
 router.patch("/user/temp", userController.findpass.change);
 router.patch("/user/username", userController.update.username);
 router.patch("/user/password", userController.update.password);
