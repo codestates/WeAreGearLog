@@ -1,7 +1,7 @@
 import React from 'react';
 import g304 from '../../Img/brands/g304.png';
 import './Brands.css';
-
+import { Link } from 'react-router-dom';
 const Logi = () => {
   return (
     <section className="Logitech-page">
@@ -21,7 +21,9 @@ const Logi = () => {
               <h4 className="card-1">
                 Logitech G304<br></br>Review
               </h4>
-              <span className="card-2">리뷰보기</span>
+              <Link to="/brands/review">
+                <span className="card-2">리뷰보기</span>
+              </Link>
             </div>
             <div className="card">3</div>
             <div className="card">4</div>
