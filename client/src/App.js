@@ -21,6 +21,7 @@ const App = () => {
   const [authRegi, setAuthRegi] = useState({
     email: '',
     username: '',
+    profileImg: '',
     password: '',
     passwordCornfirm: '',
   });
@@ -49,7 +50,7 @@ const App = () => {
   };
 
   const getLocalInfo = () => {
-    authorization();
+    // authorization();
     let name = localStorage.getItem('username');
     let mail = localStorage.getItem('email');
     if (name) {
@@ -63,15 +64,16 @@ const App = () => {
 
   const getKakaoToken = (code) => {
     axios
-      .post('http://52.79.233.29:8080/callback/kakao', {
+      .post('http://52.79.233.29/callback/kakao', {
         authorizationCode: code,
       })
       .then((res) => {
-        // console.log(res.data.data.properties);
+        console.log(res.data.data.properties);
         if (res.data.data) {
           setAuthRegi({
             email: res.data.data.properties.email,
             username: res.data.data.properties.nickname,
+            profileImg: res.data.data.properties.profile_image,
           });
           setIsLogin(true);
           history.push('/');
@@ -84,15 +86,19 @@ const App = () => {
 
   const getGoogleToken = (code) => {
     axios
-      .post('http://localhost:8080/callback/google', {
+      .post('http://52.79.233.29:8080/callback/google', {
         authorizationCode: code,
       })
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         if (res.data.data) {
           setAuthRegi({
             email: res.data.data.email,
-            username: res.data.data.id,
+            username: res.data.data.email.slice(
+              0,
+              res.data.data.email.indexOf('@'),
+            ),
+            profileImg: res.data.data.picture,
           });
           setIsLogin(true);
           history.push('/');
@@ -124,7 +130,7 @@ const App = () => {
         }
         localStorage.setItem('name', authRegi.username);
         localStorage.setItem('mail', authRegi.email);
-        // getLocalInfo();
+        getLocalInfo();
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
