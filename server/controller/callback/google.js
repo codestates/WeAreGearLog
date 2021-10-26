@@ -2,12 +2,14 @@ require("dotenv").config();
 
 const clientId = process.env.GOOGLE_CLIENT_ID;
 const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+const redirect = "http://gearlog-db.s3-website.ap-northeast-2.amazonaws.com/";
 const axios = require("axios");
 
 module.exports = (req, res) => {
+  const code = req.body.authorizationCode;
   axios({
     method: "POST",
-    url: `https://accounts.google.com/o/oauth2/token?grant_type=authorization_code&client_id=${clientId}&client_secret=${clientSecret}&redirect_uri=http://gear-log.s3-website.ap-northeast-2.amazonaws.com&code=${req.body.authorizationCode}`,
+    url: `https://accounts.google.com/o/oauth2/token?grant_type=authorization_code&client_id=${clientId}&client_secret=${clientSecret}&redirect_uri=${redirect}&code=${code}`,
   })
     .then((response) => {
       // console.log(response);
