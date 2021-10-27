@@ -9,10 +9,7 @@ const qs = require("qs");
 module.exports = (req, res) => {
   axios({
     method: "POST",
-    url: "https://accounts.google.com/o/oauth2/token",
-    headers: {
-      "content-type": "application/x-www-form-urlencoded",
-    },
+    url: "https://oauth2.googleapis.com/token",
     data: qs.stringify({
       grant_type: "authorization_code",
       client_id: clientId,
