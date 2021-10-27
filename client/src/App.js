@@ -14,6 +14,7 @@ import PassChange from './Pages/PassChange';
 import Logi from './Pages/Brands/Logi';
 import FindPass from './Pages/FindPass';
 import ReturnHome from './Pages/ReturnHome';
+import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
 
 const App = () => {
   const history = useHistory();
@@ -188,6 +189,7 @@ const App = () => {
 
         <Route path="/find/reset-password/send-email" component={FindPass} />
         <Route path="/find/reset-password/rtlogin" component={ReturnHome} />
+        <Route path="/brands/review" component={ReviewTemp} />
       </Switch>
 
       <Footer />

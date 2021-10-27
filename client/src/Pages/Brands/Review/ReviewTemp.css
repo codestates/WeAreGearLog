@@ -1,0 +1,117 @@
+.Rv-temp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.main-review {
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.Rv-temp-page {
+  align-items: center;
+  justify-content: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 60%;
+  height: 100%;
+  color: black;
+}
+
+.Rv-temp-title1 {
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  background-color: #fafafa;
+}
+
+.Rv-icons {
+  color: black;
+}
+.Rv-temp-title {
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 30px;
+}
+.Rv-temp-title > p {
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  margin-left: 52px;
+  color: tomato;
+  font-size: 15px;
+}
+.Rv-temp-headline {
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-bottom: 50px;
+
+  margin-top: 50px;
+}
+.Rv-temp-intro {
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+}
+.Rv-temp-introp {
+  align-items: center;
+  justify-content: center;
+
+  color: #888888;
+  width: 50%;
+}
+.Rv-temp-title1 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.Rv-text {
+  color: #888888;
+}
+.Rv-temp-headline {
+  background-color: #fafafa;
+}
+
+.Rv-temp-introp > li {
+  margin-left: 10px;
+  margin-top: 15px;
+  color: #888888;
+}
+.title-img {
+  height: 100%;
+}
+.Rv-temp-headline-1 {
+  width: 100%;
+  height: 100%;
+}
+
+.interview {
+  float: right;
+  color: #888888;
+}
+
+@media screen and (max-width: 900px) {
+  .Rv-temp-page {
+    width: 100%;
+  }
+
+  .Rv-temp-headline {
+    flex-direction: column;
+    background-color: #fafafa;
+  }
+  .Rv-temp-title {
+    margin: 0%;
+  }
+}
