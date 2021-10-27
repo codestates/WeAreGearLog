@@ -104,7 +104,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
           });
 
           setIsLogin(false);
-
+          history.push('/');
           alert('로그아웃되었습니다');
         }
       })
@@ -164,7 +164,6 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
           >
             비밀번호 변경
           </p>
-          <p className="type-selector-slash">/</p>
         </div>
         <div onClick={ondeleteUser} className="type-selector-2">
           회원탈퇴

@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 
-import Popover from '@mui/material/Popover';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
@@ -8,9 +7,9 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { SidebarData } from './common/SidebarData';
 import { IconContext } from 'react-icons';
 import { FaUserCircle } from 'react-icons/fa';
-import { RiSearchLine } from 'react-icons/ri';
+
 import InfoMd from './InfoMd';
-import HoverModal from './Dropdown';
+
 import Dropdown from './Dropdown';
 
 const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
@@ -24,7 +23,6 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
-  console.log(isOpen);
   useEffect(() => {
     setIsOpen(true);
   }, [isLogin]);
@@ -76,8 +74,6 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
           </Link>
           <div className="nav-list">
             <li className="nav-pad-1">브랜드</li>
-
-            {/* <Dropdown className="nav-pad-1" /> */}
 
             <li className="nav-pad-1">게시판</li>
           </div>

@@ -9,10 +9,12 @@ export const dummyImage = [
   {
     id: 1,
     src: corsair,
+    path: '/account/mypage',
   },
   {
     id: 2,
     src: logi,
+    path: '/brands/logi',
   },
   {
     id: 3,

@@ -6,19 +6,23 @@ import SignIn from './Auth/SignIn';
 import axios from 'axios';
 import HomePage from './Pages/HomePage';
 import Footer from './Components/Footer';
-import { Route, Switch } from 'react-router';
+import { useHistory, Route, Switch } from 'react-router-dom';
 import Register from './Auth/Register';
 import Board from './Pages/Board';
 import Mypage from './Pages/Mypage';
 import PassChange from './Pages/PassChange';
-
+import Logi from './Pages/Brands/Logi';
 import FindPass from './Pages/FindPass';
+import ReturnHome from './Pages/ReturnHome';
+import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
 
 const App = () => {
+  const history = useHistory();
   const [isLogin, setIsLogin] = useState(false);
   const [authRegi, setAuthRegi] = useState({
     email: '',
     username: '',
+    profileImg: '',
     password: '',
     passwordCornfirm: '',
   });
@@ -47,7 +51,7 @@ const App = () => {
   };
 
   const getLocalInfo = () => {
-    authorization();
+    // authorization();
     let name = localStorage.getItem('username');
     let mail = localStorage.getItem('email');
     if (name) {
@@ -59,10 +63,77 @@ const App = () => {
     }
   };
 
+  const getKakaoToken = (code) => {
+    axios
+      .post('http://52.79.233.29:8080/callback/kakao', {
+        authorizationCode: code,
+      })
+      .then((res) => {
+        console.log(res.data.data.properties);
+        if (res.data.data) {
+          setAuthRegi({
+            email: res.data.data.properties.email,
+            username: res.data.data.properties.nickname,
+            profileImg: res.data.data.properties.profile_image,
+          });
+          setIsLogin(true);
+          history.push('/');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getGoogleToken = (code) => {
+    axios
+      .post('http://52.79.233.29:8080/callback/google', {
+        authorizationCode: code,
+      })
+      .then((res) => {
+        // console.log(res.data.data);
+        if (res.data.data) {
+          setAuthRegi({
+            email: res.data.data.email,
+            username: res.data.data.email.slice(
+              0,
+              res.data.data.email.indexOf('@'),
+            ),
+            profileImg: res.data.data.picture,
+          });
+          setIsLogin(true);
+          history.push('/');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
-    localStorage.setItem('name', authRegi.username);
-    localStorage.setItem('mail', authRegi.email);
-    getLocalInfo();
+    const url = new URL(window.location.href);
+    const authorizationCode = url.searchParams.get('code');
+    let social = localStorage.getItem('social');
+    if (authorizationCode) {
+      if (social === 'kakao') {
+        getKakaoToken(authorizationCode);
+      }
+      if (social === 'google') {
+        getGoogleToken(authorizationCode);
+      }
+    } else {
+      if (!social) {
+        authorization();
+      } else {
+        if (!authRegi.username) {
+          getLocalInfo();
+          return;
+        }
+        localStorage.setItem('name', authRegi.username);
+        localStorage.setItem('mail', authRegi.email);
+        getLocalInfo();
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogin]);
 
@@ -87,7 +158,6 @@ const App = () => {
             setAuthRegi={setAuthRegi}
           />
         </Route>
-
         <Route path="/account/register">
           <Register
             authRegi={authRegi}
@@ -115,8 +185,14 @@ const App = () => {
             setIsLogin={setIsLogin}
           />
         </Route>
+
+        <Route path="/brands/list/logitech" component={Logi} />
+
         <Route path="/find/reset-password/send-email" component={FindPass} />
+        <Route path="/find/reset-password/rtlogin" component={ReturnHome} />
+        <Route path="/brands/review" component={ReviewTemp} />
       </Switch>
+
       <Footer />
     </>
   );
