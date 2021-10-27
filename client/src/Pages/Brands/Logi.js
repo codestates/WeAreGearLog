@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import g304 from '../../Img/brands/g304.png';
+
 import './Brands.css';
 import { Link } from 'react-router-dom';
 import { LogiDummy } from '../../DummyData';
 
-const Logi = () => {
+const Logi = ({ handleCardClick, setSaveId }) => {
   const [logi, setLogi] = useState(LogiDummy);
 
   const gear = logi.map((el) => {
     return (
-      <div className="card">
+      <div key={el.id} className="card">
         <img src={el.img} alt=""></img>
 
         <p className="card-1">
@@ -20,13 +20,14 @@ const Logi = () => {
         </p>
 
         <Link to={el.path}>
-          <span className="card-2">{el.click}</span>
+          <span onClick={() => handleCardClick(el.id)} className="card-2">
+            {el.click}
+          </span>
         </Link>
       </div>
     );
   });
 
-  console.log(logi);
   return (
     <section className="Logitech-page">
       <div className="top-wrap">

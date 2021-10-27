@@ -1,10 +1,10 @@
 import { useState, useRef } from 'react';
-import corsair from '../Img/corsair.png';
+import corsair from '../Img/cor.png';
 import logi from '../Img/logi.png';
 import razer from '../Img/razer.png';
 import roccat from '../Img/roccat.png';
 import Slider from 'react-slick';
-import still from '../Img/still.png';
+
 import '../App.css';
 import { useHistory, Link } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ let dummyImage = [
   {
     id: 1,
     src: corsair,
-    path: '/brands/list/cosair',
+    path: '/brands/list/corsair',
   },
   {
     id: 2,
@@ -31,11 +31,6 @@ let dummyImage = [
     src: roccat,
     path: '/brands/list/roccat',
   },
-  {
-    id: 5,
-    src: still,
-    path: '/brands/list/still',
-  },
 ];
 
 const Brand = () => {
@@ -45,11 +40,11 @@ const Brand = () => {
 
   const maps = img.map((el) => {
     return (
-      <a key={el.id} className="brand-link">
+      <div key={el.id} className="brand-link">
         <Link to={el.path}>
           <img className="brand-image-name" key={el.id} src={el.src} alt="" />
         </Link>
-      </a>
+      </div>
     );
   });
 
