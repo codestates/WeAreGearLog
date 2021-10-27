@@ -8,7 +8,6 @@ import HomePage from './Pages/HomePage';
 import Footer from './Components/Footer';
 import { useHistory, Route, Switch } from 'react-router-dom';
 import Register from './Auth/Register';
-import Board from './Pages/Board';
 import Mypage from './Pages/Mypage';
 import PassChange from './Pages/PassChange';
 import Logi from './Pages/Brands/Logi';
@@ -16,6 +15,10 @@ import FindPass from './Pages/FindPass';
 import ReturnHome from './Pages/ReturnHome';
 import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
 import Lazer from './Pages/Brands/Lazer';
+import PostPage from './Pages/Write/PostPage';
+import PostListPage from './Pages/Write/PostListPage';
+import ArticlePage from './Pages/Write/ArticlePage';
+import RegisterPage from './Pages/Write/RegisterPage';
 
 const App = () => {
   const history = useHistory();
@@ -176,7 +179,16 @@ const App = () => {
           />
         </Route>
         <Route path="/b/board">
-          <Board />
+          <PostPage />
+        </Route>
+        <Route path="/b/postlistpage">
+          <PostListPage />
+        </Route>
+        <Route path="/b/article/:articleId">
+          <ArticlePage />
+        </Route>
+        <Route path="/b/registerpage">
+          <RegisterPage />
         </Route>
         <Route path="/account/pwc">
           <PassChange
@@ -188,7 +200,6 @@ const App = () => {
 
         <Route path="/brands/list/logitech" component={Logi} />
         <Route path="/brands/list/razer" component={Lazer} />
-
         <Route path="/find/reset-password/send-email" component={FindPass} />
         <Route path="/find/reset-password/rtlogin" component={ReturnHome} />
         <Route path="/brands/review/logitech" component={ReviewTemp} />

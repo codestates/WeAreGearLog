@@ -38,24 +38,6 @@ a:hover {
 i:hover {
   cursor: pointer;
 }
-.board-page {
-  color: black;
-}
-.board-list {
-  color: black;
-}
-.board-box {
-  color: black;
-}
-.button-submit {
-  color: black;
-}
-.board-title {
-  color: black;
-}
-.board-content {
-  color: black;
-}
 
 .icons {
   margin-left: 15px;
