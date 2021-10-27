@@ -3,19 +3,13 @@ import './ReviewTemp.css';
 import { FcDocument, FcElectricalSensor } from 'react-icons/fc';
 import g304ti from '../../../Img/brands/6143-1.png';
 import Logi from '../Logi';
-const ReviewTemp = ({ setSaveId, Id, LOGI }) => {
-  localStorage.setItem('id', Id);
-
+const ReviewTemp = ({ isLogin, setSaveId, Id, LOGI }) => {
   useEffect(() => {
-    if (!Id) {
-      let sr = localStorage.getItem('id');
-      setSaveId(sr);
-    } else {
-      let sr = localStorage.getItem('id');
-      localStorage.setItem('id', Id);
-      setSaveId(sr);
-    }
+    localStorage.setItem('idv', Id);
+    const sr = localStorage.getItem('idv');
+    setSaveId(sr);
   }, [Id]);
+
   return (
     <div className="Rv-temp">
       <div className="Rv-temp-page">
