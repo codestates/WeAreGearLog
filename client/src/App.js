@@ -15,6 +15,7 @@ import Logi from './Pages/Brands/Logi';
 import FindPass from './Pages/FindPass';
 import ReturnHome from './Pages/ReturnHome';
 import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
+import Lazer from './Pages/Brands/Lazer';
 
 const App = () => {
   const history = useHistory();
@@ -27,7 +28,6 @@ const App = () => {
     passwordCornfirm: '',
   });
 
-  console.log(authRegi.password);
   const authorization = () => {
     let token = localStorage.getItem('token');
     axios
@@ -187,10 +187,11 @@ const App = () => {
         </Route>
 
         <Route path="/brands/list/logitech" component={Logi} />
+        <Route path="/brands/list/razer" component={Lazer} />
 
         <Route path="/find/reset-password/send-email" component={FindPass} />
         <Route path="/find/reset-password/rtlogin" component={ReturnHome} />
-        <Route path="/brands/review" component={ReviewTemp} />
+        <Route path="/brands/review/logitech" component={ReviewTemp} />
       </Switch>
 
       <Footer />

@@ -1,36 +1,127 @@
-import corsair from './Img/cosair.png';
-import logi from './Img/logi.png';
-import razer from './Img/razer.png';
-import roccat from './Img/roccat.png';
-import zowie from './Img/zowie.png';
-import still from './Img/still.png';
-
-export const dummyImage = [
+import g304 from './Img/brands/g304.png';
+import gprox from './Img/brands/Logitech/gprox.png';
+import g913 from './Img/brands/Logitech/g913.png';
+import g733 from './Img/brands/Logitech/G733.png';
+import blwdw from './Img/brands/Lazer/blackwdw.png';
+import death from './Img/brands/Lazer/DeathAdder.png';
+import Kraken from './Img/brands/Lazer/Kraken.png';
+export const LogiDummy = [
   {
     id: 1,
-    src: corsair,
-    path: '/account/mypage',
+    img: g304,
+    path: '/brands/review/logitech',
+    title: 'Logitech G304',
+    Review: 'Review',
+    click: '리뷰보기',
   },
   {
     id: 2,
-    src: logi,
-    path: '/brands/logi',
+    img: gprox,
+    path: '/brands/review/logitech',
+
+    title: 'Logitech GProX',
+    Review: 'Review',
+    click: '리뷰보기',
   },
   {
     id: 3,
-    src: razer,
+    img: g913,
+    path: '/brands/review/logitech',
+    title: 'Logitech G913',
+    Review: 'Review',
+    click: '리뷰보기',
   },
   {
     id: 4,
-    src: roccat,
+    img: g733,
+    path: '/brands/review/logitech',
+    title: 'Logitech G733',
+    Review: 'Review',
+    click: '리뷰보기',
   },
-
   {
     id: 5,
-    src: zowie,
+    img: '',
+    path: '',
+    title: '공개예정',
+    click: '',
   },
   {
     id: 6,
-    src: still,
+    img: '',
+    path: '',
+    title: '공개예정',
+    click: '',
+  },
+];
+
+export const RAZER = [
+  {
+    id: 1,
+    img: blwdw,
+    path: '/brands/review/logitech',
+    title: 'LAZER BLACKWIDOW',
+    Review: 'Review',
+    click: '리뷰보기',
+  },
+  {
+    id: 2,
+    img: death,
+    path: '/brands/review/logitech',
+
+    title: 'LAZER DeathAdder',
+    Review: 'Review',
+    click: '리뷰보기',
+  },
+  {
+    id: 3,
+    img: Kraken,
+    path: '/brands/review/logitech',
+    title: 'LAZER Kraken Ultimate',
+    Review: 'Review',
+    click: '리뷰보기',
+  },
+  {
+    id: 4,
+    img: '',
+    path: '',
+    title: '공개예정',
+    click: '',
+  },
+  {
+    id: 5,
+    img: '',
+    path: '',
+    title: '공개예정',
+    click: '',
+  },
+
+  {
+    id: 6,
+    img: '',
+    path: '',
+    title: '공개예정',
+    click: '',
+  },
+  {
+    id: 6,
+    img: '',
+    path: '',
+    title: '공개예정',
+    click: '',
+  },
+  {
+    id: 6,
+    img: '',
+    path: '',
+    title: '공개예정',
+    click: '',
+  },
+  {
+    id: 6,
+    img: '',
+    path: '',
+    title: '공개예정',
+    click: '',
   },
 ];

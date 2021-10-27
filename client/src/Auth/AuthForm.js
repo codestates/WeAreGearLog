@@ -142,9 +142,9 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
   };
 
   return (
-    <div className="Auth">
-      <div className="AuthPage-1">
-        <form onSubmit={onSubmit} className="register-2">
+    <div className="Auth-temp">
+      <div className="Auth-temp-1">
+        <form onSubmit={onSubmit}>
           <h1>{text}</h1>
 
           <input

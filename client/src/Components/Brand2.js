@@ -12,27 +12,27 @@ let dummyImage = [
   {
     id: 1,
     src: corsair,
-    path: '/brands/corsair',
+    path: '/brands/list/corsair',
   },
   {
     id: 2,
     src: logi,
-    path: '/brands/logitech',
+    path: '/brands/list/logitech',
   },
   {
     id: 3,
     src: razer,
-    path: '/brands/razer',
+    path: '/brands/list/razer',
   },
   {
     id: 4,
     src: roccat,
-    path: '/brands/roccat',
+    path: '/brands/list/roccat',
   },
   {
     id: 5,
     src: still,
-    path: '/brands/still',
+    path: '/brands/list/still',
   },
 ];
 
