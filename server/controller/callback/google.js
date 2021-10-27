@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const clientId = process.env.GOOGLE_CLIENT_ID;
 const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-const redirect = "http://gearlog-db.s3-website.ap-northeast-2.amazonaws.com";
+const redirect = "http://gearlog-db.s3-website.ap-northeast-2.amazonaws.com/";
 const axios = require("axios");
 const qs = require("qs");
 
