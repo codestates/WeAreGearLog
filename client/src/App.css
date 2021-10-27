@@ -9,13 +9,10 @@
   color: aliceblue;
 }
 
-<<<<<<< HEAD
-=======
 .homepage {
   background-color: black;
 }
 
->>>>>>> 0861804c200bb59b826b057d3bc1aca8d9045189
 a:hover {
   cursor: pointer;
 }
@@ -23,7 +20,22 @@ a:hover {
 i:hover {
   cursor: pointer;
 }
-.board {
+.board-page {
+  color: black;
+}
+.board-list {
+  color: black;
+}
+.board-box {
+  color: black;
+}
+.button-submit {
+  color: black;
+}
+.board-title {
+  color: black;
+}
+.board-content {
   color: black;
 }
 
@@ -234,6 +246,7 @@ hr {
 }
 h1 {
   background-color: white;
+
   color: black;
 }
 /*Auth page*/
@@ -365,12 +378,6 @@ h1 {
   width: 40%;
   padding: 15px;
 }
-<<<<<<< HEAD
-.board-list {
-  color: black;
-}
-.board-Editor {
-=======
 
 .userinfo {
   position: absolute;
@@ -438,13 +445,9 @@ h1 {
   color: black;
 }
 .change-username {
->>>>>>> e35db08ac44ab5dc288a3180f2dec99e2c8e33f0
   color: black;
 }
-.err {
-  margin: ;
-  color: red;
-}
+
 .Team-select {
   position: absolute;
   margin-left: 2px;
