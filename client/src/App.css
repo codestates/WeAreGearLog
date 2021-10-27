@@ -8,6 +8,22 @@
   padding: 0;
   color: aliceblue;
 }
+
+.Auth-temp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+.Auth-temp-1 {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 100%;
+}
 .logitech {
   color: black;
 }
@@ -245,58 +261,33 @@ h1 {
   height: 100vh;
 }
 
-.Auth {
-  text-align: center;
-  background-color: white;
-  display: flex;
-}
-.AuthPage {
-  width: 100%;
-}
-.AuthPage-1 {
-  text-align: center;
-  top: 30%;
-
-  width: 100%;
-  height: 100%;
-}
-.AuthPage-2 {
-  position: absolute;
-  top: 17%;
-  left: 0%;
-
-  width: 100%;
-}
-
 .email {
   border: 1px solid gainsboro;
 
   border-radius: 20px;
   height: 50px;
   margin-bottom: 30px;
-  margin-left: 15%;
-  margin-right: 15%;
-  width: 40%;
+
+  width: 100%;
   padding: 15px;
   color: black;
 }
 .password {
   border: 1px solid gainsboro;
-  background-color: white;
+
   border-radius: 20px;
   height: 50px;
   margin-bottom: 30px;
-  margin-left: 15%;
-  margin-right: 15%;
-  width: 40%;
+
+  width: 100%;
   padding: 15px;
   color: black;
 }
 
 .register-2 {
   margin-top: 10%;
-  margin-left: 15%;
-
+  margin-left: 10%;
+  margin-right: 10%;
   background-color: white;
   margin-bottom: 15%;
   width: 70%;
@@ -353,16 +344,16 @@ h1 {
   margin-left: 30px;
 }
 .loginButton {
-  border: none;
+  border: 1px solid #cb6ce6;
   background-color: #cb6ce6;
+
   border-radius: 20px;
   height: 50px;
-  margin-top: 20px;
   margin-bottom: 30px;
-  margin-left: 15%;
-  margin-right: 15%;
-  width: 40%;
+
+  width: 100%;
   padding: 15px;
+  color: black;
 }
 
 .userinfo {
@@ -391,13 +382,14 @@ h1 {
 }
 .my {
   display: flex;
+  width: 100%;
   text-align: center;
 
-  height: 50vh;
+  height: 100vh;
 }
 .mypage {
-  margin: 100px;
-  width: 500px;
+  height: 60%;
+  margin-bottom: 150px;
 }
 .acc {
   display: flex;
@@ -448,7 +440,29 @@ h1 {
   color: tomato;
 }
 
+.Razer-top {
+}
+
+@media screen and (min-width: 1300px) {
+  .Auth-temp-1 {
+    width: 18%;
+    margin-bottom: 150px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .Auth-temp-1 {
+    height: 70%;
+
+    width: 30%;
+    margin-bottom: 300px;
+  }
+}
 @media screen and (max-width: 768px) {
+  .Auth-temp-1 {
+    width: 70%;
+    margin-bottom: 150px;
+  }
+
   .email {
     width: 85%;
   }
@@ -458,9 +472,7 @@ h1 {
   .loginButton {
     width: 85%;
   }
-  .AuthPage-1 {
-    width: 100%;
-  }
+
   .Logo-name {
     left: 34%;
     font-size: 30px;

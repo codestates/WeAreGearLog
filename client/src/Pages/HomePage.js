@@ -28,8 +28,8 @@ const HomePage = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
       <Route exact path="/">
         <Home />
 
-        <IntroCover />
-        <Intro />
+        {/* <IntroCover />
+        <Intro /> */}
         <BrandCover />
         {isMobile ? <Brand2 /> : <Brand />}
       </Route>

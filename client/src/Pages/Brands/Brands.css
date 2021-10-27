@@ -19,6 +19,17 @@
   color: black;
   background-color: #00b9f6;
 }
+.Razer-top {
+  text-align: left;
+  height: 150px;
+  font-weight: bolder;
+  display: flex;
+  color: black;
+  background-color: #2dd158;
+}
+.Razer-top1 {
+  font-size: 50px;
+}
 
 .logi-top {
   font-size: 50px;

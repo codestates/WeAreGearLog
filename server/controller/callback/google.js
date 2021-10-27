@@ -7,21 +7,19 @@ const axios = require("axios");
 const qs = require("qs");
 
 module.exports = (req, res) => {
-  const code = req.body.authorizationCode;
   axios({
     method: "POST",
-    // url: `https://accounts.google.com/o/oauth2/token?grant_type=authorization_code&client_id=${clientId}&client_secret=${clientSecret}&redirect_uri=${redirect}&code=${code}`,
     url: "https://accounts.google.com/o/oauth2/token",
     data: qs.stringify({
       grant_type: "authorization_code",
       client_id: clientId,
       client_secret: clientSecret,
       redirect_uri: redirect,
-      code: code,
+      code: req.body.authorizationCode,
     }),
   })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       const token = response.data.access_token;
 
       axios({
@@ -39,6 +37,6 @@ module.exports = (req, res) => {
         });
     })
     .catch((err) => {
-      res.status(404);
+      res.sendStatus(400);
     });
 };
