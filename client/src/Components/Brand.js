@@ -14,7 +14,7 @@ let dummyImage = [
   {
     id: 1,
     src: corsair,
-    path: '/brands/cosair',
+    path: '/brands/list/cosair',
   },
   {
     id: 2,
@@ -24,17 +24,17 @@ let dummyImage = [
   {
     id: 3,
     src: razer,
-    path: '/brands/razer',
+    path: '/brands/list/razer',
   },
   {
     id: 4,
     src: roccat,
-    path: '/brands/roccat',
+    path: '/brands/list/roccat',
   },
   {
     id: 5,
     src: still,
-    path: '/brands/still',
+    path: '/brands/list/still',
   },
 ];
 

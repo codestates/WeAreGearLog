@@ -23,7 +23,7 @@ const ReviewTemp = () => {
             </p>
           </div>
           <div className=".main-review">
-            <img className="title-img" src={g304ti}></img>
+            <img className="title-img" src={g304ti} alt=""></img>
           </div>
         </div>
 
@@ -38,7 +38,7 @@ const ReviewTemp = () => {
               아니라 레이턴시라고 하는 기기 입장에서 생각해 보면 이러한 지연을
               1ms(0.001초)라고 줄여보고자 하는 로지텍의 집념을 느끼실 수 있지
               않으실까 합니다. <br></br>
-              <div className="interview"> -쿨앤조이-</div>
+              <div className="interview"> -프로게이머 김동찬-</div>
             </p>
           </div>
           <div className="Rv-temp-introp">
