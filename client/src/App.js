@@ -24,7 +24,7 @@ const App = () => {
   const [saveId, setSaveId] = useState(0);
 
   const [isLogin, setIsLogin] = useState(false);
-  console.log(saveId);
+  // console.log(saveId);
 
   const [authRegi, setAuthRegi] = useState({
     email: '',
@@ -34,7 +34,8 @@ const App = () => {
     passwordCornfirm: '',
   });
   const handleCardClick = (id) => {
-    setSaveId(id - 1);
+    console.log(id);
+    setSaveId(id);
   };
 
   const authorization = () => {
@@ -211,7 +212,7 @@ const App = () => {
         <Route path="/find/reset-password/send-email" component={FindPass} />
         <Route path="/find/reset-password/rtlogin" component={ReturnHome} />
         <Route path="/brands/review/logitech">
-          <ReviewTemp setSaveId={setSaveId} Id={saveId} LOGI={LOGI} />
+          <ReviewTemp setSaveId={setSaveId} saveId={saveId} LOGI={LOGI} />
         </Route>
         <Route path="/brands/list/corsair">
           <Csr />
