@@ -2,6 +2,21 @@
 
 export const LOGI = [
   {
+    id: 0,
+    title: '',
+    intro: '',
+    src: '',
+    title1: '',
+    intext: '',
+    interviewer: '',
+    li1: '',
+    li2: '',
+    li3: '',
+    li4: '',
+    final: '',
+    ftext: '',
+  },
+  {
     id: 1,
     title: 'Logitech g304 Review',
     intro:
