@@ -33,7 +33,8 @@ const App = () => {
     passwordCornfirm: '',
   });
   const handleCardClick = (id) => {
-    setSaveId(id - 1);
+    console.log(id);
+    setSaveId(id);
   };
 
   const authorization = () => {
@@ -210,7 +211,7 @@ const App = () => {
         <Route path="/find/reset-password/send-email" component={FindPass} />
         <Route path="/find/reset-password/rtlogin" component={ReturnHome} />
         <Route path="/brands/review/logitech">
-          <ReviewTemp isLogin={isLogin} setSaveId={setSaveId} Id={saveId} LOGI={LOGI} />
+          <ReviewTemp setSaveId={setSaveId} saveId={saveId} LOGI={LOGI} />
         </Route>
         <Route path="/brands/list/corsair">
           <Csr />
