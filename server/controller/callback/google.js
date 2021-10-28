@@ -4,12 +4,19 @@ const clientId = process.env.GOOGLE_CLIENT_ID;
 const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
 const redirect = "http://gearlog-db.s3-website.ap-northeast-2.amazonaws.com/";
 const axios = require("axios");
+const qs = require("qs");
 
 module.exports = (req, res) => {
-  const code = req.body.authorizationCode;
   axios({
     method: "POST",
-    url: `https://accounts.google.com/o/oauth2/token?grant_type=authorization_code&client_id=${clientId}&client_secret=${clientSecret}&redirect_uri=${redirect}&code=${code}`,
+    url: "https://oauth2.googleapis.com/token",
+    data: qs.stringify({
+      grant_type: "authorization_code",
+      client_id: clientId,
+      client_secret: clientSecret,
+      redirect_uri: redirect,
+      code: req.body.authorizationCode,
+    }),
   })
     .then((response) => {
       // console.log(response);
@@ -30,6 +37,7 @@ module.exports = (req, res) => {
         });
     })
     .catch((err) => {
-      res.status(404);
+      console.log(err);
+      res.sendStatus(400);
     });
 };

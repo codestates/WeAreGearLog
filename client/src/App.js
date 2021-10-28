@@ -1,10 +1,9 @@
-
 import { useState, useEffect } from 'react';
-
 import './App.css';
 import SignIn from './Auth/SignIn';
 import axios from 'axios';
 import HomePage from './Pages/HomePage';
+import { LOGI } from './ReviewData';
 import Footer from './Components/Footer';
 import { useHistory, Route, Switch } from 'react-router-dom';
 import Register from './Auth/Register';
@@ -19,10 +18,16 @@ import PostPage from './Pages/Write/PostPage';
 import PostListPage from './Pages/Write/PostListPage';
 import ArticlePage from './Pages/Write/ArticlePage';
 import RegisterPage from './Pages/Write/RegisterPage';
+import Roccat from './Pages/Brands/Roccat';
+import Csr from './Pages/Brands/Csr';
 
 const App = () => {
   const history = useHistory();
+  const [saveId, setSaveId] = useState(0);
+
   const [isLogin, setIsLogin] = useState(false);
+  // console.log(saveId);
+
   const [authRegi, setAuthRegi] = useState({
     email: '',
     username: '',
@@ -30,6 +35,10 @@ const App = () => {
     password: '',
     passwordCornfirm: '',
   });
+  const handleCardClick = (id) => {
+    console.log(id);
+    setSaveId(id);
+  };
 
   const authorization = () => {
     let token = localStorage.getItem('token');
@@ -198,11 +207,30 @@ const App = () => {
           />
         </Route>
 
+
         <Route path="/brands/list/logitech" component={Logi} />
         <Route path="/brands/list/razer" component={Lazer} />
+        <Route path="/brands/list/roccat">
+          <Roccat />
+        </Route>
+        <Route path="/brands/list/logitech">
+          <Logi
+            setSaveId={setSaveId}
+            handleCardClick={handleCardClick}
+            dummy={LOGI}
+          />
+        </Route>
+        <Route path="/brands/list/razer">
+          <Lazer />
+        </Route>
         <Route path="/find/reset-password/send-email" component={FindPass} />
         <Route path="/find/reset-password/rtlogin" component={ReturnHome} />
-        <Route path="/brands/review/logitech" component={ReviewTemp} />
+        <Route path="/brands/review/logitech">
+          <ReviewTemp setSaveId={setSaveId} saveId={saveId} LOGI={LOGI} />
+        </Route>
+        <Route path="/brands/list/corsair">
+          <Csr />
+        </Route>
       </Switch>
 
       <Footer />

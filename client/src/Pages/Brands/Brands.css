@@ -10,6 +10,18 @@
 
   background-color: white;
 }
+.Roccat-top {
+  text-align: left;
+  height: 150px;
+  font-weight: bolder;
+  display: flex;
+  color: white;
+  background-color: black;
+}
+
+.Roccat-top1 {
+  font-size: 50px;
+}
 
 .logi-top {
   text-align: left;
@@ -47,6 +59,7 @@
   color: black;
 }
 .card-2 {
+  font-size: 15px;
   color: tomato;
 }
 .list-page {
@@ -91,7 +104,7 @@
   transition: all 0.3s ease;
 }
 .card:hover {
-  margin-top: -5px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
 .flex-warp {
   display: flex;
