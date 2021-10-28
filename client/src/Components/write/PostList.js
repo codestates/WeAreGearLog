@@ -1,13 +1,7 @@
-import React  from 'react';
-
+import React from 'react';
+import '../../Pages/Board.css';
 const PostList = () => {
-
-    return (
-        <div>
-            게시글 페이지 컴포넌트
-        </div>
-    )
-
-}
+  return <div className="post-list"></div>;
+};
 
 export default PostList;
