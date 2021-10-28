@@ -8,13 +8,14 @@ import { LOGI } from './ReviewData';
 import Footer from './Components/Footer';
 import { useHistory, Route, Switch } from 'react-router-dom';
 import Register from './Auth/Register';
-import Board from './Pages/Board';
+
 import Mypage from './Pages/Mypage';
 import PassChange from './Pages/PassChange';
 import Logi from './Pages/Brands/Logi';
 import FindPass from './Pages/FindPass';
 import ReturnHome from './Pages/ReturnHome';
 import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
+import Board from './Pages/Board';
 
 const App = () => {
   const history = useHistory();
@@ -179,9 +180,7 @@ const App = () => {
             authorization={authorization}
           />
         </Route>
-        <Route path="/b/board">
-          <Board />
-        </Route>
+
         <Route path="/account/pwc">
           <PassChange
             authorization={authorization}
@@ -202,6 +201,11 @@ const App = () => {
         <Route path="/find/reset-password/rtlogin" component={ReturnHome} />
         <Route path="/brands/review/logitech">
           <ReviewTemp setSaveId={setSaveId} saveId={saveId} LOGI={LOGI} />
+        </Route>
+        <Route path="/board">
+          <div className="Board">
+            <Board />
+          </div>
         </Route>
       </Switch>
 

@@ -5,8 +5,7 @@ import Home from '../Components/Home';
 import Brand from '../Components/Brand';
 import Brand2 from '../Components/Brand2';
 import BrandCover from '../Components/BrandCover';
-import Intro from '../Components/Intro';
-import IntroCover from '../Components/IntroCover';
+
 import Padding from '../Components/Padding';
 import { Route } from 'react-router';
 
@@ -17,12 +16,14 @@ const HomePage = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
 
   return (
     <>
-      <Navbar
-        authRegi={authRegi}
-        setAuthRegi={setAuthRegi}
-        isLogin={isLogin}
-        setIsLogin={setIsLogin}
-      />
+      <div className="nevv">
+        <Navbar
+          authRegi={authRegi}
+          setAuthRegi={setAuthRegi}
+          isLogin={isLogin}
+          setIsLogin={setIsLogin}
+        />
+      </div>
       <Padding />
 
       <Route exact path="/">
