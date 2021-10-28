@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import './App.css';
 import SignIn from './Auth/SignIn';
 import axios from 'axios';
@@ -7,26 +8,19 @@ import { LOGI } from './ReviewData';
 import Footer from './Components/Footer';
 import { useHistory, Route, Switch } from 'react-router-dom';
 import Register from './Auth/Register';
+import Board from './Pages/Board';
 import Mypage from './Pages/Mypage';
 import PassChange from './Pages/PassChange';
 import Logi from './Pages/Brands/Logi';
 import FindPass from './Pages/FindPass';
 import ReturnHome from './Pages/ReturnHome';
 import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
-import Lazer from './Pages/Brands/Lazer';
-import PostPage from './Pages/Write/PostPage';
-import PostListPage from './Pages/Write/PostListPage';
-import ArticlePage from './Pages/Write/ArticlePage';
-import RegisterPage from './Pages/Write/RegisterPage';
-import Roccat from './Pages/Brands/Roccat';
-import Csr from './Pages/Brands/Csr';
 
 const App = () => {
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
 
   const [isLogin, setIsLogin] = useState(false);
-  // console.log(saveId);
 
   const [authRegi, setAuthRegi] = useState({
     email: '',
@@ -36,7 +30,6 @@ const App = () => {
     passwordCornfirm: '',
   });
   const handleCardClick = (id) => {
-    console.log(id);
     setSaveId(id);
   };
 
@@ -151,7 +144,6 @@ const App = () => {
 
   return (
     <>
-
       <div className="homepage">
         <HomePage
           isLogin={isLogin}
@@ -188,16 +180,7 @@ const App = () => {
           />
         </Route>
         <Route path="/b/board">
-          <PostPage />
-        </Route>
-        <Route path="/b/postlistpage">
-          <PostListPage />
-        </Route>
-        <Route path="/b/article/:articleId">
-          <ArticlePage />
-        </Route>
-        <Route path="/b/registerpage">
-          <RegisterPage />
+          <Board />
         </Route>
         <Route path="/account/pwc">
           <PassChange
@@ -207,29 +190,18 @@ const App = () => {
           />
         </Route>
 
-
-        <Route path="/brands/list/logitech" component={Logi} />
-        <Route path="/brands/list/razer" component={Lazer} />
-        <Route path="/brands/list/roccat">
-          <Roccat />
-        </Route>
-        <Route path="/brands/list/logitech">
+        <Route path="/brands/list">
           <Logi
             setSaveId={setSaveId}
             handleCardClick={handleCardClick}
             dummy={LOGI}
           />
         </Route>
-        <Route path="/brands/list/razer">
-          <Lazer />
-        </Route>
+
         <Route path="/find/reset-password/send-email" component={FindPass} />
         <Route path="/find/reset-password/rtlogin" component={ReturnHome} />
         <Route path="/brands/review/logitech">
           <ReviewTemp setSaveId={setSaveId} saveId={saveId} LOGI={LOGI} />
-        </Route>
-        <Route path="/brands/list/corsair">
-          <Csr />
         </Route>
       </Switch>
 

@@ -32,7 +32,7 @@ const Logi = ({ handleCardClick, setSaveId }) => {
     <section className="Logitech-page">
       <div className="top-wrap">
         <div className="logi-top">
-          <div className="logi-top1">Logitech</div>
+          <div className="logi-top1">Gear Review</div>
         </div>
       </div>
       <div className="flex-warp">
