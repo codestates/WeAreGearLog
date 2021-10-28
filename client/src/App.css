@@ -9,6 +9,24 @@
   color: aliceblue;
 }
 
+.Auth-temp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+.Auth-temp-1 {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 100%;
+}
+.logitech {
+  color: black;
+}
 .homepage {
   background-color: black;
 }
@@ -20,9 +38,6 @@ a:hover {
 i:hover {
   cursor: pointer;
 }
-.board {
-  color: black;
-}
 
 .icons {
   margin-left: 15px;
@@ -30,8 +45,22 @@ i:hover {
   padding-left: 10px;
   padding-right: 10px;
 }
+.icons2 {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  border-left: 1px solid white;
+  width: 120px;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
 .navbar {
+  z-index: 3;
+  position: fixed;
   background-color: black;
   height: 80px;
   width: 100%;
@@ -229,57 +258,33 @@ h1 {
   height: 100vh;
 }
 
-.Auth {
-  text-align: center;
-  background-color: white;
-  display: flex;
-}
-.AuthPage {
-  width: 100%;
-}
-.AuthPage-1 {
-  top: 30%;
-
-  width: 100vh;
-  height: 100%;
-}
-.AuthPage-2 {
-  position: absolute;
-  top: 17%;
-  left: 0%;
-
-  width: 100%;
-}
-
 .email {
   border: 1px solid gainsboro;
 
   border-radius: 20px;
   height: 50px;
   margin-bottom: 30px;
-  margin-left: 15%;
-  margin-right: 15%;
-  width: 35%;
+
+  width: 100%;
   padding: 15px;
   color: black;
 }
 .password {
   border: 1px solid gainsboro;
-  background-color: white;
+
   border-radius: 20px;
   height: 50px;
   margin-bottom: 30px;
-  margin-left: 15%;
-  margin-right: 15%;
-  width: 35%;
+
+  width: 100%;
   padding: 15px;
   color: black;
 }
 
 .register-2 {
   margin-top: 10%;
-  margin-left: 15%;
-
+  margin-left: 10%;
+  margin-right: 10%;
   background-color: white;
   margin-bottom: 15%;
   width: 70%;
@@ -297,8 +302,7 @@ h1 {
   width: 50px;
   height: 50px;
 }
-.socialB {
-}
+
 .socialBt {
   margin-top: 10px;
   margin-left: 10px;
@@ -311,6 +315,7 @@ h1 {
 }
 
 .type-selector {
+  color: tomato;
   width: 100%;
   display: flex;
   list-style: none;
@@ -323,8 +328,7 @@ h1 {
 .type-selector-2 {
   color: tomato;
 }
-.type-selector-3 {
-  margin-top: 15px;
+.type-3 {
   color: tomato;
 }
 .type-selector-slash {
@@ -337,29 +341,133 @@ h1 {
   margin-left: 30px;
 }
 .loginButton {
-  border: none;
+  border: 1px solid #cb6ce6;
   background-color: #cb6ce6;
+
   border-radius: 20px;
   height: 50px;
   margin-bottom: 30px;
-  margin-left: 15%;
-  margin-right: 15%;
-  width: 35%;
+
+  width: 100%;
   padding: 15px;
+  color: black;
+}
+
+.userinfo {
+  position: absolute;
+  border: 3px solid #cb6ce6;
+  border-radius: 20px;
+  text-align: left;
+  font-size: 20px;
+  top: 100%;
+  margin-left: 20px;
+  background-color: black;
+  width: 120px;
+  color: aliceblue;
+  z-index: 3;
+}
+
+.userinfo-mypage {
+  z-index: 9999;
+  margin-left: 20px;
+  padding: 2px;
+  height: 30px;
+  color: white;
+}
+.userinfo :hover {
+  color: #cb6ce6;
+}
+.my {
+  display: flex;
+  width: 100%;
+  text-align: center;
+
+  height: 100vh;
+}
+.mypage {
+  height: 60%;
+  margin-bottom: 150px;
+}
+.acc {
+  display: flex;
+}
+.mypage-acc {
+  color: black;
+}
+.mypage-acc-logout {
+  color: tomato;
+  border-bottom: 1px solid tomato;
+
+  margin-left: 20px;
+}
+.ac-detail-wrap {
+  color: black;
+  display: flex;
+}
+
+.ac-detail {
+  font-size: 20px;
+  color: darkgray;
+}
+.ac-detail-1 {
+  font-size: 15px;
+  color: tomato;
+}
+.modal {
+  color: black;
+}
+.change-username {
+  color: black;
+}
+
+.Team-select {
+  position: absolute;
+  margin-left: 2px;
+  margin-right: 2px;
+  left: 30%;
+  top: 100%;
+  font-size: 16px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: aliceblue;
+}
+.loading {
+  color: tomato;
+}
+
+.Razer-top {
+}
+
+@media screen and (min-width: 1300px) {
+  .Auth-temp-1 {
+    width: 18%;
+    margin-bottom: 150px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .Auth-temp-1 {
+    height: 70%;
+
+    width: 30%;
+    margin-bottom: 300px;
+  }
 }
 @media screen and (max-width: 768px) {
-  .email {
+  .Auth-temp-1 {
     width: 70%;
+    margin-bottom: 150px;
+  }
+
+  .email {
+    width: 85%;
   }
   .password {
-    width: 70%;
+    width: 85%;
   }
   .loginButton {
-    width: 70%;
+    width: 85%;
   }
-  .AuthPage-1 {
-    width: 812%;
-  }
+
   .Logo-name {
     left: 34%;
     font-size: 30px;
@@ -380,5 +488,20 @@ h1 {
   }
   .icons {
     display: none;
+  }
+
+  .userinfo {
+    display: none;
+    border: 1px solid #cb6ce6;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 20px;
+    top: 7%;
+    position: absolute;
+    background-color: aliceblue;
+    width: 100px;
+  }
+  .my {
+    width: 100%;
   }
 }

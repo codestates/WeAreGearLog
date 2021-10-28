@@ -1,18 +1,65 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
+import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { SidebarData } from './common/SidebarData';
 import { IconContext } from 'react-icons';
 import { FaUserCircle } from 'react-icons/fa';
-import { RiSearchLine } from 'react-icons/ri';
 
-const NavBar = () => {
+import InfoMd from './InfoMd';
+
+import Dropdown from './Dropdown';
+
+const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
+  const modalFalse = () => {
+    setIsOpen(!isOpen);
+  };
+
   const history = useHistory();
   const [sidebar, setSidebar] = useState(false);
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const showSidebar = () => setSidebar(!sidebar);
+  useEffect(() => {
+    setIsOpen(true);
+  }, [isLogin]);
+
+  const postLogout = () => {
+    return axios
+      .get(
+        'http://52.79.233.29:8080/user/logout',
+        {},
+        {
+          withCredentials: true,
+        },
+      )
+      .then((res) => {
+        if (res.data.message === '로그아웃 성공') {
+          localStorage.clear();
+          setAuthRegi({
+            email: '',
+            username: '',
+            password: '',
+            passwordCornfirm: '',
+          });
+
+          setIsLogin(false);
+
+          alert('로그아웃되었습니다');
+          history.push('/');
+        }
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+          alert('로그아웃이 되지않았습니다');
+        }
+      });
+  };
+
   return (
     <div>
       <IconContext.Provider value={{ color: '#fff' }}>
@@ -22,24 +69,39 @@ const NavBar = () => {
               <GiHamburgerMenu className="close" onClick={showSidebar} />
             </Link>
           </i>
-
           <Link className="Logo-name" to="/">
             GEARLOG
           </Link>
           <div className="nav-list">
             <li className="nav-pad-1">브랜드</li>
 
-            <li className="nav-pad-1">게이머장비</li>
-
             <li className="nav-pad-1">게시판</li>
           </div>
+
           <div>
-            <i className="icons">
-              <RiSearchLine />
-            </i>
-            <i className="icons" onClick={() => history.push('/account/login')}>
-              <FaUserCircle />
-            </i>
+            {!isLogin ? (
+              <i
+                className="icons"
+                onClick={() => history.push('/account/login')}
+              >
+                <FaUserCircle />
+              </i>
+            ) : (
+              <i>
+                {
+                  <div className="icons2" onClick={() => setIsOpen(!isOpen)}>
+                    <div>{authRegi.username} ▿</div>
+                  </div>
+                }
+              </i>
+            )}
+            {isLogin && !isOpen ? (
+              <InfoMd
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                postLogout={postLogout}
+              />
+            ) : null}
           </div>
         </div>
 

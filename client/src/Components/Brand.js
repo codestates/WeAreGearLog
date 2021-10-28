@@ -1,11 +1,12 @@
 import { useState, useRef } from 'react';
-import corsair from '../Img/corsair.png';
+import corsair from '../Img/cor.png';
 import logi from '../Img/logi.png';
 import razer from '../Img/razer.png';
 import roccat from '../Img/roccat.png';
 import Slider from 'react-slick';
-import still from '../Img/still.png';
+
 import '../App.css';
+import { useHistory, Link } from 'react-router-dom';
 
 import { MdArrowForwardIos, MdArrowBackIos } from 'react-icons/md';
 
@@ -13,34 +14,37 @@ let dummyImage = [
   {
     id: 1,
     src: corsair,
+    path: '/brands/list/corsair',
   },
   {
     id: 2,
     src: logi,
+    path: '/brands/list/logitech',
   },
   {
     id: 3,
     src: razer,
+    path: '/brands/list/razer',
   },
   {
     id: 4,
     src: roccat,
-  },
-  {
-    id: 5,
-    src: still,
+    path: '/brands/list/roccat',
   },
 ];
 
 const Brand = () => {
+  const history = useHistory();
   const [img, setIag] = useState(dummyImage);
   const slider = useRef(null);
 
   const maps = img.map((el) => {
     return (
-      <a key={el.id} className="brand-link">
-        <img className="brand-image-name" key={el.id} src={el.src} alt="" />
-      </a>
+      <div key={el.id} className="brand-link">
+        <Link to={el.path}>
+          <img className="brand-image-name" key={el.id} src={el.src} alt="" />
+        </Link>
+      </div>
     );
   });
 

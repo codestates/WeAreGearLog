@@ -13,9 +13,12 @@ module.exports = (req, res) => {
     return res.status(200).json({
       data: {
         userinfo: {
-          email: accessTokenData.email,
+          id: accessTokenData.id,
           username: accessTokenData.username,
+          email: accessTokenData.email,
+          profile_img: accessTokenData.profile_img,
           createdAt: accessTokenData.createdAt,
+          updatedAt: accessTokenData.updatedAt,
         },
       },
     });
