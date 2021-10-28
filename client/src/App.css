@@ -38,9 +38,6 @@ a:hover {
 i:hover {
   cursor: pointer;
 }
-.board {
-  color: black;
-}
 
 .icons {
   margin-left: 15px;
@@ -422,9 +419,7 @@ h1 {
 .change-username {
   color: black;
 }
-.err {
-  color: red;
-}
+
 .Team-select {
   position: absolute;
   margin-left: 2px;
