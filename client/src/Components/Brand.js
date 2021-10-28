@@ -19,7 +19,7 @@ let dummyImage = [
   {
     id: 2,
     src: logi,
-    path: '/brands/list/logitech',
+    path: '/brands/list/',
   },
   {
     id: 3,

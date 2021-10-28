@@ -43,23 +43,6 @@ export const LogiDummy = [
   },
   {
     id: 5,
-    img: '',
-    path: '',
-    title: '공개예정',
-    click: '',
-  },
-  {
-    id: 6,
-    img: '',
-    path: '',
-    title: '공개예정',
-    click: '',
-  },
-];
-
-export const RAZER = [
-  {
-    id: 1,
     img: blwdw,
     path: '/brands/review/logitech',
     click: '리뷰보기',
@@ -67,7 +50,7 @@ export const RAZER = [
     Review: 'Review',
   },
   {
-    id: 2,
+    id: 6,
     img: death,
     path: '/brands/review/logitech',
     click: '리뷰보기',
@@ -75,7 +58,7 @@ export const RAZER = [
     Review: 'Review',
   },
   {
-    id: 3,
+    id: 7,
     img: Kraken,
     path: '/brands/review/logitech',
     click: '리뷰보기',
@@ -83,72 +66,27 @@ export const RAZER = [
     Review: 'Review',
   },
   {
-    id: 4,
-    img: '',
-    path: '',
-
-    title: '공개예정',
-    click: '',
-  },
-  {
-    id: 5,
-    img: '',
-    path: '',
-    title: '공개예정',
-    click: '',
-  },
-
-  {
-    id: 6,
-    img: '',
-    path: '',
-    title: '공개예정',
-    click: '',
-  },
-  {
-    id: 7,
-    img: '',
-    path: '',
-    title: '공개예정',
-  },
-  {
     id: 8,
-    img: '',
-    path: '',
-    title: '공개예정',
-  },
-  {
-    id: 9,
-    img: '',
-    path: '',
-    title: '공개예정',
-  },
-];
-
-export const roccat = [
-  {
-    id: 1,
     img: kova,
     click: '리뷰보기',
     path: '/brands/review/roccat',
+    Review: 'Review',
     title: 'Roccat Kova Amimo',
   },
   {
-    id: 2,
+    id: 9,
     img: kon,
     click: '리뷰보기',
     path: '/brands/review/roccat',
-
+    Review: 'Review',
     title: 'Roccat Kone Pro',
   },
-];
-
-export const Corsairs = [
   {
-    id: 1,
+    id: 10,
     img: k70,
     click: '리뷰보기',
     path: '/brands/review/corsair',
+    Review: 'Review',
     title: 'Corsair k70',
   },
 ];

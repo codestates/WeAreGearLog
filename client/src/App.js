@@ -15,9 +15,6 @@ import Logi from './Pages/Brands/Logi';
 import FindPass from './Pages/FindPass';
 import ReturnHome from './Pages/ReturnHome';
 import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
-import Lazer from './Pages/Brands/Lazer';
-import Roccat from './Pages/Brands/Roccat';
-import Csr from './Pages/Brands/Csr';
 
 const App = () => {
   const history = useHistory();
@@ -33,7 +30,6 @@ const App = () => {
     passwordCornfirm: '',
   });
   const handleCardClick = (id) => {
-    console.log(id);
     setSaveId(id);
   };
 
@@ -194,27 +190,18 @@ const App = () => {
           />
         </Route>
 
-        <Route path="/brands/list/roccat">
-          <Roccat />
-        </Route>
-        <Route path="/brands/list/logitech">
+        <Route path="/brands/list">
           <Logi
             setSaveId={setSaveId}
             handleCardClick={handleCardClick}
             dummy={LOGI}
           />
         </Route>
-        <Route path="/brands/list/razer">
-          <Lazer />
-        </Route>
 
         <Route path="/find/reset-password/send-email" component={FindPass} />
         <Route path="/find/reset-password/rtlogin" component={ReturnHome} />
         <Route path="/brands/review/logitech">
           <ReviewTemp setSaveId={setSaveId} saveId={saveId} LOGI={LOGI} />
-        </Route>
-        <Route path="/brands/list/corsair">
-          <Csr />
         </Route>
       </Switch>
 
