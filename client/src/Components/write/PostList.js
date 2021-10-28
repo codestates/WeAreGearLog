@@ -1,3 +1,4 @@
+
 import React from 'react';
 import '../../Pages/Board.css';
 const PostList = () => {
