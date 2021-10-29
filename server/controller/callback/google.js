@@ -6,6 +6,7 @@ const redirect = "http://gearlog-db.s3-website.ap-northeast-2.amazonaws.com";
 const axios = require("axios");
 const qs = require("qs");
 const { user } = require("../../models");
+const { generateAccessToken } = require("../tokenFunctions");
 
 module.exports = (req, res) => {
   const token = req.body.accessToken;
@@ -38,8 +39,16 @@ module.exports = (req, res) => {
         })
         .then((data) => {
           const [user, created] = data;
-          // console.log(created);
-          res.status(200).json({ data: result.data });
+          // console.log(user);
+          const token = generateAccessToken(user.dataValues);
+          res
+            .cookie("accessToken", token, {
+              httpOnly: true,
+              expiresIn: "300m",
+              sameSite: "Strict",
+            })
+            .status(200)
+            .json({ data: result.data, token: token });
         })
         .catch((err) => {
           console.log(err);
