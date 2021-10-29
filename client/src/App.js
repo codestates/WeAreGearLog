@@ -58,13 +58,15 @@ const App = () => {
 
   const getLocalInfo = () => {
     // authorization();
-    let name = localStorage.getItem('username');
-    let mail = localStorage.getItem('email');
+    const name = localStorage.getItem('username');
+    const mail = localStorage.getItem('email');
+    const profile = localStorage.getItem('profile');
     localStorage.setItem('social', '');
     if (name) {
       setAuthRegi({
         email: mail,
         username: name,
+        profileImg: profile,
       });
       setIsLogin(true);
     }
@@ -79,8 +81,8 @@ const App = () => {
         console.log(res.data.data.properties);
         if (res.data.data) {
           setAuthRegi({
-            email: res.data.data.properties.email,
-            username: res.data.data.properties.nickname,
+            email: `${res.data.properties.nickname}@kakaosocial`,
+            username: `${res.data.data.properties.nickname}@kakao`,
             profileImg: res.data.data.properties.profile_image,
           });
           setIsLogin(true);
@@ -102,10 +104,10 @@ const App = () => {
         if (res.data.data) {
           setAuthRegi({
             email: res.data.data.email,
-            username: res.data.data.email.slice(
+            username: `${res.data.data.email.slice(
               0,
               res.data.data.email.indexOf('@'),
-            ),
+            )}@google`,
             profileImg: res.data.data.picture,
           });
           setIsLogin(true);
@@ -120,7 +122,11 @@ const App = () => {
   useEffect(() => {
     const url = new URL(window.location.href);
     const authorizationCode = url.searchParams.get('code');
-    const googleAcessToken = url.searchParams.get('#access_token');
+    const hash = url.hash;
+    let googleAcessToken;
+    if (hash) {
+      googleAcessToken = hash.split('=')[1].split('&')[0];
+    }
     let social = localStorage.getItem('social');
     if (authorizationCode || googleAcessToken) {
       if (social === 'kakao') {
@@ -139,6 +145,7 @@ const App = () => {
         }
         localStorage.setItem('name', authRegi.username);
         localStorage.setItem('mail', authRegi.email);
+        localStorage.setItem('profile', authRegi.profile);
         getLocalInfo();
       }
     }
