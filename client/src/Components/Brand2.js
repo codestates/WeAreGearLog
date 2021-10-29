@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from 'react';
-import corsair from '../Img/corsair.png';
+import corsair from '../Img/cor.png';
 import logi from '../Img/logi.png';
 import razer from '../Img/razer.png';
 import roccat from '../Img/roccat.png';
