@@ -135,7 +135,7 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
     const REDIRECT_URI =
       'http://gearlog-db.s3-website.ap-northeast-2.amazonaws.com/';
     window.location.assign(
-      `https://accounts.google.com/o/oauth2/auth?client_id=538187650428-i2erq5l0c7hesj7srkqnldure0mg4o7p.apps.googleusercontent.com&redirect_uri=${REDIRECT_URI}&response_type=code&scope=https://www.googleapis.com/auth/drive.metadata.readonly&approval_prompt=force`,
+      `https://accounts.google.com/o/oauth2/auth?client_id=538187650428-i2erq5l0c7hesj7srkqnldure0mg4o7p.apps.googleusercontent.com&redirect_uri=${REDIRECT_URI}&response_type=token&scope=https://www.googleapis.com/auth/userinfo.email`,
     );
   };
 
