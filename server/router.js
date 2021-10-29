@@ -25,7 +25,7 @@ router.get("/gear/:id", gearController.gear.item);
 
 // post routing
 // router.get("/post", postController.get);
-// router.post("/post", postController.post);
+router.post("/post", postController.post.write);
 // router.get("/post/:id", postController.getById);
 // router.put("/post/:id", postController.put);
 // router.delete("/post/:id", postController.delete);

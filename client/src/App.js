@@ -8,23 +8,20 @@ import { LOGI } from './ReviewData';
 import Footer from './Components/Footer';
 import { useHistory, Route, Switch } from 'react-router-dom';
 import Register from './Auth/Register';
-import Board from './Pages/Board';
+
 import Mypage from './Pages/Mypage';
 import PassChange from './Pages/PassChange';
 import Logi from './Pages/Brands/Logi';
 import FindPass from './Pages/FindPass';
 import ReturnHome from './Pages/ReturnHome';
 import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
-import Lazer from './Pages/Brands/Lazer';
-import Roccat from './Pages/Brands/Roccat';
-import Csr from './Pages/Brands/Csr';
+import Board from './Pages/Board';
 
 const App = () => {
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
 
   const [isLogin, setIsLogin] = useState(false);
-  // console.log(saveId);
 
   const [authRegi, setAuthRegi] = useState({
     email: '',
@@ -34,7 +31,6 @@ const App = () => {
     passwordCornfirm: '',
   });
   const handleCardClick = (id) => {
-    console.log(id);
     setSaveId(id);
   };
 
@@ -64,6 +60,7 @@ const App = () => {
     // authorization();
     let name = localStorage.getItem('username');
     let mail = localStorage.getItem('email');
+    localStorage.setItem('social', '');
     if (name) {
       setAuthRegi({
         email: mail,
@@ -95,10 +92,10 @@ const App = () => {
       });
   };
 
-  const getGoogleToken = (code) => {
+  const getGoogleData = (token) => {
     axios
       .post('http://52.79.233.29:8080/callback/google', {
-        authorizationCode: code,
+        accessToken: token,
       })
       .then((res) => {
         // console.log(res.data.data);
@@ -123,13 +120,14 @@ const App = () => {
   useEffect(() => {
     const url = new URL(window.location.href);
     const authorizationCode = url.searchParams.get('code');
+    const googleAcessToken = url.searchParams.get('#access_token');
     let social = localStorage.getItem('social');
-    if (authorizationCode) {
+    if (authorizationCode || googleAcessToken) {
       if (social === 'kakao') {
         getKakaoToken(authorizationCode);
       }
       if (social === 'google') {
-        getGoogleToken(authorizationCode);
+        getGoogleData(googleAcessToken);
       }
     } else {
       if (!social) {
@@ -184,9 +182,7 @@ const App = () => {
             authorization={authorization}
           />
         </Route>
-        <Route path="/b/board">
-          <Board />
-        </Route>
+
         <Route path="/account/pwc">
           <PassChange
             authorization={authorization}
@@ -195,18 +191,12 @@ const App = () => {
           />
         </Route>
 
-        <Route path="/brands/list/roccat">
-          <Roccat />
-        </Route>
-        <Route path="/brands/list/logitech">
+        <Route path="/brands/list">
           <Logi
             setSaveId={setSaveId}
             handleCardClick={handleCardClick}
             dummy={LOGI}
           />
-        </Route>
-        <Route path="/brands/list/razer">
-          <Lazer />
         </Route>
 
         <Route path="/find/reset-password/send-email" component={FindPass} />
@@ -214,8 +204,10 @@ const App = () => {
         <Route path="/brands/review/logitech">
           <ReviewTemp setSaveId={setSaveId} saveId={saveId} LOGI={LOGI} />
         </Route>
-        <Route path="/brands/list/corsair">
-          <Csr />
+        <Route path="/board">
+          <div className="Board">
+            <Board />
+          </div>
         </Route>
       </Switch>
 
