@@ -43,7 +43,7 @@ module.exports = (req, res) => {
   //     // console.log(err);
   //     res.sendStatus(400);
   //   });
-  const token = req.body.token;
+  const token = req.body.accessToken;
   axios({
     method: "GET",
     url: `https://www.googleapis.com/userinfo/v2/me?access_token=${token}`,
