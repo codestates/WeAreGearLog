@@ -78,13 +78,15 @@ const App = () => {
         authorizationCode: code,
       })
       .then((res) => {
-        console.log(res.data.data.properties);
+        // console.log(res.data.data.properties);
         if (res.data.data) {
           setAuthRegi({
             email: `${res.data.properties.nickname}@kakaosocial`,
             username: `${res.data.data.properties.nickname}@kakao`,
             profileImg: res.data.data.properties.profile_image,
           });
+          let token = res.data.token;
+          localStorage.setItem('token', token);
           setIsLogin(true);
           history.push('/');
         }
@@ -110,6 +112,8 @@ const App = () => {
             )}@google`,
             profileImg: res.data.data.picture,
           });
+          let token = res.data.token;
+          localStorage.setItem('token', token);
           setIsLogin(true);
           history.push('/');
         }
@@ -136,18 +140,19 @@ const App = () => {
         getGoogleData(googleAcessToken);
       }
     } else {
-      if (!social) {
-        authorization();
-      } else {
-        if (!authRegi.username) {
-          getLocalInfo();
-          return;
-        }
-        localStorage.setItem('name', authRegi.username);
-        localStorage.setItem('mail', authRegi.email);
-        localStorage.setItem('profile', authRegi.profile);
-        getLocalInfo();
-      }
+      authorization();
+      // if (!social) {
+      //   authorization();
+      // } else {
+      //   if (!authRegi.username) {
+      //     getLocalInfo();
+      //     return;
+      //   }
+      //   localStorage.setItem('name', authRegi.username);
+      //   localStorage.setItem('mail', authRegi.email);
+      //   localStorage.setItem('profile', authRegi.profile);
+      //   getLocalInfo();
+      // }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogin]);
