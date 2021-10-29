@@ -120,7 +120,8 @@ const App = () => {
   useEffect(() => {
     const url = new URL(window.location.href);
     const authorizationCode = url.searchParams.get('code');
-    const googleAcessToken = url.searchParams.get('#access_token');
+    const hash = url.hash;
+    const googleAcessToken = hash.split('=')[1].split('&')[0];
     let social = localStorage.getItem('social');
     if (authorizationCode || googleAcessToken) {
       if (social === 'kakao') {
