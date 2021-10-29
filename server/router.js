@@ -24,11 +24,11 @@ router.delete("/user", userController.signout);
 router.get("/gear/:id", gearController.gear.item);
 
 // post routing
-// router.get("/post", postController.get);
+router.get("/post", postController.post.readAll);
 router.post("/post", postController.post.write);
-// router.get("/post/:id", postController.getById);
-// router.put("/post/:id", postController.put);
-// router.delete("/post/:id", postController.delete);
+router.get("/post/:id", postController.post.read);
+router.put("/post/:id", postController.update);
+router.delete("/post/:id", postController.delete);
 
 //message routing
 // router.get("/message/chatlist", messageController.chatlist);
