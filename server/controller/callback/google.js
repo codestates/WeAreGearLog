@@ -10,7 +10,7 @@ const { generateAccessToken } = require("../tokenFunctions");
 
 module.exports = (req, res) => {
   const token = req.body.accessToken;
-  console.log(token);
+  // console.log(token);
 
   axios({
     method: "GET",
@@ -31,15 +31,16 @@ module.exports = (req, res) => {
 
       user
         .findOrCreate({
-          where: { username: username },
+          where: { password: email },
           defaults: {
+            username: username,
             email: email,
             profile_img: profile,
           },
         })
         .then((data) => {
           const [user, created] = data;
-          // console.log(user);
+          // console.log(created);
           const token = generateAccessToken(user.dataValues);
           res
             .cookie("accessToken", token, {
