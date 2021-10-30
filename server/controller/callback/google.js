@@ -25,8 +25,9 @@ module.exports = (req, res) => {
       //   0,
       //   res.data.data.email.indexOf("@")
       // )}@google`;
+      const id = result.data.id;
       const email = result.data.email;
-      const username = `${email.slice(0, email.indexOf("@"))}@google`;
+      const username = `${email.slice(0, email.indexOf("@"))}_${id}_google`;
       const profile = result.data.picture;
 
       user
