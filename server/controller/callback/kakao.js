@@ -34,7 +34,8 @@ module.exports = (req, res) => {
       })
         .then((result) => {
           // console.log("HERE", result);
-          const username = `${result.data.properties.nickname}@kakao`;
+          const id = result.data.id;
+          const username = `${result.data.properties.nickname}_${id}_kakao`;
           // const email = `${result.data.properties.nickname}@kakaoSocial`;
           const email = result.data.kakao_account.email;
           if (!email) {
@@ -63,9 +64,6 @@ module.exports = (req, res) => {
                 })
                 .status(200)
                 .json({ data: result.data, token: token });
-            })
-            .catch((err) => {
-              console.log(err);
             });
         })
         .catch((err) => {

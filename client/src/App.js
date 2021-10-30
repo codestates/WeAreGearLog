@@ -36,6 +36,9 @@ const App = () => {
 
   const authorization = () => {
     let token = localStorage.getItem('token');
+    if (!token) {
+      return;
+    }
     axios
       .get('http://52.79.233.29:8080/user', {
         headers: { authorization: `Bearer ${token}` },
@@ -47,6 +50,7 @@ const App = () => {
           setAuthRegi({
             email: res.data.data.userinfo.email,
             username: res.data.data.userinfo.username,
+            profileImg: res.data.data.userinfo.profile_img,
           });
           setIsLogin(true);
         }
@@ -80,11 +84,11 @@ const App = () => {
       .then((res) => {
         // console.log(res.data.data.properties);
         if (res.data.data) {
-          setAuthRegi({
-            email: `${res.data.properties.nickname}@kakaosocial`,
-            username: `${res.data.data.properties.nickname}@kakao`,
-            profileImg: res.data.data.properties.profile_image,
-          });
+          // setAuthRegi({
+          //   email: `${res.data.properties.nickname}@kakaosocial`,
+          //   username: `${res.data.data.properties.nickname}@kakao`,
+          //   profileImg: res.data.data.properties.profile_image,
+          // });
           let token = res.data.token;
           localStorage.setItem('token', token);
           setIsLogin(true);
@@ -104,14 +108,14 @@ const App = () => {
       .then((res) => {
         // console.log(res.data.data);
         if (res.data.data) {
-          setAuthRegi({
-            email: res.data.data.email,
-            username: `${res.data.data.email.slice(
-              0,
-              res.data.data.email.indexOf('@'),
-            )}@google`,
-            profileImg: res.data.data.picture,
-          });
+          // setAuthRegi({
+          //   email: res.data.data.email,
+          //   username: `${res.data.data.email.slice(
+          //     0,
+          //     res.data.data.email.indexOf('@'),
+          //   )}@google`,
+          //   profileImg: res.data.data.picture,
+          // });
           let token = res.data.token;
           localStorage.setItem('token', token);
           setIsLogin(true);
