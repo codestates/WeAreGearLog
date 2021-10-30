@@ -56,21 +56,21 @@ const App = () => {
       });
   };
 
-  const getLocalInfo = () => {
-    // authorization();
-    const name = localStorage.getItem('username');
-    const mail = localStorage.getItem('email');
-    const profile = localStorage.getItem('profile');
-    localStorage.setItem('social', '');
-    if (name) {
-      setAuthRegi({
-        email: mail,
-        username: name,
-        profileImg: profile,
-      });
-      setIsLogin(true);
-    }
-  };
+  // const getLocalInfo = () => {
+  //   // authorization();
+  //   const name = localStorage.getItem('username');
+  //   const mail = localStorage.getItem('email');
+  //   const profile = localStorage.getItem('profile');
+  //   localStorage.setItem('social', '');
+  //   if (name) {
+  //     setAuthRegi({
+  //       email: mail,
+  //       username: name,
+  //       profileImg: profile,
+  //     });
+  //     setIsLogin(true);
+  //   }
+  // };
 
   const getKakaoToken = (code) => {
     axios
