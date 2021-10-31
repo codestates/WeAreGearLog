@@ -10,7 +10,7 @@ const { generateAccessToken } = require("../tokenFunctions");
 
 module.exports = (req, res) => {
   const token = req.body.accessToken;
-  console.log(token);
+  // console.log(token);
 
   axios({
     method: "GET",
@@ -25,21 +25,23 @@ module.exports = (req, res) => {
       //   0,
       //   res.data.data.email.indexOf("@")
       // )}@google`;
+      const id = result.data.id;
       const email = result.data.email;
-      const username = `${email.slice(0, email.indexOf("@"))}@google`;
+      const username = `${email.slice(0, email.indexOf("@"))}_${id}_google`;
       const profile = result.data.picture;
 
       user
         .findOrCreate({
-          where: { username: username },
+          where: { password: email },
           defaults: {
+            username: username,
             email: email,
             profile_img: profile,
           },
         })
         .then((data) => {
           const [user, created] = data;
-          // console.log(user);
+          // console.log(created);
           const token = generateAccessToken(user.dataValues);
           res
             .cookie("accessToken", token, {

@@ -34,21 +34,27 @@ module.exports = (req, res) => {
       })
         .then((result) => {
           // console.log("HERE", result);
-          const username = `${result.data.properties.nickname}@kakao`;
-          const email = `${result.data.properties.nickname}@kakaoSocial`;
+          const id = result.data.id;
+          const username = `${result.data.properties.nickname}_${id}_kakao`;
+          // const email = `${result.data.properties.nickname}@kakaoSocial`;
+          const email = result.data.kakao_account.email;
+          if (!email) {
+            email = `${result.data.properties.nickname}@kakaoSocial`;
+          }
           const profile = result.data.properties.profile_image;
 
           user
             .findOrCreate({
-              where: { username: username },
+              where: { password: email },
               defaults: {
+                username: username,
                 email: email,
                 profile_img: profile,
               },
             })
             .then((data) => {
               const [user, created] = data;
-              // console.log(user);
+              // console.log(created);
               const token = generateAccessToken(user.dataValues);
               res
                 .cookie("accessToken", token, {
@@ -58,9 +64,6 @@ module.exports = (req, res) => {
                 })
                 .status(200)
                 .json({ data: result.data, token: token });
-            })
-            .catch((err) => {
-              console.log(err);
             });
         })
         .catch((err) => {

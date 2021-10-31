@@ -21,11 +21,12 @@ router.patch("/user/profileImg", userController.update.profileImg);
 router.delete("/user", userController.signout);
 
 // gear routing
-router.get("/gear/:id", gearController.gear.item);
+router.get("/gear/:id", gearController.item);
 
 // post routing
 router.get("/post", postController.post.readAll);
 router.post("/post", postController.post.write);
+router.get("/post/mypost", postController.post.readMine);
 router.get("/post/:id", postController.post.read);
 router.put("/post/:id", postController.update);
 router.delete("/post/:id", postController.delete);

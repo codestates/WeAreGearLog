@@ -12,12 +12,12 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
     setChangeName(event.target.value);
   };
   const ondeleteUser = () => {
-    let social = localStorage.getItem('social');
-    if (social) {
-      return alert(
-        '소셜로그인으로 로그인 한 경우 별도의 회원탈퇴가 필요하지 않습니다.',
-      );
-    }
+    // let social = localStorage.getItem('social');
+    // if (social) {
+    //   return alert(
+    //     '소셜로그인으로 로그인 한 경우 별도의 회원탈퇴가 필요하지 않습니다.',
+    //   );
+    // }
 
     let confirm = window.confirm('정말로 회원탈퇴 하시겠습니까?');
 
@@ -44,10 +44,10 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
   };
 
   const onClickuserChange = () => {
-    let social = localStorage.getItem('social');
-    if (social) {
-      return alert('소셜로그인의 경우 username을 변경할 수 없습니다.');
-    }
+    // let social = localStorage.getItem('social');
+    // if (social) {
+    //   return alert('소셜로그인의 경우 username을 변경할 수 없습니다.');
+    // }
 
     let change = window.confirm('변경하시겠습니까?');
 
