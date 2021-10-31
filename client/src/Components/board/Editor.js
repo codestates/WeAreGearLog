@@ -1,19 +1,45 @@
 /* eslint-disable react/style-prop-object */
-import React from 'react';
-
+import React, { useState } from 'react';
+import { insert } from '../../modules/board';
 import { BsImage } from 'react-icons/bs';
+import { useSelector, useDispatch } from 'react-redux';
 import './Editor.css';
 const Editor = () => {
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+
+  const state = useSelector((state) => state.board.items);
+  console.log('124214', state);
+  const dispatch = useDispatch();
+  const onSubmit = () => {
+    dispatch(insert(title, content));
+  };
+
+  const onTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const onTextChange = (e) => {
+    setContent(e.target.value);
+  };
+
   return (
     <div className="Editor">
       <div className="write">
         <h1>게시물 작성</h1>
 
-        <input className="inputz" placeholder="제목을 입력하세요" />
+        <input
+          onChange={onTitleChange}
+          value={title}
+          className="inputz"
+          placeholder="제목을 입력하세요"
+        />
         <div className="e-p">
           <BsImage />
         </div>
         <textarea
+          onChange={onTextChange}
+          value={content}
           className="textarea"
           autucomplate="off"
           autoCorrect="off"
@@ -21,7 +47,9 @@ const Editor = () => {
           autocapitalize="off"
         ></textarea>
         <div className="upload-b">
-          <button className="u-b-1">올리기</button>
+          <button onClick={onSubmit} className="u-b-1">
+            올리기
+          </button>
           <button className="u-b-1">취소</button>
         </div>
       </div>

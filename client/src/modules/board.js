@@ -1,12 +1,11 @@
 /* eslint-disable default-case */
-import { createAction } from 'react-actions';
 
-const WRITE = 'board/WRITE';
+export const WRITE = 'board/WRITE';
 
-const LIKE = 'board/LIKE';
+export const LIKE = 'board/LIKE';
 
-const READNUM = 'board/READNUM';
-const INSERT = 'board/INSERT';
+export const READNUM = 'board/READNUM';
+export const INSERT = 'board/INSERT';
 
 export const write = (input, text) => ({
   type: WRITE,
@@ -27,8 +26,6 @@ export const insert = (input, text) => ({
   },
 });
 
-let likes = 0;
-
 export const like = () => ({
   type: LIKE,
   payload: {
@@ -44,8 +41,6 @@ export const readnum = () => ({
 });
 
 const initialState = {
-  input: '',
-
   items: [
     {
       id: 1,
@@ -61,8 +56,10 @@ function board(state = initialState, action) {
   switch (action.type) {
     case WRITE:
       return {
-        ...state,
-        items: { input: action.payload.input, text: action.payload.text },
+        items: [
+          ...state,
+          { input: action.payload.input, text: action.payload.text },
+        ],
       };
     case LIKE: {
       return {
@@ -73,10 +70,18 @@ function board(state = initialState, action) {
     case READNUM: {
       return {
         ...state,
-        items: action.payload.likes++,
+        items: action.payload.readnum++,
+      };
+    }
+    case INSERT: {
+      return {
+        ...state,
+        items: state.items.concat(action.payload),
       };
     }
     default:
       return state;
   }
 }
+
+export default board;
