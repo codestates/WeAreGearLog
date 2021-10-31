@@ -10,8 +10,6 @@ import { FaUserCircle } from 'react-icons/fa';
 
 import InfoMd from './InfoMd';
 
-import Dropdown from './Dropdown';
-
 const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
   const modalFalse = () => {
     setIsOpen(!isOpen);
