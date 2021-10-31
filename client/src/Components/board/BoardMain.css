@@ -1,42 +1,17 @@
 .Logitech-page {
 }
-
-.top-wrap {
+.card-title {
   width: 100%;
-  height: 200px;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-
-  background-color: white;
+  height: 20%;
+  border: 1px solid black;
 }
-
-.logi-top {
-  text-align: left;
-  height: 150px;
-  font-weight: bolder;
-  display: flex;
-  color: black;
-  background-color: #00b9f6;
-}
-
-.logi-top {
-  font-size: 50px;
-
-  width: 100%;
-  text-align: left;
-}
-
-.logi-top2 {
-  width: 50%;
-}
-
 .card-1 {
-  margin-top: 20px;
   color: black;
 }
 .card-2 {
-  font-size: 15px;
+  display: flex;
+  height: 20%;
+  font-size: 20px;
   color: tomato;
 }
 .list-page {
@@ -50,32 +25,32 @@
 
 .flexContainer {
   margin-bottom: 150px;
-
+  width: 100%;
   display: flex;
 }
 .card-container {
-  height: 100vh;
   flex-grow: 1;
+  width: 50%;
+  height: 100vh;
+
   display: flex;
   flex-wrap: wrap;
-  justify-content: left;
+  /* justify-content: left; */
   overflow: auto;
 }
-
+.card-c {
+  display: flex;
+  justify-content: left;
+  padding: 30px;
+  height: 20%;
+}
 .card {
-  width: 200px;
   height: 300px;
 
   flex: 0 0 14%;
   font-size: 24px;
   font-weight: bold;
 
-  color: black;
-  text-align: center;
-
-  margin: 10px 0px;
-  margin-left: 15px;
-  margin-right: 15px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
@@ -84,10 +59,21 @@
 .card:hover {
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
+.handc {
+  margin-left: 10px;
+}
+.handc-1 {
+  margin-left: 30px;
+}
 .flex-warp {
+  width: 100%;
   display: flex;
 }
-
+.thumnail {
+  width: 100%;
+  height: 100px;
+  border: 1px solid black;
+}
 @media screen and (max-width: 1220px) {
   .card {
     flex: 0 0 40%;

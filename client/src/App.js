@@ -218,7 +218,7 @@ const App = () => {
         </Route>
         <Route path="/board">
           <div className="Board">
-            <Board />
+            <Board authRegi={authRegi} />
           </div>
         </Route>
       </Switch>
