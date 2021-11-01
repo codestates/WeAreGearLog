@@ -7,14 +7,6 @@ export const LIKE = 'board/LIKE';
 export const READNUM = 'board/READNUM';
 export const INSERT = 'board/INSERT';
 
-export const write = (input, text) => ({
-  type: WRITE,
-  payload: {
-    input,
-    text,
-  },
-});
-
 let id = 2;
 
 export const insert = (input, text) => ({
@@ -54,13 +46,6 @@ const initialState = {
 
 function board(state = initialState, action) {
   switch (action.type) {
-    case WRITE:
-      return {
-        items: [
-          ...state,
-          { input: action.payload.input, text: action.payload.text },
-        ],
-      };
     case LIKE: {
       return {
         ...state,

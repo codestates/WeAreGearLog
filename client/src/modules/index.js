@@ -2,6 +2,6 @@ import { combineReducers } from 'redux'; //루트리듀서에 여러가지를 �
 import todos from './todos';
 import board from './board';
 
-const rootReducer = combineReducers({ todos, board });
+const rootReducer = combineReducers({ board });
 
 export default rootReducer;
