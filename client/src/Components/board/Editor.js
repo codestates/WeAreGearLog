@@ -8,8 +8,7 @@ const Editor = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  const state = useSelector((state) => state.board.items);
-  console.log('124214', state);
+
   const dispatch = useDispatch();
   const onSubmit = () => {
     dispatch(insert(title, content));

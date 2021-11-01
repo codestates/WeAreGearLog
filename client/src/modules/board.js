@@ -15,6 +15,9 @@ export const insert = (input, text) => ({
     id: id++,
     input,
     text,
+    like: 0,
+    readnum: 0,
+    comments: 0,
   },
 });
 
