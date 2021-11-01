@@ -1,4 +1,4 @@
-/* eslint-disable default-case */
+/* eslint-disable array-callback-return */
 
 export const WRITE = 'board/WRITE';
 
@@ -7,7 +7,7 @@ export const LIKE = 'board/LIKE';
 export const READNUM = 'board/READNUM';
 export const INSERT = 'board/INSERT';
 
-let id = 2;
+let id = 1;
 
 export const insert = (input, text) => ({
   type: INSERT,
@@ -16,33 +16,120 @@ export const insert = (input, text) => ({
     input,
     text,
     like: 0,
-    readnum: 0,
-    comments: 0,
+    clicked: false,
+
+    comment: 0,
+    view: 0,
+    img: 'sdf',
   },
 });
 
-export const like = () => ({
+export const likes = (id, like) => ({
   type: LIKE,
   payload: {
-    likes: 0,
-  },
-});
-
-export const readnum = () => ({
-  type: READNUM,
-  payload: {
-    readnum: 0,
+    id,
   },
 });
 
 const initialState = {
   items: [
     {
-      id: 1,
-      input: 'fdsafadsfasfas',
-      text: 'fdsfasdfasfsad',
+      id: 0,
+      input: '',
+      text: '',
       like: 0,
-      readnum: 0,
+      clicked: false,
+    },
+    {
+      id: 0,
+      input: '',
+      text: '',
+      like: 0,
+      clicked: false,
+    },
+    {
+      id: 0,
+      input: '',
+      text: '',
+      like: 0,
+      clicked: false,
+    },
+    {
+      id: 0,
+      input: '',
+      text: '',
+      like: 0,
+      clicked: false,
+    },
+    {
+      id: 0,
+      input: '',
+      text: '',
+      like: 0,
+      clicked: false,
+    },
+    {
+      id: 0,
+      input: '',
+      text: '',
+      like: 0,
+      clicked: false,
+    },
+    {
+      id: 0,
+      input: '',
+      text: '',
+      like: 0,
+      clicked: false,
+    },
+    {
+      id: 0,
+      input: '',
+      text: '',
+      like: 0,
+      clicked: false,
+    },
+    {
+      id: 0,
+      input: '',
+      text: '',
+      like: 0,
+      clicked: false,
+    },
+    {
+      id: 0,
+      input: '',
+      text: '',
+      like: 0,
+      clicked: false,
+    },
+    {
+      id: 0,
+      input: '',
+      text: '',
+      like: 0,
+      clicked: false,
+    },
+    {
+      id: 0,
+      input: '',
+      text: '',
+      like: 0,
+      clicked: false,
+    },
+    {
+      id: 0,
+      input: '',
+      text: '',
+      like: 0,
+      clicked: false,
+    },
+    {
+      id: 0,
+      input: '',
+      text: '',
+      like: 0,
+      clicked: false,
     },
   ],
 };
@@ -50,23 +137,30 @@ const initialState = {
 function board(state = initialState, action) {
   switch (action.type) {
     case LIKE: {
+      let idx = state.items.findIndex((el) => el.id === action.payload.id);
       return {
         ...state,
-        items: state.items.like++,
+        items: state.items.map((el, index) => {
+          if (index === idx && el.clicked === false) {
+            el.like++;
+            el.clicked = true;
+          } else if (index === idx && el.clicked === true) {
+            el.like--;
+            el.clicked = false;
+          }
+
+          return el;
+        }),
       };
     }
-    case READNUM: {
-      return {
-        ...state,
-        items: action.payload.readnum++,
-      };
-    }
+
     case INSERT: {
+      // eslint-disable-next-line no-lone-blocks
       return {
-        ...state,
-        items: state.items.concat(action.payload),
+        items: [action.payload, ...state.items],
       };
     }
+
     default:
       return state;
   }

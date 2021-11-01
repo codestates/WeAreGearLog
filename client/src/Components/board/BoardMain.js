@@ -1,13 +1,25 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import { likes } from '../../modules/board';
 import { BsFillTriangleFill } from 'react-icons/bs';
 
 import './BoardMain.css';
 import { useSelector, useDispatch } from 'react-redux';
 
 const BoardMain = ({ authRegi }) => {
+  const [findId, setfindId] = useState(0);
+  const dispatch = useDispatch();
+
+  const handleIdClick = (id) => {
+    setfindId(id);
+
+    dispatch(likes(id));
+  };
+
   const state = useSelector((state) => state.board.items);
-  const post = state.map((el) => {
+
+  console.log('12312', state);
+
+  const post = state.map((el, idx) => {
     return (
       <div key={el.id} className="cards">
         <div className="card-image">
@@ -15,18 +27,21 @@ const BoardMain = ({ authRegi }) => {
         </div>
         <div className="card-title">
           {el.input}
+
           <em>[{el.comments}]</em>
         </div>
         <div className="card-like">
           <BsFillTriangleFill />
-          <span className="handc">{el.like}</span>
+          <span onClick={() => handleIdClick(el.id)} className="handc">
+            {el.like}
+          </span>
         </div>
         <div className="card-user">{authRegi.username}</div>
-        <div className="card-read">{el.readnum}</div>
+        <div className="card-read">{el.view}</div>
+        <div>fdsfdf</div>
       </div>
     );
   });
-  console.log('이니셜스테이츠', state);
 
   return (
     <div className="b-m-b">

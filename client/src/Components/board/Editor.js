@@ -4,10 +4,10 @@ import { insert } from '../../modules/board';
 import { BsImage } from 'react-icons/bs';
 import { useSelector, useDispatch } from 'react-redux';
 import './Editor.css';
+import { Link } from 'react-router-dom';
 const Editor = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-
 
   const dispatch = useDispatch();
   const onSubmit = () => {
@@ -46,10 +46,14 @@ const Editor = () => {
           autocapitalize="off"
         ></textarea>
         <div className="upload-b">
-          <button onClick={onSubmit} className="u-b-1">
-            올리기
-          </button>
-          <button className="u-b-1">취소</button>
+          <Link to="/board">
+            <button onClick={onSubmit} className="u-b-1">
+              올리기
+            </button>
+          </Link>
+          <Link to="/board">
+            <button className="u-b-1">취소</button>
+          </Link>
         </div>
       </div>
     </div>
