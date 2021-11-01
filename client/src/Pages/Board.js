@@ -11,7 +11,7 @@ const Board = ({ authRegi }) => {
       <BoardNav authRegi={authRegi} />
       <>
         <Route exact path="/board">
-          <BoardMainContainer />
+          <BoardMainContainer authRegi={authRegi} />
         </Route>
 
         <Route path="/board/write">
