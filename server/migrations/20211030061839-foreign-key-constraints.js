@@ -6,7 +6,7 @@ module.exports = {
     await queryInterface.addConstraint("posts", {
       fields: ["writerId"],
       type: "foreign key",
-      name: "fk_post_user",
+      name: "fk_posts_users",
       references: {
         table: "users",
         field: "id",
@@ -19,7 +19,7 @@ module.exports = {
     await queryInterface.addConstraint("comments", {
       fields: ["userId"],
       type: "foreign key",
-      name: "fk_comment_user",
+      name: "fk_comments_users",
       references: {
         table: "users",
         field: "id",
@@ -32,7 +32,7 @@ module.exports = {
     await queryInterface.addConstraint("comments", {
       fields: ["postId"],
       type: "foreign key",
-      name: "fk_comment_post",
+      name: "fk_comments_posts",
       references: {
         table: "posts",
         field: "id",
@@ -43,8 +43,8 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.removeConstraint("posts", "fk_post_user");
-    await queryInterface.removeConstraint("comments", "fk_comment_user");
-    await queryInterface.removeConstraint("comments", "fk_comment_post");
+    await queryInterface.removeConstraint("posts", "fk_posts_users");
+    await queryInterface.removeConstraint("comments", "fk_comments_users");
+    await queryInterface.removeConstraint("comments", "fk_comments_posts");
   },
 };
