@@ -5,6 +5,7 @@ import SingIn from './Auth/SignIn';
 import HomePage from './Pages/HomePage';
 =======
 import { useState, useEffect } from 'react';
+
 import './App.css';
 import SignIn from './Auth/SignIn';
 import axios from 'axios';
@@ -14,19 +15,14 @@ import { LOGI } from './ReviewData';
 import Footer from './Components/Footer';
 import { useHistory, Route, Switch } from 'react-router-dom';
 import Register from './Auth/Register';
+
 import Mypage from './Pages/Mypage';
 import PassChange from './Pages/PassChange';
 import Logi from './Pages/Brands/Logi';
 import FindPass from './Pages/FindPass';
 import ReturnHome from './Pages/ReturnHome';
 import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
-import Lazer from './Pages/Brands/Lazer';
-import PostPage from './Pages/Write/PostPage';
-import PostListPage from './Pages/Write/PostListPage';
-import ArticlePage from './Pages/Write/ArticlePage';
-import RegisterPage from './Pages/Write/RegisterPage';
-import Roccat from './Pages/Brands/Roccat';
-import Csr from './Pages/Brands/Csr';
+import Board from './Pages/Board';
 
 
 const App = () => {
@@ -34,7 +30,6 @@ const App = () => {
   const [saveId, setSaveId] = useState(0);
 
   const [isLogin, setIsLogin] = useState(false);
-  // console.log(saveId);
 
   const [authRegi, setAuthRegi] = useState({
     email: '',
@@ -44,12 +39,14 @@ const App = () => {
     passwordCornfirm: '',
   });
   const handleCardClick = (id) => {
-    console.log(id);
     setSaveId(id);
   };
 
   const authorization = () => {
     let token = localStorage.getItem('token');
+    if (!token) {
+      return;
+    }
     axios
       .get('http://52.79.233.29:8080/user', {
         headers: { authorization: `Bearer ${token}` },
@@ -61,6 +58,7 @@ const App = () => {
           setAuthRegi({
             email: res.data.data.userinfo.email,
             username: res.data.data.userinfo.username,
+            profileImg: res.data.data.userinfo.profile_img,
           });
           setIsLogin(true);
         }
@@ -70,18 +68,21 @@ const App = () => {
       });
   };
 
-  const getLocalInfo = () => {
-    // authorization();
-    let name = localStorage.getItem('username');
-    let mail = localStorage.getItem('email');
-    if (name) {
-      setAuthRegi({
-        email: mail,
-        username: name,
-      });
-      setIsLogin(true);
-    }
-  };
+  // const getLocalInfo = () => {
+  //   // authorization();
+  //   const name = localStorage.getItem('username');
+  //   const mail = localStorage.getItem('email');
+  //   const profile = localStorage.getItem('profile');
+  //   localStorage.setItem('social', '');
+  //   if (name) {
+  //     setAuthRegi({
+  //       email: mail,
+  //       username: name,
+  //       profileImg: profile,
+  //     });
+  //     setIsLogin(true);
+  //   }
+  // };
 
   const getKakaoToken = (code) => {
     axios
@@ -89,13 +90,15 @@ const App = () => {
         authorizationCode: code,
       })
       .then((res) => {
-        console.log(res.data.data.properties);
+        // console.log(res.data.data.properties);
         if (res.data.data) {
-          setAuthRegi({
-            email: res.data.data.properties.email,
-            username: res.data.data.properties.nickname,
-            profileImg: res.data.data.properties.profile_image,
-          });
+          // setAuthRegi({
+          //   email: `${res.data.properties.nickname}@kakaosocial`,
+          //   username: `${res.data.data.properties.nickname}@kakao`,
+          //   profileImg: res.data.data.properties.profile_image,
+          // });
+          let token = res.data.token;
+          localStorage.setItem('token', token);
           setIsLogin(true);
           history.push('/');
         }
@@ -105,22 +108,24 @@ const App = () => {
       });
   };
 
-  const getGoogleToken = (code) => {
+  const getGoogleData = (token) => {
     axios
       .post('http://52.79.233.29:8080/callback/google', {
-        authorizationCode: code,
+        accessToken: token,
       })
       .then((res) => {
         // console.log(res.data.data);
         if (res.data.data) {
-          setAuthRegi({
-            email: res.data.data.email,
-            username: res.data.data.email.slice(
-              0,
-              res.data.data.email.indexOf('@'),
-            ),
-            profileImg: res.data.data.picture,
-          });
+          // setAuthRegi({
+          //   email: res.data.data.email,
+          //   username: `${res.data.data.email.slice(
+          //     0,
+          //     res.data.data.email.indexOf('@'),
+          //   )}@google`,
+          //   profileImg: res.data.data.picture,
+          // });
+          let token = res.data.token;
+          localStorage.setItem('token', token);
           setIsLogin(true);
           history.push('/');
         }
@@ -133,26 +138,33 @@ const App = () => {
   useEffect(() => {
     const url = new URL(window.location.href);
     const authorizationCode = url.searchParams.get('code');
+    const hash = url.hash;
+    let googleAcessToken;
+    if (hash) {
+      googleAcessToken = hash.split('=')[1].split('&')[0];
+    }
     let social = localStorage.getItem('social');
-    if (authorizationCode) {
+    if (authorizationCode || googleAcessToken) {
       if (social === 'kakao') {
         getKakaoToken(authorizationCode);
       }
       if (social === 'google') {
-        getGoogleToken(authorizationCode);
+        getGoogleData(googleAcessToken);
       }
     } else {
-      if (!social) {
-        authorization();
-      } else {
-        if (!authRegi.username) {
-          getLocalInfo();
-          return;
-        }
-        localStorage.setItem('name', authRegi.username);
-        localStorage.setItem('mail', authRegi.email);
-        getLocalInfo();
-      }
+      authorization();
+      // if (!social) {
+      //   authorization();
+      // } else {
+      //   if (!authRegi.username) {
+      //     getLocalInfo();
+      //     return;
+      //   }
+      //   localStorage.setItem('name', authRegi.username);
+      //   localStorage.setItem('mail', authRegi.email);
+      //   localStorage.setItem('profile', authRegi.profile);
+      //   getLocalInfo();
+      // }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogin]);
@@ -160,12 +172,15 @@ const App = () => {
   return (
     <>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <HomePage />
       <Switch>
         <Route path="/account/login">
           <SingIn />
 =======
 
+=======
+>>>>>>> fbcb7b8d8cc67ba92ec5a0608742ed2079bdd291
       <div className="homepage">
         <HomePage
           isLogin={isLogin}
@@ -201,6 +216,7 @@ const App = () => {
             authorization={authorization}
           />
         </Route>
+<<<<<<< HEAD
         <Route path="/b/board">
           <PostPage />
 >>>>>>> 12fef710a456262318352cfba7a29e56fb813ef4
@@ -214,6 +230,9 @@ const App = () => {
         <Route path="/b/registerpage">
           <RegisterPage />
         </Route>
+=======
+
+>>>>>>> fbcb7b8d8cc67ba92ec5a0608742ed2079bdd291
         <Route path="/account/pwc">
           <PassChange
             authorization={authorization}
@@ -222,29 +241,23 @@ const App = () => {
           />
         </Route>
 
-
-        <Route path="/brands/list/logitech" component={Logi} />
-        <Route path="/brands/list/razer" component={Lazer} />
-        <Route path="/brands/list/roccat">
-          <Roccat />
-        </Route>
-        <Route path="/brands/list/logitech">
+        <Route path="/brands/list">
           <Logi
             setSaveId={setSaveId}
             handleCardClick={handleCardClick}
             dummy={LOGI}
           />
         </Route>
-        <Route path="/brands/list/razer">
-          <Lazer />
-        </Route>
+
         <Route path="/find/reset-password/send-email" component={FindPass} />
         <Route path="/find/reset-password/rtlogin" component={ReturnHome} />
         <Route path="/brands/review/logitech">
           <ReviewTemp setSaveId={setSaveId} saveId={saveId} LOGI={LOGI} />
         </Route>
-        <Route path="/brands/list/corsair">
-          <Csr />
+        <Route path="/board">
+          <div className="Board">
+            <Board authRegi={authRegi} />
+          </div>
         </Route>
 <<<<<<< HEAD
         <Route path="/board">

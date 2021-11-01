@@ -6,19 +6,16 @@ const Foot = styled.div`
 
   left: 0px;
   bottom: 0px;
-  height: 42vh;
+  height: 35vh;
   width: 100%;
   background-color: black;
   color: white;
-
+  padding-bottom: 30px;
   left: 0;
 
   bottom: 0;
 
-  width: 100%;
-
   padding: 15px 0;
-  padding-bottom: 30px;
 
   text-align: center;
 `;

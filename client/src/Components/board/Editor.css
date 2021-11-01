@@ -1,0 +1,53 @@
+.Editor {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  border: 1px solid black;
+}
+.write {
+  width: 70%;
+}
+.h1 {
+  width: 100%;
+}
+
+.inputz {
+  font-size: 30px;
+  width: 100%;
+  height: 50px;
+}
+
+.textarea {
+  resize: none;
+
+  width: 100%;
+  overflow-y: hidden;
+  height: 50vh;
+  border: 1px solid #ccc;
+}
+.e-p {
+  display: flex;
+  justify-content: left;
+  height: 20px;
+  border: 1px solid black;
+}
+.upload-b {
+  display: flex;
+  justify-content: right;
+  margin: 20px;
+}
+
+.u-b-1 {
+  margin-right: 10px;
+  width: 50px;
+}
+.b-n {
+  display: flex;
+}
+.b-c {
+  margin: 20px;
+}
+.b-c-1 {
+  margin: 20px;
+  border-bottom: 1px solid black;
+}

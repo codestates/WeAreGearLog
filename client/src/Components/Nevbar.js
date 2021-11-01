@@ -10,8 +10,6 @@ import { FaUserCircle } from 'react-icons/fa';
 
 import InfoMd from './InfoMd';
 
-import Dropdown from './Dropdown';
-
 const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
   const modalFalse = () => {
     setIsOpen(!isOpen);
@@ -73,7 +71,9 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
             GEARLOG
           </Link>
           <div className="nav-list">
-            <li className="nav-pad-1">브랜드</li>
+            <Link to="/brands/list">
+              <li className="nav-pad-1">Gear Review</li>
+            </Link>
 
             <li className="nav-pad-1">게시판</li>
           </div>

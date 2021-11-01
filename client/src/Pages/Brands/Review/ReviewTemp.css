@@ -5,7 +5,11 @@
   width: 100%;
   height: 100%;
 }
-
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .main-review {
   align-items: center;
   justify-content: center;

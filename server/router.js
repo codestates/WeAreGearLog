@@ -4,6 +4,7 @@ const { userController } = require("./controller");
 const { postController } = require("./controller");
 const { messageController } = require("./controller");
 const { callbackController } = require("./controller");
+const { gearController } = require("./controller");
 
 // user routing
 router.get("/user", userController.userinfo);
@@ -19,12 +20,16 @@ router.patch("/user/password", userController.update.password);
 router.patch("/user/profileImg", userController.update.profileImg);
 router.delete("/user", userController.signout);
 
+// gear routing
+router.get("/gear/:id", gearController.item);
+
 // post routing
-// router.get("/post", postController.get);
-// router.post("/post", postController.post);
-// router.get("/post:id", postController.getById);
-// router.put("/post:id", postController.put);
-// router.delete("/post:id", postController.delete);
+router.get("/post", postController.post.readAll);
+router.post("/post", postController.post.write);
+router.get("/post/mypost", postController.post.readMine);
+router.get("/post/:id", postController.post.read);
+router.put("/post/:id", postController.update);
+router.delete("/post/:id", postController.delete);
 
 //message routing
 // router.get("/message/chatlist", messageController.chatlist);

@@ -6,15 +6,15 @@ import Logi from '../Logi';
 
 const ReviewTemp = ({ setSaveId, saveId, LOGI }) => {
   useEffect(() => {
-    console.log(LOGI);
-    console.log(saveId);
-    if (!saveId) {
-      let sr = localStorage.getItem('id');
+    // console.log(LOGI);
+    // console.log(saveId);
+    let sr = localStorage.getItem('id');
+    if (saveId === 0 && sr) {
       setSaveId(sr);
     } else {
       localStorage.setItem('id', saveId);
     }
-  }, [saveId]);
+  }, []);
 
   return (
     <div className="Rv-temp">
