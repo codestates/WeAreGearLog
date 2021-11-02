@@ -8,8 +8,9 @@ module.exports = {
       return res.status(401).send("로그인 중이 아니거나 만료된 토큰");
     }
     const readerId = readerData.id;
-    const { postId, commentId } = req.body;
+    const commentId = req.params.id; // delete도 get처럼 요청에 body가 있을수 없다.
     const commentData = await comment.findOne({ where: { id: commentId } });
+    const postId = commentData.postId;
     // console.log(readerId, commentData.userId);
     if (readerId !== commentData.userId) {
       return res.status(401).send("작성자가 아니거나 만료된 토큰");
@@ -21,17 +22,17 @@ module.exports = {
       where: { id: postId },
     });
     res.status(200).json({
-      deleted: deleted,
+      message: "deleted",
     });
   },
   deletePost: async (req, res) => {
     // 1.댓글삭제(해당postId가진 댓글들 전부) 2. 좋아요 삭제(해당postId가진 좋아요들 전부) 3. 게시글삭제
+    const postId = req.params.id; // delete도 get처럼 요청에 body가 있을수 없다.
     const readerData = isAuthorized(req);
     if (!readerData) {
       return res.status(401).send("로그인 중이 아니거나 만료된 토큰");
     }
     const readerId = readerData.id;
-    const { postId } = req.body;
     const postData = await post.findOne({ where: { id: postId } });
     // console.log(readerId, postData.writerId);
     if (readerId !== postData.writerId) {
@@ -41,7 +42,7 @@ module.exports = {
     const deleteLike = await like.destroy({ where: { postId: postId } });
     const deletePost = await post.destroy({ where: { id: postId } });
     res.status(200).json({
-      deleted: deleteComment,
+      message: "deleted",
     });
   },
 };
