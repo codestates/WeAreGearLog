@@ -19,7 +19,7 @@ module.exports = {
       userId: readerId,
       postId: postId,
     });
-    res.status(200).json({
+    res.status(201).json({
       data: likeData,
     });
   },
@@ -39,7 +39,7 @@ module.exports = {
     const likeData = await like.destroy({
       where: { userId: likeId, postId: postId },
     });
-    res.status(200).json({
+    res.status(201).json({
       message: "disliked",
     });
   },
