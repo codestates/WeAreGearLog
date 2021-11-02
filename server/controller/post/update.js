@@ -1,3 +1,24 @@
-module.exports = (req, res) => {
-  res.send("OK!!!");
+const { post, sequelize } = require("../../models");
+const { isAuthorized } = require("../tokenFunctions");
+
+module.exports = async (req, res) => {
+  const { postId, title, content, img } = req.body;
+  const readerData = isAuthorized(req);
+  const readerId = readerData.id;
+  const postData = await post.findOne({ where: { id: postId } });
+  if (readerId !== postData.writerId) {
+    return res.status(401).send("작성자가 아니거나 만료된 토큰");
+  }
+
+  const updatePost = await post.update(
+    {
+      title: title,
+      content: content,
+      img: img,
+    },
+    { where: { postId: postId } }
+  );
+  res.status(201).json({
+    updated: updatePost,
+  });
 };
