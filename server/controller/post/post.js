@@ -75,6 +75,7 @@ module.exports = {
     );
     const readerData = isAuthorized(req);
     const readerId = readerData.id;
+    const readerName = readerData.username;
     const isLike = await sequelize.query(
       `SELECT likes.userId
       FROM likes
@@ -82,10 +83,8 @@ module.exports = {
       AND likes.postId = ${id}`,
       { type: QueryTypes.SELECT }
     );
-    let doILike;
-    if (isLike.length === 0) {
-      doILike = false;
-    } else {
+    let doILike = false;
+    if (isLike.length !== 0) {
       doILike = true;
     }
     const postData = await sequelize.query(
@@ -95,6 +94,11 @@ module.exports = {
       WHERE posts.id = ${id}`,
       { type: QueryTypes.SELECT }
     );
+    // console.log(readerName, postData[0].username); //응답이 배열임에 유의할 것
+    let isMine = false;
+    if (readerName === postData[0].username) {
+      isMine = true;
+    }
     const commentData = await sequelize.query(
       `SELECT comments.*, users.username, users.profile_img
       FROM comments 
@@ -104,6 +108,7 @@ module.exports = {
     );
     res.status(200).json({
       like: doILike,
+      isMine: isMine,
       post: postData,
       comment: commentData,
     });
