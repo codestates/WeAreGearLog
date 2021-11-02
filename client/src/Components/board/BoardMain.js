@@ -1,16 +1,48 @@
 import React from 'react';
-import { FiHeart } from 'react-icons/fi';
-import { BiCommentDetail } from 'react-icons/bi';
-import styled from 'styled-components';
-import Editor from '../board/Editor';
+
+import { BsFillTriangleFill } from 'react-icons/bs';
+
 import './BoardMain.css';
-const BoardMain = () => {
+import { useSelector, useDispatch } from 'react-redux';
+
+const BoardMain = ({ authRegi }) => {
+  const state = useSelector((state) => state.board.items);
+  const post = state.map((el) => {
+    return (
+      <div key={el.id} className="cards">
+        <div className="card-image">
+          <img />
+        </div>
+        <div className="card-title">
+          {el.input}
+          <em>[{el.comments}]</em>
+        </div>
+        <div className="card-like">
+          <BsFillTriangleFill />
+          <span className="handc">{el.like}</span>
+        </div>
+        <div className="card-user">{authRegi.username}</div>
+        <div className="card-read">{el.readnum}</div>
+      </div>
+    );
+  });
+  console.log('이니셜스테이츠', state);
+
   return (
     <div className="b-m-b">
       <div className="flex-warp">
         <div className="flexContainer">
-          <div className="card-container">
-            <div className="card">
+          <div className="card-container">{post}</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default BoardMain;
+
+{
+  /* <div className="card">
               <div className="thumnail">
                 <img alt=""></img>
               </div>
@@ -27,12 +59,5 @@ const BoardMain = () => {
                 <BiCommentDetail /> <span className="handc">5</span>
                 <span className="handc-1">조회수:</span>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default BoardMain;
+            </div> */
+}

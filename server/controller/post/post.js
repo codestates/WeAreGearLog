@@ -16,48 +16,63 @@ module.exports = {
 
   //   res.send("OK!!!");
   // },
-  // add dummydata to comments...
-  write: async (req, res) => {
-    const list = await comment.create({
-      userId: 2,
-      postId: 15,
-      content: "구리네요222...(악플example)",
-    });
-
-    res.send("OK!!!");
-  },
-  // writePost: async (req, res) => {
-  //   // 요청에 담긴 토큰을 통해 작성자의 정보를 얻음
-  //   const writerData = isAuthorized(req);
-  //   // const writername = writerData.username;
-  //   // const writer_img = writerData.profile_img;
-  //   if (!writerData) {
-  //     return res.status(404).send("로그인중이 아니거나 잘못된 토큰입니다.");
-  //   }
-  //   const writerId = writerData.id;
-  //   const { category, title, content, imgsrc } = req.body;
-
-  //   const list = await post.create({
-  //     category: category,
-  //     writerId: writerId,
-  //     title: title,
-  //     content: content,
-  //     img: imgsrc,
+  // add dummydata to likes...
+  // write: async (req, res) => {
+  //   const list = await like.create({
+  //     userId: 1,
+  //     postId: 15,
+  //     // content: "구리네요222...(악플example)",
   //   });
-  //   res.status(201).json({ data: list });
-  // },(
-  // writeComment: (req, res) => {
+
   //   res.send("OK!!!");
   // },
+
+  // 게시물 작성하기
+  writePost: async (req, res) => {
+    // 요청에 담긴 토큰을 통해 작성자의 정보를 얻음
+    const writerData = isAuthorized(req);
+    if (!writerData) {
+      return res.status(404).send("로그인중이 아니거나 잘못된 토큰입니다.");
+    }
+    const writerId = writerData.id;
+    const { category, title, content, imgsrc } = req.body;
+    const posted = await post.create({
+      category: category,
+      writerId: writerId,
+      title: title,
+      content: content,
+      img: imgsrc,
+    });
+    res.status(201).json({ data: posted });
+  },
+  // 댓글 쓰기
+  writeComment: async (req, res) => {
+    const writerData = isAuthorized(req);
+    if (!writerData) {
+      return res.status(404).send("로그인중이 아니거나 잘못된 토큰입니다.");
+    }
+    const writerId = writerData.id;
+    const { content, postId } = req.body;
+    const updateComment = await post.increment("comment", {
+      by: 3,
+      where: { id: postId },
+    });
+    const commentData = await comment.create({
+      userId: writerId,
+      postId: postId,
+      content: content,
+    });
+    res.status(201).json({ data: commentData });
+  },
+  // 특정id 게시글 조회
   read: async (req, res) => {
     const id = req.params.id;
-    const updataView = await post.update(
+    const updateView = await post.update(
       {
         view: sequelize.literal("view + 1"),
       },
       { where: { id: id } }
     );
-
     const readerData = isAuthorized(req);
     const readerId = readerData.id;
     const isLike = await sequelize.query(
@@ -67,7 +82,12 @@ module.exports = {
       AND likes.postId = ${id}`,
       { type: QueryTypes.SELECT }
     );
-
+    let doILike;
+    if (isLike.length === 0) {
+      doILike = false;
+    } else {
+      doILike = true;
+    }
     const postData = await sequelize.query(
       `SELECT posts.*, users.username, users.profile_img 
       FROM posts 
@@ -82,13 +102,13 @@ module.exports = {
       WHERE comments.postId = ${id}`,
       { type: QueryTypes.SELECT }
     );
-
     res.status(200).json({
-      like: isLike,
+      like: doILike,
       post: postData,
       comment: commentData,
     });
   },
+  // 모든 게시글 조회(필요하다면 특정 카테고리별로 나눠서 요청받기)
   readAll: async (req, res) => {
     const postData = await sequelize.query(
       `SELECT posts.*, users.username, users.profile_img 
@@ -99,18 +119,17 @@ module.exports = {
       // 내가 생각한 해결 방법: 서버에서는 일단 다 보내고 클라이언트 단에서 원하는 갯수(ex10개씩)만큼 취해서 페이지응답에 사용? 배열로응답이 갈거니까 원하는길이만큼 잘라써라?!
       { type: QueryTypes.SELECT }
     );
-
     res.status(200).json({
       data: postData,
     });
   },
+  // 요청을 보낸 사용자가 작성한 모든 게시글 조회
   readMine: async (req, res) => {
     const readerData = isAuthorized(req);
     if (!readerData) {
       return res.status(404).send("로그인중이 아니거나 잘못된 토큰입니다.");
     }
     const readerId = readerData.id;
-
     const postData = await sequelize.query(
       `SELECT posts.*, users.username, users.profile_img 
       FROM posts 
@@ -118,7 +137,6 @@ module.exports = {
       WHERE users.id = ${readerId}`,
       { type: QueryTypes.SELECT }
     );
-
     res.status(200).json({
       data: postData,
     });

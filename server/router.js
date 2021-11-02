@@ -25,9 +25,12 @@ router.get("/gear/:id", gearController.item);
 
 // post routing
 router.get("/post", postController.post.readAll);
-router.post("/post", postController.post.write);
 router.get("/post/mypost", postController.post.readMine);
 router.get("/post/:id", postController.post.read);
+router.post("/post", postController.post.writePost);
+router.post("/post/comment", postController.post.writeComment);
+router.post("/post/like", postController.like.like);
+router.post("/post/dislike", postController.like.dislike);
 router.put("/post/:id", postController.update);
 router.delete("/post/:id", postController.delete);
 
