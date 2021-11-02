@@ -32,7 +32,8 @@ router.post("/post/comment", postController.post.writeComment);
 router.post("/post/like", postController.like.like);
 router.post("/post/dislike", postController.like.dislike);
 router.put("/post/:id", postController.update);
-router.delete("/post/:id", postController.delete);
+router.delete("/post/comment", postController.delete.deleteComment);
+router.delete("/post", postController.delete.deletePost);
 
 //message routing
 // router.get("/message/chatlist", messageController.chatlist);
