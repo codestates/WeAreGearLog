@@ -1,8 +1,10 @@
+.edit {
+  display: flex;
+}
 .Editor {
   display: flex;
-  width: 100%;
+  width: 1000px;
   height: 75vh;
-  border: 1px solid black;
 }
 .write {
   width: 70%;

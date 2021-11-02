@@ -6,19 +6,20 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import rootReducer from './modules';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import rootReducer from './modules';
 
 const store = createStore(rootReducer, composeWithDevTools());
-// const persistor = persistStore(store);
+const persistor = persistStore(store);
+
 ReactDOM.render(
   <Provider store={store}>
-    {/* <PersistGate persistor={persistor}> */}
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-    {/* </PersistGate> */}
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </PersistGate>
   </Provider>,
   document.getElementById('root'),
 );

@@ -1,44 +1,56 @@
-import React, { useState } from 'react';
-import { likes } from '../../modules/board';
+import React, { useEffect, useState } from 'react';
+import { readpost } from '../../modules/board';
 import { BsFillTriangleFill } from 'react-icons/bs';
-
+import axios from 'axios';
 import './BoardMain.css';
 import { useSelector, useDispatch } from 'react-redux';
 
-const BoardMain = ({ authRegi }) => {
-  const [findId, setfindId] = useState(0);
+const BoardMain = () => {
+  const [getList, setGetList] = useState([]);
+  let token = localStorage.getItem('token');
+  useEffect(() => {
+    axios
+      .get(`http://52.79.233.29:8080/post/`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setGetList(res.data.data);
+      });
+  }, []);
+
   const dispatch = useDispatch();
 
-  const handleIdClick = (id) => {
-    setfindId(id);
+  const ReqRead = (id) => {
+    axios
+      .get(`http://52.79.233.29:8080/post/${id}`, {
+        withCredentials: true,
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        dispatch(readpost(res.data.post));
+      })
 
-    dispatch(likes(id));
+      .catch((err) => console.log(err));
   };
 
-  const state = useSelector((state) => state.board.items);
-
-  console.log('12312', state);
-
-  const post = state.map((el, idx) => {
+  const post = getList.map((el, idx) => {
     return (
       <div key={el.id} className="cards">
         <div className="card-image">
           <img />
         </div>
-        <div className="card-title">
-          {el.input}
 
-          <em>[{el.comments}]</em>
+        <div onClick={() => ReqRead(el.id)} className="card-title">
+          {el.title} <em>[{el.comments}]</em>
+          <p>ㄹㅇㄴㄹㄴㅇㄹ</p>
         </div>
         <div className="card-like">
           <BsFillTriangleFill />
-          <span onClick={() => handleIdClick(el.id)} className="handc">
-            {el.like}
-          </span>
+          <span className="handc">{el.like}</span>
         </div>
-        <div className="card-user">{authRegi.username}</div>
+
+        <div className="card-user">{el.username}</div>
         <div className="card-read">{el.view}</div>
-        <div>fdsfdf</div>
       </div>
     );
   });

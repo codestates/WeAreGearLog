@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './BoardMain.css';
 const BoardNav = ({ authRegi, write, setWrite }) => {
   return (
     <div className="b-n">
