@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useEffect, useState } from 'react';
 import './NewBoard.css';
 import { Link } from 'react-router-dom';
@@ -5,13 +6,10 @@ import Button from '../Components/common/Button';
 import { BiDownArrow, BiUpArrow } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-const NewBoard = () => {
+const NewBoard = ({ authRegi, udeleteB }) => {
   const [udButton, setUdButton] = useState(false);
-  const [dwButton, setDwButton] = useState(false);
 
   let token = localStorage.getItem('token');
-
-  useEffect(() => {});
 
   const deletePost = (id) => {
     axios
@@ -23,7 +21,9 @@ const NewBoard = () => {
         },
       )
       .then((res) => {
-        console.log(res);
+        if (res.status === 200) {
+          location.reload();
+        }
       })
       .catch((res) => console.log(res));
   };
@@ -66,18 +66,20 @@ const NewBoard = () => {
               {udButton ? <BiUpArrow color="blue" /> : <BiUpArrow />}
             </button>
           </div>
-          <div className={'upload-b'}>
-            <button className="u-b-1">수정</button>
+          {authRegi.username !== el.username ? null : (
+            <div className={'upload-b'}>
+              <button className="u-b-1">수정</button>
 
-            <button
-              onClick={() => {
-                deletePost(el.id);
-              }}
-              className="u-b-1"
-            >
-              삭제
-            </button>
-          </div>
+              <button
+                onClick={() => {
+                  deletePost(el.id);
+                }}
+                className="u-b-1"
+              >
+                삭제
+              </button>
+            </div>
+          )}
         </div>
       </div>
     );

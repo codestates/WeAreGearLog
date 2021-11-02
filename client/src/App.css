@@ -459,6 +459,7 @@ h1 {
 }
 @media screen and (max-width: 768px) {
   .Auth-temp-1 {
+    position: fixed;
     width: 70%;
     margin-bottom: 150px;
   }
