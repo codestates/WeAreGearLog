@@ -4,9 +4,10 @@ import { BsFillTriangleFill } from 'react-icons/bs';
 import axios from 'axios';
 import './BoardMain.css';
 import { useSelector, useDispatch } from 'react-redux';
-
-const BoardMain = () => {
+import NewBoard from '../../Pages/NewBoard';
+const BoardMain = ({ authRegi }) => {
   const [getList, setGetList] = useState([]);
+
   let token = localStorage.getItem('token');
   useEffect(() => {
     axios
@@ -35,56 +36,220 @@ const BoardMain = () => {
 
   const post = getList.map((el, idx) => {
     return (
-      <div key={el.id} className="cards">
-        <div className="card-image">
-          <img />
+      <div className="b-list">
+        <div key={el.id} className="board-list">
+          <div className="b-img"></div>
+          <div className="b-tNd">
+            <div onClick={() => ReqRead(el.id)} className="b-p1">
+              {el.title} <em className="ems">[{el.comments}]</em>
+            </div>
+
+            <div className="b-p">
+              <div className="b-span">5시간전</div>
+
+              <div className="b-span">{el.username}</div>
+            </div>
+          </div>
+
+          <div className="b-view">{el.view}</div>
         </div>
 
-        <div onClick={() => ReqRead(el.id)} className="card-title">
-          {el.title} <em>[{el.comments}]</em>
-          <p>ㄹㅇㄴㄹㄴㅇㄹ</p>
-        </div>
-        <div className="card-like">
+        <div className="b-like">
           <BsFillTriangleFill />
-          <span className="handc">{el.like}</span>
+          {el.like}
         </div>
-
-        <div className="card-user">{el.username}</div>
-        <div className="card-read">{el.view}</div>
       </div>
     );
   });
 
   return (
-    <div className="b-m-b">
-      <div className="flex-warp">
-        <div className="flexContainer">
-          <div className="card-container">{post}</div>
+    <>
+      <NewBoard authRegi={authRegi} />
+      <div id="box">
+        <div className="b-m-b"></div>
+
+        <div className="b-m-b1">
+          {post}
+          <div className="b-pad"></div>
         </div>
+        <div className="b-m-b"></div>
       </div>
-    </div>
+    </>
   );
 };
 
 export default BoardMain;
 
-{
-  /* <div className="card">
-              <div className="thumnail">
-                <img alt=""></img>
-              </div>
+// import React, { useEffect, useState } from 'react';
+// import { readpost } from '../../modules/board';
+// import { BsFillTriangleFill } from 'react-icons/bs';
+// import axios from 'axios';
+// import './BoardMain.css';
+// import { useSelector, useDispatch } from 'react-redux';
 
-              <div className="card-2">제목:</div>
+// const BoardMain = () => {
+//   const [getList, setGetList] = useState([]);
 
-              <div className="card-c">
-                <FiHeart />
-                <span className="handc">3</span>
-                <span className="handc-1">작성자:</span>
-              </div>
+//   let token = localStorage.getItem('token');
+//   useEffect(() => {
+//     axios
+//       .get(`http://52.79.233.29:8080/post/`, {
+//         withCredentials: true,
+//       })
+//       .then((res) => {
+//         setGetList(res.data.data);
+//       });
+//   }, []);
 
-              <div className="card-c">
-                <BiCommentDetail /> <span className="handc">5</span>
-                <span className="handc-1">조회수:</span>
-              </div>
-            </div> */
-}
+//   const dispatch = useDispatch();
+
+//   const ReqRead = (id) => {
+//     axios
+//       .get(`http://52.79.233.29:8080/post/${id}`, {
+//         withCredentials: true,
+//         headers: { authorization: `Bearer ${token}` },
+//       })
+//       .then((res) => {
+//         dispatch(readpost(res.data.post));
+//       })
+
+//       .catch((err) => console.log(err));
+//   };
+
+//   const post = getList.map((el, idx) => {
+//     return (
+//       <div key={el.id} className="cards">
+//         <div className="card-image">
+//           <img />
+//         </div>
+
+//         <div onClick={() => ReqRead(el.id)} className="card-title">
+//           {el.title} <em>[{el.comments}]</em>
+//           <p>ㄹㅇㄴㄹㄴㅇㄹ</p>
+//         </div>
+//         <div className="card-like">
+//           <BsFillTriangleFill />
+//           <span className="handc">{el.like}</span>
+//         </div>
+
+//         <div className="card-user">{el.username}</div>
+//         <div className="card-read">{el.view}</div>
+//       </div>
+//     );
+//   });
+
+//   return (
+//     <div className="b-m-b">
+//       <div className="flex-warp">
+//         <div className="flexContainer">
+//           <div className="card-container1">{post}</div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default BoardMain;
+
+// .b-m-b {
+//   display: flex;
+// }
+// .card-title {
+//   padding: 10px;
+//   width: 50%;
+//   height: 70px;
+//   border: 1px solid black;
+// }
+// .card-like {
+//   display: flex;
+//   width: 60px;
+//   height: 70px;
+//   border: 1px solid black;
+// }
+// /* 중앙정렬 */
+// .card-read {
+//   display: flex;
+//   height: 70px;
+//   width: 50px;
+//   border: 1px solid black;
+// }
+// .flexContainer {
+//   margin-bottom: 150px;
+//   width: 100%;
+//   display: flex;
+// }
+// .card-user {
+//   display: flex;
+//   width: 60px;
+//   height: 70px;
+//   border: 1px solid black;
+// }
+// .b-n {
+//   z-index: 9999;
+// }
+// .card-container1 {
+//   flex-grow: 1;
+//   width: 50%;
+//   height: 30vh;
+
+//   display: flex;
+//   flex-wrap: wrap;
+//   /* justify-content: left; */
+//   overflow: auto;
+// }
+
+// .cards {
+//   margin-top: 10px;
+//   margin-bottom: 10px;
+//   margin-left: 10px;
+//   margin-right: 10px;
+//   padding: 2px;
+//   display: flex;
+//   height: 100px;
+//   width: 70%;
+//   background-color: white;
+//   border-radius: 5px;
+//   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+//   transition: all 0.3s ease;
+// }
+// .card-image {
+//   border: 1px solid black;
+//   width: 20%;
+//   height: 70px;
+// }
+
+// .cards:hover {
+//   box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+// }
+
+// .flex-warp {
+//   width: 100%;
+//   height: 55vh;
+// }
+
+// @media screen and (max-width: 1220px) {
+//   .card {
+//     flex: 0 0 40%;
+//     margin-left: 50px;
+//   }
+// }
+// @media screen and (max-width: 768px) {
+//   .card {
+//     height: 300px;
+
+//     flex: 0 40%;
+//   }
+// }
+// @media screen and (max-width: 649px) {
+//   .card {
+//     flex: 50%;
+//   }
+// }
+
+// @media screen and (max-width: 400px) {
+//   .card {
+//     height: 300px;
+//     margin-left: 15px;
+//     flex: 0 100%;
+//   }
+// }
