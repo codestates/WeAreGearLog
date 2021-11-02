@@ -3,10 +3,11 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import board from './board';
 
-const rootReducer = combineReducers({ board });
 const persistConfig = {
   key: 'root',
-  storage: storage,
+  storage,
 };
+
+const rootReducer = combineReducers({ board });
 
 export default persistReducer(persistConfig, rootReducer);

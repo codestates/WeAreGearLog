@@ -1,32 +1,59 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { readpost } from '../../modules/board';
 import { BsFillTriangleFill } from 'react-icons/bs';
-
+import axios from 'axios';
 import './BoardMain.css';
 import { useSelector, useDispatch } from 'react-redux';
 
-const BoardMain = ({ authRegi }) => {
-  const state = useSelector((state) => state.board.items);
-  const post = state.map((el) => {
+const BoardMain = () => {
+  const [getList, setGetList] = useState([]);
+  let token = localStorage.getItem('token');
+  useEffect(() => {
+    axios
+      .get(`http://52.79.233.29:8080/post/`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setGetList(res.data.data);
+      });
+  }, []);
+
+  const dispatch = useDispatch();
+
+  const ReqRead = (id) => {
+    axios
+      .get(`http://52.79.233.29:8080/post/${id}`, {
+        withCredentials: true,
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        dispatch(readpost(res.data.post));
+      })
+
+      .catch((err) => console.log(err));
+  };
+
+  const post = getList.map((el, idx) => {
     return (
       <div key={el.id} className="cards">
         <div className="card-image">
           <img />
         </div>
-        <div className="card-title">
-          {el.input}
-          <em>[{el.comments}]</em>
+
+        <div onClick={() => ReqRead(el.id)} className="card-title">
+          {el.title} <em>[{el.comments}]</em>
+          <p>ㄹㅇㄴㄹㄴㅇㄹ</p>
         </div>
         <div className="card-like">
           <BsFillTriangleFill />
           <span className="handc">{el.like}</span>
         </div>
-        <div className="card-user">{authRegi.username}</div>
-        <div className="card-read">{el.readnum}</div>
+
+        <div className="card-user">{el.username}</div>
+        <div className="card-read">{el.view}</div>
       </div>
     );
   });
-  console.log('이니셜스테이츠', state);
 
   return (
     <div className="b-m-b">
