@@ -57,7 +57,7 @@ module.exports = {
     const writerId = writerData.id;
     const { content, postId } = req.body;
     const updateComment = await post.increment("comment", {
-      by: 3,
+      by: 1,
       where: { id: postId },
     });
     const commentData = await comment.create({
