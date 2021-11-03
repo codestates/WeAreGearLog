@@ -40,8 +40,8 @@ const BoardMain = ({ authRegi }) => {
 
   const post = getList.map((el, idx) => {
     return (
-      <div className="b-list">
-        <div key={el.id} className="board-list">
+      <div key={el.id} className="b-list">
+        <div className="board-list">
           <div className="b-img"></div>
           <div className="b-tNd">
             <div onClick={() => ReqRead(el.id)} className="b-p1">

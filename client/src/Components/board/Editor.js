@@ -1,17 +1,24 @@
 /* eslint-disable react/style-prop-object */
-import React, { useState } from 'react';
-import { insert } from '../../modules/board';
+import React, { useEffect, useState } from 'react';
+
 import { BsImage } from 'react-icons/bs';
-import { useSelector, useDispatch } from 'react-redux';
+
 import './Editor.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import { MdPreview } from 'react-icons/md';
+import Edit from './Edit';
+
 const Editor = () => {
   const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
 
-  const dispatch = useDispatch();
+  const [state, setState] = useState({ value: null });
+  console.log(state);
+  const handleChange = (value) => {
+    setState({ value });
+  };
+
   const onSubmit = () => {
     let token = localStorage.getItem('token');
 
@@ -20,7 +27,7 @@ const Editor = () => {
         'http://52.79.233.29:8080/post',
         {
           title: title,
-          content: content,
+          content: state,
           img: '',
         },
         {
@@ -40,10 +47,6 @@ const Editor = () => {
     setTitle(e.target.value);
   };
 
-  const onTextChange = (e) => {
-    setContent(e.target.value);
-  };
-
   return (
     <div className="edit">
       <div className="Editor">
@@ -56,28 +59,16 @@ const Editor = () => {
             className="inputz"
             placeholder="제목을 입력하세요"
           />
-          <div className="e-p">
-            <BsImage />
-          </div>
-          <textarea
-            onChange={onTextChange}
-            value={content}
-            className="textarea"
-            autucomplate="off"
-            autoCorrect="off"
-            spellCheck="false"
-            autocapitalize="off"
-          ></textarea>
-          <div className="upload-b">
-            <Link to="/board">
-              <button onClick={onSubmit} className="u-b-1">
-                올리기
-              </button>
-            </Link>
-            <Link to="/board">
-              <button className="u-b-1">취소</button>
-            </Link>
-          </div>
+          <Edit state={state} handleChange={handleChange} />
+
+          <Link to="/board">
+            <button onClick={onSubmit} className="u-b-1">
+              올리기
+            </button>
+          </Link>
+          <Link to="/board">
+            <button className="u-b-1">취소</button>
+          </Link>
         </div>
       </div>
     </div>
