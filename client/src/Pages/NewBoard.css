@@ -3,8 +3,8 @@
   width: 100%;
 }
 .Newboard-info {
+  text-align: center;
   display: flex;
-  justify-content: space-between;
 }
 
 .Newboard-info-list {
@@ -12,25 +12,23 @@
 }
 .Editor1 {
   background-color: white;
-  border-radius: 15px;
+
   display: flex;
   width: 50%;
   height: 100%;
-  box-shadow: 5px 5px 5px 5px black;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 .Read {
-  padding: 5px;
-  border-radius: 15px;
   width: 100%;
 }
 
 .titlez {
-  border-radius: 10px 10px 0 0;
+  border: none;
   font-size: 30px;
   width: 100%;
   height: 50px;
 }
-.Newboard-info-list1 {
+.Newboard-info-list {
   width: 100%;
 }
 .sss {
@@ -38,17 +36,18 @@
   margin-right: 30px;
 }
 .textarea1 {
+  border-top: 1px solid #ccc;
   resize: none;
   white-space: pre-wrap;
   width: 100%;
   overflow-y: hidden;
   height: 100%;
-  border: 1px solid #ccc;
 }
 .crud-button {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   height: 80px;
   display: flex;
-  border: 1px solid #ccc;
 }
 .crud-bt {
   background-color: #ffffff;
@@ -59,13 +58,65 @@
   width: 70px;
   height: 40px;
 }
+
+.c-top {
+  background-color: #fafafa;
+  padding: 10px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+
+.c-bottom {
+  display: flex;
+  border: 1px solid #ccc;
+  width: 100%;
+  height: 50px;
+}
+
+.textarea1 {
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  border-top: 1px solid #ccc;
+
+  width: 100%;
+  height: 80px;
+}
+
+.c-u-i {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+}
+.c-bottom {
+  border-right: none;
+}
+.c-u-b {
+  background-color: lightblue;
+  border: none;
+  width: 90px;
+  height: 50px;
+  color: cornflowerblue;
+}
+
+.em-1 {
+  font-size: 15px;
+  color: green;
+}
+.c-top-in {
+  background-color: #fafafa;
+}
+
+.c-padding {
+  height: 30px;
+}
 @media screen and (max-width: 1220px) {
   .Editor1 {
     background-color: white;
-    border-radius: 15px;
+
     display: flex;
-    width: 90%;
+    width: 100%;
     height: 100%;
-    box-shadow: 5px 5px 5px 5px black;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
   }
 }

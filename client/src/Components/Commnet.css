@@ -1,0 +1,44 @@
+.b-c-list1 {
+  display: flex;
+  background-color: white;
+  border: 1px solid gainsboro;
+  width: 100%;
+  justify-content: left;
+  min-height: 50px;
+}
+.b-c-p123 {
+  padding: 0;
+  display: flex;
+  width: 100%;
+  height: 20px;
+}
+
+.c-ui {
+  display: flex;
+  border: 1px solid springgreen;
+  min-height: 60px;
+  width: 60px;
+}
+
+.c-t {
+  padding: 10px;
+  width: 100%;
+  min-height: 25px;
+}
+.c-title {
+  width: 100%;
+}
+.c-time {
+  display: flex;
+  justify-content: left;
+
+  width: 50%;
+  height: 100%;
+}
+
+.c-2 {
+  border-top: 1px solid gainsboro;
+  display: flex;
+  border-right: 1px solid gainsboro;
+  width: 100px;
+}
