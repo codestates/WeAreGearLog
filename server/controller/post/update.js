@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
       content: content,
       img: img,
     },
-    { where: { postId: postId } }
+    { where: { id: postId } }
   );
   res.status(201).json({
     updated: updatePost,
