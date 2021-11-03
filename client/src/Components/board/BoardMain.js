@@ -6,6 +6,7 @@ import './BoardMain.css';
 import { useSelector, useDispatch } from 'react-redux';
 import NewBoard from '../../Pages/NewBoard';
 const BoardMain = ({ authRegi }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const [getList, setGetList] = useState([]);
 
   let token = localStorage.getItem('token');
@@ -22,6 +23,9 @@ const BoardMain = ({ authRegi }) => {
   const dispatch = useDispatch();
 
   const ReqRead = (id) => {
+    window.scrollBy(0, -9999);
+
+    setIsOpen(true);
     axios
       .get(`http://52.79.233.29:8080/post/${id}`, {
         withCredentials: true,
@@ -48,15 +52,13 @@ const BoardMain = ({ authRegi }) => {
               <div className="b-span">5시간전</div>
 
               <div className="b-span">{el.username}</div>
+              <div className="b-span">{el.view}</div>
+              <div className="b-span">
+                <BsFillTriangleFill />
+                {el.like}
+              </div>
             </div>
           </div>
-
-          <div className="b-view">{el.view}</div>
-        </div>
-
-        <div className="b-like">
-          <BsFillTriangleFill />
-          {el.like}
         </div>
       </div>
     );
@@ -64,12 +66,17 @@ const BoardMain = ({ authRegi }) => {
 
   return (
     <>
-      <NewBoard authRegi={authRegi} />
+      {isOpen ? <NewBoard setIsOpen={setIsOpen} authRegi={authRegi} /> : null}
+
       <div id="box">
         <div className="b-m-b"></div>
 
         <div className="b-m-b1">
           {post}
+          <div className="b-footer">
+            <button className="b-f-b">이전</button>
+            <button className="b-f-b">다음</button>
+          </div>
           <div className="b-pad"></div>
         </div>
         <div className="b-m-b"></div>
