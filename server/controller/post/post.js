@@ -109,7 +109,8 @@ module.exports = {
       `SELECT comments.*, users.username, users.profile_img
       FROM comments 
       JOIN users ON comments.userId = users.id
-      WHERE comments.postId = ${id}`,
+      WHERE comments.postId = ${id}
+      ORDER BY comments.id DESC`,
       { type: QueryTypes.SELECT }
     );
     res.status(200).json({
