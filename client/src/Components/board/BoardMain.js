@@ -23,6 +23,8 @@ const BoardMain = ({ authRegi }) => {
   const dispatch = useDispatch();
 
   const ReqRead = (id) => {
+    window.scrollBy(0, -9999);
+
     setIsOpen(true);
     axios
       .get(`http://52.79.233.29:8080/post/${id}`, {
