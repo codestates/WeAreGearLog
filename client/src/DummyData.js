@@ -44,25 +44,25 @@ export const LogiDummy = [
   {
     id: 5,
     img: blwdw,
-    path: '/brands/review/logitech',
+    path: '/brands/review/razer',
     click: '리뷰보기',
-    title: 'LAZER BLACKWIDOW',
+    title: 'RAZER BLACKWIDOW',
     Review: 'Review',
   },
   {
     id: 6,
     img: death,
-    path: '/brands/review/logitech',
+    path: '/brands/review/razer',
     click: '리뷰보기',
-    title: 'LAZER DeathAdder',
+    title: 'RAZER DeathAdder',
     Review: 'Review',
   },
   {
     id: 7,
     img: Kraken,
-    path: '/brands/review/logitech',
+    path: '/brands/review/razer',
     click: '리뷰보기',
-    title: 'LAZER Kraken Ultimate',
+    title: 'RAZER Kraken Ultimate',
     Review: 'Review',
   },
   {
@@ -71,7 +71,7 @@ export const LogiDummy = [
     click: '리뷰보기',
     path: '/brands/review/roccat',
     Review: 'Review',
-    title: 'Roccat Kova Amimo',
+    title: 'Roccat Kova Aimo',
   },
   {
     id: 9,
@@ -89,4 +89,5 @@ export const LogiDummy = [
     Review: 'Review',
     title: 'Corsair k70',
   },
+  
 ];
