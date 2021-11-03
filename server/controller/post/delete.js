@@ -13,7 +13,7 @@ module.exports = {
     const postId = commentData.postId;
     // console.log(readerId, commentData.userId);
     if (readerId !== commentData.userId) {
-      return res.status(401).send("작성자가 아니거나 만료된 토큰");
+      return res.status(401).send("작성자가 아님");
     }
     // 댓글을 삭제하고 해당 댓글이 속하는 포스트의 댓글수 컬럼의 값을 -1 해준다.
     const deleted = await comment.destroy({ where: { id: commentId } });
@@ -36,7 +36,7 @@ module.exports = {
     const postData = await post.findOne({ where: { id: postId } });
     // console.log(readerId, postData.writerId);
     if (readerId !== postData.writerId) {
-      return res.status(401).send("작성자가 아니거나 만료된 토큰");
+      return res.status(401).send("작성자가 아님");
     }
     const deleteComment = await comment.destroy({ where: { postId: postId } });
     const deleteLike = await like.destroy({ where: { postId: postId } });
