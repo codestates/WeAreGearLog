@@ -9,7 +9,9 @@ module.exports = async (req, res) => {
   if (readerId !== postData.writerId) {
     return res.status(401).send("작성자가 아니거나 만료된 토큰");
   }
-
+  if (!title || !content) {
+    return res.status(400).send("제목이나 본문은 빈칸으로 둘 수 없습니다.");
+  }
   const updatePost = await post.update(
     {
       title: title,
