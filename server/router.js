@@ -20,8 +20,10 @@ router.patch("/user/password", userController.update.password);
 router.patch("/user/profileImg", userController.update.profileImg);
 router.delete("/user", userController.signout);
 
+// DB에 저장된 리뷰정보와 프로게이머 장비 정보를 요청하는 엔드포인트
 // gear routing
 router.get("/gear/:id", gearController.item);
+// progamer routing
 
 // post routing
 router.get("/post", postController.post.readAll);

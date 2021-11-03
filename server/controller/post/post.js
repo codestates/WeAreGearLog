@@ -124,7 +124,8 @@ module.exports = {
     const postData = await sequelize.query(
       `SELECT posts.*, users.username, users.profile_img 
       FROM posts 
-      JOIN users ON posts.writerId = users.id`,
+      JOIN users ON posts.writerId = users.id
+      ORDER BY posts.id DESC`,
       // `SELECT posts.*, users.username, users.profile_img FROM posts JOIN users ON posts.writerId = users.id WHERE posts.id BETWEEN 1 AND 10`, // 페이지네이션 구현시 사용할 코드스니펫
       // 만약에 중간에 삭제된 레코드가 존재한다면 페이지네이션을 구현하려고 한 페이지에 10개씩 map으로 뿌려주려고 할때 응답은 어떻게 해줘야 할 것인가?(id 값만을 기준으로 한다면 삭제된 레코드의 갯수만큼 부족하게 응답이 갈 것이기 때문에...)
       // 내가 생각한 해결 방법: 서버에서는 일단 다 보내고 클라이언트 단에서 원하는 갯수(ex10개씩)만큼 취해서 페이지응답에 사용? 배열로응답이 갈거니까 원하는길이만큼 잘라써라?!
