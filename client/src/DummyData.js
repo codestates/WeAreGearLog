@@ -8,6 +8,9 @@ import Kraken from './Img/brands/Lazer/Kraken.png';
 import kon from './Img/brands/Roccat/kon.png';
 import kova from './Img/brands/Roccat/kova.png';
 import k70 from './Img/brands/Corsair/k70.png';
+import k70tkl from './Img/brands/Corsair/k70tkl.png';
+
+
 export const LogiDummy = [
   {
     id: 1,
@@ -89,5 +92,13 @@ export const LogiDummy = [
     Review: 'Review',
     title: 'Corsair k70',
   },
-  
+  {
+    id: 11,
+    img: k70tkl,
+    click: '리뷰보기',
+    path: '/brands/review/corsair',
+    Review: 'Review',
+    title: 'Corsair k70 TKL',
+  },
+
 ];
