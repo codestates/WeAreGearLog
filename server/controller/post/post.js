@@ -27,6 +27,17 @@ module.exports = {
   //   res.send("OK!!!");
   // },
 
+  // 조회수 올라가기 기능 분리한다면?
+  addView: async (req, res) => {
+    const id = req.params.id;
+    const updateView = await post.update(
+      {
+        view: sequelize.literal("view + 1"),
+      },
+      { where: { id: id } }
+    );
+    res.status(200).json({ message: "viewCount updated" });
+  },
   // 게시물 작성하기
   writePost: async (req, res) => {
     // 요청에 담긴 토큰을 통해 작성자의 정보를 얻음
@@ -71,12 +82,12 @@ module.exports = {
   // 특정id 게시글 조회
   read: async (req, res) => {
     const id = req.params.id;
-    const updateView = await post.update(
-      {
-        view: sequelize.literal("view + 1"),
-      },
-      { where: { id: id } }
-    );
+    // const updateView = await post.update(
+    //   {
+    //     view: sequelize.literal("view + 1"),
+    //   },
+    //   { where: { id: id } }
+    // );
     const readerData = isAuthorized(req);
     const postData = await sequelize.query(
       `SELECT posts.*, users.username, users.profile_img 
