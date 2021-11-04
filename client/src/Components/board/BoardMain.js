@@ -5,9 +5,14 @@ import axios from 'axios';
 import './BoardMain.css';
 import { useSelector, useDispatch } from 'react-redux';
 import NewBoard from '../../Pages/NewBoard';
+import { Link, Route, useHistory } from 'react-router-dom';
 const BoardMain = ({ authRegi }) => {
+  const data = useSelector((state) => state.board.read);
+  const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const [getList, setGetList] = useState([]);
+
+  const dataId = data.map((el) => el.id);
 
   let token = localStorage.getItem('token');
   useEffect(() => {
@@ -33,6 +38,7 @@ const BoardMain = ({ authRegi }) => {
       })
       .then((res) => {
         dispatch(readpost(res.data.post));
+        // eslint-disable-next-line no-restricted-globals
       })
 
       .catch((err) => console.log(err));
@@ -66,7 +72,9 @@ const BoardMain = ({ authRegi }) => {
 
   return (
     <>
-      {isOpen ? <NewBoard setIsOpen={setIsOpen} authRegi={authRegi} /> : null}
+      {isOpen ? (
+        <NewBoard isOpen={isOpen} setIsOpen={setIsOpen} authRegi={authRegi} />
+      ) : null}
 
       <div id="box">
         <div className="b-m-b1">
