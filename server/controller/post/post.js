@@ -46,7 +46,6 @@ module.exports = {
       writerId: writerId,
       title: title,
       content: content,
-      img: imgsrc,
     });
     res.status(201).json({ data: posted });
   },
