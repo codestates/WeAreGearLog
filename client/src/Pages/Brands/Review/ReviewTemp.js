@@ -2,55 +2,63 @@ import React, { useEffect } from 'react';
 import './ReviewTemp.css';
 import { FcDocument, FcElectricalSensor } from 'react-icons/fc';
 import g304rv from '../../../Img/brands/Logitech/g304rv.png';
+import razerdeathadder from '../../../Img/brands/Lazer/razerdeathadder.png'
+import gprox1 from '../../../Img/brands/Logitech/gprox1.png'
+import g915 from '../../../Img/brands/Logitech/g915.png'
+import g733 from '../../../Img/brands/Logitech/G7331.png'
+import blackwidow from '../../../Img/brands/Lazer/blackwidow.png'
+import razerkraken from '../../../Img/brands/Lazer/razerkraken.png'
+import roccataimo from '../../../Img/brands/Roccat/roccataimo.png'
+import konepro from '../../../Img/brands/Roccat/konepro.png'
+import k70kbd from '../../../Img/brands/Corsair/k70keyboard.png'
+import k70tkl from '../../../Img/brands/Corsair/k70tkl1.png'
+
+
 
 const gearimg = [
   {
     id: 0,
-    src: '',
-  },
-  {
-    id: 1,
-    src: '',
-  },
-  {
-    id: 2,
-    src: '',
-  },
-  {
-    id: 3,
-    src: '',
-  },
-  {
-    id: 4,
-    src: '',
-  },
-  {
-    id: 5,
     src: g304rv,
   },
   {
+    id: 1,
+    src: gprox1,
+  },
+  {
+    id: 2,
+    src: g915,
+  },
+  {
+    id: 3,
+    src: g733,
+  },
+  {
+    id: 4,
+    src: blackwidow,
+  },
+  {
+    id: 5,
+    src: razerdeathadder,
+  },
+  {
     id: 6,
-    url: '',
+    src: razerkraken,
   },
   {
     id: 7,
-    url: '',
+    src: roccataimo,
   },
   {
     id: 8,
-    url: '',
+    src: konepro,
   },
   {
     id: 9,
-    url: '',
+    src: k70kbd,
   },
   {
     id: 10,
-    url: '',
-  },
-  {
-    id: 11,
-    url: '',
+    src: k70tkl,
   },
 ];
 
