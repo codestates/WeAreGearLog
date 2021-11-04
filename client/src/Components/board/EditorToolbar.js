@@ -51,42 +51,42 @@ Font.whitelist = [
 Quill.register(Font, true);
 
 // Modules object for setting up the Quill editor
-export const modules = {
-  toolbar: {
-    container: '#toolbar',
-    handlers: {
-      undo: undoChange,
-      redo: redoChange,
-    },
-  },
-  history: {
-    delay: 500,
-    maxStack: 100,
-    userOnly: true,
-  },
-};
+// export const modules = {
+//   toolbar: {
+//     container: '#toolbar',
+//     handlers: {
+//       undo: undoChange,
+//       redo: redoChange,
+//     },
+//   },
+//   history: {
+//     delay: 500,
+//     maxStack: 100,
+//     userOnly: true,
+//   },
+// };
 
-// Formats objects for setting up the Quill editor
-export const formats = [
-  'header',
-  'font',
-  'size',
-  'bold',
-  'italic',
-  'underline',
-  'align',
-  'strike',
-  'script',
-  'blockquote',
-  'background',
-  'list',
-  'bullet',
-  'indent',
-  'link',
-  'image',
-  'color',
-  'code-block',
-];
+// // Formats objects for setting up the Quill editor
+// export const formats = [
+//   'header',
+//   'font',
+//   'size',
+//   'bold',
+//   'italic',
+//   'underline',
+//   'align',
+//   'strike',
+//   'script',
+//   'blockquote',
+//   'background',
+//   'list',
+//   'bullet',
+//   'indent',
+//   'link',
+//   'image',
+//   'color',
+//   'code-block',
+// ];
 
 // Quill Toolbar component
 export const QuillToolbar = () => (
