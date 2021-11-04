@@ -12,13 +12,6 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
     setChangeName(event.target.value);
   };
   const ondeleteUser = () => {
-    // let social = localStorage.getItem('social');
-    // if (social) {
-    //   return alert(
-    //     '소셜로그인으로 로그인 한 경우 별도의 회원탈퇴가 필요하지 않습니다.',
-    //   );
-    // }
-
     let confirm = window.confirm('정말로 회원탈퇴 하시겠습니까?');
 
     if (confirm) {
@@ -70,7 +63,6 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
             localStorage.setItem('token', token);
             authorization();
             setIsTrue(true);
-            // setUsername(changeName);
           } else {
             if (res.status === 202) {
               alert('이미있는 유저네임입니다');

@@ -8,8 +8,10 @@ import { useSelector } from 'react-redux';
 import { BsImage } from 'react-icons/bs';
 import axios from 'axios';
 import Commnet from '../Components/Commnet';
+import { Link, useHistory } from 'react-router-dom';
 
 const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
+  const history = useHistory();
   const data = useSelector((state) => state.board.read);
   const [like, setLike] = useState('');
   const [likeCount, setLikeCount] = useState('');
@@ -18,6 +20,11 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
   const [changeC, setChangeC] = useState('');
 
   const dataId = data.map((el) => el.id);
+
+  const toEdit = (id) => {
+    history.push(`/board/edit/${id}`);
+    location.reload();
+  };
 
   useEffect(() => {
     axios
@@ -29,30 +36,8 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
         setChangeC(res.data.post.content);
         setLike(res.data.like);
         setLikeCount(res.data.post[0].like);
-        console.log(res.data.post[0].like);
       });
   }, [data]);
-
-  const onPutChange = (id) => {
-    axios
-      .patch(
-        `http://52.79.233.29:8080/post/`,
-        {
-          postId: id,
-          title: chagenT,
-          content: changeC,
-        },
-        {
-          headers: { authorization: `Bearer ${token}` },
-        },
-      )
-      .then((res) => {
-        if (res.status === 201) {
-          location.reload();
-          setInsert(insert);
-        }
-      });
-  };
 
   const onLikeHandle = (id) => {
     axios
@@ -175,25 +160,13 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
 
               <span className="Newboard-info-list">댓글{el.comment} </span>
             </div>
-            {insert ? (
-              <textarea
-                contentEditable="true"
-                value={changeC}
-                onChange={onChange2}
-                className="textarea1"
-                autucomplate="off"
-                autoCorrect="off"
-                spellCheck="false"
-              >
-                {el.content}
-              </textarea>
-            ) : (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: el.content,
-                }}
-              ></div>
-            )}
+
+            <div
+              dangerouslySetInnerHTML={{
+                __html: el.content,
+              }}
+            ></div>
+
             {like ? (
               <div className="crud-button">
                 <button
@@ -218,13 +191,7 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
 
             {authRegi.username !== el.username ? null : (
               <div className={'upload-b'}>
-                {!insert ? null : (
-                  <button onClick={() => onPutChange(el.id)} className="u-b-1">
-                    올리기
-                  </button>
-                )}
-
-                <button onClick={() => setInsert(!insert)} className="u-b-1">
+                <button onClick={() => toEdit(el.id)} className="u-b-1">
                   수정
                 </button>
 

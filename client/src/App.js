@@ -16,8 +16,6 @@ import FindPass from './Pages/FindPass';
 import ReturnHome from './Pages/ReturnHome';
 import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
 import Board from './Pages/Board';
-import NewBoard from './Pages/NewBoard';
-import Edit from './Components/board/Edit';
 
 const App = () => {
   const history = useHistory();
@@ -84,13 +82,7 @@ const App = () => {
         authorizationCode: code,
       })
       .then((res) => {
-        // console.log(res.data.data.properties);
         if (res.data.data) {
-          // setAuthRegi({
-          //   email: `${res.data.properties.nickname}@kakaosocial`,
-          //   username: `${res.data.data.properties.nickname}@kakao`,
-          //   profileImg: res.data.data.properties.profile_image,
-          // });
           let token = res.data.token;
           localStorage.setItem('token', token);
           setIsLogin(true);
@@ -108,16 +100,7 @@ const App = () => {
         accessToken: token,
       })
       .then((res) => {
-        // console.log(res.data.data);
         if (res.data.data) {
-          // setAuthRegi({
-          //   email: res.data.data.email,
-          //   username: `${res.data.data.email.slice(
-          //     0,
-          //     res.data.data.email.indexOf('@'),
-          //   )}@google`,
-          //   profileImg: res.data.data.picture,
-          // });
           let token = res.data.token;
           localStorage.setItem('token', token);
           setIsLogin(true);
@@ -147,18 +130,6 @@ const App = () => {
       }
     } else {
       authorization();
-      // if (!social) {
-      //   authorization();
-      // } else {
-      //   if (!authRegi.username) {
-      //     getLocalInfo();
-      //     return;
-      //   }
-      //   localStorage.setItem('name', authRegi.username);
-      //   localStorage.setItem('mail', authRegi.email);
-      //   localStorage.setItem('profile', authRegi.profile);
-      //   getLocalInfo();
-      // }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogin]);
