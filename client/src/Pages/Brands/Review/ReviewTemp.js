@@ -1,64 +1,60 @@
 import React, { useEffect } from 'react';
 import './ReviewTemp.css';
 import { FcDocument, FcElectricalSensor } from 'react-icons/fc';
-import g304rv from '../../../Img/brands/Logitech/g304rv.png'
-
+import g304rv from '../../../Img/brands/Logitech/g304rv.png';
 
 const gearimg = [
   {
-    id:0,
-    src:''
+    id: 0,
+    src: '',
   },
   {
-    id:1,
-    src:''
+    id: 1,
+    src: '',
   },
   {
-    id:2,
-    src:''
+    id: 2,
+    src: '',
   },
   {
-    id:3,
-    src:''
+    id: 3,
+    src: '',
   },
   {
-    id:4,
-    src:''
+    id: 4,
+    src: '',
   },
   {
-    id:5,
-    src:g304rv
+    id: 5,
+    src: g304rv,
   },
   {
-    id:6,
-    url:''
+    id: 6,
+    url: '',
   },
   {
-    id:7,
-    url:''
+    id: 7,
+    url: '',
   },
   {
-    id:8,
-    url:''
+    id: 8,
+    url: '',
   },
   {
-    id:9,
-    url:''
+    id: 9,
+    url: '',
   },
   {
-    id:10,
-    url:''
+    id: 10,
+    url: '',
   },
   {
-    id:11,
-    url:''
+    id: 11,
+    url: '',
   },
+];
 
-]
-
-
-
-const ReviewTemp = ({ setSaveId, saveId, LOGI}) => {
+const ReviewTemp = ({ setSaveId, saveId, LOGI }) => {
   useEffect(() => {
     // console.log(LOGI);
     // console.log(saveId);
@@ -85,7 +81,11 @@ const ReviewTemp = ({ setSaveId, saveId, LOGI}) => {
             <p className="Rv-text">{LOGI[saveId].intro}</p>
           </div>
           <div className=".main-review">
-            <img className="title-img" src={gearimg[saveId].src} alt=""></img>
+            <img
+              className="title-img"
+              src={gearimg[saveId - 1].src}
+              alt=""
+            ></img>
           </div>
         </div>
 
