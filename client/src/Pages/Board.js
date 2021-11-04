@@ -7,6 +7,8 @@ import BoardMainContainer from '../container/BoardMainContainer';
 import { useSelector } from 'react-redux';
 import NewBoard from './NewBoard';
 const Board = ({ authRegi }) => {
+
+  
   return (
     <>
       <BoardNav authRegi={authRegi} />

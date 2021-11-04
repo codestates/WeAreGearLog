@@ -40,8 +40,8 @@ const BoardMain = ({ authRegi }) => {
 
   const post = getList.map((el, idx) => {
     return (
-      <div className="b-list">
-        <div key={el.id} className="board-list">
+      <div key={el.id} className="b-list">
+        <div className="board-list">
           <div className="b-img"></div>
           <div className="b-tNd">
             <div onClick={() => ReqRead(el.id)} className="b-p1">
@@ -69,8 +69,6 @@ const BoardMain = ({ authRegi }) => {
       {isOpen ? <NewBoard setIsOpen={setIsOpen} authRegi={authRegi} /> : null}
 
       <div id="box">
-        <div className="b-m-b"></div>
-
         <div className="b-m-b1">
           {post}
           <div className="b-footer">
@@ -79,7 +77,6 @@ const BoardMain = ({ authRegi }) => {
           </div>
           <div className="b-pad"></div>
         </div>
-        <div className="b-m-b"></div>
       </div>
     </>
   );
