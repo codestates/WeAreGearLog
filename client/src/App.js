@@ -16,6 +16,7 @@ import FindPass from './Pages/FindPass';
 import ReturnHome from './Pages/ReturnHome';
 import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
 import Board from './Pages/Board';
+import NewBoard from './Pages/NewBoard';
 
 const App = () => {
   const history = useHistory();

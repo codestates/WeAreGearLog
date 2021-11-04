@@ -2,11 +2,13 @@ import { combineReducers } from 'redux'; //루트리듀서에 여러가지를 �
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import board from './board';
+import chat from './chat'
 
-const rootReducer = combineReducers({ board });
 const persistConfig = {
   key: 'root',
-  storage: storage,
+  storage,
 };
+
+const rootReducer = combineReducers({ board, chat });
 
 export default persistReducer(persistConfig, rootReducer);

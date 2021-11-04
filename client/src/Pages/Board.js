@@ -4,11 +4,13 @@ import BoardNav from '../Components/board/BoardNav';
 import Editor from '../Components/board/Editor';
 import { Route } from 'react-router-dom';
 import BoardMainContainer from '../container/BoardMainContainer';
+import { useSelector } from 'react-redux';
+import NewBoard from './NewBoard';
 const Board = ({ authRegi }) => {
-  const [write, setWrite] = useState(false);
   return (
     <>
       <BoardNav authRegi={authRegi} />
+
       <>
         <Route exact path="/board">
           <BoardMainContainer authRegi={authRegi} />
