@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import './NewBoard.css';
 
-import { BiUpArrow } from 'react-icons/bi';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { FcLike } from 'react-icons/fc';
 import { useSelector } from 'react-redux';
 import { BsImage } from 'react-icons/bs';
 import axios from 'axios';
@@ -125,17 +126,20 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
                 dangerouslySetInnerHTML={{
                   __html: el.content,
                 }}
-                autucomplate="off"
-                autoCorrect="off"
-                spellCheck="false"
               ></div>
             )}
             <div className="crud-button">
-              <button
-                onClick={() => setUdButton(!udButton)}
-                className={'crud-bt'}
-              >
-                {udButton ? <BiUpArrow color="blue" /> : <BiUpArrow />}
+              <button className={'crud-bt'}>
+                {udButton ? (
+                  <>
+                    <FcLike size="30" /> {el.like}
+                  </>
+                ) : (
+                  <>
+                    <AiOutlineHeart size="30" />
+                    {el.like}
+                  </>
+                )}
               </button>
             </div>
             {authRegi.username !== el.username ? null : (
@@ -147,7 +151,7 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
                 )}
 
                 <button onClick={() => setInsert(!insert)} className="u-b-1">
-                  {!insert ? '수정' : '취소'}
+                  수정
                 </button>
 
                 <button
