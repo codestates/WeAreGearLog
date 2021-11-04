@@ -32,10 +32,8 @@ const Board = ({ authRegi }) => {
 
       <>
         <Route exact path="/board">
-          <NewBoard authRegi={authRegi} />
           <BoardMainContainer authRegi={authRegi} />
         </Route>
-
         <Route path="/board/write">
           <Editor
             handleChange={handleChange}

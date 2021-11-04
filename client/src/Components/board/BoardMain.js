@@ -21,6 +21,7 @@ const BoardMain = ({ authRegi }) => {
         withCredentials: true,
       })
       .then((res) => {
+        console.log('res', res);
         setGetList(res.data.data);
       });
   }, []);
@@ -59,7 +60,7 @@ const BoardMain = ({ authRegi }) => {
               <div className="b-span">5시간전</div>
 
               <div className="b-span">{el.username}</div>
-              <div className="b-span">{el.view}</div>
+              <div className="b-span">조회수:{el.view}</div>
               <div className="b-span">
                 <BsFillTriangleFill />
                 {el.like}

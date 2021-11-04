@@ -75,7 +75,9 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
               <li className="nav-pad-1">Gear Review</li>
             </Link>
 
-            <li className="nav-pad-1">게시판</li>
+            <Link to="/board">
+              <li className="nav-pad-1">게시판</li>
+            </Link>
           </div>
 
           <div>

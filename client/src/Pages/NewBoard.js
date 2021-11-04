@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-restricted-globals */
 import React, { useEffect, useState } from 'react';
 import './NewBoard.css';
@@ -119,6 +120,8 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
         )
         .then((res) => {
           if (res.status === 200) {
+            history.push('/board');
+            location.reload();
           }
         })
         .catch((res) => console.log(res));
@@ -150,13 +153,13 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
               <div className="titlez">{el.title}</div>
             )}
             <div className="Newboard-info">
-              <span className="Newboard-info-list">작성시간 </span>
+              <span className="Newboard-info-list">작성시간: </span>
 
               <span className="Newboard-info-list">{el.username} </span>
 
-              <span className="Newboard-info-list">추천수</span>
+              <span className="Newboard-info-list">추천수:{el.like}</span>
 
-              <span className="Newboard-info-list">{el.view} </span>
+              <span className="Newboard-info-list">조회수:{el.view} </span>
 
               <span className="Newboard-info-list">댓글{el.comment} </span>
             </div>
