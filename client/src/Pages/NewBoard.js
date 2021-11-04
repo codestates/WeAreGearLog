@@ -67,17 +67,18 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
       )
       .then((res) => {
         setLike(true);
+        setLikeCount(res.data.likeCount);
       })
-      .then(() => {
-        axios
-          .get(`http://52.79.233.29:8080/post/${dataId[0]}`, {
-            headers: { authorization: `Bearer ${token}` },
-          })
-          .then((res) => {
-            setLikeCount(res.data.post[0].like);
-            console.log(res.data.post[0].like);
-          });
-      })
+      // .then(() => {
+      //   axios
+      //     .get(`http://52.79.233.29:8080/post/${dataId[0]}`, {
+      //       headers: { authorization: `Bearer ${token}` },
+      //     })
+      //     .then((res) => {
+      //       setLikeCount(res.data.post[0].like);
+      //       console.log(res.data.post[0].like);
+      //     });
+      // })
       .catch((err) => {
         console.log(err);
       });
@@ -96,17 +97,18 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
       )
       .then((res) => {
         setLike(false);
+        setLikeCount(res.data.likeCount);
       })
-      .then(() => {
-        axios
-          .get(`http://52.79.233.29:8080/post/${dataId[0]}`, {
-            headers: { authorization: `Bearer ${token}` },
-          })
-          .then((res) => {
-            setLikeCount(res.data.post[0].like);
-            console.log(res.data.post[0].like);
-          });
-      })
+      // .then(() => {
+      //   axios
+      //     .get(`http://52.79.233.29:8080/post/${dataId[0]}`, {
+      //       headers: { authorization: `Bearer ${token}` },
+      //     })
+      //     .then((res) => {
+      //       setLikeCount(res.data.post[0].like);
+      //       console.log(res.data.post[0].like);
+      //     });
+      // })
       .catch((err) => {
         console.log(err);
       });
