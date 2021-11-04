@@ -27,6 +27,17 @@ module.exports = {
   //   res.send("OK!!!");
   // },
 
+  // 조회수 올라가기 기능 분리한다면?
+  addView: async (req, res) => {
+    const id = req.params.id;
+    const updateView = await post.update(
+      {
+        view: sequelize.literal("view + 1"),
+      },
+      { where: { id: id } }
+    );
+    res.status(200).json({ message: "viewCount updated" });
+  },
   // 게시물 작성하기
   writePost: async (req, res) => {
     // 요청에 담긴 토큰을 통해 작성자의 정보를 얻음
@@ -35,8 +46,8 @@ module.exports = {
       return res.status(401).send("로그인중이 아니거나 잘못된 토큰입니다.");
     }
     const writerId = writerData.id;
-    const { category, title } = req.body;
-    const content = req.body.content.value;
+    const { category, title, content } = req.body;
+    // const content = req.body.content.value;
     // console.log(content);
     if (!title || !content) {
       return res.status(202).send("제목이나 본문은 빈칸으로 둘 수 없습니다.");
@@ -46,7 +57,6 @@ module.exports = {
       writerId: writerId,
       title: title,
       content: content,
-      img: imgsrc,
     });
     res.status(201).json({ data: posted });
   },
@@ -72,12 +82,12 @@ module.exports = {
   // 특정id 게시글 조회
   read: async (req, res) => {
     const id = req.params.id;
-    const updateView = await post.update(
-      {
-        view: sequelize.literal("view + 1"),
-      },
-      { where: { id: id } }
-    );
+    // const updateView = await post.update(
+    //   {
+    //     view: sequelize.literal("view + 1"),
+    //   },
+    //   { where: { id: id } }
+    // );
     const readerData = isAuthorized(req);
     const postData = await sequelize.query(
       `SELECT posts.*, users.username, users.profile_img 

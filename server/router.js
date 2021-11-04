@@ -30,6 +30,7 @@ router.get("/gear/:id", gearController.item);
 router.get("/post", postController.post.readAll);
 router.get("/post/mypost", postController.post.readMine);
 router.get("/post/:id", postController.post.read);
+router.get("/post/view/:id", postController.post.addView);
 router.post("/post", postController.post.writePost);
 router.post("/post/comment", postController.post.writeComment);
 router.post("/post/like", postController.like.like);

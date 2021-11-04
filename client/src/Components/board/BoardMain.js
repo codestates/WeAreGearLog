@@ -33,17 +33,25 @@ const BoardMain = ({ authRegi }) => {
 
     setIsOpen(true);
     axios
-      .get(`http://52.79.233.29:8080/post/${id}`, {
+      .get(`http://52.79.233.29:8080/post/view/${id}`, {
         withCredentials: true,
-        headers: { authorization: `Bearer ${token}` },
       })
-      .then((res) => {
-        dispatch(readpost(res.data.post));
-        // eslint-disable-next-line no-restricted-globals
-      })
+      .then(() => {
+        axios
+          .get(`http://52.79.233.29:8080/post/${id}`, {
+            withCredentials: true,
+            headers: { authorization: `Bearer ${token}` },
+          })
+          .then((res) => {
+            dispatch(readpost(res.data.post));
+            // eslint-disable-next-line no-restricted-globals
+          })
+
+
 
       .catch((err) => console.log(err));
     // eslint-disable-next-line no-unused-expressions
+
   };
 
   const post = getList.map((el, idx) => {
