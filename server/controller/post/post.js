@@ -35,7 +35,9 @@ module.exports = {
       return res.status(401).send("로그인중이 아니거나 잘못된 토큰입니다.");
     }
     const writerId = writerData.id;
-    const { category, title, content, imgsrc } = req.body;
+    const { category, title } = req.body;
+    const content = req.body.content.value;
+    // console.log(content);
     if (!title || !content) {
       return res.status(202).send("제목이나 본문은 빈칸으로 둘 수 없습니다.");
     }
