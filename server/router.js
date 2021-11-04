@@ -22,14 +22,21 @@ router.delete("/user", userController.signout);
 
 // gear routing
 router.get("/gear/:id", gearController.item);
+// router.post("/gear", gearController.list);
+
+// progamer routing
 
 // post routing
 router.get("/post", postController.post.readAll);
-router.post("/post", postController.post.write);
 router.get("/post/mypost", postController.post.readMine);
 router.get("/post/:id", postController.post.read);
-router.put("/post/:id", postController.update);
-router.delete("/post/:id", postController.delete);
+router.post("/post", postController.post.writePost);
+router.post("/post/comment", postController.post.writeComment);
+router.post("/post/like", postController.like.like);
+router.post("/post/dislike", postController.like.dislike);
+router.patch("/post", postController.update);
+router.delete("/post/comment/:id", postController.delete.deleteComment);
+router.delete("/post/:id", postController.delete.deletePost);
 
 //message routing
 // router.get("/message/chatlist", messageController.chatlist);
