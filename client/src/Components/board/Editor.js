@@ -7,7 +7,6 @@ import './Editor.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import { MdPreview } from 'react-icons/md';
 import Edit from './Edit';
 
 const Editor = () => {
@@ -27,8 +26,7 @@ const Editor = () => {
         'http://52.79.233.29:8080/post',
         {
           title: title,
-          content: state,
-          img: '',
+          content: state.value,
         },
         {
           headers: { authorization: `Bearer ${token}` },

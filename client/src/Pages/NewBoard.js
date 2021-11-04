@@ -122,13 +122,13 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
               </textarea>
             ) : (
               <div
-                className="textarea1"
+                dangerouslySetInnerHTML={{
+                  __html: el.content,
+                }}
                 autucomplate="off"
                 autoCorrect="off"
                 spellCheck="false"
-              >
-                {el.content}
-              </div>
+              ></div>
             )}
             <div className="crud-button">
               <button

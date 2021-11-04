@@ -69,8 +69,6 @@ const BoardMain = ({ authRegi }) => {
       {isOpen ? <NewBoard setIsOpen={setIsOpen} authRegi={authRegi} /> : null}
 
       <div id="box">
-        <div className="b-m-b"></div>
-
         <div className="b-m-b1">
           {post}
           <div className="b-footer">
@@ -79,7 +77,6 @@ const BoardMain = ({ authRegi }) => {
           </div>
           <div className="b-pad"></div>
         </div>
-        <div className="b-m-b"></div>
       </div>
     </>
   );
