@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import './NewBoard.css';
 
-import { BiUpArrow } from 'react-icons/bi';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { FcLike } from 'react-icons/fc';
 import { useSelector } from 'react-redux';
 import { BsImage } from 'react-icons/bs';
 import axios from 'axios';
@@ -10,18 +11,27 @@ import Commnet from '../Components/Commnet';
 
 const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
   const data = useSelector((state) => state.board.read);
-  const [udButton, setUdButton] = useState(false);
+  const [like, setLike] = useState('');
+  const [likeCount, setLikeCount] = useState('');
   const [insert, setInsert] = useState(false);
   const [chagenT, setChangeT] = useState('');
   const [changeC, setChangeC] = useState('');
+
   const dataId = data.map((el) => el.id);
 
   useEffect(() => {
-    axios.get(`http://52.79.233.29:8080/post/${dataId[0]}`).then((res) => {
-      setChangeT(res.data.post.title);
-      setChangeC(res.data.post.content);
-    });
-  }, []);
+    axios
+      .get(`http://52.79.233.29:8080/post/${dataId[0]}`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setChangeT(res.data.post.title);
+        setChangeC(res.data.post.content);
+        setLike(res.data.like);
+        setLikeCount(res.data.post[0].like);
+        console.log(res.data.post[0].like);
+      });
+  }, [data]);
 
   const onPutChange = (id) => {
     axios
@@ -41,6 +51,66 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
           location.reload();
           setInsert(insert);
         }
+      });
+  };
+
+  const onLikeHandle = (id) => {
+    axios
+      .post(
+        `http://52.79.233.29:8080/post/like`,
+        {
+          postId: id,
+        },
+        {
+          headers: { authorization: `Bearer ${token}` },
+        },
+      )
+      .then((res) => {
+        setLike(true);
+        setLikeCount(res.data.likeCount);
+      })
+      // .then(() => {
+      //   axios
+      //     .get(`http://52.79.233.29:8080/post/${dataId[0]}`, {
+      //       headers: { authorization: `Bearer ${token}` },
+      //     })
+      //     .then((res) => {
+      //       setLikeCount(res.data.post[0].like);
+      //       console.log(res.data.post[0].like);
+      //     });
+      // })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const onUnLikeHandle = (id) => {
+    axios
+      .post(
+        `http://52.79.233.29:8080/post/dislike`,
+        {
+          postId: id,
+        },
+        {
+          headers: { authorization: `Bearer ${token}` },
+        },
+      )
+      .then((res) => {
+        setLike(false);
+        setLikeCount(res.data.likeCount);
+      })
+      // .then(() => {
+      //   axios
+      //     .get(`http://52.79.233.29:8080/post/${dataId[0]}`, {
+      //       headers: { authorization: `Bearer ${token}` },
+      //     })
+      //     .then((res) => {
+      //       setLikeCount(res.data.post[0].like);
+      //       console.log(res.data.post[0].like);
+      //     });
+      // })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -66,7 +136,6 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
         )
         .then((res) => {
           if (res.status === 200) {
-            location.reload();
           }
         })
         .catch((res) => console.log(res));
@@ -125,19 +194,30 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
                 dangerouslySetInnerHTML={{
                   __html: el.content,
                 }}
-                autucomplate="off"
-                autoCorrect="off"
-                spellCheck="false"
               ></div>
             )}
-            <div className="crud-button">
-              <button
-                onClick={() => setUdButton(!udButton)}
-                className={'crud-bt'}
-              >
-                {udButton ? <BiUpArrow color="blue" /> : <BiUpArrow />}
-              </button>
-            </div>
+            {like ? (
+              <div className="crud-button">
+                <button
+                  onClick={() => onUnLikeHandle(el.id)}
+                  className={'crud-bt'}
+                >
+                  <FcLike size="30" />
+
+                  {likeCount}
+                </button>
+              </div>
+            ) : (
+              <div className="crud-button">
+                <button
+                  onClick={() => onLikeHandle(el.id)}
+                  className={'crud-bt'}
+                >
+                  <AiOutlineHeart size="30" /> {likeCount}
+                </button>
+              </div>
+            )}
+
             {authRegi.username !== el.username ? null : (
               <div className={'upload-b'}>
                 {!insert ? null : (
@@ -147,7 +227,7 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
                 )}
 
                 <button onClick={() => setInsert(!insert)} className="u-b-1">
-                  {!insert ? '수정' : '취소'}
+                  수정
                 </button>
 
                 <button

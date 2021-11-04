@@ -1,5 +1,6 @@
-const { like, post } = require("../../models");
+const { like, post, sequelize } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions");
+const { QueryTypes } = require("sequelize");
 
 module.exports = {
   like: async (req, res) => {
@@ -15,12 +16,19 @@ module.exports = {
       by: 1,
       where: { id: postId },
     });
+    const likeCount = await sequelize.query(
+      `SELECT posts.like
+      FROM posts 
+      WHERE posts.id = ${postId}`,
+      { type: QueryTypes.SELECT }
+    );
     const likeData = await like.create({
       userId: readerId,
       postId: postId,
     });
     res.status(201).json({
-      data: likeData,
+      likeCount: likeCount[0].like,
+      message: "liked",
     });
   },
   dislike: async (req, res) => {
@@ -36,10 +44,17 @@ module.exports = {
       by: -1,
       where: { id: postId },
     });
+    const likeCount = await sequelize.query(
+      `SELECT posts.like
+      FROM posts 
+      WHERE posts.id = ${postId}`,
+      { type: QueryTypes.SELECT }
+    );
     const likeData = await like.destroy({
       where: { userId: likeId, postId: postId },
     });
     res.status(201).json({
+      likeCount: likeCount[0].like,
       message: "disliked",
     });
   },
