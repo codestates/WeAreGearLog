@@ -1,11 +1,11 @@
-// import g304ti from '../../../Img/brands/6143-1.png';
+import g304rv from '../src/Img/brands/Logitech/g304rv.png'
 
 export const LOGI = [
   {
     id: 0,
     title: '',
     intro: '',
-    src: '',
+    url: '',
     title1: '',
     intext: '',
     interviewer: '',
@@ -21,11 +21,11 @@ export const LOGI = [
     title: 'Logitech g304 Review',
     intro:
       '  로지텍 g304 무선 게이밍마우스는 g102 모델과 디자인이 거의같은 무선제품입니다 무선이지만 절대 유선이라고 느낄수있는 응답속도를 가지고있습니다. 평소 가볍게 게임을 즐기는 라이트 유저들에게 가격면에서도 접근하기 좋은 무선마우스라 평가받습니다.',
-    src: '',
+    url: '',
     title1: 'Gear InterView',
     intext:
       '사람이 게임을 하면서 반응하는 데에는 분명 0.001초는 커녕 0.008초 이상이 걸리고 이는 눈으로 본 게 뇌로 전달 손이나 발을 움직이라는 신호가 지나는 신호 수준이 아닐까 합니다만, 4GHz로 동작하는 CPU의 캐시 메모리에서 정보를 엿볼 수 있는 오늘에서 보자면 사람 기준이 아니라 레이턴시라고 하는 기기 입장에서 생각해 보면 이러한 지연을 1ms(0.001초)라고 줄여보고자 하는 로지텍의 집념을 느끼실 수 있지 않으실까 합니다.',
-    interviewer: '-프로게이머-김동찬',
+    interviewer: '담원 칸',
     li1: 'HERO 센서',
     li2: '최대 12,000DPI',
     li3: '6 개 버튼 완벽하게 프로그래밍 가능',
@@ -91,7 +91,7 @@ export const LOGI = [
     id: 5,
     title: 'Razer BlackWidow Review',
     intro: 'Razer BlackWidow의 경쾌한 키감 과 1000hz 울트라 폴링, 다기능 디지털 다이어 기능 10키 롤 오버 안티 고스팅 및 게이밍 모드 옵션',
-    src: '',
+    url:'',
     title1: 'Razer BlackWidow',
     intext:
       'Razer 키보드는 OEM 형태의 커스텀메이징 된 스위치와 자체 개발한 스위치를 사용하면서 빠른 응답속도와 반응성, 최적의 키감을 제공합니다. 이 키보드는 뚜렷한 클릭감과 촉감을 지니고 있고, 수 많은 대회에서 이 회사의 키보드를 쓰면서 다른 축과 다른 독특함이 있다.',
@@ -108,7 +108,7 @@ export const LOGI = [
     id: 6,
     title: 'Razer DeathAdder Review',
     intro: 'Razer의 게이밍 마우스 Razer DeathAdder의 고성능을 체험해 보세요!',
-    src: '',
+    src: {g304rv},
     title1: 'Razer DeathAdder',
     intext:
       '세계 최고의 롤 선수 SKT T1 Faker 선수가 사용하는 Razer DeathAdder 적외선 센서와 5개의 좌/우 버튼 휠 버튼 기능과 편안한 그립감을 제공합니다.',
