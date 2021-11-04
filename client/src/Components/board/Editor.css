@@ -12,7 +12,8 @@
 .h1 {
   width: 100%;
 }
-
+.inputFile {
+}
 .inputz {
   font-size: 30px;
   width: 100%;
@@ -32,6 +33,10 @@
   justify-content: left;
   height: 20px;
   border: 1px solid black;
+}
+.input-file-button {
+  color: green;
+  cursor: pointer;
 }
 .upload-b {
   display: flex;

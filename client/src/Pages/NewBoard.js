@@ -53,30 +53,36 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
   let token = localStorage.getItem('token');
 
   const deletePost = (id) => {
-    setIsOpen(false);
-    axios
-      .delete(
-        `http://52.79.233.29:8080/post/${id}`,
+    const AreyouDelete = confirm('게시물을 삭제 하시겠습니까?');
+    if (AreyouDelete) {
+      setIsOpen(false);
+      axios
+        .delete(
+          `http://52.79.233.29:8080/post/${id}`,
 
-        {
-          headers: { authorization: `Bearer ${token}` },
-        },
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          location.reload();
-        }
-      })
-      .catch((res) => console.log(res));
+          {
+            headers: { authorization: `Bearer ${token}` },
+          },
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            location.reload();
+          }
+        })
+        .catch((res) => console.log(res));
+    } else {
+      return;
+    }
   };
 
   const datas = data.map((el, idx) => {
     return (
       <>
-        <div className="Editor1">
+        <div key={el.id} className="Editor1">
           <div className="Read">
             {insert ? (
               <textarea
+                contentEditable="true"
                 className="textarea1"
                 autucomplate="off"
                 autoCorrect="off"
@@ -104,26 +110,25 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
             </div>
             {insert ? (
               <textarea
+                contentEditable="true"
                 value={changeC}
                 onChange={onChange2}
                 className="textarea1"
                 autucomplate="off"
                 autoCorrect="off"
                 spellCheck="false"
-                autocapitalize="off"
               >
                 {el.content}
               </textarea>
             ) : (
               <div
-                className="textarea1"
+                dangerouslySetInnerHTML={{
+                  __html: el.content,
+                }}
                 autucomplate="off"
                 autoCorrect="off"
                 spellCheck="false"
-                autocapitalize="off"
-              >
-                {el.content}
-              </div>
+              ></div>
             )}
             <div className="crud-button">
               <button
@@ -166,7 +171,6 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
                     autucomplate="off"
                     autoCorrect="off"
                     spellCheck="false"
-                    autocapitalize="off"
                   ></textarea>
                   <div className="c-bottom">
                     <div className="c-u-i">
