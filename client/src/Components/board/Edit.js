@@ -9,7 +9,7 @@ export const Edit = ({ state, handleChange }) => {
   AWS.config.update({
     region: 'ap-northeast-2',
     credentials: new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: 'ap-northeast-2:e9b847f3-a29c-4e48-8662-74daca9726d0',
+      IdentityPoolId: process.env.REACT_APP_IdentityPoolId,
     }),
   });
 
@@ -29,8 +29,7 @@ export const Edit = ({ state, handleChange }) => {
       const upload = new AWS.S3.ManagedUpload({
         params: {
           Bucket: 'gearlogimagestorage',
-          // eslint-disable-next-line no-useless-concat
-          Key: 'profileImg_' + '.jpg',
+          Key: 'postImg_' + Date.now().toString() + '.jpg',
           Body: file,
         },
       });
@@ -47,7 +46,7 @@ export const Edit = ({ state, handleChange }) => {
           editor.insertEmbed(range, 'image', IMG_URL);
         },
         function (err) {
-          console.log('실패했어요ㅠ');
+          console.log('s3 이미지 업로드 실패');
         },
       );
     });
