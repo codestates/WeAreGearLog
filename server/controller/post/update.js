@@ -21,6 +21,9 @@ module.exports = async (req, res) => {
     { where: { id: postId } }
   );
   res.status(201).json({
-    updated: updatePost,
+    updated: {
+      title: title,
+      content: content,
+    },
   });
 };
