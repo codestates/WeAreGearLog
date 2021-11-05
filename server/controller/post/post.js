@@ -60,7 +60,8 @@ module.exports = {
     const postList = await sequelize.query(
       `SELECT *
       FROM comments
-      WHERE comments.postId = ${postId}`,
+      WHERE comments.postId = ${postId}
+      ORDER BY comments.id DESC`,
       { type: QueryTypes.SELECT }
     );
     res.status(201).json({ postList: postList });
