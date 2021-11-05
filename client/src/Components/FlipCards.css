@@ -1,0 +1,85 @@
+.grandfather {
+}
+
+.maincontainer {
+  height: 340px;
+  display: flex;
+  width: 360px;
+}
+
+.boxs {
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+}
+.thecard {
+  position: absolute;
+  margin-top: 20px;
+  flex-grow: 1;
+  width: 350px;
+  height: 350px;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+/* .thecard1 {
+  position: absolute;
+  margin-top: 40px;
+  flex-grow: 1;
+  width: 350px;
+  height: 350px;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+.thecard2 {
+  position: absolute;
+  margin-top: 60px;
+  flex-grow: 1;
+  width: 350px;
+  height: 350px;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+} */
+
+.pd {
+  width: 100px;
+  background-color: #fafafa;
+}
+.thecard:hover {
+  transform: rotateY(180deg);
+}
+
+.thefront {
+  display: flex;
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+  backface-visibility: hidden;
+  background: #ffc728;
+  color: #333;
+}
+
+.theback {
+  display: flex;
+
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  backface-visibility: hidden;
+  background-color: #fafafa;
+  color: #333;
+  transform: rotateY(180deg);
+}
+@media screen and (max-width: 768px) {
+  .boxs {
+    flex-direction: column;
+  }
+  .maincontainer {
+    height: 360px;
+    display: flex;
+    width: 360px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+}
