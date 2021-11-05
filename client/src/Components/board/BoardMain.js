@@ -1,18 +1,18 @@
 /* eslint-disable no-restricted-globals */
 import React, { useEffect, useState } from 'react';
-import { readpost, commnets } from '../../modules/board';
-import { BsFillTriangleFill } from 'react-icons/bs';
+import { readpost } from '../../modules/board';
+import { FcLike } from 'react-icons/fc';
 import axios from 'axios';
 import './BoardMain.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import NewBoard from '../../Pages/NewBoard';
-import { Link, Route, Switch, useHistory } from 'react-router-dom';
+
 import Pagination from '../Pagination';
+import displayedAt from '../../AuthModule/TimeModule';
 
 const BoardMain = ({ authRegi }) => {
-  const data = useSelector((state) => state.board.read);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(8);
   const [isOpen, setIsOpen] = useState(false);
   const [getList, setGetList] = useState([]);
 
@@ -58,23 +58,24 @@ const BoardMain = ({ authRegi }) => {
   };
 
   const post = currentPosts.map((el, idx) => {
-    console.log(currentPosts);
+    const timeStamp = displayedAt(new Date(el.createdAt));
+    console.log(el);
     return (
       <div key={el.id} className="b-list">
         <div className="board-list">
-          <div className="b-img"></div>
+          <img className="b-img" alt=""></img>
           <div className="b-tNd">
             <div onClick={() => ReqRead(el.id)} className="b-p1">
-              {el.title} <em className="ems">[{el.comments}]</em>
+              {el.title} <em className="ems">[{el.comment}]</em>
             </div>
 
             <div className="b-p">
-              <div className="b-span">5시간전</div>
+              <div className="b-span">{timeStamp}</div>
 
               <div className="b-span">{el.username}</div>
               <div className="b-span">조회수:{el.view}</div>
               <div className="b-span">
-                <BsFillTriangleFill />
+                <FcLike size="20" />
                 {el.like}
               </div>
             </div>

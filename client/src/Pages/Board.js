@@ -7,6 +7,7 @@ import BoardMainContainer from '../container/BoardMainContainer';
 import Editor from '../Components/board/Editor';
 import WriteEdit from './WriteEdit';
 import { useSelector } from 'react-redux';
+import FreeDoar from '../Components/board/FreeDoar';
 
 const Board = ({ authRegi }) => {
   const data = useSelector((state) => state.board.read);
@@ -29,6 +30,7 @@ const Board = ({ authRegi }) => {
   return (
     <>
       <BoardNav authRegi={authRegi} />
+      <FreeDoar />
 
       <>
         <Route exact path="/board">

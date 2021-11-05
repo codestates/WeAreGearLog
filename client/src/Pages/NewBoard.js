@@ -6,13 +6,12 @@ import './NewBoard.css';
 
 import { AiOutlineHeart } from 'react-icons/ai';
 import { FcLike } from 'react-icons/fc';
-import { useDispatch, useSelector } from 'react-redux';
-import { BsImage } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
+import displayedAt from '../AuthModule/TimeModule';
 import axios from 'axios';
 import Commnet from '../Components/Commnet';
-import { Link, useHistory } from 'react-router-dom';
-import { commnets } from '../modules/board';
-import { Pagination } from '@mui/material';
+import { useHistory } from 'react-router-dom';
+
 const NewBoard = ({
   authRegi,
   udeleteB,
@@ -32,7 +31,7 @@ const NewBoard = ({
   const [updateC, setUpdateC] = useState([]);
 
   const data = useSelector((state) => state.board.read);
-  const cmnt = useSelector((state) => state.board.comment);
+
   const dataId = data.map((el) => el.id);
 
   const toEdit = (id) => {
@@ -122,9 +121,7 @@ const NewBoard = ({
   const onChange1 = (e) => {
     setChangeT(e.target.value);
   };
-  const onChange2 = (e) => {
-    setChangeC(e.target.value);
-  };
+
   let token = localStorage.getItem('token');
 
   const deletePost = (id) => {
@@ -168,6 +165,7 @@ const NewBoard = ({
   };
 
   const datas = data.map((el, idx) => {
+    const timeStamp = displayedAt(new Date(el.createdAt));
     return (
       <>
         <div key={el.id} className="Editor1">
@@ -190,7 +188,7 @@ const NewBoard = ({
               <div className="titlez">{el.title}</div>
             )}
             <div className="Newboard-info">
-              <span className="Newboard-info-list">작성시간: </span>
+              <span className="Newboard-info-list">{timeStamp}</span>
 
               <span className="Newboard-info-list">{el.username} </span>
 
@@ -202,6 +200,7 @@ const NewBoard = ({
             </div>
 
             <div
+              className="Newboard-title"
               dangerouslySetInnerHTML={{
                 __html: el.content,
               }}
@@ -269,7 +268,9 @@ const NewBoard = ({
                   </div>
                   <div className="c-padding"></div>
                   {updateC.map((el) => {
-                    return <Commnet el={el} deleteC={deleteC} />;
+                    return (
+                      <Commnet authRegi={authRegi} el={el} deleteC={deleteC} />
+                    );
                   })}
                 </div>
               </div>

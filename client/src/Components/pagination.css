@@ -5,3 +5,7 @@
   color: tomato;
   margin: 10px;
 }
+
+.page-link:hover {
+  color: darkblue;
+}
