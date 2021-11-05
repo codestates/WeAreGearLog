@@ -44,14 +44,9 @@ const BoardMain = ({ authRegi }) => {
           })
           .then((res) => {
             dispatch(readpost(res.data.post));
-            // eslint-disable-next-line no-restricted-globals
           })
-
-
-
-      .catch((err) => console.log(err));
-    // eslint-disable-next-line no-unused-expressions
-
+          .catch((err) => console.log(err));
+      });
   };
 
   const post = getList.map((el, idx) => {

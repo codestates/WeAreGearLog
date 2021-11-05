@@ -1,4 +1,4 @@
-import g304rv from '../src/Img/brands/Logitech/g304rv.png'
+
 
 export const LOGI = [
   {
@@ -108,7 +108,7 @@ export const LOGI = [
     id: 6,
     title: 'Razer DeathAdder Review',
     intro: 'Razer의 게이밍 마우스 Razer DeathAdder의 고성능을 체험해 보세요!',
-    src: {g304rv},
+    src: '',
     title1: 'Razer DeathAdder',
     intext:
       '세계 최고의 롤 선수 SKT T1 Faker 선수가 사용하는 Razer DeathAdder 적외선 센서와 5개의 좌/우 버튼 휠 버튼 기능과 편안한 그립감을 제공합니다.',
