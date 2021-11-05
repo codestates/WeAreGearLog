@@ -7,12 +7,21 @@ import './BoardMain.css';
 import { useSelector, useDispatch } from 'react-redux';
 import NewBoard from '../../Pages/NewBoard';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
+import Pagination from '../Pagination';
+
 const BoardMain = ({ authRegi }) => {
   const data = useSelector((state) => state.board.read);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(5);
   const [isOpen, setIsOpen] = useState(false);
   const [getList, setGetList] = useState([]);
-  const [getComment, setGetComment] = useState([]);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+
+  const currentPosts = getList.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   let token = localStorage.getItem('token');
   useEffect(() => {
@@ -48,7 +57,8 @@ const BoardMain = ({ authRegi }) => {
       });
   };
 
-  const post = getList.map((el, idx) => {
+  const post = currentPosts.map((el, idx) => {
+    console.log(currentPosts);
     return (
       <div key={el.id} className="b-list">
         <div className="board-list">
@@ -77,15 +87,24 @@ const BoardMain = ({ authRegi }) => {
   return (
     <>
       {isOpen ? (
-        <NewBoard isOpen={isOpen} setIsOpen={setIsOpen} authRegi={authRegi} />
+        <NewBoard
+          getList={getList}
+          setGetList={setGetList}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          authRegi={authRegi}
+        />
       ) : null}
 
       <div id="box">
         <div className="b-m-b1">
           {post}
           <div className="b-footer">
-            <button className="b-f-b">이전</button>
-            <button className="b-f-b">다음</button>
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPosts={getList.length}
+              paginate={paginate}
+            />
           </div>
           <div className="b-pad"></div>
         </div>
