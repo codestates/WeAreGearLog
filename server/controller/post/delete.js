@@ -1,5 +1,6 @@
 const { post, like, comment, sequelize } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions");
+const { QueryTypes } = require("sequelize");
 
 module.exports = {
   deleteComment: async (req, res) => {
@@ -11,7 +12,7 @@ module.exports = {
     const commentId = req.params.id; // delete도 get처럼 요청에 body가 있을수 없다.
     const commentData = await comment.findOne({ where: { id: commentId } });
     const postId = commentData.postId;
-    // console.log(readerId, commentData.userId);
+    console.log(readerId, commentData.userId);
     if (readerId !== commentData.userId) {
       return res.status(401).send("작성자가 아님");
     }
