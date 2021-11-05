@@ -1,15 +1,17 @@
 import React from 'react';
 import './Commnet.css';
-const Commnet = () => {
+const Commnet = ({ deleteC, el }) => {
   return (
     <div className="b-c-list1">
       <div className="c-ui"></div>
       <div className="c-title">
-        <div className="c-t">fds</div>
+        <div className="c-t">{el.content}</div>
         <div className="c-time">
-          <div className="c-2">QooQua</div>
-          <div className="c-2">5시간전</div>
-          <div className="c-2">삭제</div>
+          <div className="c-2">{el.username}</div>
+          <div className="c-2">{el.createdAt}</div>
+          <div onClick={() => deleteC(el.id)} className="c-2">
+            삭제
+          </div>
         </div>
       </div>
     </div>

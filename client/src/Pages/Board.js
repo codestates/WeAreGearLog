@@ -10,7 +10,8 @@ import { useSelector } from 'react-redux';
 
 const Board = ({ authRegi }) => {
   const data = useSelector((state) => state.board.read);
-  console.log(data);
+
+  const [titles, setTitles] = useState('');
   const [title, setTitle] = useState(data[0].title);
   const [state, setState] = useState({
     value: null,
@@ -19,7 +20,6 @@ const Board = ({ authRegi }) => {
     setState({ value });
   };
 
-  console.log(title);
   // eslint-disable-next-line no-use-before-define
 
   const onTitleChange = (e) => {
@@ -39,8 +39,8 @@ const Board = ({ authRegi }) => {
             handleChange={handleChange}
             state={state}
             setState={setState}
-            title={title}
-            setTitle={setTitle}
+            title={titles}
+            setTitle={setTitles}
           />
         </Route>
         <Route path="/board/edit">
