@@ -58,12 +58,18 @@ module.exports = {
       content: content,
     });
     const postList = await sequelize.query(
-      `SELECT *
+      `SELECT comments.*, users.username, users.profile_img
       FROM comments
+      JOIN users ON comments.userId = users.id
       WHERE comments.postId = ${postId}
       ORDER BY comments.id DESC`,
       { type: QueryTypes.SELECT }
     );
+    // raw query를 쓰지 않고 order by를 시퀄라이즈에 적용하는 방법
+    // const postList = await comment.findAll({
+    //   where: { postId: postId },
+    //   order: [["id", "desc"]],
+    // });
     res.status(201).json({ postList: postList });
   },
   // 특정id 게시글 조회
