@@ -8,6 +8,7 @@ const config = {
     database: "gearlog",
     host: process.env.DATABASE_HOST,
     dialect: "mysql",
+    timezone: "+09:00",
     port: process.env.DATABASE_PORT,
   },
   test: {
@@ -16,6 +17,7 @@ const config = {
     database: "gearlog",
     host: process.env.DATABASE_HOST,
     dialect: "mysql",
+    timezone: "+09:00",
     port: process.env.DATABASE_PORT,
   },
   production: {
@@ -24,6 +26,7 @@ const config = {
     database: "gearlog",
     host: process.env.DATABASE_HOST,
     dialect: "mysql",
+    timezone: "+09:00",
     port: process.env.DATABASE_PORT,
   },
 };

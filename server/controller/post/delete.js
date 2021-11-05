@@ -1,5 +1,6 @@
 const { post, like, comment, sequelize } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions");
+const { QueryTypes } = require("sequelize");
 
 module.exports = {
   deleteComment: async (req, res) => {
@@ -21,8 +22,16 @@ module.exports = {
       by: -1,
       where: { id: postId },
     });
+    const postList = await sequelize.query(
+      `SELECT *
+      FROM comments
+      WHERE comments.postId = ${postId}
+      ORDER BY comments.id DESC`,
+      { type: QueryTypes.SELECT }
+    );
     res.status(200).json({
       message: "deleted",
+      postList: postList,
     });
   },
   deletePost: async (req, res) => {
