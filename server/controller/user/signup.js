@@ -37,7 +37,7 @@ module.exports = (req, res) => {
                 .status(202)
                 .json({ message: "이미 존재하는 email입니다" });
             } else {
-              console.log(process.env.DUMMY_PROFILE_IMG);
+              // console.log(process.env.DUMMY_PROFILE_IMG);
               user.create({
                 username: username,
                 email: email,
