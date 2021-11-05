@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import NewBoard from './Pages/NewBoard';
 import './App.css';
 import SignIn from './Auth/SignIn';
 import axios from 'axios';

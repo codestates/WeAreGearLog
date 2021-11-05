@@ -23,8 +23,9 @@ module.exports = {
       where: { id: postId },
     });
     const postList = await sequelize.query(
-      `SELECT *
+      `SELECT comments.*, users.username, users.profile_img
       FROM comments
+      JOIN users ON comments.userId = users.id
       WHERE comments.postId = ${postId}
       ORDER BY comments.id DESC`,
       { type: QueryTypes.SELECT }
