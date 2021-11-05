@@ -84,12 +84,9 @@
   height: 80px;
 }
 
-.c-u-i {
-  background-color: white;
-  height: 100%;
-  width: 100%;
-}
 .c-bottom {
+  display: flex;
+  justify-content: right;
   border-right: none;
 }
 .c-u-b {

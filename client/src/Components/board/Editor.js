@@ -10,8 +10,6 @@ import axios from 'axios';
 import Edit from './Edit';
 
 const Editor = ({ state, handleChange, setState, title, setTitle }) => {
-  
-  
   const onTitleChange = (e) => {
     setTitle(e.target.value);
   };
@@ -44,8 +42,8 @@ const Editor = ({ state, handleChange, setState, title, setTitle }) => {
       <h1>게시물 작성</h1>
 
       <input
-        onChange={onTitleChange}
         value={title}
+        onChange={onTitleChange}
         className="inputz"
         placeholder="제목을 입력하세요"
       />

@@ -4,15 +4,7 @@ export const WRITE = 'board/WRITE';
 export const READPOST = "'/board/READPOST";
 export const LIKE = 'board/LIKE';
 export const READNUM = 'board/READNUM';
-export const INSERT = 'board/INSERT';
-
-export const insert = (id, title, content) => ({
-  type: INSERT,
-  payload: {
-    title: title,
-    content: content,
-  },
-});
+export const COMMENT = 'board/COMMENT';
 
 export const likes = (id, like) => ({
   type: LIKE,
@@ -20,6 +12,13 @@ export const likes = (id, like) => ({
     id,
   },
 });
+
+// export const commnets = (content) => ({
+//   type: COMMENT,
+//   payload: {
+//     content: content,
+//   },
+// });
 
 export const readpost = (data) => ({
   type: READPOST,
@@ -29,6 +28,17 @@ export const readpost = (data) => ({
 });
 
 const initialState = {
+  comment: [
+    {
+      id: 0,
+      content: '',
+      createdAt: '2021-10-30T06:35:57.000Z',
+      updatedAt: '2021-11-02T08:11:00.000Z',
+      username: '성현테스트',
+      profile_img: null,
+    },
+  ],
+
   read: [
     {
       category: 'sample3',
@@ -60,11 +70,12 @@ const initialState = {
 
 function board(state = initialState, action) {
   switch (action.type) {
-    case INSERT: {
-    }
+    // case COMMENT: {
+    //   console.log('@@@@CCC', state);
+    //   return { ...state, comment: action.payload.content };
+    // }
 
     case READPOST: {
-      console.log('@@@', state);
       return { ...state, read: action.payload.data };
     }
 

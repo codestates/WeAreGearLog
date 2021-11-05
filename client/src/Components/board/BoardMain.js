@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import React, { useEffect, useState } from 'react';
-import { readpost } from '../../modules/board';
+import { readpost, commnets } from '../../modules/board';
 import { BsFillTriangleFill } from 'react-icons/bs';
 import axios from 'axios';
 import './BoardMain.css';
@@ -9,10 +9,10 @@ import NewBoard from '../../Pages/NewBoard';
 import { Link, Route, Switch, useHistory } from 'react-router-dom';
 const BoardMain = ({ authRegi }) => {
   const data = useSelector((state) => state.board.read);
-  console.log('123123', data);
-  const history = useHistory();
+
   const [isOpen, setIsOpen] = useState(false);
   const [getList, setGetList] = useState([]);
+  const [getComment, setGetComment] = useState([]);
 
   let token = localStorage.getItem('token');
   useEffect(() => {
@@ -21,7 +21,6 @@ const BoardMain = ({ authRegi }) => {
         withCredentials: true,
       })
       .then((res) => {
-        console.log('res', res);
         setGetList(res.data.data);
       });
   }, []);
