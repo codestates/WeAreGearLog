@@ -12,18 +12,28 @@ import axios from 'axios';
 import Commnet from '../Components/Commnet';
 import { Link, useHistory } from 'react-router-dom';
 import { commnets } from '../modules/board';
-const NewBoard = ({ authRegi, udeleteB, setIsOpen, isOpen }) => {
+import { Pagination } from '@mui/material';
+const NewBoard = ({
+  authRegi,
+  udeleteB,
+  setIsOpen,
+  isOpen,
+  getList,
+  setGetList,
+}) => {
   const history = useHistory();
-  const data = useSelector((state) => state.board.read);
-  const cmnt = useSelector((state) => state.board.comment);
+
   const [like, setLike] = useState('');
   const [likeCount, setLikeCount] = useState('');
   const [insert, setInsert] = useState(false);
   const [chagenT, setChangeT] = useState('');
   const [changeC, setChangeC] = useState('');
-  const dataId = data.map((el) => el.id);
+
   const [updateC, setUpdateC] = useState([]);
-  console.log(updateC);
+
+  const data = useSelector((state) => state.board.read);
+  const cmnt = useSelector((state) => state.board.comment);
+  const dataId = data.map((el) => el.id);
 
   const toEdit = (id) => {
     history.push(`/board/edit/${id}`);

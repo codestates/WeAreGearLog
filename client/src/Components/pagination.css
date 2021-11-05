@@ -1,0 +1,7 @@
+.pagination {
+  display: flex;
+}
+.page-item {
+  color: tomato;
+  margin: 10px;
+}
