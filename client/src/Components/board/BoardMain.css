@@ -42,17 +42,18 @@
   width: 100%;
 }
 .b-img {
-  width: 100px;
   min-height: 78px;
   display: flex;
   border-bottom: 1px solid gainsboro;
   border-right: 1px solid gainsboro;
+  width: 150px;
 }
 .b-tNd {
   min-height: 78px;
   width: 100%;
   border-bottom: 1px solid gainsboro;
 }
+
 .b-p1 {
   border-bottom: 1px solid gainsboro;
   padding-left: 30px;
@@ -73,7 +74,7 @@
 .b-span {
   border-right: 1px solid gainsboro;
   display: flex;
-  width: 100%;
+  width: 98%;
 }
 
 .b-like {

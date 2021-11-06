@@ -15,8 +15,6 @@ export const Edit = ({ state, handleChange }) => {
   });
 
   const imageHandler = () => {
-    console.log('에디터에서 이미지 버튼을 클릭하면 이 핸들러가 시작됩니다!');
-
     const input = document.createElement('input');
 
     input.setAttribute('type', 'file');
