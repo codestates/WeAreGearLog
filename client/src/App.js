@@ -16,7 +16,7 @@ import FindPass from './Pages/FindPass';
 import ReturnHome from './Pages/ReturnHome';
 import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
 import Board from './Pages/Board';
-import FlipCards from './Components/FlipCards';
+import T1 from './Pages/Team/T1';
 
 const App = () => {
   const history = useHistory();
@@ -200,7 +200,7 @@ const App = () => {
           </div>
         </Route>
         <Route path="/team">
-          <FlipCards />
+          <T1 />
         </Route>
       </Switch>
 

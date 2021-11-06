@@ -8,10 +8,18 @@
   width: 360px;
 }
 
+.Team-Header {
+  display: flex;
+  font-size: 30px;
+  font-weight: 900;
+  color: white;
+  background-color: black;
+}
 .boxs {
+  padding: 10px;
+  background-color: black;
   width: 100%;
   display: flex;
-  margin-bottom: 20px;
 }
 .thecard {
   position: absolute;
@@ -22,48 +30,40 @@
   transform-style: preserve-3d;
   transition: all 0.5s ease;
 }
-/* .thecard1 {
-  position: absolute;
-  margin-top: 40px;
-  flex-grow: 1;
-  width: 350px;
-  height: 350px;
-  transform-style: preserve-3d;
-  transition: all 0.5s ease;
-}
-.thecard2 {
-  position: absolute;
-  margin-top: 60px;
-  flex-grow: 1;
-  width: 350px;
-  height: 350px;
-  transform-style: preserve-3d;
-  transition: all 0.5s ease;
-} */
 
-.pd {
-  width: 100px;
-  background-color: #fafafa;
-}
 .thecard:hover {
   transform: rotateY(180deg);
 }
 
 .thefront {
   display: flex;
-  position: absolute;
 
+  position: absolute;
+  font-size: 70px;
+  font-weight: 900;
   width: 350px;
   height: 350px;
   backface-visibility: hidden;
-  background: #ffc728;
-  color: #333;
+  background: white;
+  color: #e2062d;
 }
-
-.theback {
+.user-gear {
   display: flex;
-
+  text-align: center;
+  margin-bottom: 20px;
+}
+.user-name {
+  color: #e2062d;
+  font-size: 40px;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.theback {
   position: absolute;
+  text-align: center;
+  font-weight: 900;
+  padding: 20px;
   width: 350px;
   height: 350px;
   backface-visibility: hidden;
@@ -80,7 +80,4 @@
     display: flex;
     width: 360px;
   }
-}
-
-@media screen and (max-width: 768px) {
 }
