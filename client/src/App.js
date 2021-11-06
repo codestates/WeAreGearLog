@@ -8,7 +8,7 @@ import { LOGI } from './ReviewData';
 import Footer from './Components/Footer';
 import { useHistory, Route, Switch } from 'react-router-dom';
 import Register from './Auth/Register';
-
+import Dk from './Pages/Team/Dk';
 import Mypage from './Pages/Mypage';
 import PassChange from './Pages/PassChange';
 import Logi from './Pages/Brands/Logi';
@@ -17,7 +17,9 @@ import ReturnHome from './Pages/ReturnHome';
 import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
 import Board from './Pages/Board';
 import T1 from './Pages/Team/T1';
-
+import Drx from './Pages/Team/Drx';
+import Geng from './Pages/Team/Geng';
+import Han from './Pages/Team/Han';
 const App = () => {
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
@@ -199,8 +201,20 @@ const App = () => {
             <Board authRegi={authRegi} />
           </div>
         </Route>
-        <Route path="/team">
+        <Route path="/team/t1">
           <T1 />
+        </Route>
+        <Route path="/team/drx">
+          <Drx />
+        </Route>
+        <Route path="/team/geng">
+          <Geng />
+        </Route>
+        <Route path="/team/dwk">
+          <Dk />
+        </Route>
+        <Route path="/team/han">
+          <Han />
         </Route>
       </Switch>
 
