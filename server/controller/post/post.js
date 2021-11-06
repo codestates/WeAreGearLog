@@ -152,7 +152,8 @@ module.exports = {
       `SELECT posts.*, users.username, users.profile_img 
       FROM posts 
       JOIN users ON posts.writerId = users.id 
-      WHERE users.id = ${readerId}`,
+      WHERE users.id = ${readerId}
+      ORDER BY posts.id DESC`,
       { type: QueryTypes.SELECT }
     );
     res.status(200).json({
