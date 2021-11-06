@@ -10,7 +10,7 @@ import NewBoard from '../../Pages/NewBoard';
 import Pagination from '../Pagination';
 import displayedAt from '../../AuthModule/TimeModule';
 
-const BoardMain = ({ authRegi }) => {
+const BoardMain = ({ authRegi, isLogin }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
   const [isOpen, setIsOpen] = useState(false);

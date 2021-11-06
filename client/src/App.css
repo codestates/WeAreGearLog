@@ -174,9 +174,6 @@ hr {
   height: 100%;
   width: 100%;
 }
-.brand-link {
-  display: flex;
-}
 
 .brand-names {
   margin-left: 30px;
@@ -428,7 +425,10 @@ h1 {
 .change-username {
   color: black;
 }
-
+.brand-link {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 .Team-select {
   position: absolute;
   margin-left: 2px;
@@ -467,7 +467,14 @@ h1 {
     width: 70%;
     margin-bottom: 150px;
   }
-
+  .teamcards {
+  }
+  .brand-image-name {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
   .email {
     width: 85%;
   }
