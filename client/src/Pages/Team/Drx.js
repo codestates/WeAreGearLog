@@ -83,7 +83,6 @@ const Drx = () => {
           <div className="dthecard">
             <div className="dthefront">Becca</div>
             <div className="dtheback">
-              {' '}
               <img src={becca} />
               <div className="duser-name">Becca</div>
               <a>Mouse :none</a>

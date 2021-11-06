@@ -20,6 +20,7 @@ import T1 from './Pages/Team/T1';
 import Drx from './Pages/Team/Drx';
 import Geng from './Pages/Team/Geng';
 import Han from './Pages/Team/Han';
+import Brand from './Components/Brand';
 const App = () => {
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
@@ -203,18 +204,23 @@ const App = () => {
         </Route>
         <Route path="/team/t1">
           <T1 />
+          <Brand />
         </Route>
         <Route path="/team/drx">
           <Drx />
+          <Brand />
         </Route>
         <Route path="/team/geng">
           <Geng />
+          <Brand />
         </Route>
         <Route path="/team/dwk">
           <Dk />
+          <Brand />
         </Route>
         <Route path="/team/han">
           <Han />
+          <Brand />
         </Route>
       </Switch>
 

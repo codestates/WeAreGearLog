@@ -1,10 +1,16 @@
 import { useState, useRef } from 'react';
-import corsair from '../Img/cor.png';
-import logi from '../Img/logi.png';
-import razer from '../Img/razer.png';
-import roccat from '../Img/roccat.png';
-import Slider from 'react-slick';
+import drx from '../Img/team/drx.png';
+import dwkia from '../Img/team/dwkia.png';
+import geng from '../Img/team/geng.png';
+import han from '../Img/team/han.png';
+import t1 from '../Img/team/t1.png';
+import af from '../Img/team/af.png';
+import fb from '../Img/team/fb.png';
+import kt from '../Img/team/kt.png';
+import liv from '../Img/team/liv.png';
+import ns from '../Img/team/ns.png';
 
+import Slider from 'react-slick';
 import '../App.css';
 import { useHistory, Link } from 'react-router-dom';
 
@@ -13,23 +19,53 @@ import { MdArrowForwardIos, MdArrowBackIos } from 'react-icons/md';
 let dummyImage = [
   {
     id: 1,
-    src: corsair,
-    path: '/brands/list/corsair',
+    src: t1,
+    path: '/team/t1',
   },
   {
     id: 2,
-    src: logi,
-    path: '/brands/list/',
+    src: drx,
+    path: '/team/drx',
   },
   {
     id: 3,
-    src: razer,
-    path: '/brands/list/razer',
+    src: dwkia,
+    path: '/team/dwk',
   },
   {
     id: 4,
-    src: roccat,
-    path: '/brands/list/roccat',
+    src: han,
+    path: '/team/han',
+  },
+  {
+    id: 5,
+    src: geng,
+    path: '/team/geng',
+  },
+  {
+    id: 6,
+    src: af,
+    path: '/team/t1',
+  },
+  {
+    id: 7,
+    src: fb,
+    path: '/team/drx',
+  },
+  {
+    id: 8,
+    src: liv,
+    path: '/team/dwk',
+  },
+  {
+    id: 9,
+    src: kt,
+    path: '/team/han',
+  },
+  {
+    id: 10,
+    src: ns,
+    path: '/team/geng',
   },
 ];
 
@@ -49,7 +85,7 @@ const Brand = () => {
   });
 
   const set = {
-    slidesToShow: 3,
+    slidesToShow: 6,
     slidesToScroll: 1,
     variableWidth: false,
     responsive: [
