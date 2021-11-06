@@ -13,13 +13,6 @@ export const likes = (id, like) => ({
   },
 });
 
-// export const commnets = (content) => ({
-//   type: COMMENT,
-//   payload: {
-//     content: content,
-//   },
-// });
-
 export const readpost = (data) => ({
   type: READPOST,
   payload: {
@@ -70,11 +63,6 @@ const initialState = {
 
 function board(state = initialState, action) {
   switch (action.type) {
-    // case COMMENT: {
-    //   console.log('@@@@CCC', state);
-    //   return { ...state, comment: action.payload.content };
-    // }
-
     case READPOST: {
       return { ...state, read: action.payload.data };
     }
