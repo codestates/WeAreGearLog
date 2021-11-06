@@ -17,7 +17,7 @@ router.post("/callback/google", callbackController.google);
 router.patch("/user/temp", userController.findpass.change);
 router.patch("/user/username", userController.update.username);
 router.patch("/user/password", userController.update.password);
-router.patch("/user/profileImg", userController.update.profileImg);
+router.patch("/user/profileimg", userController.update.profileImg);
 router.delete("/user", userController.signout);
 
 // gear routing
@@ -31,6 +31,7 @@ router.get("/post", postController.post.readAll);
 router.get("/post/mypost", postController.post.readMine);
 router.get("/post/:id", postController.post.read);
 router.get("/post/view/:id", postController.post.addView);
+router.get("/filteredpost", postController.search);
 router.post("/post", postController.post.writePost);
 router.post("/post/comment", postController.post.writeComment);
 router.post("/post/like", postController.like.like);
