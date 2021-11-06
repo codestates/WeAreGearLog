@@ -199,7 +199,7 @@ const App = () => {
         </Route>
         <Route path="/board">
           <div className="Board">
-            <Board authRegi={authRegi} />
+            <Board isLogin={isLogin} authRegi={authRegi} />
           </div>
         </Route>
         <Route path="/team/t1">

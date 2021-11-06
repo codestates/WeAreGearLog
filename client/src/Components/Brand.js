@@ -75,11 +75,19 @@ const Brand = () => {
   const slider = useRef(null);
 
   const maps = img.map((el) => {
+    const pathT = () => {
+      history.push(`${el.path}`);
+      window.scrollBy(0, -9999);
+    };
     return (
       <div key={el.id} className="brand-link">
-        <Link to={el.path}>
-          <img className="brand-image-name" key={el.id} src={el.src} alt="" />
-        </Link>
+        <img
+          onClick={pathT}
+          className="brand-image-name"
+          key={el.id}
+          src={el.src}
+          alt=""
+        />
       </div>
     );
   });
