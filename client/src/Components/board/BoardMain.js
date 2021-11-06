@@ -6,7 +6,6 @@ import axios from 'axios';
 import './BoardMain.css';
 import { useDispatch } from 'react-redux';
 import NewBoard from '../../Pages/NewBoard';
-
 import Pagination from '../Pagination';
 import displayedAt from '../../AuthModule/TimeModule';
 

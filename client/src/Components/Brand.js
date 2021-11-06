@@ -12,7 +12,7 @@ import ns from '../Img/team/ns.png';
 
 import Slider from 'react-slick';
 import '../App.css';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { MdArrowForwardIos, MdArrowBackIos } from 'react-icons/md';
 

@@ -2,18 +2,16 @@ import React, { useEffect } from 'react';
 import './ReviewTemp.css';
 import { FcDocument, FcElectricalSensor } from 'react-icons/fc';
 import g304rv from '../../../Img/brands/Logitech/g304rv.png';
-import razerdeathadder from '../../../Img/brands/Lazer/razerdeathadder.png'
-import gprox1 from '../../../Img/brands/Logitech/gprox1.png'
-import g915 from '../../../Img/brands/Logitech/g915.png'
-import g733 from '../../../Img/brands/Logitech/G7331.png'
-import blackwidow from '../../../Img/brands/Lazer/blackwidow.png'
-import razerkraken from '../../../Img/brands/Lazer/razerkraken.png'
-import roccataimo from '../../../Img/brands/Roccat/roccataimo.png'
-import konepro from '../../../Img/brands/Roccat/konepro.png'
-import k70kbd from '../../../Img/brands/Corsair/k70keyboard.png'
-import k70tkl from '../../../Img/brands/Corsair/k70tkl1.png'
-
-
+import razerdeathadder from '../../../Img/brands/Lazer/razerdeathadder.png';
+import gprox1 from '../../../Img/brands/Logitech/gprox1.png';
+import g915 from '../../../Img/brands/Logitech/g915.png';
+import g733 from '../../../Img/brands/Logitech/G7331.png';
+import blackwidow from '../../../Img/brands/Lazer/blackwidow.png';
+import razerkraken from '../../../Img/brands/Lazer/razerkraken.png';
+import roccataimo from '../../../Img/brands/Roccat/roccataimo.png';
+import konepro from '../../../Img/brands/Roccat/konepro.png';
+import k70kbd from '../../../Img/brands/Corsair/k70keyboard.png';
+import k70tkl from '../../../Img/brands/Corsair/k70tkl1.png';
 
 const gearimg = [
   {
@@ -64,8 +62,6 @@ const gearimg = [
 
 const ReviewTemp = ({ setSaveId, saveId, LOGI }) => {
   useEffect(() => {
-    // console.log(LOGI);
-    // console.log(saveId);
     let sr = localStorage.getItem('id');
     if (saveId === 0 && sr) {
       setSaveId(sr);

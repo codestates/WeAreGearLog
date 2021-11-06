@@ -1,13 +1,11 @@
 import React, { useState, useMemo, useRef } from 'react';
 import ReactQuill from 'react-quill';
 import { Quill } from 'react-quill';
-
 import ImageResize from '@looop/quill-image-resize-module-react';
-
 import AWS from 'aws-sdk';
 import 'react-quill/dist/quill.snow.css';
 import './styles.css';
-import axios from 'axios';
+
 export const Edit = ({ state, handleChange }) => {
   AWS.config.update({
     region: 'ap-northeast-2',

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './BoardMain.css';
-const BoardNav = ({ authRegi, write, setWrite, isLogin }) => {
+
+const BoardNav = ({ authRegi, isLogin }) => {
   const history = useHistory();
   const loginTrue = () => {
     if (isLogin === false) {
