@@ -1,0 +1,15 @@
+.outerContainer {
+  height: 600px;
+  width: 400px;
+  position: fixed;
+  bottom: 5vh;
+  right: 5vw;
+  z-index: 980;
+  border-radius: 4px;
+}
+.chatbotton {
+  position: fixed;
+  left: 88vw;
+  top: 68vh;
+  z-index: 999;
+}

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import ChatList from './ChatList';
 import InfoBar from './InfoBar';
+import './Chat.css'
 import { updateChatList, setMessages, setNewMessages } from '../../modules/chatReducer'
 const url = process.env.REACT_APP_API_URL;
 axios.defaults.withCredentials = true;
