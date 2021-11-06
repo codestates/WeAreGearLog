@@ -3,31 +3,7 @@ const { QueryTypes } = require("sequelize");
 const { isAuthorized } = require("../tokenFunctions");
 
 module.exports = {
-  // add dummydata to posts...
-  // write: async (req, res) => {
-  //   const list = await post.create({
-  //     category: "sample2",
-  //     writerId: 4,
-  //     title: "sample2",
-  //     content: "sample2",
-  //     img: "sample2",
-  //     view: 0,
-  //   });
-
-  //   res.send("OK!!!");
-  // },
-  // add dummydata to likes...
-  // write: async (req, res) => {
-  //   const list = await like.create({
-  //     userId: 1,
-  //     postId: 15,
-  //     // content: "구리네요222...(악플example)",
-  //   });
-
-  //   res.send("OK!!!");
-  // },
-
-  // 조회수 올라가기 기능 분리한다면?
+  // 게시글 조회수 올라가기 기능
   addView: async (req, res) => {
     const id = req.params.id;
     const updateView = await post.update(
@@ -59,6 +35,7 @@ module.exports = {
       content: content,
     });
     res.status(201).json({ data: posted });
+    // 응답을 방금 작성한 댓글이 아닌 해당postId의 댓글 전체로?
   },
   // 댓글 쓰기
   writeComment: async (req, res) => {
@@ -68,6 +45,9 @@ module.exports = {
     }
     const writerId = writerData.id;
     const { content, postId } = req.body;
+    if (!content) {
+      return res.status(400).send("댓글 내용을 입력하세요");
+    }
     const updateComment = await post.increment("comment", {
       by: 1,
       where: { id: postId },
@@ -77,7 +57,20 @@ module.exports = {
       postId: postId,
       content: content,
     });
-    res.status(201).json({ data: commentData });
+    const postList = await sequelize.query(
+      `SELECT comments.*, users.username, users.profile_img
+      FROM comments
+      JOIN users ON comments.userId = users.id
+      WHERE comments.postId = ${postId}
+      ORDER BY comments.id DESC`,
+      { type: QueryTypes.SELECT }
+    );
+    // raw query를 쓰지 않고 order by를 시퀄라이즈에 적용하는 방법
+    // const postList = await comment.findAll({
+    //   where: { postId: postId },
+    //   order: [["id", "desc"]],
+    // });
+    res.status(201).json({ postList: postList });
   },
   // 특정id 게시글 조회
   read: async (req, res) => {

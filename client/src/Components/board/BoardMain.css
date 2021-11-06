@@ -2,7 +2,10 @@
   background-color: #ebeef1;
   display: flex;
 }
-
+.b-n {
+  color: aliceblue;
+  background-color: #1a2025;
+}
 .b-list {
   background-color: white;
   display: flex;
@@ -86,9 +89,21 @@
   padding: 30px;
   text-align: center;
 }
+.ems {
+  color: tomato;
+  font-size: 12px;
+}
 .b-f-b {
   margin-left: 10px;
   margin-right: 10px;
+}
+.freedoar {
+  display: flex;
+  color: #ebeef1;
+  background-color: #f3cfe2;
+  width: 100%;
+  min-height: 50px;
+  font-size: 50px;
 }
 @media screen and (max-width: 768px) {
   .b-m-b {

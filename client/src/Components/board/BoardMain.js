@@ -1,18 +1,27 @@
 /* eslint-disable no-restricted-globals */
 import React, { useEffect, useState } from 'react';
 import { readpost } from '../../modules/board';
-import { BsFillTriangleFill } from 'react-icons/bs';
+import { FcLike } from 'react-icons/fc';
 import axios from 'axios';
 import './BoardMain.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import NewBoard from '../../Pages/NewBoard';
-import { Link, Route, Switch, useHistory } from 'react-router-dom';
+
+import Pagination from '../Pagination';
+import displayedAt from '../../AuthModule/TimeModule';
+
 const BoardMain = ({ authRegi }) => {
-  const data = useSelector((state) => state.board.read);
-  console.log('123123', data);
-  const history = useHistory();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(8);
   const [isOpen, setIsOpen] = useState(false);
   const [getList, setGetList] = useState([]);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+
+  const currentPosts = getList.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   let token = localStorage.getItem('token');
   useEffect(() => {
@@ -21,7 +30,6 @@ const BoardMain = ({ authRegi }) => {
         withCredentials: true,
       })
       .then((res) => {
-        console.log('res', res);
         setGetList(res.data.data);
       });
   }, []);
@@ -49,23 +57,25 @@ const BoardMain = ({ authRegi }) => {
       });
   };
 
-  const post = getList.map((el, idx) => {
+  const post = currentPosts.map((el, idx) => {
+    const timeStamp = displayedAt(new Date(el.createdAt));
+    console.log(el);
     return (
       <div key={el.id} className="b-list">
         <div className="board-list">
-          <div className="b-img"></div>
+          <img className="b-img" alt=""></img>
           <div className="b-tNd">
             <div onClick={() => ReqRead(el.id)} className="b-p1">
-              {el.title} <em className="ems">[{el.comments}]</em>
+              {el.title} <em className="ems">[{el.comment}]</em>
             </div>
 
             <div className="b-p">
-              <div className="b-span">5시간전</div>
+              <div className="b-span">{timeStamp}</div>
 
               <div className="b-span">{el.username}</div>
               <div className="b-span">조회수:{el.view}</div>
               <div className="b-span">
-                <BsFillTriangleFill />
+                <FcLike size="20" />
                 {el.like}
               </div>
             </div>
@@ -78,15 +88,24 @@ const BoardMain = ({ authRegi }) => {
   return (
     <>
       {isOpen ? (
-        <NewBoard isOpen={isOpen} setIsOpen={setIsOpen} authRegi={authRegi} />
+        <NewBoard
+          getList={getList}
+          setGetList={setGetList}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          authRegi={authRegi}
+        />
       ) : null}
 
       <div id="box">
         <div className="b-m-b1">
           {post}
           <div className="b-footer">
-            <button className="b-f-b">이전</button>
-            <button className="b-f-b">다음</button>
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPosts={getList.length}
+              paginate={paginate}
+            />
           </div>
           <div className="b-pad"></div>
         </div>

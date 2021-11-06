@@ -1,6 +1,7 @@
 .NewBoard {
   display: flex;
   width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 .Newboard-info {
   text-align: center;
@@ -23,14 +24,26 @@
 }
 
 .titlez {
+  padding: 5px;
   border: none;
   font-size: 30px;
   width: 100%;
   height: 50px;
   resize: none;
 }
+.Newboard-title {
+  padding: 20px;
+}
 .Newboard-info-list {
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #ccc;
+  resize: none;
+  margin-top: 2px;
+  margin-bottom: 10px;
+  color: #7f8891;
   width: 100%;
+  padding-bottom: 20px;
 }
 .sss {
   margin-left: 30px;
@@ -84,12 +97,9 @@
   height: 80px;
 }
 
-.c-u-i {
-  background-color: white;
-  height: 100%;
-  width: 100%;
-}
 .c-bottom {
+  display: flex;
+  justify-content: right;
   border-right: none;
 }
 .c-u-b {

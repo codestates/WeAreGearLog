@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-restricted-globals */
 import React, { useEffect, useState } from 'react';
@@ -6,25 +7,40 @@ import './NewBoard.css';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { FcLike } from 'react-icons/fc';
 import { useSelector } from 'react-redux';
-import { BsImage } from 'react-icons/bs';
+import displayedAt from '../AuthModule/TimeModule';
 import axios from 'axios';
 import Commnet from '../Components/Commnet';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
+const NewBoard = ({
+  authRegi,
+  udeleteB,
+  setIsOpen,
+  isOpen,
+  getList,
+  setGetList,
+}) => {
   const history = useHistory();
-  const data = useSelector((state) => state.board.read);
+
   const [like, setLike] = useState('');
   const [likeCount, setLikeCount] = useState('');
   const [insert, setInsert] = useState(false);
   const [chagenT, setChangeT] = useState('');
   const [changeC, setChangeC] = useState('');
 
+  const [updateC, setUpdateC] = useState([]);
+
+  const data = useSelector((state) => state.board.read);
+
   const dataId = data.map((el) => el.id);
 
   const toEdit = (id) => {
     history.push(`/board/edit/${id}`);
     location.reload();
+  };
+
+  const onCommnetChange = (e) => {
+    setChangeC(e.target.value);
   };
 
   useEffect(() => {
@@ -37,6 +53,8 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
         setChangeC(res.data.post.content);
         setLike(res.data.like);
         setLikeCount(res.data.post[0].like);
+        setUpdateC(res.data.comment);
+        // dispatch(commnets(res.data.comment));
       });
   }, [data]);
 
@@ -52,21 +70,30 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
         },
       )
       .then((res) => {
+        console.log(res);
         setLike(true);
         setLikeCount(res.data.likeCount);
       })
-      // .then(() => {
-      //   axios
-      //     .get(`http://52.79.233.29:8080/post/${dataId[0]}`, {
-      //       headers: { authorization: `Bearer ${token}` },
-      //     })
-      //     .then((res) => {
-      //       setLikeCount(res.data.post[0].like);
-      //       console.log(res.data.post[0].like);
-      //     });
-      // })
+
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const postComment = (id) => {
+    axios
+      .post(
+        `http://52.79.233.29:8080/post/comment/`,
+        {
+          postId: id,
+          content: changeC,
+        },
+        {
+          headers: { authorization: `Bearer ${token}` },
+        },
+      )
+      .then((res) => {
+        setUpdateC(res.data.postList);
       });
   };
 
@@ -85,16 +112,7 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
         setLike(false);
         setLikeCount(res.data.likeCount);
       })
-      // .then(() => {
-      //   axios
-      //     .get(`http://52.79.233.29:8080/post/${dataId[0]}`, {
-      //       headers: { authorization: `Bearer ${token}` },
-      //     })
-      //     .then((res) => {
-      //       setLikeCount(res.data.post[0].like);
-      //       console.log(res.data.post[0].like);
-      //     });
-      // })
+
       .catch((err) => {
         console.log(err);
       });
@@ -103,9 +121,7 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
   const onChange1 = (e) => {
     setChangeT(e.target.value);
   };
-  const onChange2 = (e) => {
-    setChangeC(e.target.value);
-  };
+
   let token = localStorage.getItem('token');
 
   const deletePost = (id) => {
@@ -132,7 +148,24 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
     }
   };
 
+  const deleteC = (id) => {
+    let ok = confirm('삭제하시겠습니까?');
+
+    if (ok) {
+      axios
+        .delete(`http://52.79.233.29:8080/post/comment/${id}`, {
+          headers: { authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          setUpdateC(res.data.postList);
+        });
+    } else {
+      return;
+    }
+  };
+
   const datas = data.map((el, idx) => {
+    const timeStamp = displayedAt(new Date(el.createdAt));
     return (
       <>
         <div key={el.id} className="Editor1">
@@ -155,7 +188,7 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
               <div className="titlez">{el.title}</div>
             )}
             <div className="Newboard-info">
-              <span className="Newboard-info-list">작성시간: </span>
+              <span className="Newboard-info-list">{timeStamp}</span>
 
               <span className="Newboard-info-list">{el.username} </span>
 
@@ -167,6 +200,7 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
             </div>
 
             <div
+              className="Newboard-title"
               dangerouslySetInnerHTML={{
                 __html: el.content,
               }}
@@ -217,19 +251,27 @@ const NewBoard = ({ authRegi, udeleteB, setIsOpen }) => {
               <div className="c-write">
                 <div className="c-inner">
                   <textarea
+                    onChange={onCommnetChange}
+                    value={changeC}
                     className="textarea1"
                     autucomplate="off"
                     autoCorrect="off"
                     spellCheck="false"
                   ></textarea>
                   <div className="c-bottom">
-                    <div className="c-u-i">
-                      <BsImage color="green" size="20" />
-                    </div>
-                    <button className="c-u-b">작성</button>
+                    <button
+                      onClick={() => postComment(el.id)}
+                      className="c-u-b"
+                    >
+                      작성
+                    </button>
                   </div>
                   <div className="c-padding"></div>
-                  <Commnet />
+                  {updateC.map((el) => {
+                    return (
+                      <Commnet authRegi={authRegi} el={el} deleteC={deleteC} />
+                    );
+                  })}
                 </div>
               </div>
             </div>

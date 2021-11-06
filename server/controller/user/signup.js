@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { user } = require("../../models");
 const crypto = require("crypto");
 
@@ -36,10 +37,12 @@ module.exports = (req, res) => {
                 .status(202)
                 .json({ message: "이미 존재하는 email입니다" });
             } else {
+              // console.log(process.env.DUMMY_PROFILE_IMG);
               user.create({
                 username: username,
                 email: email,
                 password: hashPassword,
+                profile_img: process.env.DUMMY_PROFILE_IMG,
               });
 
               res.status(201).json({ message: "signup ok" });
