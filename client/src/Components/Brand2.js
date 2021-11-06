@@ -1,38 +1,38 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from 'react';
-import corsair from '../Img/cor.png';
-import logi from '../Img/logi.png';
-import razer from '../Img/razer.png';
-import roccat from '../Img/roccat.png';
-import still from '../Img/still.png';
+import drx from '../Img/team/drx.png';
+import dwkia from '../Img/team/dwkia.png';
+import geng from '../Img/team/geng.png';
+import han from '../Img/team/han.png';
+import t1 from '../Img/team/t1.png';
 import '../App.css';
 import { Link, useHistory } from 'react-router-dom';
 
 let dummyImage = [
   {
     id: 1,
-    src: corsair,
-    path: '/brands/list/corsair',
+    src: t1,
+    path: '/team/t1',
   },
   {
     id: 2,
-    src: logi,
-    path: '/brands/list/logitech',
+    src: drx,
+    path: '/team/drx',
   },
   {
     id: 3,
-    src: razer,
-    path: '/brands/list/razer',
+    src: dwkia,
+    path: '/team/dwk',
   },
   {
     id: 4,
-    src: roccat,
-    path: '/brands/list/roccat',
+    src: han,
+    path: '/team/han',
   },
   {
     id: 5,
-    src: still,
-    path: '/brands/list/still',
+    src: geng,
+    path: '/team/geng',
   },
 ];
 
