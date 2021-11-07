@@ -89,6 +89,7 @@ const NewBoard = ({ authRegi, setIsOpen }) => {
       .then((res) => {
         setUpdateC(res.data.postList);
       });
+    setChangeC('');
   };
 
   const onUnLikeHandle = (id) => {

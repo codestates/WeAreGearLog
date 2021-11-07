@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import BoardMain from '../Components/board/BoardMain';
 import BoardNav from '../Components/board/BoardNav';
 import NewBoard from './NewBoard';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import BoardMainContainer from '../container/BoardMainContainer';
 import Editor from '../Components/board/Editor';
 import WriteEdit from './WriteEdit';
@@ -10,8 +10,9 @@ import { useSelector } from 'react-redux';
 import FreeDoar from '../Components/board/FreeDoar';
 import BoardSearch from '../Components/board/BoardSearch';
 import axios from 'axios';
-
+import AfterSearch from '../Components/board/AfterSearch';
 const Board = ({ authRegi, isLogin }) => {
+  const [afterSearch, setAfterSearch] = useState(true);
   const [search, setSearch] = useState('');
   const data = useSelector((state) => state.board.read);
   const [myListOpen, setMyListOpen] = useState(true);
@@ -21,22 +22,26 @@ const Board = ({ authRegi, isLogin }) => {
   const [state, setState] = useState({
     value: null,
   }); //글쓰기쪽
-
+  const history = useHistory();
   const onKeyPress = (e) => {
     if (e.key === 'Enter') {
       axios
         .get(`http://52.79.233.29:8080/filteredpost?search=${search}`)
-        .then((res) => setSaveSearch(res.data.filtered))
-        .catch((res) => console.log(res));
+        .then((res) => {
+          setSaveSearch(res.data.filtered);
+          setAfterSearch(false);
+        });
     }
   };
-  console.log('123132', saveSearch);
 
   const onSubmit = () => {
     axios
       .get(`http://52.79.233.29:8080/filteredpost?search=${search}`)
-      .then((res) => setSaveSearch(res.data))
-      .catch((res) => console.log(res));
+
+      .then((res) => {
+        setSaveSearch(res.data.filtered);
+        setAfterSearch(false);
+      });
   };
 
   const onMyList = () => {
@@ -58,8 +63,8 @@ const Board = ({ authRegi, isLogin }) => {
 
   return (
     <>
-      <FreeDoar />
       <BoardNav
+        afterSearch={afterSearch}
         onMyList={onMyList}
         setMyListOpen={setMyListOpen}
         myListOpen={myListOpen}
@@ -67,14 +72,19 @@ const Board = ({ authRegi, isLogin }) => {
         isLogin={isLogin}
       />
       <BoardSearch
+        afterSearch={afterSearch}
+        saveSearch={saveSearch}
         onKeyPress={onKeyPress}
         onSubmit={onSubmit}
         searchChangeHanle={searchChangeHanle}
         search={search}
       />
+
       <>
         <Route exact path="/board">
           <BoardMainContainer
+            afterSearch={afterSearch}
+            saveSearch={saveSearch}
             setMyListOpen={setMyListOpen}
             myListOpen={myListOpen}
             isLogin={isLogin}

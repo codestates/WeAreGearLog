@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './BoardMain.css';
 
-const BoardNav = ({ onMyList, setMyListOpen, authRegi, isLogin }) => {
+const BoardNav = ({ onMyList, afterSearch, authRegi, isLogin }) => {
   const history = useHistory();
   const [goBoard, setGoBoard] = useState(true);
 
@@ -29,13 +29,11 @@ const BoardNav = ({ onMyList, setMyListOpen, authRegi, isLogin }) => {
   return (
     <div className="b-n">
       <div className="b-c">{authRegi.username}</div>
-
       <div onClick={isloginTrue} className="b-c-1">
         글 쓰기
       </div>
-
       <div onClick={loginTrue} className="b-c-1">
-        {goBoard ? (
+        {goBoard && afterSearch ? (
           '나의글보기'
         ) : (
           <div
