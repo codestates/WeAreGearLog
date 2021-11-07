@@ -8,8 +8,10 @@ import Editor from '../Components/board/Editor';
 import WriteEdit from './WriteEdit';
 import { useSelector } from 'react-redux';
 import FreeDoar from '../Components/board/FreeDoar';
+import BoardSearch from '../Components/board/BoardSearch';
 
 const Board = ({ authRegi, isLogin }) => {
+  const [search, setSearch] = useState('');
   const data = useSelector((state) => state.board.read);
   const [myListOpen, setMyListOpen] = useState(true);
   const [titles, setTitles] = useState('');
@@ -31,9 +33,14 @@ const Board = ({ authRegi, isLogin }) => {
   const onTitleChange = (e) => {
     setTitle(e.target.value);
   };
+  const onSearch = (e) => {
+    setSearch(e.target.value);
+  };
 
   return (
     <>
+      {' '}
+      <FreeDoar />
       <BoardNav
         onMyList={onMyList}
         setMyListOpen={setMyListOpen}
@@ -41,8 +48,7 @@ const Board = ({ authRegi, isLogin }) => {
         authRegi={authRegi}
         isLogin={isLogin}
       />
-      <FreeDoar />
-
+      <BoardSearch search={search} />
       <>
         <Route exact path="/board">
           <BoardMainContainer
@@ -61,6 +67,7 @@ const Board = ({ authRegi, isLogin }) => {
             setTitle={setTitles}
           />
         </Route>
+
         <Route path="/board/edit">
           <WriteEdit
             setTitle={setTitle}

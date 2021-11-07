@@ -22,7 +22,6 @@ const BoardMain = ({ authRegi, isLogin, myListOpen }) => {
   const currentPosts = getList.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const myPaginate = (pageNumber) => setMyCurrentPage(pageNumber);
 
   let token = localStorage.getItem('token');
   useEffect(() => {
@@ -90,6 +89,7 @@ const BoardMain = ({ authRegi, isLogin, myListOpen }) => {
   const mylist = getList.filter((el) => {
     return el.username === authRegi.username;
   });
+  console.log(mylist);
 
   const getMyList = mylist.slice(indexOfFirstPost, indexOfLastPost);
   console.log(getMyList);
@@ -121,7 +121,7 @@ const BoardMain = ({ authRegi, isLogin, myListOpen }) => {
       </div>
     );
   });
-
+  console.log(myListOpen);
   return (
     <>
       {isOpen ? (
@@ -157,7 +157,7 @@ const BoardMain = ({ authRegi, isLogin, myListOpen }) => {
               <div className="b-footer">
                 <Pagination
                   postsPerPage={postsPerPage}
-                  totalPosts={myLi.length}
+                  totalPosts={mylist.length}
                   paginate={paginate}
                 />
               </div>

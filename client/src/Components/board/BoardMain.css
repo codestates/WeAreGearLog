@@ -2,6 +2,11 @@
   background-color: #ebeef1;
   display: flex;
 }
+.board-search {
+  margin-right: 50px;
+  display: flex;
+  justify-content: right;
+}
 .b-n {
   border: none;
   color: aliceblue;
