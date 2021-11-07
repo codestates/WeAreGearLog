@@ -2,12 +2,14 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './BoardMain.css';
 
-const BoardNav = ({ authRegi, isLogin }) => {
+const BoardNav = ({ onMyList, setMyListOpen, authRegi, isLogin }) => {
   const history = useHistory();
   const loginTrue = () => {
     if (isLogin === false) {
       alert('로그인을 해주세요');
       history.push('/board');
+    } else {
+      onMyList();
     }
   };
 

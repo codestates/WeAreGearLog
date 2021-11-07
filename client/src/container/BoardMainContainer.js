@@ -8,10 +8,16 @@ const BoardMainContainer = ({
   data,
   setUdeletb,
   authRegi,
+  onMyList,
+  setMyListOpen,
+  myListOpen,
 }) => {
   return (
     <>
       <BoardMain
+        onMyList={onMyList}
+        setMyListOpen={setMyListOpen}
+        myListOpen={myListOpen}
         isLogin={isLogin}
         udeleteB={udeleteB}
         data={data}

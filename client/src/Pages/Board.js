@@ -11,12 +11,17 @@ import FreeDoar from '../Components/board/FreeDoar';
 
 const Board = ({ authRegi, isLogin }) => {
   const data = useSelector((state) => state.board.read);
-
+  const [myListOpen, setMyListOpen] = useState(true);
   const [titles, setTitles] = useState('');
   const [title, setTitle] = useState(data[0].title);
   const [state, setState] = useState({
     value: null,
   }); //글쓰기쪽
+
+  const onMyList = () => {
+    setMyListOpen(!myListOpen);
+  };
+
   const handleChange = (value) => {
     setState({ value });
   };
@@ -29,12 +34,23 @@ const Board = ({ authRegi, isLogin }) => {
 
   return (
     <>
-      <BoardNav authRegi={authRegi} isLogin={isLogin} />
+      <BoardNav
+        onMyList={onMyList}
+        setMyListOpen={setMyListOpen}
+        myListOpen={myListOpen}
+        authRegi={authRegi}
+        isLogin={isLogin}
+      />
       <FreeDoar />
 
       <>
         <Route exact path="/board">
-          <BoardMainContainer isLogin={isLogin} authRegi={authRegi} />
+          <BoardMainContainer
+            setMyListOpen={setMyListOpen}
+            myListOpen={myListOpen}
+            isLogin={isLogin}
+            authRegi={authRegi}
+          />
         </Route>
         <Route path="/board/write">
           <Editor
