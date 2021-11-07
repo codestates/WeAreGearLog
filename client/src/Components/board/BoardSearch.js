@@ -1,11 +1,15 @@
 import React from 'react';
 import './BoardMain.css';
-const BoardSearch = () => {
+const BoardSearch = ({ onKeyPress, search, searchChangeHanle, onSubmit }) => {
   return (
-    <from className="board-search">
-      <input />
-      <button>검색</button>
-    </from>
+    <div className="board-search">
+      <input
+        onKeyPress={onKeyPress}
+        value={search}
+        onChange={searchChangeHanle}
+      />
+      <button onClick={onSubmit}>검색</button>
+    </div>
   );
 };
 
