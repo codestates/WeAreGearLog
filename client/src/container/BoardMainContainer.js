@@ -11,10 +11,14 @@ const BoardMainContainer = ({
   onMyList,
   setMyListOpen,
   myListOpen,
+  saveSearch,
+  afterSearch,
 }) => {
   return (
     <>
       <BoardMain
+        afterSearch={afterSearch}
+        saveSearch={saveSearch}
         onMyList={onMyList}
         setMyListOpen={setMyListOpen}
         myListOpen={myListOpen}

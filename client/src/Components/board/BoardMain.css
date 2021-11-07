@@ -2,10 +2,29 @@
   background-color: #ebeef1;
   display: flex;
 }
+
+.freeboard-title {
+}
+.search-b {
+  min-height: 29px;
+  background-color: lavender;
+  border: none;
+}
+.search-i {
+  min-height: 30px;
+  width: 300px;
+}
+.board-search {
+  display: flex;
+  justify-content: right;
+  background-color: black;
+}
 .b-n {
+  display: flex;
+  min-height: 30px;
   border: none;
   color: aliceblue;
-  background-color: #1a2025;
+  background-color: black;
 }
 .b-list {
   background-color: white;
@@ -105,7 +124,7 @@
 .freedoar {
   display: flex;
   color: #ebeef1;
-  background-color: #f3cfe2;
+  background-color: black;
   width: 100%;
   min-height: 50px;
   font-size: 50px;
