@@ -1,8 +1,5 @@
 /* eslint-disable react/style-prop-object */
 import React, { createContext, useEffect, useState } from 'react';
-
-import { BsImage } from 'react-icons/bs';
-
 import './Editor.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';

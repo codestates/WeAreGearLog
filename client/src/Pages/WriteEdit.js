@@ -8,11 +8,9 @@ import AWS from 'aws-sdk';
 import 'react-quill/dist/quill.snow.css';
 import '../Components/board/styles.css';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import { readpost } from '../modules/board';
-export const WriteEdit = ({ title, setTitle, onTitleChange }) => {
-  const dispatch = useDispatch();
+import { useSelector } from 'react-redux';
 
+export const WriteEdit = ({ title, onTitleChange }) => {
   let token = localStorage.getItem('token');
   const handleChange = (value) => {
     setState({ value });
