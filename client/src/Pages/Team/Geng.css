@@ -1,0 +1,85 @@
+.grandfather {
+}
+
+.gmaincontainer {
+  margin-top: 20px;
+  height: 320px;
+  display: flex;
+  width: 360px;
+}
+
+.gTeam-Header {
+  display: flex;
+  font-size: 30px;
+  font-weight: 900;
+  color: #cdb66b;
+  background-color: #080f19;
+}
+.gboxs {
+  padding: 10px;
+  background-color: black;
+  width: 100%;
+  display: flex;
+}
+.gthecard {
+  position: absolute;
+
+  flex-grow: 1;
+  width: 350px;
+  height: 350px;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+  margin-bottom: 15px;
+}
+
+.gthecard:hover {
+  transform: rotateY(180deg);
+}
+
+.gthefront {
+  display: flex;
+
+  position: absolute;
+  font-size: 70px;
+  font-weight: 900;
+  width: 350px;
+  height: 340px;
+  backface-visibility: hidden;
+  background: #cdb66b;
+  color: black;
+}
+.guser-gear {
+  display: flex;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.guser-name {
+  color: black;
+  font-size: 40px;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.gtheback {
+  position: absolute;
+  text-align: center;
+  font-weight: 900;
+  padding: 20px;
+
+  width: 350px;
+  height: 340px;
+  backface-visibility: hidden;
+  background: white;
+  color: black;
+  transform: rotateY(180deg);
+}
+@media screen and (max-width: 768px) {
+  .gboxs {
+    flex-direction: column;
+  }
+  .gmaincontainer {
+    height: 365px;
+    display: flex;
+    width: 360px;
+  }
+}

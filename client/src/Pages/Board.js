@@ -9,7 +9,7 @@ import WriteEdit from './WriteEdit';
 import { useSelector } from 'react-redux';
 import FreeDoar from '../Components/board/FreeDoar';
 
-const Board = ({ authRegi }) => {
+const Board = ({ authRegi, isLogin }) => {
   const data = useSelector((state) => state.board.read);
 
   const [titles, setTitles] = useState('');
@@ -29,12 +29,12 @@ const Board = ({ authRegi }) => {
 
   return (
     <>
-      <BoardNav authRegi={authRegi} />
+      <BoardNav authRegi={authRegi} isLogin={isLogin} />
       <FreeDoar />
 
       <>
         <Route exact path="/board">
-          <BoardMainContainer authRegi={authRegi} />
+          <BoardMainContainer isLogin={isLogin} authRegi={authRegi} />
         </Route>
         <Route path="/board/write">
           <Editor
