@@ -8,7 +8,7 @@ import { LOGI } from './ReviewData';
 import Footer from './Components/Footer';
 import { useHistory, Route, Switch } from 'react-router-dom';
 import Register from './Auth/Register';
-
+import Dk from './Pages/Team/Dk';
 import Mypage from './Pages/Mypage';
 import PassChange from './Pages/PassChange';
 import Logi from './Pages/Brands/Logi';
@@ -16,7 +16,11 @@ import FindPass from './Pages/FindPass';
 import ReturnHome from './Pages/ReturnHome';
 import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
 import Board from './Pages/Board';
-
+import T1 from './Pages/Team/T1';
+import Drx from './Pages/Team/Drx';
+import Geng from './Pages/Team/Geng';
+import Han from './Pages/Team/Han';
+import Brand from './Components/Brand';
 const App = () => {
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
@@ -195,8 +199,28 @@ const App = () => {
         </Route>
         <Route path="/board">
           <div className="Board">
-            <Board authRegi={authRegi} />
+            <Board isLogin={isLogin} authRegi={authRegi} />
           </div>
+        </Route>
+        <Route path="/team/t1">
+          <T1 />
+          <Brand />
+        </Route>
+        <Route path="/team/drx">
+          <Drx />
+          <Brand />
+        </Route>
+        <Route path="/team/geng">
+          <Geng />
+          <Brand />
+        </Route>
+        <Route path="/team/dwk">
+          <Dk />
+          <Brand />
+        </Route>
+        <Route path="/team/han">
+          <Han />
+          <Brand />
         </Route>
       </Switch>
 

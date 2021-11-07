@@ -10,7 +10,7 @@ import NewBoard from '../../Pages/NewBoard';
 import Pagination from '../Pagination';
 import displayedAt from '../../AuthModule/TimeModule';
 
-const BoardMain = ({ authRegi }) => {
+const BoardMain = ({ authRegi, isLogin }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
   const [isOpen, setIsOpen] = useState(false);
@@ -59,11 +59,11 @@ const BoardMain = ({ authRegi }) => {
 
   const post = currentPosts.map((el, idx) => {
     const timeStamp = displayedAt(new Date(el.createdAt));
-    console.log(el);
+    console.log('1111', el);
     return (
       <div key={el.id} className="b-list">
         <div className="board-list">
-          <img className="b-img" alt=""></img>
+          <img className="b-img" alt="" src={el.profile_img}></img>
           <div className="b-tNd">
             <div onClick={() => ReqRead(el.id)} className="b-p1">
               {el.title} <em className="ems">[{el.comment}]</em>

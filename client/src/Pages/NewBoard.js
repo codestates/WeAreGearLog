@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-restricted-globals */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, isLogin } from 'react';
 import './NewBoard.css';
 
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -59,25 +59,29 @@ const NewBoard = ({
   }, [data]);
 
   const onLikeHandle = (id) => {
-    axios
-      .post(
-        `http://52.79.233.29:8080/post/like`,
-        {
-          postId: id,
-        },
-        {
-          headers: { authorization: `Bearer ${token}` },
-        },
-      )
-      .then((res) => {
-        console.log(res);
-        setLike(true);
-        setLikeCount(res.data.likeCount);
-      })
+    if (isLogin) {
+      axios
+        .post(
+          `http://52.79.233.29:8080/post/like`,
+          {
+            postId: id,
+          },
+          {
+            headers: { authorization: `Bearer ${token}` },
+          },
+        )
+        .then((res) => {
+          console.log(res);
+          setLike(true);
+          setLikeCount(res.data.likeCount);
+        })
 
-      .catch((err) => {
-        console.log(err);
-      });
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert('로그인을 해주세요');
+    }
   };
 
   const postComment = (id) => {
