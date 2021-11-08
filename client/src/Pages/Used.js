@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import UsedStore from './UsedStore';
+import UsedView from './UsedView';
 const Used = ({ authRegi }) => {
   const [afterSearch, setAfterSearch] = useState(true);
   const [search, setSearch] = useState('');
@@ -56,6 +57,7 @@ const Used = ({ authRegi }) => {
           setTitles={setUsedTitle}
         />
       </Route>
+      <UsedView />
       <Route path="/used/store">
         <UsedStore />
       </Route>

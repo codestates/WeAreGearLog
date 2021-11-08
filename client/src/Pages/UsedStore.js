@@ -7,7 +7,7 @@ const UsedStore = () => {
       <div className="used-wrap">
         <div className="used-card">
           <div className="img-box">
-            <img className="used-img"></img>
+            <img className="used-img" alt=""></img>
           </div>
           <div className="used-content">
             <div className="used-title1">품명</div>
@@ -19,7 +19,7 @@ const UsedStore = () => {
         </div>
         <div className="used-card">
           <div className="img-box">
-            <img className="used-img"></img>
+            <img className="used-img" alt=""></img>
           </div>
           <div className="used-content">
             <div className="used-title1">품명</div>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { passwordCheck } from '../AuthModule/Verifi';
 import { useHistory } from 'react-router';
 import AuthTemplate from '../Auth/AuthTemplate';
-const PassChange = ({ authRegi, authorization, setIsLogin }) => {
+const PassChange = ({ authRegi, authorization }) => {
   const history = useHistory();
   const [checkPass, setCheckPass] = useState('');
   const [newPass, setNewPass] = useState('');

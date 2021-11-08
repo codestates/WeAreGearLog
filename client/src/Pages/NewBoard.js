@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-restricted-globals */
-import React, { useEffect, useState, isLogin } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './NewBoard.css';
 
