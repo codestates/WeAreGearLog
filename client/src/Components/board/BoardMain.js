@@ -166,6 +166,7 @@ const BoardMain = ({
       {isOpen ? (
         <>
           <NewBoard
+            isLogin={isLogin}
             getList={getList}
             setGetList={setGetList}
             isOpen={isOpen}
