@@ -8,6 +8,21 @@
   padding: 0;
   /* color: aliceblue; */
 }
+.custom-file-upload {
+  display: inline-block;
+
+  cursor: pointer;
+}
+
+.profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+.pofile-bt {
+  background-color: white;
+  border: none;
+}
 .nevv {
   color: aliceblue;
 }
