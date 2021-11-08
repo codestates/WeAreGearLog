@@ -4,7 +4,6 @@ const { isAuthorized } = require("../tokenFunctions");
 
 module.exports = async (req, res) => {
   const searchValue = req.query.search;
-  // console.log(typeof searchValue);
   const result = await sequelize.query(
     `SELECT posts.*, users.username, users.profile_img
     FROM posts
