@@ -110,9 +110,16 @@ module.exports = {
   },
   profileImg: async (req, res) => {
     const userData = isAuthorized(req);
-    console.log(userData);
+    if (!userData) {
+      res.status(404).send("UNAUTHORIZED");
+    }
+    const uploadedImg = req.body.profileImg;
+    console.log(uploadedImg);
+    if (!uploadedImg) {
+      res.status(400).send("요청에 이미지가 없습니다.");
+    }
     const updateUser = await user.update(
-      { profile_img: req.body.profileImg },
+      { profile_img: uploadedImg },
       { where: { username: userData.username } }
     );
 
