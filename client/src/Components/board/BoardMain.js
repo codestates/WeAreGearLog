@@ -9,9 +9,7 @@ import NewBoard from '../../Pages/NewBoard';
 import Pagination from '../Pagination';
 import displayedAt from '../../AuthModule/TimeModule';
 import AfterSearch from './AfterSearch';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import FreeDoar from './FreeDoar';
-import BoardNav from './BoardNav';
+
 const BoardMain = ({
   afterSearch,
   saveSearch,
@@ -25,7 +23,8 @@ const BoardMain = ({
   const [postsPerPage] = useState(8);
   const [isOpen, setIsOpen] = useState(false);
   const [getList, setGetList] = useState([]);
-  const [searchs, setSearchs] = useState(false);
+  // const [searchs, setSearchs] = useState(false);
+
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
@@ -177,7 +176,6 @@ const BoardMain = ({
       ) : null}
       {afterSearch ? (
         <>
-          {' '}
           {myListOpen ? (
             <div>
               <div id="box">

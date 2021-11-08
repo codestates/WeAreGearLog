@@ -78,6 +78,9 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
             <Link to="/board">
               <li className="nav-pad-1">게시판</li>
             </Link>
+            <Link to="/used">
+              <li className="nav-pad-1">중고거래</li>
+            </Link>
           </div>
 
           <div>
