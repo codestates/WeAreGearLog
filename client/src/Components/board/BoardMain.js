@@ -31,6 +31,8 @@ const BoardMain = ({
 
   const currentPosts = getList.slice(indexOfFirstPost, indexOfLastPost);
 
+  const SearchSave = saveSearch.slice(indexOfFirstPost, indexOfLastPost);
+
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const onMyList = () => {
     setMyListOpen(!myListOpen);
@@ -97,7 +99,7 @@ const BoardMain = ({
       </div>
     );
   });
-  const searchAfter = saveSearch.map((el) => {
+  const searchAfter = SearchSave.map((el) => {
     const timeStamp = displayedAt(new Date(el.createdAt));
     return (
       <div key={el.id} className="b-list">

@@ -32,6 +32,7 @@ const App = () => {
     password: '',
     passwordCornfirm: '',
   });
+  console.log(authRegi.profileImg);
   const handleCardClick = (id) => {
     setSaveId(id);
   };
@@ -48,7 +49,7 @@ const App = () => {
       .then((res) => {
         let totoken = res.config.headers.authorization.split(' ')[1];
         if (token === totoken) {
-          // console.log(res.data.data.userinfo.username);
+          console.log(res.data.data.userinfo);
           setAuthRegi({
             email: res.data.data.userinfo.email,
             username: res.data.data.userinfo.username,
