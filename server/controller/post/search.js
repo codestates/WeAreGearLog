@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     `SELECT posts.*, users.username, users.profile_img
     FROM posts
     JOIN users ON posts.writerId = users.id
-    WHERE posts.title LIKE CONCAT('%', '${searchValue}', '%')
+    WHERE posts.title LIKE CONCAT('%', '${searchValue}',' '%')
     OR posts.content LIKE CONCAT('%', '${searchValue}', '%')
     ORDER BY posts.id DESC`,
     { type: QueryTypes.SELECT }

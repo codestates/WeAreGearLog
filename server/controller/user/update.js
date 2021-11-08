@@ -1,6 +1,7 @@
 const { user } = require("../../models");
 const { generateAccessToken } = require("../tokenFunctions");
 const crypto = require("crypto");
+const { isAuthorized } = require("../tokenFunctions");
 
 module.exports = {
   username: (req, res) => {
@@ -107,7 +108,16 @@ module.exports = {
       }
     });
   },
-  profileImg: (req, res) => {
-    res.send("RESPONDING... OK!");
+  profileImg: async (req, res) => {
+    const userData = isAuthorized(req);
+    console.log(userData);
+    const updateUser = await user.update(
+      { profile_img: req.body.profileImg },
+      { where: { username: userData.username } }
+    );
+
+    res.status(200).json({
+      message: "프로필 이미지 변경 성공",
+    });
   },
 };
