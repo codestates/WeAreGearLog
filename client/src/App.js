@@ -8,7 +8,6 @@ import { LOGI } from './ReviewData';
 import Footer from './Components/Footer';
 import { useHistory, Route, Switch } from 'react-router-dom';
 import Register from './Auth/Register';
-
 import Mypage from './Pages/Mypage';
 import PassChange from './Pages/PassChange';
 import Logi from './Pages/Brands/Logi';
@@ -17,12 +16,19 @@ import ReturnHome from './Pages/ReturnHome';
 import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
 import Board from './Pages/Board';
 import T1 from './Pages/Team/T1';
+import { useSelector, useDispatch } from 'react-redux';
+
+
+
 
 const App = () => {
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
-
   const [isLogin, setIsLogin] = useState(false);
+  const dispatch = useDispatch();
+  const chatState = useSelector((state)=> state.chatReducer);
+
+
 
   const [authRegi, setAuthRegi] = useState({
     email: '',
@@ -31,6 +37,7 @@ const App = () => {
     password: '',
     passwordCornfirm: '',
   });
+
   const handleCardClick = (id) => {
     setSaveId(id);
   };
@@ -134,6 +141,8 @@ const App = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogin]);
+  
+
 
   return (
     <>
