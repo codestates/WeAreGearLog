@@ -52,6 +52,7 @@
 }
 .b-n {
   display: flex;
+  width: 100%;
 }
 .b-c {
   margin: 20px;

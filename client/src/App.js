@@ -21,6 +21,7 @@ import Drx from './Pages/Team/Drx';
 import Geng from './Pages/Team/Geng';
 import Han from './Pages/Team/Han';
 import Brand from './Components/Brand';
+import Used from './Pages/Used';
 const App = () => {
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
@@ -173,6 +174,9 @@ const App = () => {
             handleCardClick={handleCardClick}
             dummy={LOGI}
           />
+        </Route>
+        <Route path="/used">
+          <Used authRegi={authRegi} />
         </Route>
 
         <Route path="/find/reset-password/send-email" component={FindPass} />
