@@ -59,11 +59,6 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
   };
 
   const onClickuserChange = () => {
-    // let social = localStorage.getItem('social');
-    // if (social) {
-    //   return alert('소셜로그인의 경우 username을 변경할 수 없습니다.');
-    // }
-
     let change = window.confirm('변경하시겠습니까?');
 
     if (change) {
@@ -189,7 +184,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
             },
           )
           .then((res) => {
-            // authorization();
+            authorization();
           });
       },
       function (err) {
@@ -234,7 +229,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
             <>
               <br></br>
               <div className="mypage-acc">
-                {authRegi.username} 님 환영합니다
+                {authRegi.username} 님 환영합니다. :)
               </div>
               <p
                 onClick={() => {
