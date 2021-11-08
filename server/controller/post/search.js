@@ -4,12 +4,12 @@ const { isAuthorized } = require("../tokenFunctions");
 
 module.exports = async (req, res) => {
   const searchValue = req.query.search;
-  console.log(searchValue);
+  // console.log(typeof searchValue);
   const result = await sequelize.query(
     `SELECT posts.*, users.username, users.profile_img
     FROM posts
     JOIN users ON posts.writerId = users.id
-    WHERE posts.title LIKE CONCAT('%', '${searchValue}',' '%')
+    WHERE posts.title LIKE CONCAT('%', '${searchValue}', '%')
     OR posts.content LIKE CONCAT('%', '${searchValue}', '%')
     ORDER BY posts.id DESC`,
     { type: QueryTypes.SELECT }
