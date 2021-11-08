@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-restricted-globals */
 import React, { useEffect, useState, isLogin } from 'react';
+
 import './NewBoard.css';
 
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -12,7 +13,7 @@ import axios from 'axios';
 import Commnet from '../Components/Commnet';
 import { useHistory } from 'react-router-dom';
 
-const NewBoard = ({ authRegi, setIsOpen }) => {
+const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
   const history = useHistory();
 
   const [like, setLike] = useState('');
