@@ -10,6 +10,7 @@ module.exports = (req, res) => {
   }
 
   if (accessTokenData !== null) {
+    console.log(accessTokenData.profile_img);
     return res.status(200).json({
       data: {
         userinfo: {
