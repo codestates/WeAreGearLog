@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-restricted-globals */
 import React, { useEffect, useState, isLogin } from 'react';
+
 import './NewBoard.css';
 
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -12,14 +13,7 @@ import axios from 'axios';
 import Commnet from '../Components/Commnet';
 import { useHistory } from 'react-router-dom';
 
-const NewBoard = ({
-  authRegi,
-  udeleteB,
-  setIsOpen,
-  isOpen,
-  getList,
-  setGetList,
-}) => {
+const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
   const history = useHistory();
 
   const [like, setLike] = useState('');
@@ -27,13 +21,10 @@ const NewBoard = ({
   const [insert, setInsert] = useState(false);
   const [chagenT, setChangeT] = useState('');
   const [changeC, setChangeC] = useState('');
-
   const [updateC, setUpdateC] = useState([]);
 
   const data = useSelector((state) => state.board.read);
-
   const dataId = data.map((el) => el.id);
-
   const toEdit = (id) => {
     history.push(`/board/edit/${id}`);
     location.reload();
@@ -99,6 +90,7 @@ const NewBoard = ({
       .then((res) => {
         setUpdateC(res.data.postList);
       });
+    setChangeC('');
   };
 
   const onUnLikeHandle = (id) => {

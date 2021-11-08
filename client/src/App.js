@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import NewBoard from './Pages/NewBoard';
+import AfterSearch from './Components/board/AfterSearch';
 import './App.css';
 import SignIn from './Auth/SignIn';
 import axios from 'axios';
@@ -24,9 +24,7 @@ import Brand from './Components/Brand';
 const App = () => {
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
-
   const [isLogin, setIsLogin] = useState(false);
-
   const [authRegi, setAuthRegi] = useState({
     email: '',
     username: '',
@@ -34,6 +32,7 @@ const App = () => {
     password: '',
     passwordCornfirm: '',
   });
+  console.log(authRegi.profileImg);
   const handleCardClick = (id) => {
     setSaveId(id);
   };
@@ -50,7 +49,7 @@ const App = () => {
       .then((res) => {
         let totoken = res.config.headers.authorization.split(' ')[1];
         if (token === totoken) {
-          // console.log(res.data.data.userinfo.username);
+          console.log(res.data.data.userinfo);
           setAuthRegi({
             email: res.data.data.userinfo.email,
             username: res.data.data.userinfo.username,
@@ -63,22 +62,6 @@ const App = () => {
         console.log(err);
       });
   };
-
-  // const getLocalInfo = () => {
-  //   // authorization();
-  //   const name = localStorage.getItem('username');
-  //   const mail = localStorage.getItem('email');
-  //   const profile = localStorage.getItem('profile');
-  //   localStorage.setItem('social', '');
-  //   if (name) {
-  //     setAuthRegi({
-  //       email: mail,
-  //       username: name,
-  //       profileImg: profile,
-  //     });
-  //     setIsLogin(true);
-  //   }
-  // };
 
   const getKakaoToken = (code) => {
     axios

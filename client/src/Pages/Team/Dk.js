@@ -13,7 +13,6 @@ const Dk = () => {
   return (
     <div className="dkfather">
       <div className="dkTeam-Header">
-        <img src={world} alt="" />
         <img src={dk} alt="" /> LEAGUE OF LEAGEND
       </div>
       <div className="dkboxs">

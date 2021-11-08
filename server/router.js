@@ -27,13 +27,14 @@ router.get("/gear/:id", gearController.item);
 // progamer routing
 
 // post routing
-router.get("/post", postController.post.readAll);
-router.get("/post/mypost", postController.post.readMine);
-router.get("/post/:id", postController.post.read);
-router.get("/post/view/:id", postController.post.addView);
+router.get("/post", postController.read.readAll);
+router.get("/post/mypost", postController.read.readMine);
+router.get("/post/:id", postController.read.readId);
+router.get("/category", postController.read.readCategory);
 router.get("/filteredpost", postController.search);
-router.post("/post", postController.post.writePost);
-router.post("/post/comment", postController.post.writeComment);
+router.get("/post/view/:id", postController.write.addView);
+router.post("/post", postController.write.writePost);
+router.post("/post/comment", postController.write.writeComment);
 router.post("/post/like", postController.like.like);
 router.post("/post/dislike", postController.like.dislike);
 router.patch("/post", postController.update);
