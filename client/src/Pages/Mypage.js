@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { useState, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import AWS from 'aws-sdk';
@@ -185,6 +186,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
           )
           .then((res) => {
             authorization();
+            location.reload();
           });
       },
       function (err) {
