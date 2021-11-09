@@ -26,7 +26,9 @@ const Board = ({ authRegi, isLogin }) => {
   const onKeyPress = (e) => {
     if (e.key === 'Enter') {
       axios
-        .get(`http://52.79.233.29:8080/filteredpost?search=${search}`)
+        .get(
+          `${process.env.REACT_APP_SERVER_URL}/filteredpost?search=${search}`,
+        )
         .then((res) => {
           setSaveSearch(res.data.filtered);
           setAfterSearch(false);
@@ -36,7 +38,7 @@ const Board = ({ authRegi, isLogin }) => {
 
   const onSubmit = () => {
     axios
-      .get(`http://52.79.233.29:8080/filteredpost?search=${search}`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/filteredpost?search=${search}`)
 
       .then((res) => {
         setSaveSearch(res.data.filtered);

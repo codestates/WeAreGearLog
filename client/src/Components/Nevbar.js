@@ -28,7 +28,7 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
   const postLogout = () => {
     return axios
       .get(
-        'http://52.79.233.29:8080/user/logout',
+        `${process.env.REACT_APP_SERVER_URL}/user/logout`,
         {},
         {
           withCredentials: true,

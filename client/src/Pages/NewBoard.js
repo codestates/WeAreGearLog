@@ -45,7 +45,7 @@ const NewBoard = ({
 
   useEffect(() => {
     axios
-      .get(`http://52.79.233.29:8080/post/${dataId[0]}`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/post/${dataId[0]}`, {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -59,21 +59,24 @@ const NewBoard = ({
   }, [data]);
 
   const onLikeHandle = (id) => {
-    axios
-      .post(
-        `http://52.79.233.29:8080/post/like`,
-        {
-          postId: id,
-        },
-        {
-          headers: { authorization: `Bearer ${token}` },
-        },
-      )
-      .then((res) => {
-        console.log(res);
-        setLike(true);
-        setLikeCount(res.data.likeCount);
-      })
+
+    if (isLogin) {
+      axios
+        .post(
+          `${process.env.REACT_APP_SERVER_URL}/post/like`,
+          {
+            postId: id,
+          },
+          {
+            headers: { authorization: `Bearer ${token}` },
+          },
+        )
+        .then((res) => {
+          console.log(res);
+          setLike(true);
+          setLikeCount(res.data.likeCount);
+        })
+
 
       .catch((err) => {
         console.log(err);
@@ -83,7 +86,7 @@ const NewBoard = ({
   const postComment = (id) => {
     axios
       .post(
-        `http://52.79.233.29:8080/post/comment/`,
+        `${process.env.REACT_APP_SERVER_URL}/post/comment/`,
         {
           postId: id,
           content: changeC,
@@ -100,7 +103,7 @@ const NewBoard = ({
   const onUnLikeHandle = (id) => {
     axios
       .post(
-        `http://52.79.233.29:8080/post/dislike`,
+        `${process.env.REACT_APP_SERVER_URL}/post/dislike`,
         {
           postId: id,
         },
@@ -130,7 +133,7 @@ const NewBoard = ({
       setIsOpen(false);
       axios
         .delete(
-          `http://52.79.233.29:8080/post/${id}`,
+          `${process.env.REACT_APP_SERVER_URL}/post/${id}`,
 
           {
             headers: { authorization: `Bearer ${token}` },
@@ -153,7 +156,7 @@ const NewBoard = ({
 
     if (ok) {
       axios
-        .delete(`http://52.79.233.29:8080/post/comment/${id}`, {
+        .delete(`${process.env.REACT_APP_SERVER_URL}/post/comment/${id}`, {
           headers: { authorization: `Bearer ${token}` },
         })
         .then((res) => {
