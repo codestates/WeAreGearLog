@@ -22,7 +22,7 @@ const Used = ({ authRegi }) => {
   const [state, setState] = useState({
     value: null,
   }); //글쓰기쪽
-  const dataId = data.map((el) => el.id);
+  // const dataId = data.map((el) => el.id);
   const [UsedList, setUsedList] = useState([]);
 
   const onSubmit = () => {
@@ -53,16 +53,16 @@ const Used = ({ authRegi }) => {
     setCommentWrite(e.target.value);
   };
 
-  useEffect(() => {
-    console.log('123123', data);
-    axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/post/${dataId[0]}`, {
-        headers: { authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        setSaveUsedWrite(res.data.comment);
-      });
-  }, []);
+  // useEffect(() => {
+  //   console.log('123123', data);
+  //   axios
+  //     .get(`${process.env.REACT_APP_SERVER_URL}/post/${dataId[0]}`, {
+  //       headers: { authorization: `Bearer ${token}` },
+  //     })
+  //     .then((res) => {
+  //       setSaveUsedWrite(res.data.comment);
+  //     });
+  // }, []);
 
   const PostusedComment = (id) => {
     axios
@@ -94,7 +94,7 @@ const Used = ({ authRegi }) => {
           PostusedComment={PostusedComment}
           commentWrite={commentWrite}
           onCommentChange={onCommentChange}
-          readData={data}
+          // readData={data}
           setUsedViewOpen={setUsedViewOpen}
           setUsedList={setUsedList}
           UsedList={UsedList}

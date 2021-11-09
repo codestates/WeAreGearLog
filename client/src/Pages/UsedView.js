@@ -1,17 +1,36 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import React from 'react';
+import React, { useEffect } from 'react';
 import UsedCommnetWrite from '../Components/board/Used/UsedCommnetWrite';
 import UsedDU from '../Components/board/Used/UsedDU';
 import UsedLike from '../Components/board/Used/UsedLike';
 import './UsedView.css';
 import displayedAt from '../AuthModule/TimeModule';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+
 const UsedView = ({
+  setSaveUsedWrite,
   saveUsedWrite,
   PostusedComment,
-  readData,
+  // readData,
   commentWrite,
   onCommentChange,
 }) => {
+  let token = localStorage.getItem('token');
+  const readData = useSelector((state) => [state.board.used]);
+  const dataId = readData.map((el) => el.id);
+
+  // useEffect(() => {
+  //   console.log('123123', data);
+  //   axios
+  //     .get(`${process.env.REACT_APP_SERVER_URL}/post/${dataId[0]}`, {
+  //       headers: { authorization: `Bearer ${token}` },
+  //     })
+  //     .then((res) => {
+  //       setSaveUsedWrite(res.data.comment);
+  //     });
+  // }, []);
+
   const viewData = readData.map((el) => {
     const timeStamp = displayedAt(new Date(el.createdAt));
     return (
