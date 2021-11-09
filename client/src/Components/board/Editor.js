@@ -16,7 +16,7 @@ const Editor = ({ state, handleChange, setState, title, setTitle }) => {
 
     axios
       .post(
-        'http://52.79.233.29:8080/post',
+        `${process.env.REACT_APP_SERVER_URL}/post`,
         {
           title: title,
           content: state.value,

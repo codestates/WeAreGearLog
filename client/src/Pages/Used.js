@@ -21,7 +21,7 @@ const Used = ({ authRegi }) => {
   const onSubmit = () => {
     //서버에 제출
     axios
-      .get(`http://52.79.233.29:8080/filteredpost?search=${search}`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/filteredpost?search=${search}`)
 
       .then((res) => {});
   };

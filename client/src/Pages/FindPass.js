@@ -17,7 +17,7 @@ const FindPass = () => {
     setTrues(!trues);
 
     axios
-      .post('http://52.79.233.29:8080/user/code', {
+      .post(`${process.env.REACT_APP_SERVER_URL}/user/code`, {
         email: change,
       })
       .then((res) => {
@@ -38,7 +38,7 @@ const FindPass = () => {
   const subMitCode = () => {
     setTrues(!trues);
     axios
-      .patch('http://52.79.233.29:8080/user/temp', {
+      .patch(`${process.env.REACT_APP_SERVER_URL}/user/temp`, {
         code: change,
       })
       .then((res) => {

@@ -38,7 +38,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
 
     if (confirm) {
       axios
-        .delete('http://52.79.233.29:8080/user/', {
+        .delete(`${process.env.REACT_APP_SERVER_URL}/user/`, {
           data: {
             username: authRegi.username,
           },
@@ -64,7 +64,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
     if (change) {
       axios
         .patch(
-          'http://52.79.233.29:8080/user/username',
+          `${process.env.REACT_APP_SERVER_URL}/user/username`,
           {
             username: authRegi.username,
             newname: changeName,
@@ -95,7 +95,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
   const postLogout = () => {
     return axios
       .get(
-        'http://52.79.233.29:8080/user/logout',
+        `${process.env.REACT_APP_SERVER_URL}/user/logout`,
         {},
         {
           withCredentials: true,
@@ -175,7 +175,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
       function (data) {
         axios
           .patch(
-            'http://52.79.233.29:8080/user/profileimg',
+            `${process.env.REACT_APP_SERVER_URL}/user/profileimg`,
             {
               profileImg: data.Location,
             },
