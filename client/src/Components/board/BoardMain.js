@@ -39,7 +39,7 @@ const BoardMain = ({
   let token = localStorage.getItem('token');
   useEffect(() => {
     axios
-      .get(`http://52.79.233.29:8080/post/`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/post/`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -54,12 +54,12 @@ const BoardMain = ({
 
     setIsOpen(true);
     axios
-      .get(`http://52.79.233.29:8080/post/view/${id}`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/post/view/${id}`, {
         withCredentials: true,
       })
       .then(() => {
         axios
-          .get(`http://52.79.233.29:8080/post/${id}`, {
+          .get(`${process.env.REACT_APP_SERVER_URL}/post/${id}`, {
             withCredentials: true,
             headers: { authorization: `Bearer ${token}` },
           })
