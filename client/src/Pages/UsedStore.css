@@ -3,14 +3,14 @@
   background-color: #ebeef1;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 
 .used-wrap {
   background-color: white;
   justify-content: center;
   width: 50vh;
-  height: 100vh;
+  height: 100%;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
 }
 

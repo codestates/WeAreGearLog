@@ -1,4 +1,8 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React from 'react';
+import UsedCommnetWrite from '../Components/board/Used/UsedCommnetWrite';
+import UsedDU from '../Components/board/Used/UsedDU';
+import UsedLike from '../Components/board/Used/UsedLike';
 import './UsedView.css';
 const UsedView = () => {
   return (
@@ -15,13 +19,15 @@ const UsedView = () => {
 
             <span className="used-info-list">관심 </span>
           </div>
-
           <div
             className="used-main-view"
             dangerouslySetInnerHTML={{
               __html: 'asdf',
             }}
           ></div>
+          <UsedLike />
+          <UsedDU />
+          <UsedCommnetWrite />
         </div>
       </div>
     </div>

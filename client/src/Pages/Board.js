@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
-import BoardMain from '../Components/board/BoardMain';
 import BoardNav from '../Components/board/BoardNav';
-import NewBoard from './NewBoard';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import BoardMainContainer from '../container/BoardMainContainer';
 import Editor from '../Components/board/Editor';
-
+import WriteEdit from './WriteEdit';
 import { useSelector } from 'react-redux';
-import FreeDoar from '../Components/board/FreeDoar';
 import BoardSearch from '../Components/board/BoardSearch';
 import axios from 'axios';
-import AfterSearch from '../Components/board/AfterSearch';
+
 const Board = ({ authRegi, isLogin }) => {
   const [afterSearch, setAfterSearch] = useState(true);
   const [search, setSearch] = useState('');
@@ -36,7 +33,7 @@ const Board = ({ authRegi, isLogin }) => {
     }
   };
 
-  const onSubmit = () => {
+  const onSubmitSearch = () => {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/filteredpost?search=${search}`)
 
@@ -77,7 +74,7 @@ const Board = ({ authRegi, isLogin }) => {
         afterSearch={afterSearch}
         saveSearch={saveSearch}
         onKeyPress={onKeyPress}
-        onSubmit={onSubmit}
+        onSubmit={onSubmitSearch}
         searchChangeHanle={searchChangeHanle}
         search={search}
       />
@@ -100,6 +97,14 @@ const Board = ({ authRegi, isLogin }) => {
             setState={setState}
             title={titles}
             setTitle={setTitles}
+          />
+        </Route>
+        <Route path="/board/edit">
+          <WriteEdit
+            setTitle={setTitle}
+            onTitleChange={onTitleChange}
+            handleChange={handleChange}
+            title={title}
           />
         </Route>
       </>

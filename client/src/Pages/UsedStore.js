@@ -1,28 +1,85 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './UsedStore.css';
+import UsedView from './UsedView';
+import axios from 'axios';
+import displayesAt from '../AuthModule/TimeModule';
+import { useSelector, useDispatch } from 'react-redux';
+import { readUsedpost } from '../modules/board';
+const UsedStore = ({
+  UsedViewOpen,
+  UsedList,
+  setUsedList,
+  setUsedViewOpen,
+}) => {
+  let token = localStorage.getItem('token');
+  const dispatch = useDispatch();
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/category?board=used`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        let useList = res.data.categoryPost;
+        setUsedList(useList);
+      });
+  }, []);
 
-const UsedStore = () => {
-  return (
-    <div id="used-box">
-      <div className="used-wrap">
-        <div className="used-card">
-          <div className="img-box">
-            <img className="used-img" alt=""></img>
+  const ReqRead = (id) => {
+    window.scrollBy(0, -9999);
+
+    setUsedViewOpen(true);
+
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/post/view/${id}`, {
+        withCredentials: true,
+      })
+      .then(() => {
+        axios
+          .get(`${process.env.REACT_APP_SERVER_URL}/post/${id}`, {
+            withCredentials: true,
+            headers: { authorization: `Bearer ${token}` },
+          })
+          .then((res) => {
+            console.log(res);
+            dispatch(readUsedpost(res.data.post[0]));
+          })
+          .catch((err) => console.log(err));
+      });
+  };
+
+  const list = UsedList.map((el) => {
+    const timeStamp = displayesAt(new Date(el.createdAt));
+    return (
+      <div className="used-card">
+        <div className="img-box">
+          <img className="used-img" alt=""></img>
+        </div>
+        <div className="used-content">
+          <div onClick={() => ReqRead(el.id)} className="used-title1">
+            {el.title}
+            <em className="ems">[{el.comment}]</em>
           </div>
-          <div className="used-content">
-            <div className="used-title1">품명</div>
-            <div className="used-title2">
-              <div className="used-user">QooQua</div>
-              <div className="used-user">6일전</div>
-            </div>
-            <div className="used-title2">
-              <div className="used-user">조회</div>
-              <div className="used-user">관심</div>
-            </div>
+          <div className="used-title2">
+            <div className="used-user">{el.username}</div>
+            <div className="used-user">{timeStamp}</div>
+          </div>
+          <div className="used-title2">
+            <div className="used-user">조회:{el.view}</div>
+            <div className="used-user">관심{el.like}</div>
           </div>
         </div>
       </div>
-    </div>
+    );
+  });
+
+  return (
+    <>
+      {UsedViewOpen ? <UsedView /> : null}
+
+      <div id="used-box">
+        <div className="used-wrap">{list}</div>
+      </div>
+    </>
   );
 };
 

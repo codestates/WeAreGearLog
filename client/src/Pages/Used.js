@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
 import BoardNav from '../Components/board/Used/BoardNav';
 import Editor from '../Components/board/Used/Editor';
-import { Route } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import UsedStore from './UsedStore';
-import UsedView from './UsedView';
+import Usedsujung from './Usedsujung';
 const Used = ({ authRegi }) => {
   const [afterSearch, setAfterSearch] = useState(true);
   const [search, setSearch] = useState('');
-  const data = useSelector((state) => state.board.read);
+  const data = useSelector((state) => state);
+  console.log('data', data);
+
+  const [UsedViewOpen, setUsedViewOpen] = useState(false);
   const [myListOpen, setMyListOpen] = useState(true);
   const [saveSearch, setSaveSearch] = useState([]);
   const [usedTitle, setUsedTitle] = useState('');
-  const [title, setTitle] = useState(data[0].title);
+  const [title, setTitle] = useState(data);
   const [state, setState] = useState({
     value: null,
   }); //글쓰기쪽
-  console.log(usedTitle, state);
+
+  const [UsedList, setUsedList] = useState([]);
+
+  console.log('중고리스트', UsedList);
 
   const onSubmit = () => {
     //서버에 제출
@@ -46,10 +52,19 @@ const Used = ({ authRegi }) => {
   return (
     <div>
       <BoardNav authRegi={authRegi} />
+
+      <Route path="/used/store">
+        <UsedStore
+          setUsedViewOpen={setUsedViewOpen}
+          setUsedList={setUsedList}
+          UsedList={UsedList}
+          UsedViewOpen={UsedViewOpen}
+        />
+      </Route>
+
       <Route path="/used/write">
         <Editor
           onTitleChange={onTitleChange}
-          onSubmit={onSubmit}
           handleChange={handleChange}
           state={state}
           setState={setState}
@@ -57,9 +72,13 @@ const Used = ({ authRegi }) => {
           setTitles={setUsedTitle}
         />
       </Route>
-      <UsedView />
-      <Route path="/used/store">
-        <UsedStore />
+      <Route path="/used/edit">
+        <Usedsujung
+          setTitle={setTitle}
+          onTitleChange={onTitleChange}
+          handleChange={handleChange}
+          title={title}
+        />
       </Route>
     </div>
   );

@@ -249,7 +249,7 @@ const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
                   <textarea
                     onChange={onCommnetChange}
                     value={changeC}
-                    className="textarea1"
+                    className="textarea1" 
                     autucomplate="off"
                     autoCorrect="off"
                     spellCheck="false"
