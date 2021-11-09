@@ -6,6 +6,7 @@ import displayesAt from '../AuthModule/TimeModule';
 import { useSelector, useDispatch } from 'react-redux';
 import { readUsedpost } from '../modules/board';
 const UsedStore = ({
+  authRegi,
   setSaveUsedWrite,
   saveUsedWrite,
   PostusedComment,
@@ -13,12 +14,14 @@ const UsedStore = ({
   UsedList,
   setUsedList,
   setUsedViewOpen,
-  readData,
+  // readData,
   commentWrite,
   onCommentChange,
+  isLogin,
 }) => {
+  // const readData = useSelector((state) => [state.board.used]);
   let token = localStorage.getItem('token');
-
+  const dispatch = useDispatch();
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/category?board=used`, {
@@ -29,7 +32,6 @@ const UsedStore = ({
         setUsedList(useList);
       });
   }, []);
-  const dispatch = useDispatch();
 
   const ReqRead = (id) => {
     window.scrollBy(0, -9999);
@@ -48,6 +50,7 @@ const UsedStore = ({
           })
           .then((res) => {
             dispatch(readUsedpost(res.data.post[0]));
+            setSaveUsedWrite(res.data.comment);
           })
           .catch((err) => console.log(err));
       });
@@ -82,11 +85,14 @@ const UsedStore = ({
     <>
       {UsedViewOpen ? (
         <UsedView
+          authRegi={authRegi}
+          isLogin={isLogin}
           setSaveUsedWrite={setSaveUsedWrite}
           saveUsedWrite={saveUsedWrite}
           PostusedComment={PostusedComment}
           commentWrite={commentWrite}
           onCommentChange={onCommentChange}
+          // readData={readData}
         />
       ) : null}
 
