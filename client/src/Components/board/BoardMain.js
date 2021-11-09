@@ -17,12 +17,14 @@ const BoardMain = ({
   isLogin,
   myListOpen,
   setMyListOpen,
+  getList,
+  setGetList,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [myCurrnetPage, setMyCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
   const [isOpen, setIsOpen] = useState(false);
-  const [getList, setGetList] = useState([]);
+  // const [getList, setGetList] = useState([]);
   // const [searchs, setSearchs] = useState(false);
 
   const indexOfLastPost = currentPage * postsPerPage;
@@ -64,6 +66,7 @@ const BoardMain = ({
             headers: { authorization: `Bearer ${token}` },
           })
           .then((res) => {
+            console.log('post', res);
             dispatch(readpost(res.data.post));
           })
           .catch((err) => console.log(err));

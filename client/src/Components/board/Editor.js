@@ -18,6 +18,7 @@ const Editor = ({ state, handleChange, setState, title, setTitle }) => {
       .post(
         `${process.env.REACT_APP_SERVER_URL}/post`,
         {
+          category: 'free',
           title: title,
           content: state.value,
         },

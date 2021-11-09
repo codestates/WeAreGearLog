@@ -55,7 +55,6 @@ const App = () => {
       .then((res) => {
         let totoken = res.config.headers.authorization.split(' ')[1];
         if (token === totoken) {
-          console.log(res.data.data.userinfo);
           setAuthRegi({
             email: res.data.data.userinfo.email,
             username: res.data.data.userinfo.username,
