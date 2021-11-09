@@ -21,6 +21,12 @@ import Drx from './Pages/Team/Drx';
 import Geng from './Pages/Team/Geng';
 import Han from './Pages/Team/Han';
 import Brand from './Components/Brand';
+import Used from './Pages/Used';
+import ChatHome from '../src/Pages/chat/ChatHome'
+import ChatRoom from './Pages/chat/ChatRoom'
+
+
+
 const App = () => {
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
@@ -174,6 +180,9 @@ const App = () => {
             dummy={LOGI}
           />
         </Route>
+        <Route path="/used">
+          <Used authRegi={authRegi} />
+        </Route>
 
         <Route path="/find/reset-password/send-email" component={FindPass} />
         <Route path="/find/reset-password/rtlogin" component={ReturnHome} />
@@ -204,6 +213,12 @@ const App = () => {
         <Route path="/team/han">
           <Han />
           <Brand />
+        </Route>
+        <Route exact path="/chat/chathome">
+          <ChatHome />
+        </Route>
+        <Route exact path="/chatroom/:roomId">
+          <ChatRoom />
         </Route>
       </Switch>
 

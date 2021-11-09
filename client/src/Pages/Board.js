@@ -5,7 +5,7 @@ import NewBoard from './NewBoard';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import BoardMainContainer from '../container/BoardMainContainer';
 import Editor from '../Components/board/Editor';
-import WriteEdit from './WriteEdit';
+
 import { useSelector } from 'react-redux';
 import FreeDoar from '../Components/board/FreeDoar';
 import BoardSearch from '../Components/board/BoardSearch';
@@ -98,15 +98,6 @@ const Board = ({ authRegi, isLogin }) => {
             setState={setState}
             title={titles}
             setTitle={setTitles}
-          />
-        </Route>
-
-        <Route path="/board/edit">
-          <WriteEdit
-            setTitle={setTitle}
-            onTitleChange={onTitleChange}
-            handleChange={handleChange}
-            title={title}
           />
         </Route>
       </>

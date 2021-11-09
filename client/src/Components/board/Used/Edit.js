@@ -1,53 +1,12 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
-/* eslint-disable no-restricted-globals */
-import React, { useState, useMemo, useRef, useContext, useEffect } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import ReactQuill from 'react-quill';
-import { Link, useHistory } from 'react-router-dom';
+import { Quill } from 'react-quill';
+import ImageResize from '@looop/quill-image-resize-module-react';
 import AWS from 'aws-sdk';
 import 'react-quill/dist/quill.snow.css';
-import '../Components/board/styles.css';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import '../styles.css';
 
-export const WriteEdit = ({ title, onTitleChange }) => {
-  let token = localStorage.getItem('token');
-  const handleChange = (value) => {
-    setState({ value });
-  };
-  const history = useHistory();
-
-  const onEditChange = (id) => {
-    axios
-      .patch(
-        `http://52.79.233.29:8080/post/`,
-        {
-          postId: id,
-          title: title,
-          content: state.value,
-        },
-        {
-          headers: { authorization: `Bearer ${token}` },
-        },
-      )
-      .then((res) => {
-        if (res.status === 201) {
-          history.push('/board');
-          location.reload();
-          console.log('디스패치', res);
-        }
-      });
-  };
-  const data = useSelector((state) => state.board.read);
-  const [state, setState] = useState({
-    value: `<div contenteditable='false'>${data[0].content}</div>`,
-  }); //글수정쪽
-
-  console.log(state);
-  const [asstate, setAsState] = useState({
-    title: data[0].title,
-  });
-
+export const Edit = ({ state, handleChange }) => {
   AWS.config.update({
     region: 'ap-northeast-2',
     credentials: new AWS.CognitoIdentityCredentials({
@@ -56,8 +15,6 @@ export const WriteEdit = ({ title, onTitleChange }) => {
   });
 
   const imageHandler = () => {
-    console.log('에디터에서 이미지 버튼을 클릭하면 이 핸들러가 시작됩니다!');
-
     const input = document.createElement('input');
 
     input.setAttribute('type', 'file');
@@ -94,6 +51,7 @@ export const WriteEdit = ({ title, onTitleChange }) => {
     });
   };
 
+  Quill.register('modules/ImageResize', ImageResize);
   const quillRef = useRef();
   const modules = useMemo(() => {
     return {
@@ -107,6 +65,7 @@ export const WriteEdit = ({ title, onTitleChange }) => {
           image: imageHandler,
         },
       },
+      ImageResize: { modules: ['Resize'] },
     };
   }, []);
 
@@ -122,15 +81,6 @@ export const WriteEdit = ({ title, onTitleChange }) => {
 
   return (
     <div className="text-editor">
-      <h1>게시물 수정</h1>
-
-      <input
-        defaultValue={asstate.title}
-        value={title}
-        onChange={onTitleChange}
-        className="inputz"
-        placeholder="제목을 입력하세요"
-      />
       <ReactQuill
         ref={quillRef}
         theme="snow"
@@ -140,16 +90,8 @@ export const WriteEdit = ({ title, onTitleChange }) => {
         modules={modules}
         formats={formats}
       />
-      <Link to="/board">
-        <button onClick={() => onEditChange(data[0].id)} className="u-b-1">
-          올리기
-        </button>
-      </Link>
-      <Link to="/board">
-        <button className="u-b-1">취소</button>
-      </Link>
     </div>
   );
 };
 
-export default WriteEdit;
+export default Edit;
