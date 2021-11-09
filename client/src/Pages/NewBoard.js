@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-restricted-globals */
 import React, { useEffect, useState } from 'react';
+
 import './NewBoard.css';
 
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -12,14 +13,7 @@ import axios from 'axios';
 import Commnet from '../Components/Commnet';
 import { useHistory } from 'react-router-dom';
 
-const NewBoard = ({
-  authRegi,
-  udeleteB,
-  setIsOpen,
-  isOpen,
-  getList,
-  setGetList,
-}) => {
+const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
   const history = useHistory();
 
   const [like, setLike] = useState('');
@@ -27,13 +21,10 @@ const NewBoard = ({
   const [insert, setInsert] = useState(false);
   const [chagenT, setChangeT] = useState('');
   const [changeC, setChangeC] = useState('');
-
   const [updateC, setUpdateC] = useState([]);
 
   const data = useSelector((state) => state.board.read);
-
   const dataId = data.map((el) => el.id);
-
   const toEdit = (id) => {
     history.push(`/board/edit/${id}`);
     location.reload();
@@ -59,7 +50,6 @@ const NewBoard = ({
   }, [data]);
 
   const onLikeHandle = (id) => {
-
     if (isLogin) {
       axios
         .post(
@@ -77,10 +67,12 @@ const NewBoard = ({
           setLikeCount(res.data.likeCount);
         })
 
-
-      .catch((err) => {
-        console.log(err);
-      });
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert('로그인을 해주세요');
+    }
   };
 
   const postComment = (id) => {
@@ -98,6 +90,7 @@ const NewBoard = ({
       .then((res) => {
         setUpdateC(res.data.postList);
       });
+    setChangeC('');
   };
 
   const onUnLikeHandle = (id) => {
@@ -256,7 +249,7 @@ const NewBoard = ({
                   <textarea
                     onChange={onCommnetChange}
                     value={changeC}
-                    className="textarea1"
+                    className="textarea1" 
                     autucomplate="off"
                     autoCorrect="off"
                     spellCheck="false"
