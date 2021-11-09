@@ -1,8 +1,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-restricted-globals */
-import React, { useEffect, useState, isLogin } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import './NewBoard.css';
 
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -13,7 +12,14 @@ import axios from 'axios';
 import Commnet from '../Components/Commnet';
 import { useHistory } from 'react-router-dom';
 
-const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
+const NewBoard = ({
+  authRegi,
+  udeleteB,
+  setIsOpen,
+  isOpen,
+  getList,
+  setGetList,
+}) => {
   const history = useHistory();
 
   const [like, setLike] = useState('');
@@ -21,10 +27,13 @@ const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
   const [insert, setInsert] = useState(false);
   const [chagenT, setChangeT] = useState('');
   const [changeC, setChangeC] = useState('');
+
   const [updateC, setUpdateC] = useState([]);
 
   const data = useSelector((state) => state.board.read);
+
   const dataId = data.map((el) => el.id);
+
   const toEdit = (id) => {
     history.push(`/board/edit/${id}`);
     location.reload();
@@ -50,6 +59,7 @@ const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
   }, [data]);
 
   const onLikeHandle = (id) => {
+
     if (isLogin) {
       axios
         .post(
@@ -67,12 +77,10 @@ const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
           setLikeCount(res.data.likeCount);
         })
 
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      alert('로그인을 해주세요');
-    }
+
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const postComment = (id) => {
@@ -90,7 +98,6 @@ const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
       .then((res) => {
         setUpdateC(res.data.postList);
       });
-    setChangeC('');
   };
 
   const onUnLikeHandle = (id) => {
