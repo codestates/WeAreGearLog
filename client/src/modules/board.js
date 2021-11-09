@@ -1,7 +1,9 @@
 /* eslint-disable array-callback-return */
 
+import localStorage from 'redux-persist/es/storage';
+
 export const WRITE = 'board/WRITE';
-export const READPOST = "'/board/READPOST";
+export const READPOST = '/board/READPOST';
 export const LIKE = 'board/LIKE';
 export const READNUM = 'board/READNUM';
 export const COMMENT = 'board/COMMENT';
@@ -20,7 +22,7 @@ export const readpost = (data) => ({
   },
 });
 export const readUsedpost = (data) => ({
-  type: READPOST,
+  type: READUSED,
   payload: {
     data: data,
   },
@@ -76,7 +78,6 @@ const initialState = {
 };
 
 function board(state = initialState, action) {
-  console.log(action.payload);
   switch (action.type) {
     case READPOST: {
       return { ...state, read: action.payload.data };

@@ -6,10 +6,15 @@ import displayesAt from '../AuthModule/TimeModule';
 import { useSelector, useDispatch } from 'react-redux';
 import { readUsedpost } from '../modules/board';
 const UsedStore = ({
+  saveUsedWrite,
+  PostusedComment,
   UsedViewOpen,
   UsedList,
   setUsedList,
   setUsedViewOpen,
+  readData,
+  commentWrite,
+  onCommentChange,
 }) => {
   let token = localStorage.getItem('token');
   const dispatch = useDispatch();
@@ -40,7 +45,6 @@ const UsedStore = ({
             headers: { authorization: `Bearer ${token}` },
           })
           .then((res) => {
-            console.log(res);
             dispatch(readUsedpost(res.data.post[0]));
           })
           .catch((err) => console.log(err));
@@ -74,7 +78,15 @@ const UsedStore = ({
 
   return (
     <>
-      {UsedViewOpen ? <UsedView /> : null}
+      {UsedViewOpen ? (
+        <UsedView
+          saveUsedWrite={saveUsedWrite}
+          PostusedComment={PostusedComment}
+          commentWrite={commentWrite}
+          onCommentChange={onCommentChange}
+          readData={readData}
+        />
+      ) : null}
 
       <div id="used-box">
         <div className="used-wrap">{list}</div>

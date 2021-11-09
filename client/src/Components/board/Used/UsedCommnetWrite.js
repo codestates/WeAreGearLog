@@ -1,7 +1,13 @@
 import React from 'react';
 import UsedCommnet from './UsedComment';
 
-const UsedCommnetWrite = () => {
+const UsedCommnetWrite = ({
+  saveUsedWrite,
+  PostusedComment,
+  commentWrite,
+  onCommentChange,
+  el,
+}) => {
   return (
     <div className="c-top">
       <h3 className="c-top-in">
@@ -10,19 +16,22 @@ const UsedCommnetWrite = () => {
       <div className="c-write">
         <div className="c-inner">
           <textarea
+            value={commentWrite}
+            onChange={onCommentChange}
             className="textarea1"
             autucomplate="off"
             autoCorrect="off"
             spellCheck="false"
           ></textarea>
           <div className="c-bottom">
-            <button onClick={() => {}} className="c-u-b">
+            <button onClick={() => PostusedComment(el.id)} className="c-u-b">
               작성
             </button>
           </div>
           <div className="c-padding"></div>
-
-          <UsedCommnet />
+          {saveUsedWrite.map((el) => {
+            return <UsedCommnet el={el} />;
+          })}
         </div>
       </div>
     </div>
