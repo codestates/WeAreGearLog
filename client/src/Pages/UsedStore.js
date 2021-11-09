@@ -6,16 +6,18 @@ import displayesAt from '../AuthModule/TimeModule';
 import { useSelector, useDispatch } from 'react-redux';
 import { readUsedpost } from '../modules/board';
 const UsedStore = ({
+  setSaveUsedWrite,
   saveUsedWrite,
   PostusedComment,
   UsedViewOpen,
   UsedList,
   setUsedList,
   setUsedViewOpen,
-  readData,
+  // readData,
   commentWrite,
   onCommentChange,
 }) => {
+  // const readData = useSelector((state) => [state.board.used]);
   let token = localStorage.getItem('token');
   const dispatch = useDispatch();
   useEffect(() => {
@@ -27,7 +29,7 @@ const UsedStore = ({
         let useList = res.data.categoryPost;
         setUsedList(useList);
       });
-  }, []);
+  }, [setSaveUsedWrite]);
 
   const ReqRead = (id) => {
     window.scrollBy(0, -9999);
@@ -46,6 +48,7 @@ const UsedStore = ({
           })
           .then((res) => {
             dispatch(readUsedpost(res.data.post[0]));
+            setSaveUsedWrite(res.data.comment);
           })
           .catch((err) => console.log(err));
       });
@@ -80,11 +83,12 @@ const UsedStore = ({
     <>
       {UsedViewOpen ? (
         <UsedView
+          setSaveUsedWrite={setSaveUsedWrite}
           saveUsedWrite={saveUsedWrite}
           PostusedComment={PostusedComment}
           commentWrite={commentWrite}
           onCommentChange={onCommentChange}
-          readData={readData}
+          // readData={readData}
         />
       ) : null}
 
