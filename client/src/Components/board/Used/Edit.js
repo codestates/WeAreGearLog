@@ -10,7 +10,7 @@ export const Edit = ({ state, handleChange }) => {
   AWS.config.update({
     region: 'ap-northeast-2',
     credentials: new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: process.env.REACT_APP_IdentityPoolId,
+      IdentityPoolId: process.env.REACT_APP_IDENTITYPOOLID,
     }),
   });
 

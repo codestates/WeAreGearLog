@@ -1,6 +1,7 @@
 const { user } = require("../../models");
 const { generateAccessToken } = require("../tokenFunctions");
 const crypto = require("crypto");
+const { isAuthorized } = require("../tokenFunctions");
 
 module.exports = {
   username: (req, res) => {
@@ -107,7 +108,23 @@ module.exports = {
       }
     });
   },
-  profileImg: (req, res) => {
-    res.send("RESPONDING... OK!");
+  profileImg: async (req, res) => {
+    const userData = isAuthorized(req);
+    if (!userData) {
+      res.status(404).send("UNAUTHORIZED");
+    }
+    const uploadedImg = req.body.profileImg;
+    console.log(uploadedImg);
+    if (!uploadedImg) {
+      res.status(400).send("요청에 이미지가 없습니다.");
+    }
+    const updateUser = await user.update(
+      { profile_img: uploadedImg },
+      { where: { username: userData.username } }
+    );
+
+    res.status(200).json({
+      message: "프로필 이미지 변경 성공",
+    });
   },
 };
