@@ -29,7 +29,7 @@ const PassChange = ({ authRegi, authorization, setIsLogin }) => {
 
     axios
       .patch(
-        'http://52.79.233.29:8080/user/password',
+        `${process.env.REACT_APP_SERVER_URL}/user/password`,
         {
           username: authRegi.username,
           password: checkPass,

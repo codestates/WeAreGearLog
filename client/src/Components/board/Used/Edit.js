@@ -4,7 +4,7 @@ import { Quill } from 'react-quill';
 import ImageResize from '@looop/quill-image-resize-module-react';
 import AWS from 'aws-sdk';
 import 'react-quill/dist/quill.snow.css';
-import './styles.css';
+import '../styles.css';
 
 export const Edit = ({ state, handleChange }) => {
   AWS.config.update({

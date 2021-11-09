@@ -21,6 +21,7 @@ import Drx from './Pages/Team/Drx';
 import Geng from './Pages/Team/Geng';
 import Han from './Pages/Team/Han';
 import Brand from './Components/Brand';
+import Used from './Pages/Used';
 const App = () => {
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
@@ -43,7 +44,7 @@ const App = () => {
       return;
     }
     axios
-      .get('http://52.79.233.29:8080/user', {
+      .get(`${process.env.REACT_APP_SERVER_URL}/user`, {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -65,7 +66,7 @@ const App = () => {
 
   const getKakaoToken = (code) => {
     axios
-      .post('http://52.79.233.29:8080/callback/kakao', {
+      .post(`${process.env.REACT_APP_SERVER_URL}/callback/kakao`, {
         authorizationCode: code,
       })
       .then((res) => {
@@ -83,7 +84,7 @@ const App = () => {
 
   const getGoogleData = (token) => {
     axios
-      .post('http://52.79.233.29:8080/callback/google', {
+      .post(`${process.env.REACT_APP_SERVER_URL}/callback/google`, {
         accessToken: token,
       })
       .then((res) => {
@@ -173,6 +174,9 @@ const App = () => {
             handleCardClick={handleCardClick}
             dummy={LOGI}
           />
+        </Route>
+        <Route path="/used">
+          <Used authRegi={authRegi} />
         </Route>
 
         <Route path="/find/reset-password/send-email" component={FindPass} />

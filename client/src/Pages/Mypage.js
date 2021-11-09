@@ -1,10 +1,10 @@
+/* eslint-disable no-restricted-globals */
 import { useState, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import AWS from 'aws-sdk';
 import axios from 'axios';
 import { CgProfile } from 'react-icons/cg';
 const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
-  console.log('auth', authRegi.profileImg);
   let token = localStorage.getItem('token');
 
   const s3 = new AWS.S3({
@@ -29,7 +29,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
   const [imgBase64, setImgBase64] = useState(''); // 이미지태그에 미리보기를 하기위한 base64이미지
   const [originalImg, setOriginalImg] = useState(basicImg); // 여기 오리지날을 서버에 전달
   // username을 props로 가져오거나 해야합니다..!
-  console.log('123123', authRegi.profileImg);
+
   const onUsernameChange = (event) => {
     setChangeName(event.target.value);
   };
@@ -38,7 +38,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
 
     if (confirm) {
       axios
-        .delete('http://52.79.233.29:8080/user/', {
+        .delete(`${process.env.REACT_APP_SERVER_URL}/user/`, {
           data: {
             username: authRegi.username,
           },
@@ -64,7 +64,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
     if (change) {
       axios
         .patch(
-          'http://52.79.233.29:8080/user/username',
+          `${process.env.REACT_APP_SERVER_URL}/user/username`,
           {
             username: authRegi.username,
             newname: changeName,
@@ -95,7 +95,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
   const postLogout = () => {
     return axios
       .get(
-        'http://52.79.233.29:8080/user/logout',
+        `${process.env.REACT_APP_SERVER_URL}/user/logout`,
         {},
         {
           withCredentials: true,
@@ -175,7 +175,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
       function (data) {
         axios
           .patch(
-            'http://52.79.233.29:8080/user/profileimg',
+            `${process.env.REACT_APP_SERVER_URL}/user/profileimg`,
             {
               profileImg: data.Location,
             },
@@ -185,6 +185,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
           )
           .then((res) => {
             authorization();
+            location.reload();
           });
       },
       function (err) {
@@ -198,7 +199,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
     <div className="my">
       <div className="mypage">
         <h1>My Account</h1>
-        <img className="profile-img" src={authRegi.profileImg}></img>
+        <img alt="" className="profile-img" src={authRegi.profileImg}></img>
 
         <br />
         <br />

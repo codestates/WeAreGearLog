@@ -25,7 +25,7 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
   const postSignUp = () => {
     return axios
       .post(
-        'http://52.79.233.29:8080/user/signup',
+        `${process.env.REACT_APP_SERVER_URL}/user/signup`,
         {
           email: authRegi.email,
           password: authRegi.password,
@@ -60,7 +60,7 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
   const postLogin = () => {
     return axios
       .post(
-        'http://52.79.233.29:8080/user/login',
+        `${process.env.REACT_APP_SERVER_URL}/user/login`,
         { email: authRegi.email, password: authRegi.password },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -117,21 +117,18 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
   const kakaoHandler = () => {
     let currentSocial = 'kakao';
     localStorage.setItem('social', currentSocial);
-    const REDIRECT_URI =
-      'http://gearlog-db.s3-website.ap-northeast-2.amazonaws.com/';
+    const REDIRECT_URI = process.env.REACT_APP_CLIENT_URL;
     window.location.assign(
-      `https://kauth.kakao.com/oauth/authorize?client_id=196d7d1ae4d083329ceda11a092319d4&redirect_uri=${REDIRECT_URI}&response_type=code`,
+      `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`,
     );
   };
   // 구글 소셜로그인버튼 이벤트핸들러함수
   const googleHandler = () => {
     let currentSocial = 'google';
     localStorage.setItem('social', currentSocial);
-    const REDIRECT_URI =
-      'http://gearlog-db.s3-website.ap-northeast-2.amazonaws.com/';
-    // 'http://localhost:3000/';
+    const REDIRECT_URI = process.env.REACT_APP_CLIENT_URL;
     window.location.assign(
-      `https://accounts.google.com/o/oauth2/auth?client_id=538187650428-i2erq5l0c7hesj7srkqnldure0mg4o7p.apps.googleusercontent.com&redirect_uri=${REDIRECT_URI}&response_type=token&scope=https://www.googleapis.com/auth/userinfo.email`,
+      `https://accounts.google.com/o/oauth2/auth?client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=https://www.googleapis.com/auth/userinfo.email`,
     );
   };
 

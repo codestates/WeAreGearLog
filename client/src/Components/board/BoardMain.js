@@ -9,9 +9,7 @@ import NewBoard from '../../Pages/NewBoard';
 import Pagination from '../Pagination';
 import displayedAt from '../../AuthModule/TimeModule';
 import AfterSearch from './AfterSearch';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import FreeDoar from './FreeDoar';
-import BoardNav from './BoardNav';
+
 const BoardMain = ({
   afterSearch,
   saveSearch,
@@ -25,7 +23,8 @@ const BoardMain = ({
   const [postsPerPage] = useState(8);
   const [isOpen, setIsOpen] = useState(false);
   const [getList, setGetList] = useState([]);
-  const [searchs, setSearchs] = useState(false);
+  // const [searchs, setSearchs] = useState(false);
+
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
@@ -40,7 +39,7 @@ const BoardMain = ({
   let token = localStorage.getItem('token');
   useEffect(() => {
     axios
-      .get(`http://52.79.233.29:8080/post/`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/post/`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -55,12 +54,12 @@ const BoardMain = ({
 
     setIsOpen(true);
     axios
-      .get(`http://52.79.233.29:8080/post/view/${id}`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/post/view/${id}`, {
         withCredentials: true,
       })
       .then(() => {
         axios
-          .get(`http://52.79.233.29:8080/post/${id}`, {
+          .get(`${process.env.REACT_APP_SERVER_URL}/post/${id}`, {
             withCredentials: true,
             headers: { authorization: `Bearer ${token}` },
           })
@@ -177,7 +176,6 @@ const BoardMain = ({
       ) : null}
       {afterSearch ? (
         <>
-          {' '}
           {myListOpen ? (
             <div>
               <div id="box">

@@ -28,7 +28,7 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
   const postLogout = () => {
     return axios
       .get(
-        'http://52.79.233.29:8080/user/logout',
+        `${process.env.REACT_APP_SERVER_URL}/user/logout`,
         {},
         {
           withCredentials: true,
@@ -77,6 +77,9 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
 
             <Link to="/board">
               <li className="nav-pad-1">게시판</li>
+            </Link>
+            <Link to="/used/store">
+              <li className="nav-pad-1">중고거래</li>
             </Link>
           </div>
 
