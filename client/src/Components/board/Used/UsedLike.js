@@ -1,19 +1,20 @@
 import React from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { FcLike } from 'react-icons/fc';
-const UsedLike = () => {
+const UsedLike = ({ el, like, likeCount, onLikeHandle, onUnLikeHandle }) => {
   return (
     <div>
-      {FcLike ? (
+      {like ? (
         <div className="crud-button">
-          <button className={'crud-bt'}>
-            <FcLike size="30" />5
+          <button onClick={() => onUnLikeHandle(el.id)} className={'crud-bt'}>
+            <FcLike size="30" />
+            {likeCount}
           </button>
         </div>
       ) : (
-        <div className="crud-button">
+        <div onClick={() => onLikeHandle(el.id)} className="crud-button">
           <button className={'crud-bt'}>
-            <AiOutlineHeart size="30" /> 5
+            <AiOutlineHeart size="30" /> {likeCount}
           </button>
         </div>
       )}

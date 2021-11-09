@@ -75,24 +75,6 @@ const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
     }
   };
 
-  const postComment = (id) => {
-    axios
-      .post(
-        `${process.env.REACT_APP_SERVER_URL}/post/comment/`,
-        {
-          postId: id,
-          content: changeC,
-        },
-        {
-          headers: { authorization: `Bearer ${token}` },
-        },
-      )
-      .then((res) => {
-        setUpdateC(res.data.postList);
-      });
-    setChangeC('');
-  };
-
   const onUnLikeHandle = (id) => {
     axios
       .post(
@@ -112,6 +94,23 @@ const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
       .catch((err) => {
         console.log(err);
       });
+  };
+  const postComment = (id) => {
+    axios
+      .post(
+        `${process.env.REACT_APP_SERVER_URL}/post/comment/`,
+        {
+          postId: id,
+          content: changeC,
+        },
+        {
+          headers: { authorization: `Bearer ${token}` },
+        },
+      )
+      .then((res) => {
+        setUpdateC(res.data.postList);
+      });
+    setChangeC('');
   };
 
   const onChange1 = (e) => {
@@ -249,7 +248,7 @@ const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
                   <textarea
                     onChange={onCommnetChange}
                     value={changeC}
-                    className="textarea1" 
+                    className="textarea1"
                     autucomplate="off"
                     autoCorrect="off"
                     spellCheck="false"

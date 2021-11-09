@@ -1,37 +1,133 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable react/jsx-no-comment-textnodes */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import UsedCommnetWrite from '../Components/board/Used/UsedCommnetWrite';
 import UsedDU from '../Components/board/Used/UsedDU';
 import UsedLike from '../Components/board/Used/UsedLike';
 import './UsedView.css';
 import displayedAt from '../AuthModule/TimeModule';
-import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const UsedView = ({
+  authRegi,
+  isLogin,
   setSaveUsedWrite,
   saveUsedWrite,
   PostusedComment,
-  // readData,
   commentWrite,
   onCommentChange,
 }) => {
+  console.log('auth', authRegi);
   let token = localStorage.getItem('token');
-  const readData = useSelector((state) => [state.board.used]);
-  const dataId = readData.map((el) => el.id);
+  const [like, setLike] = useState('');
+  const [likeCount, setLikeCount] = useState('');
+  const data = useSelector((state) => [state.board.used]);
+  const [isOpen, setIsOpen] = useState(false);
+  const dataId = data.map((el) => el.id);
+  const [udOpen, setUdOpen] = useState(true);
+  const history = useHistory();
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/post/${dataId[0]}`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        // setSaveUsedWrite(res.data.comment);
+        setLike(res.data.like);
+        setLikeCount(res.data.post[0].like);
+      });
+  }, []);
+  const onLikeHandle = (id) => {
+    if (isLogin) {
+      axios
+        .post(
+          `${process.env.REACT_APP_SERVER_URL}/post/like`,
+          {
+            postId: id,
+          },
+          {
+            headers: { authorization: `Bearer ${token}` },
+          },
+        )
+        .then((res) => {
+          console.log(res);
+          setLike(true);
+          setLikeCount(res.data.likeCount);
+        })
 
-  // useEffect(() => {
-  //   console.log('123123', data);
-  //   axios
-  //     .get(`${process.env.REACT_APP_SERVER_URL}/post/${dataId[0]}`, {
-  //       headers: { authorization: `Bearer ${token}` },
-  //     })
-  //     .then((res) => {
-  //       setSaveUsedWrite(res.data.comment);
-  //     });
-  // }, []);
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert('로그인을 해주세요');
+    }
+  };
 
-  const viewData = readData.map((el) => {
+  const onUnLikeHandle = (id) => {
+    axios
+      .post(
+        `${process.env.REACT_APP_SERVER_URL}/post/dislike`,
+        {
+          postId: id,
+        },
+        {
+          headers: { authorization: `Bearer ${token}` },
+        },
+      )
+      .then((res) => {
+        setLike(false);
+        setLikeCount(res.data.likeCount);
+      })
+
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const deletePost = (id) => {
+    const AreyouDelete = confirm('게시물을 삭제 하시겠습니까?');
+    if (AreyouDelete) {
+      setIsOpen(false);
+      axios
+        .delete(
+          `${process.env.REACT_APP_SERVER_URL}/post/${id}`,
+
+          {
+            headers: { authorization: `Bearer ${token}` },
+          },
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            console.log(res);
+            history.push('/used/store');
+            location.reload();
+          }
+        })
+        .catch((res) => console.log(res));
+    } else {
+      return;
+    }
+  };
+
+  const deleteC = (id) => {
+    let ok = confirm('삭제하시겠습니까?');
+
+    if (ok) {
+      axios
+        .delete(`${process.env.REACT_APP_SERVER_URL}/post/comment/${id}`, {
+          headers: { authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          setSaveUsedWrite(res.data.postList);
+        });
+    } else {
+      return;
+    }
+  };
+
+  const viewData = data.map((el) => {
     const timeStamp = displayedAt(new Date(el.createdAt));
     return (
       <div key={el.id} className="used-read">
@@ -51,10 +147,22 @@ const UsedView = ({
             __html: el.content,
           }}
         ></div>
-        <UsedLike />
-        <UsedDU />
-        <UsedCommnetWrite
+
+        <UsedLike
           el={el}
+          onLikeHandle={onLikeHandle}
+          onUnLikeHandle={onUnLikeHandle}
+          like={like}
+          likeCount={likeCount}
+        />
+        {authRegi.username !== el.username ? null : (
+          <UsedDU el={el} deletePost={deletePost} />
+        )}
+
+        <UsedCommnetWrite
+          authRegi={authRegi}
+          el={el}
+          deleteC={deleteC}
           saveUsedWrite={saveUsedWrite}
           PostusedComment={PostusedComment}
           commentWrite={commentWrite}

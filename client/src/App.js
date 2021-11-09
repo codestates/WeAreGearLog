@@ -22,10 +22,8 @@ import Geng from './Pages/Team/Geng';
 import Han from './Pages/Team/Han';
 import Brand from './Components/Brand';
 import Used from './Pages/Used';
-import ChatHome from '../src/Pages/chat/ChatHome'
-import ChatRoom from './Pages/chat/ChatRoom'
-
-
+import ChatHome from '../src/Pages/chat/ChatHome';
+import ChatRoom from './Pages/chat/ChatRoom';
 
 const App = () => {
   const history = useHistory();
@@ -180,7 +178,7 @@ const App = () => {
           />
         </Route>
         <Route path="/used">
-          <Used authRegi={authRegi} />
+          <Used isLogin={isLogin} authRegi={authRegi} />
         </Route>
 
         <Route path="/find/reset-password/send-email" component={FindPass} />

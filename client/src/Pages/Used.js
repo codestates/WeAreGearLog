@@ -6,13 +6,24 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import UsedStore from './UsedStore';
 import Usedsujung from './Usedsujung';
-const Used = ({ authRegi }) => {
+const Used = ({ authRegi, isLogin }) => {
+  const data = useSelector((state) => [state.board.used]);
+  const dataId = data.map((el) => el.id);
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/post/${dataId[0]}`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setSaveUsedWrite(res.data.comment);
+      });
+  }, []);
   let token = localStorage.getItem('token');
 
   const [commentWrite, setCommentWrite] = useState('');
   const [afterSearch, setAfterSearch] = useState(true);
   const [search, setSearch] = useState('');
-  const data = useSelector((state) => [state.board.used]);
+
   const [UsedViewOpen, setUsedViewOpen] = useState(false);
   const [saveUsedWrite, setSaveUsedWrite] = useState([]); //댓글저장소
   const [myListOpen, setMyListOpen] = useState(true);
@@ -23,8 +34,9 @@ const Used = ({ authRegi }) => {
     value: null,
   }); //글쓰기쪽
   // const dataId = data.map((el) => el.id);
+  console.log('123123', saveUsedWrite);
   const [UsedList, setUsedList] = useState([]);
-
+  console.log(saveUsedWrite);
   const onSubmit = () => {
     //서버에 제출
     axios
@@ -89,6 +101,8 @@ const Used = ({ authRegi }) => {
 
       <Route path="/used/store">
         <UsedStore
+          authRegi={authRegi}
+          isLogin={isLogin}
           setSaveUsedWrite={setSaveUsedWrite}
           saveUsedWrite={saveUsedWrite}
           PostusedComment={PostusedComment}
