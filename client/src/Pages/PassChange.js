@@ -8,6 +8,7 @@ const PassChange = ({ authRegi, authorization, setIsLogin }) => {
   const [checkPass, setCheckPass] = useState('');
   const [newPass, setNewPass] = useState('');
   const [passCf, setPassCf] = useState('');
+
   const check = (e) => {
     setCheckPass(e.target.value);
   };

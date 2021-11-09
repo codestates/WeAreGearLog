@@ -59,11 +59,11 @@ const BoardMain = ({ authRegi }) => {
 
   const post = currentPosts.map((el, idx) => {
     const timeStamp = displayedAt(new Date(el.createdAt));
-    console.log('1111', el);
+    console.log(el);
     return (
       <div key={el.id} className="b-list">
         <div className="board-list">
-          <img className="b-img" alt="" src={el.profile_img}></img>
+          <img className="b-img" alt=""></img>
           <div className="b-tNd">
             <div onClick={() => ReqRead(el.id)} className="b-p1">
               {el.title} <em className="ems">[{el.comment}]</em>

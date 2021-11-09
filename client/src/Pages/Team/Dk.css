@@ -1,0 +1,96 @@
+.grandfather {
+}
+
+.dkmaincontainer {
+  margin-top: 20px;
+  height: 320px;
+  display: flex;
+  width: 360px;
+}
+
+.dkTeam-Header {
+  display: flex;
+  font-size: 30px;
+  font-weight: 900;
+  color: #63cac8;
+  background-color: black;
+}
+.dkboxs {
+  padding: 10px;
+  background-color: #63cac8;
+  width: 100%;
+  display: flex;
+}
+.dkthecard {
+  position: absolute;
+  margin-bottom: 15px;
+  flex-grow: 1;
+  width: 350px;
+  height: 350px;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+
+.dkthecard:hover {
+  transform: rotateY(180deg);
+}
+
+.dkthefront {
+  display: flex;
+
+  position: absolute;
+  font-size: 70px;
+  font-weight: 900;
+  width: 350px;
+  height: 350px;
+  backface-visibility: hidden;
+  background: black;
+  color: #63cac8;
+}
+.dkthefront1 {
+  display: flex;
+
+  position: absolute;
+  font-size: 60px;
+  font-weight: 900;
+  width: 350px;
+  height: 350px;
+  backface-visibility: hidden;
+  background: black;
+  color: #63cac8;
+}
+.dktheback {
+  position: absolute;
+  text-align: center;
+  font-weight: 900;
+  padding: 20px;
+  width: 350px;
+  height: 350px;
+  backface-visibility: hidden;
+  background: white;
+  color: #63cac8;
+  transform: rotateY(180deg);
+}
+.dkuser-gear {
+  display: flex;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.dkuser-name {
+  color: black;
+  font-size: 40px;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .dkboxs {
+    flex-direction: column;
+  }
+  .dkmaincontainer {
+    height: 365px;
+    display: flex;
+    width: 360px;
+  }
+}

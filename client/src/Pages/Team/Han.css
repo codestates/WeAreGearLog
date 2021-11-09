@@ -1,0 +1,85 @@
+.grandfather {
+}
+
+.hanmaincontainer {
+  margin-top: 20px;
+  height: 320px;
+  display: flex;
+  width: 360px;
+}
+
+.hanTeam-Header {
+  display: flex;
+  font-size: 30px;
+  font-weight: 900;
+  color: white;
+  background-color: #d6d6d6;
+}
+.hanboxs {
+  padding: 10px;
+  background-color: #d6d6d6;
+  width: 100%;
+  display: flex;
+}
+.hanthecard {
+  position: absolute;
+  margin-bottom: 15px;
+  flex-grow: 1;
+  width: 350px;
+  height: 350px;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+
+.hanthecard:hover {
+  transform: rotateY(180deg);
+}
+
+.hanthefront {
+  display: flex;
+
+  position: absolute;
+  font-size: 70px;
+  font-weight: 900;
+  width: 350px;
+  height: 350px;
+  backface-visibility: hidden;
+  background: #ff6600;
+  color: white;
+}
+
+.hantheback {
+  position: absolute;
+  text-align: center;
+  font-weight: 900;
+  padding: 20px;
+  width: 350px;
+  height: 350px;
+  backface-visibility: hidden;
+  background: white;
+  color: black;
+  transform: rotateY(180deg);
+}
+.hanuser-gear {
+  display: flex;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.hanuser-name {
+  color: black;
+  font-size: 40px;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .hanboxs {
+    flex-direction: column;
+  }
+  .hanmaincontainer {
+    height: 365px;
+    display: flex;
+    width: 360px;
+  }
+}

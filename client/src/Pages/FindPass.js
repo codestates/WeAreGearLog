@@ -9,14 +9,13 @@ const FindPass = () => {
   const [error, setError] = useState(true);
   const [trues, setTrues] = useState(true);
 
-  console.log(error);
   const handleChange = (e) => {
     onChange(e.target.value);
   };
 
   const postEmail = () => {
     setTrues(!trues);
-    console.log(trues);
+
     axios
       .post('http://52.79.233.29:8080/user/code', {
         email: change,

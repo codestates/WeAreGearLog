@@ -15,6 +15,7 @@
   color: white;
   background-color: black;
 }
+
 .boxs {
   padding: 10px;
   background-color: black;
@@ -23,7 +24,7 @@
 }
 .thecard {
   position: absolute;
-
+  margin-bottom: 15px;
   flex-grow: 1;
   width: 350px;
   height: 350px;

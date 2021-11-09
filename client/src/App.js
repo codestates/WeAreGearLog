@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import NewBoard from './Pages/NewBoard';
+import AfterSearch from './Components/board/AfterSearch';
 import './App.css';
 import SignIn from './Auth/SignIn';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import { LOGI } from './ReviewData';
 import Footer from './Components/Footer';
 import { useHistory, Route, Switch } from 'react-router-dom';
 import Register from './Auth/Register';
+import Dk from './Pages/Team/Dk';
 import Mypage from './Pages/Mypage';
 import PassChange from './Pages/PassChange';
 import Logi from './Pages/Brands/Logi';
@@ -16,20 +17,14 @@ import ReturnHome from './Pages/ReturnHome';
 import ReviewTemp from './Pages/Brands/Review/ReviewTemp';
 import Board from './Pages/Board';
 import T1 from './Pages/Team/T1';
-import { useSelector, useDispatch } from 'react-redux';
-
-
-
-
+import Drx from './Pages/Team/Drx';
+import Geng from './Pages/Team/Geng';
+import Han from './Pages/Team/Han';
+import Brand from './Components/Brand';
 const App = () => {
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
   const [isLogin, setIsLogin] = useState(false);
-  const dispatch = useDispatch();
-  const chatState = useSelector((state)=> state.chatReducer);
-
-
-
   const [authRegi, setAuthRegi] = useState({
     email: '',
     username: '',
@@ -37,7 +32,7 @@ const App = () => {
     password: '',
     passwordCornfirm: '',
   });
-
+  console.log(authRegi.profileImg);
   const handleCardClick = (id) => {
     setSaveId(id);
   };
@@ -54,7 +49,7 @@ const App = () => {
       .then((res) => {
         let totoken = res.config.headers.authorization.split(' ')[1];
         if (token === totoken) {
-          // console.log(res.data.data.userinfo.username);
+          console.log(res.data.data.userinfo);
           setAuthRegi({
             email: res.data.data.userinfo.email,
             username: res.data.data.userinfo.username,
@@ -67,22 +62,6 @@ const App = () => {
         console.log(err);
       });
   };
-
-  // const getLocalInfo = () => {
-  //   // authorization();
-  //   const name = localStorage.getItem('username');
-  //   const mail = localStorage.getItem('email');
-  //   const profile = localStorage.getItem('profile');
-  //   localStorage.setItem('social', '');
-  //   if (name) {
-  //     setAuthRegi({
-  //       email: mail,
-  //       username: name,
-  //       profileImg: profile,
-  //     });
-  //     setIsLogin(true);
-  //   }
-  // };
 
   const getKakaoToken = (code) => {
     axios
@@ -141,8 +120,6 @@ const App = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogin]);
-  
-
 
   return (
     <>
@@ -205,11 +182,28 @@ const App = () => {
         </Route>
         <Route path="/board">
           <div className="Board">
-            <Board authRegi={authRegi} />
+            <Board isLogin={isLogin} authRegi={authRegi} />
           </div>
         </Route>
-        <Route path="/team">
+        <Route path="/team/t1">
           <T1 />
+          <Brand />
+        </Route>
+        <Route path="/team/drx">
+          <Drx />
+          <Brand />
+        </Route>
+        <Route path="/team/geng">
+          <Geng />
+          <Brand />
+        </Route>
+        <Route path="/team/dwk">
+          <Dk />
+          <Brand />
+        </Route>
+        <Route path="/team/han">
+          <Han />
+          <Brand />
         </Route>
       </Switch>
 

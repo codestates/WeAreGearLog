@@ -4,16 +4,9 @@ import kakaoB from '../Img/kakao.png';
 import { Link, useHistory } from 'react-router-dom';
 import googleB from '../Img/google.png';
 import '../App.css';
-import styled from 'styled-components';
+
 import { emailCheck, passwordCheck } from '../AuthModule/Verifi';
 import axios from 'axios';
-
-// const ErrorMessage = styled.div`
-//   color: red;
-//   text-align: center;
-//   font-size: 0.875rem;
-//   margin-bottom: 10px;
-// `;
 
 const textMap = {
   login: '로그인',
@@ -108,11 +101,13 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
       }
 
       if (authRegi.password !== authRegi.passwordCornfirm) {
-        alert('패스워드 그거 맞아?');
+        alert('패스워드 체크해주세요');
         return false;
       }
       if (!passwordCheck(authRegi.password)) {
-        alert('패스워드는 특수문자,영문, 숫자 필수 포함 6~21자리');
+        alert(
+          '패스워드는 특수문자,영문, 숫자 필수 포함 6~21자리로 만들어주세요.',
+        );
         return false;
       }
       postSignUp();
