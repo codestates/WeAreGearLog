@@ -6,6 +6,7 @@ import displayesAt from '../AuthModule/TimeModule';
 import { useSelector, useDispatch } from 'react-redux';
 import { readUsedpost } from '../modules/board';
 const UsedStore = ({
+  setSaveUsedWrite,
   saveUsedWrite,
   PostusedComment,
   UsedViewOpen,
@@ -17,7 +18,7 @@ const UsedStore = ({
   onCommentChange,
 }) => {
   let token = localStorage.getItem('token');
-  const dispatch = useDispatch();
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/category?board=used`, {
@@ -28,6 +29,7 @@ const UsedStore = ({
         setUsedList(useList);
       });
   }, []);
+  const dispatch = useDispatch();
 
   const ReqRead = (id) => {
     window.scrollBy(0, -9999);
@@ -80,11 +82,11 @@ const UsedStore = ({
     <>
       {UsedViewOpen ? (
         <UsedView
+          setSaveUsedWrite={setSaveUsedWrite}
           saveUsedWrite={saveUsedWrite}
           PostusedComment={PostusedComment}
           commentWrite={commentWrite}
           onCommentChange={onCommentChange}
-          readData={readData}
         />
       ) : null}
 
