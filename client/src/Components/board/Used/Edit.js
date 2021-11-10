@@ -46,7 +46,7 @@ export const Edit = ({ state, handleChange, thumbnail, setThumbnail }) => {
           if (!thumbnail) {
             setThumbnail(data.Location);
           }
-          console.log('업로드 성공 썸네일은???', thumbnail);
+          // console.log('업로드 성공 썸네일은???', thumbnail);
         },
         function (err) {
           console.log('s3 이미지 업로드 실패');
