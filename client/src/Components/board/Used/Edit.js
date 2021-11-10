@@ -6,7 +6,7 @@ import AWS from 'aws-sdk';
 import 'react-quill/dist/quill.snow.css';
 import '../styles.css';
 
-export const Edit = ({ state, handleChange }) => {
+export const Edit = ({ state, handleChange, thumbnail, setThumbnail }) => {
   AWS.config.update({
     region: 'ap-northeast-2',
     credentials: new AWS.CognitoIdentityCredentials({
@@ -43,6 +43,10 @@ export const Edit = ({ state, handleChange }) => {
           const range = editor.getSelection();
 
           editor.insertEmbed(range, 'image', IMG_URL);
+          if (!thumbnail) {
+            setThumbnail(data.Location);
+          }
+          console.log('업로드 성공 썸네일은???', thumbnail);
         },
         function (err) {
           console.log('s3 이미지 업로드 실패');
