@@ -6,6 +6,7 @@ import axios from 'axios';
 import { CgProfile } from 'react-icons/cg';
 const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
   let token = localStorage.getItem('token');
+  let social = localStorage.getItem('social');
 
   const s3 = new AWS.S3({
     region: 'ap-northeast-2',
@@ -265,7 +266,15 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
           <p className="type-selector-slash">/</p>
 
           <p
-            onClick={() => history.push('/account/pwc')}
+            onClick={() => {
+              if (social) {
+                alert(
+                  '소셜로그인 회원은 (GEARLOG 웹사이트의)비밀번호가 필요하지 않습니다.',
+                );
+                return;
+              }
+              history.push('/account/pwc');
+            }}
             className="ac-detail-1"
           >
             비밀번호 변경
