@@ -27,7 +27,7 @@ import ChatRoom from './Pages/chat/ChatRoom'
 
 
 
-const App = () => {
+const App = ({roomName}) => {
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
   const [isLogin, setIsLogin] = useState(false);
@@ -49,7 +49,7 @@ const App = () => {
       return;
     }
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/user`, {
+      .get('http://52.79.233.29:8080/user', {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -71,7 +71,7 @@ const App = () => {
 
   const getKakaoToken = (code) => {
     axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/callback/kakao`, {
+      .post('http://52.79.233.29:8080/callback/kakao', {
         authorizationCode: code,
       })
       .then((res) => {
@@ -89,7 +89,7 @@ const App = () => {
 
   const getGoogleData = (token) => {
     axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/callback/google`, {
+      .post('http://52.79.233.29:8080/callback/google', {
         accessToken: token,
       })
       .then((res) => {
@@ -214,11 +214,9 @@ const App = () => {
           <Han />
           <Brand />
         </Route>
-        <Route exact path="/chat/chathome">
-          <ChatHome />
+        <Route exact path="/chat/chathome" component={ChatHome}>
         </Route>
-        <Route exact path="/chatroom/:roomId">
-          <ChatRoom />
+        <Route exact path="/chatroom/:roomId" component={ChatRoom}>
         </Route>
       </Switch>
 
