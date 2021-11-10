@@ -12,6 +12,7 @@ import roccataimo from '../../../Img/brands/Roccat/roccataimo.png';
 import konepro from '../../../Img/brands/Roccat/konepro.png';
 import k70kbd from '../../../Img/brands/Corsair/k70keyboard.png';
 import k70tkl from '../../../Img/brands/Corsair/k70tkl1.png';
+import l7502pd from '../../../Img/brands/Roccat/750pd2.png'
 
 const gearimg = [
   {
@@ -57,6 +58,10 @@ const gearimg = [
   {
     id: 10,
     src: k70tkl,
+  },
+  {
+    id: 11,
+    src: l7502pd,
   },
 ];
 
