@@ -136,7 +136,6 @@ const UsedView = ({
     return (
       <div key={el.id} className="used-read">
         <div className="used-title">{el.title}</div>
-        <button className="used-info-list1">채팅거래 </button>
         <div className="used-info">
           <span className="used-info-list">{el.username}</span>
 

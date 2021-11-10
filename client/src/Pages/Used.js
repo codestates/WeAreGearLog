@@ -35,8 +35,7 @@ const Used = ({ authRegi, isLogin }) => {
   const [state, setState] = useState({
     value: null,
   }); //글쓰기쪽
-  // const dataId = data.map((el) => el.id);
-  console.log('123123', saveUsedWrite);
+
   const [UsedList, setUsedList] = useState([]);
   console.log(saveUsedWrite);
   const onSubmitSearch = () => {
