@@ -4,9 +4,15 @@ import Edit from './Edit';
 import '../Editor.css';
 import axios from 'axios';
 import Used from '../../../Pages/Used';
-const Editor = ({ state, handleChange, setState, titles, setTitles }) => {
-  const [thumbnail, setThumbnail] = useState('');
-
+const Editor = ({
+  state,
+  handleChange,
+  setState,
+  titles,
+  setTitles,
+  thumbnail,
+  setThumbnail,
+}) => {
   const onTitleChange = (e) => {
     setTitles(e.target.value);
   };

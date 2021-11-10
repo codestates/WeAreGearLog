@@ -23,6 +23,7 @@ const Used = ({ authRegi, isLogin }) => {
   const [commentWrite, setCommentWrite] = useState('');
   const [afterSearch, setAfterSearch] = useState(true);
   const [search, setSearch] = useState('');
+  const [thumbnail, setThumbnail] = useState('');
 
   const [UsedViewOpen, setUsedViewOpen] = useState(false);
   const [saveUsedWrite, setSaveUsedWrite] = useState([]); //댓글저장소
@@ -124,6 +125,8 @@ const Used = ({ authRegi, isLogin }) => {
           setState={setState}
           titles={usedTitle}
           setTitles={setUsedTitle}
+          thumbnail={thumbnail}
+          setThumbnail={setThumbnail}
         />
       </Route>
       <Route path="/used/edit">
@@ -132,6 +135,8 @@ const Used = ({ authRegi, isLogin }) => {
           onTitleChange={onTitleChange}
           handleChange={handleChange}
           title={title}
+          thumbnail={thumbnail}
+          setThumbnail={setThumbnail}
         />
       </Route>
     </div>
