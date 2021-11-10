@@ -85,6 +85,10 @@ const UsedView = ({
         console.log(err);
       });
   };
+  const toEdit = (id) => {
+    history.push(`/used/edit/${id}`);
+    location.reload();
+  };
 
   const deletePost = (id) => {
     const AreyouDelete = confirm('게시물을 삭제 하시겠습니까?');
@@ -156,7 +160,7 @@ const UsedView = ({
           likeCount={likeCount}
         />
         {authRegi.username !== el.username ? null : (
-          <UsedDU el={el} deletePost={deletePost} />
+          <UsedDU toEdit={toEdit} el={el} deletePost={deletePost} />
         )}
 
         <UsedCommnetWrite

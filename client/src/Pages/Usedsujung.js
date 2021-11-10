@@ -32,13 +32,12 @@ export const Usedsujung = ({ title, onTitleChange }) => {
       )
       .then((res) => {
         if (res.status === 201) {
-          history.push('/board');
+          history.push('/used/store');
           location.reload();
-          console.log('디스패치', res);
         }
       });
   };
-  const data = useSelector((state) => state.board.read);
+  const data = useSelector((state) => [state.board.used]);
   const [state, setState] = useState({
     value: `<div contenteditable='false'>${data[0].content}</div>`,
   }); //글수정쪽
@@ -119,7 +118,7 @@ export const Usedsujung = ({ title, onTitleChange }) => {
     'blockquote',
     'image',
   ];
-
+  console.log('1231313123123123', title);
   return (
     <div className="text-editor">
       <h1>게시물 수정</h1>
@@ -140,12 +139,11 @@ export const Usedsujung = ({ title, onTitleChange }) => {
         modules={modules}
         formats={formats}
       />
-      <Link to="/board">
-        <button onClick={() => onEditChange(data[0].id)} className="u-b-1">
-          올리기
-        </button>
-      </Link>
-      <Link to="/board">
+      <button onClick={() => onEditChange(data[0].id)} className="u-b-1">
+        올리기
+      </button>
+
+      <Link to="/used/store">
         <button className="u-b-1">취소</button>
       </Link>
     </div>

@@ -29,7 +29,7 @@ const Used = ({ authRegi, isLogin }) => {
   const [myListOpen, setMyListOpen] = useState(true);
   const [saveSearch, setSaveSearch] = useState([]);
   const [usedTitle, setUsedTitle] = useState(''); //목록
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState(data[0].title); //들어가고있음
   const [state, setState] = useState({
     value: null,
   }); //글쓰기쪽
@@ -58,23 +58,12 @@ const Used = ({ authRegi, isLogin }) => {
 
   const onTitleChange = (e) => {
     //중고글쓰기 타이틀
-    setUsedTitle(e.target.value);
+    setTitle(e.target.value);
   };
 
   const onCommentChange = (e) => {
     setCommentWrite(e.target.value);
   };
-
-  // useEffect(() => {
-  //   console.log('123123', data);
-  //   axios
-  //     .get(`${process.env.REACT_APP_SERVER_URL}/post/${dataId[0]}`, {
-  //       headers: { authorization: `Bearer ${token}` },
-  //     })
-  //     .then((res) => {
-  //       setSaveUsedWrite(res.data.comment);
-  //     });
-  // }, []);
 
   const PostusedComment = (id) => {
     axios

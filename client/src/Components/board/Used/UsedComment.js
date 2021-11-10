@@ -3,11 +3,11 @@ import '../../Commnet.css';
 import displayedAt from '../../../AuthModule/TimeModule';
 const UsedCommnet = ({ authRegi, deleteC, el }) => {
   const timeStamp = displayedAt(new Date(el.createdAt));
-  console.log('나와라', authRegi);
+  console.log('나와라', el);
   return (
     <div className="b-c-list1">
       <div className="c-ui">
-        <img width="57" height="57" alt=""></img>
+        <img src={el.profile_img} width="57" height="57" alt=""></img>
       </div>
       <div className="c-title">
         <div className="c-t">{el.content}</div>
