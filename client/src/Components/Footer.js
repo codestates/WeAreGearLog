@@ -146,7 +146,7 @@ export default function Footer() {
             CodeStates SEP 31th Team AOC
           </p>
         </div>
-        <span>Copyrirght &copy; {new Date().getFullYear()} Team DevPull. <br/>All rights reverved. </span>
+        <span>Copyrirght &copy; {new Date().getFullYear()} Team Art of Code. <br/> Gear Review Community</span>
       </div>
       <ul className="footer-right">
         <li>
