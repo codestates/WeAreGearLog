@@ -136,6 +136,7 @@ const UsedView = ({
     return (
       <div key={el.id} className="used-read">
         <div className="used-title">{el.title}</div>
+        <button className="used-info-list1">채팅거래 </button>
         <div className="used-info">
           <span className="used-info-list">{el.username}</span>
 
@@ -151,18 +152,16 @@ const UsedView = ({
             __html: el.content,
           }}
         ></div>
-
         <UsedLike
           el={el}
           onLikeHandle={onLikeHandle}
           onUnLikeHandle={onUnLikeHandle}
           like={like}
           likeCount={likeCount}
-        />
+        />{' '}
         {authRegi.username !== el.username ? null : (
           <UsedDU toEdit={toEdit} el={el} deletePost={deletePost} />
         )}
-
         <UsedCommnetWrite
           authRegi={authRegi}
           el={el}

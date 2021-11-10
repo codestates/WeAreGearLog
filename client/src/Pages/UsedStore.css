@@ -53,3 +53,13 @@
   width: 50%;
   min-height: 4vh;
 }
+
+@media screen and (max-width: 375px) {
+  .used-wrap {
+    background-color: white;
+    justify-content: center;
+    width: 100vh;
+    height: 100%;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+  }
+}
