@@ -9,6 +9,8 @@ import kon from './Img/brands/Roccat/kon.png';
 import kova from './Img/brands/Roccat/kova.png';
 import k70 from './Img/brands/Corsair/k70.png';
 import k70tkl from './Img/brands/Corsair/k70tkl.png';
+import l750pd from './Img/brands/Roccat/750pd.png';
+
 
 
 export const LogiDummy = [
@@ -99,6 +101,14 @@ export const LogiDummy = [
     path: '/brands/review/logitech/',
     Review: 'Review',
     title: 'Corsair k70 TKL',
+  },
+  {
+    id: 12,
+    img: l750pd,
+    click: '리뷰보기',
+    path: '/brands/review/logitech/',
+    Review: 'Review',
+    title: 'Leopold 750R PD',
   },
 
 ];

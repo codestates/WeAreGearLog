@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-        <div>Gear log 채팅방</div>
+        <div className = "home_title">Gear log 채팅방</div>
       <input
         type="text"
         placeholder="채팅방 입력"

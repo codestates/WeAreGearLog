@@ -8,7 +8,7 @@
   padding-top: 500px;
 }
 .home_title {
-  font-size: 24px;
+  font-size: 40px;
 }
 
 .text-input-field {
@@ -22,12 +22,12 @@
 }
 
 .enter-room-button {
-  margin-top: 20px;
-  padding: 24px 12px;
+  margin-top: 30px;
+  padding: 12px 12px;
   font-size: 24px;
   background: black;
   color: white;
-  font-weight: 600;
+  font-weight: 800;
   text-align: center;
   text-decoration: none;
   border-radius: 7px;
