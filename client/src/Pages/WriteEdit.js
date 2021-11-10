@@ -12,6 +12,23 @@ import { useSelector } from 'react-redux';
 
 export const WriteEdit = ({ title, onTitleChange }) => {
   let token = localStorage.getItem('token');
+  const data = useSelector((state) => state.board.read);
+  const [state, setState] = useState({
+    value: `<div contenteditable='false'>${data[0].content}</div>`,
+  }); //글수정쪽
+
+  console.log(state);
+  const [asstate, setAsState] = useState({
+    title: data[0].title,
+  });
+
+  AWS.config.update({
+    region: 'ap-northeast-2',
+    credentials: new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: process.env.REACT_APP_IDENTITYPOOLID,
+    }),
+  });
+
   const handleChange = (value) => {
     setState({ value });
   };
@@ -34,26 +51,10 @@ export const WriteEdit = ({ title, onTitleChange }) => {
         if (res.status === 201) {
           history.push('/board');
           location.reload();
-          console.log('디스패치', res);
+          console.log('수정요청성공');
         }
       });
   };
-  const data = useSelector((state) => state.board.read);
-  const [state, setState] = useState({
-    value: `<div contenteditable='false'>${data[0].content}</div>`,
-  }); //글수정쪽
-
-  console.log(state);
-  const [asstate, setAsState] = useState({
-    title: data[0].title,
-  });
-
-  AWS.config.update({
-    region: 'ap-northeast-2',
-    credentials: new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: process.env.REACT_APP_IdentityPoolId,
-    }),
-  });
 
   const imageHandler = () => {
     console.log('에디터에서 이미지 버튼을 클릭하면 이 핸들러가 시작됩니다!');
