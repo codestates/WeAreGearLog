@@ -22,6 +22,9 @@ import Geng from './Pages/Team/Geng';
 import Han from './Pages/Team/Han';
 import Brand from './Components/Brand';
 import Used from './Pages/Used';
+import ChatHome from '../src/Pages/chat/ChatHome';
+import ChatRoom from './Pages/chat/ChatRoom';
+
 const App = () => {
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
@@ -50,7 +53,6 @@ const App = () => {
       .then((res) => {
         let totoken = res.config.headers.authorization.split(' ')[1];
         if (token === totoken) {
-          console.log(res.data.data.userinfo);
           setAuthRegi({
             email: res.data.data.userinfo.email,
             username: res.data.data.userinfo.username,
@@ -176,7 +178,7 @@ const App = () => {
           />
         </Route>
         <Route path="/used">
-          <Used authRegi={authRegi} />
+          <Used isLogin={isLogin} authRegi={authRegi} />
         </Route>
 
         <Route path="/find/reset-password/send-email" component={FindPass} />
@@ -208,6 +210,12 @@ const App = () => {
         <Route path="/team/han">
           <Han />
           <Brand />
+        </Route>
+        <Route exact path="/chat/chathome">
+          <ChatHome />
+        </Route>
+        <Route exact path="/chatroom/:roomId">
+          <ChatRoom />
         </Route>
       </Switch>
 

@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
-import BoardMain from '../Components/board/BoardMain';
+import React, { useState, useEffect } from 'react';
 import BoardNav from '../Components/board/BoardNav';
-import NewBoard from './NewBoard';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import BoardMainContainer from '../container/BoardMainContainer';
 import Editor from '../Components/board/Editor';
-
+import WriteEdit from './WriteEdit';
 import { useSelector } from 'react-redux';
-import FreeDoar from '../Components/board/FreeDoar';
 import BoardSearch from '../Components/board/BoardSearch';
 import axios from 'axios';
-import AfterSearch from '../Components/board/AfterSearch';
+
 const Board = ({ authRegi, isLogin }) => {
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/post/`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setGetList(res.data.data);
+      });
+  }, []);
+
+  const [getList, setGetList] = useState([]);
   const [afterSearch, setAfterSearch] = useState(true);
   const [search, setSearch] = useState('');
   const data = useSelector((state) => state.board.read);
@@ -22,6 +30,7 @@ const Board = ({ authRegi, isLogin }) => {
   const [state, setState] = useState({
     value: null,
   }); //글쓰기쪽
+
   const history = useHistory();
   const onKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -36,7 +45,7 @@ const Board = ({ authRegi, isLogin }) => {
     }
   };
 
-  const onSubmit = () => {
+  const onSubmitSearch = () => {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/filteredpost?search=${search}`)
 
@@ -77,7 +86,7 @@ const Board = ({ authRegi, isLogin }) => {
         afterSearch={afterSearch}
         saveSearch={saveSearch}
         onKeyPress={onKeyPress}
-        onSubmit={onSubmit}
+        onSubmit={onSubmitSearch}
         searchChangeHanle={searchChangeHanle}
         search={search}
       />
@@ -85,6 +94,8 @@ const Board = ({ authRegi, isLogin }) => {
       <>
         <Route exact path="/board">
           <BoardMainContainer
+            getList={getList}
+            setGetList={setGetList}
             afterSearch={afterSearch}
             saveSearch={saveSearch}
             setMyListOpen={setMyListOpen}
@@ -100,6 +111,14 @@ const Board = ({ authRegi, isLogin }) => {
             setState={setState}
             title={titles}
             setTitle={setTitles}
+          />
+        </Route>
+        <Route path="/board/edit">
+          <WriteEdit
+            setTitle={setTitle}
+            onTitleChange={onTitleChange}
+            handleChange={handleChange}
+            title={title}
           />
         </Route>
       </>
