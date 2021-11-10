@@ -3,7 +3,7 @@ const { QueryTypes } = require("sequelize");
 const { isAuthorized } = require("../tokenFunctions");
 
 module.exports = async (req, res) => {
-  const { postId, title, content } = req.body;
+  const { postId, title, content, img } = req.body;
   const readerData = isAuthorized(req);
   const readerId = readerData.id;
   const postData = await post.findOne({ where: { id: postId } });
@@ -17,6 +17,7 @@ module.exports = async (req, res) => {
     {
       title: title,
       content: content,
+      img: img,
     },
     { where: { id: postId } }
   );
@@ -24,6 +25,7 @@ module.exports = async (req, res) => {
     updated: {
       title: title,
       content: content,
+      img: img,
     },
   });
 };
