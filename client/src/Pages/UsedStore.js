@@ -5,6 +5,7 @@ import axios from 'axios';
 import displayesAt from '../AuthModule/TimeModule';
 import { useSelector, useDispatch } from 'react-redux';
 import { readUsedpost } from '../modules/board';
+import Pagination from '../Components/board/Used/Pagination';
 const UsedStore = ({
   authRegi,
   setSaveUsedWrite,
@@ -20,6 +21,18 @@ const UsedStore = ({
   isLogin,
 }) => {
   // const readData = useSelector((state) => [state.board.used]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [myCurrnetPage, setMyCurrentPage] = useState(1);
+  const [postsPerPage] = useState(8);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+
+  const currentPosts = UsedList.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   let token = localStorage.getItem('token');
   const dispatch = useDispatch();
   useEffect(() => {
@@ -56,7 +69,7 @@ const UsedStore = ({
       });
   };
 
-  const list = UsedList.map((el) => {
+  const list = currentPosts.map((el) => {
     const timeStamp = displayesAt(new Date(el.createdAt));
     return (
       <div className="used-card">
@@ -97,7 +110,16 @@ const UsedStore = ({
       ) : null}
 
       <div id="used-box">
-        <div className="used-wrap">{list}</div>
+        <div className="used-wrap">
+          {list}
+          <div className="b-footer">
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPosts={list.length}
+              paginate={paginate}
+            />
+          </div>
+        </div>
       </div>
     </>
   );
