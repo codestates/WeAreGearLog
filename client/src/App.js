@@ -36,7 +36,7 @@ const App = () => {
     password: '',
     passwordCornfirm: '',
   });
-  console.log(authRegi.profileImg);
+
   const handleCardClick = (id) => {
     setSaveId(id);
   };
