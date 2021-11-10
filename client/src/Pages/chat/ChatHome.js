@@ -20,7 +20,7 @@ const Home = () => {
         onChange={handleRoomNameChange}
         className="text-input-field"
       />
-      <Link to={`/chatroom/?roomId=${roomName}`} className="enter-room-button">
+      <Link to={`/chatroom/${roomName}`} className="enter-room-button">
         Gear log 채팅방 입장!
       </Link>
     </div>

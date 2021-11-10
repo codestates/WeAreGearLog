@@ -82,7 +82,7 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
               <li className="nav-pad-1">중고거래</li>
             </Link>
             <Link to="/chat/chathome">
-              <li className="nav-pad-1">Chat</li>
+              <li className="nav-pad-1">채팅</li>
             </Link>
             
           </div>
