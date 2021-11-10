@@ -19,12 +19,10 @@ const UsedStore = ({
   UsedList,
   setUsedList,
   setUsedViewOpen,
-
   commentWrite,
   onCommentChange,
   isLogin,
   myListOpen,
-  setMylistOpen,
 }) => {
   // const readData = useSelector((state) => [state.board.used]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -168,6 +166,7 @@ const UsedStore = ({
           // readData={readData}
         />
       ) : null}
+
       {afterSearch ? (
         <>
           {myListOpen ? (

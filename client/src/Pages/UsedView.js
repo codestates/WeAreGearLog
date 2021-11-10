@@ -151,18 +151,16 @@ const UsedView = ({
             __html: el.content,
           }}
         ></div>
-
         <UsedLike
           el={el}
           onLikeHandle={onLikeHandle}
           onUnLikeHandle={onUnLikeHandle}
           like={like}
           likeCount={likeCount}
-        />
+        />{' '}
         {authRegi.username !== el.username ? null : (
           <UsedDU toEdit={toEdit} el={el} deletePost={deletePost} />
         )}
-
         <UsedCommnetWrite
           authRegi={authRegi}
           el={el}
