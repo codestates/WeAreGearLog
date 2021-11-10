@@ -61,7 +61,7 @@ const UsedStore = ({
     return (
       <div className="used-card">
         <div className="img-box">
-          <img className="used-img" alt=""></img>
+          <img className="used-img" alt="" src={el.img}></img>
         </div>
         <div className="used-content">
           <div onClick={() => ReqRead(el.id)} className="used-title1">

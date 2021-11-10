@@ -10,7 +10,12 @@ import '../Components/board/styles.css';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
-export const Usedsujung = ({ title, onTitleChange }) => {
+export const Usedsujung = ({
+  title,
+  onTitleChange,
+  thumbnail,
+  setThumbnail,
+}) => {
   let token = localStorage.getItem('token');
   const handleChange = (value) => {
     setState({ value });
@@ -25,6 +30,7 @@ export const Usedsujung = ({ title, onTitleChange }) => {
           postId: id,
           title: title,
           content: state.value,
+          img: thumbnail,
         },
         {
           headers: { authorization: `Bearer ${token}` },
@@ -86,6 +92,9 @@ export const Usedsujung = ({ title, onTitleChange }) => {
           const range = editor.getSelection();
 
           editor.insertEmbed(range, 'image', IMG_URL);
+          if (!thumbnail) {
+            setThumbnail(data.Location);
+          }
         },
         function (err) {
           console.log('s3 이미지 업로드 실패');
