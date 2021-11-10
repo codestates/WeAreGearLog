@@ -5,6 +5,8 @@ import '../Editor.css';
 import axios from 'axios';
 import Used from '../../../Pages/Used';
 const Editor = ({ state, handleChange, setState, titles, setTitles }) => {
+  const [thumbnail, setThumbnail] = useState('');
+
   const onTitleChange = (e) => {
     setTitles(e.target.value);
   };
@@ -19,6 +21,7 @@ const Editor = ({ state, handleChange, setState, titles, setTitles }) => {
           category: 'used',
           title: titles,
           content: state.value,
+          img: thumbnail,
         },
         {
           headers: { authorization: `Bearer ${token}` },
@@ -43,7 +46,12 @@ const Editor = ({ state, handleChange, setState, titles, setTitles }) => {
         className="inputz"
         placeholder="제목을 입력하세요"
       />
-      <Edit state={state} handleChange={handleChange} />
+      <Edit
+        state={state}
+        thumbnail={thumbnail}
+        setThumbnail={setThumbnail}
+        handleChange={handleChange}
+      />
 
       <button onClick={onSubmit} className="u-b-1">
         올리기
