@@ -15,43 +15,43 @@ import k70tkl from '../../../Img/brands/Corsair/k70tkl1.png';
 
 const gearimg = [
   {
-    id: 0,
+    id: 1,
     src: g304rv,
   },
   {
-    id: 1,
+    id: 2,
     src: gprox1,
   },
   {
-    id: 2,
+    id: 3,
     src: g915,
   },
   {
-    id: 3,
+    id: 4,
     src: g733,
   },
   {
-    id: 4,
+    id: 5,
     src: blackwidow,
   },
   {
-    id: 5,
+    id: 6,
     src: razerdeathadder,
   },
   {
-    id: 6,
+    id: 7,
     src: razerkraken,
   },
   {
-    id: 7,
+    id: 8,
     src: roccataimo,
   },
   {
-    id: 8,
+    id: 9,
     src: konepro,
   },
   {
-    id: 9,
+    id: 10,
     src: k70kbd,
   },
   {
@@ -85,11 +85,7 @@ const ReviewTemp = ({ setSaveId, saveId, LOGI }) => {
             <p className="Rv-text">{LOGI[saveId].intro}</p>
           </div>
           <div className=".main-review">
-            <img
-              className="title-img"
-              src={gearimg[saveId - 1].src}
-              alt=""
-            ></img>
+            <img className="title-img" src={gearimg[saveId].src} alt=""></img>
           </div>
         </div>
 

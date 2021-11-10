@@ -36,7 +36,7 @@ const Editor = ({
       .then((res) => {
         if (res.status === 201) {
           // eslint-disable-next-line no-restricted-globals
-          // location.reload();
+          location.reload();
         }
       })
       .catch((err) => console.log(err));
@@ -58,11 +58,11 @@ const Editor = ({
         setThumbnail={setThumbnail}
         handleChange={handleChange}
       />
-
-      <button onClick={onSubmit} className="u-b-1">
-        올리기
-      </button>
-
+      <Link to="/used/store">
+        <button onClick={onSubmit} className="u-b-1">
+          올리기
+        </button>
+      </Link>
       <Link to="/used/store">
         <button className="u-b-1">취소</button>
       </Link>

@@ -25,7 +25,7 @@ import Used from './Pages/Used';
 import ChatHome from '../src/Pages/chat/ChatHome';
 import ChatRoom from './Pages/chat/ChatRoom';
 
-const App = ({roomName}) => {
+const App = () => {
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
   const [isLogin, setIsLogin] = useState(false);
@@ -211,10 +211,8 @@ const App = ({roomName}) => {
           <Han />
           <Brand />
         </Route>
-        <Route exact path="/chat/chathome" component={ChatHome}>
-        </Route>
-        <Route exact path="/chatroom/:roomId" component={ChatRoom}>
-        </Route>
+        <Route exact path="/chat/chathome" component={ChatHome}></Route>
+        <Route exact path="/chatroom/:roomId" component={ChatRoom}></Route>
       </Switch>
 
       <Footer />

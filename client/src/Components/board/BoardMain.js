@@ -39,15 +39,6 @@ const BoardMain = ({
     setMyListOpen(!myListOpen);
   };
   let token = localStorage.getItem('token');
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/post/`, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setGetList(res.data.data);
-      });
-  }, []);
 
   const dispatch = useDispatch();
 

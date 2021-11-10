@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import UsedStore from './UsedStore';
 import Usedsujung from './Usedsujung';
+import BoardSearch from '../Components/board/Used/BoardSearch';
 const Used = ({ authRegi, isLogin }) => {
   const data = useSelector((state) => [state.board.used]);
   const dataId = data.map((el) => el.id);
@@ -24,11 +25,11 @@ const Used = ({ authRegi, isLogin }) => {
   const [afterSearch, setAfterSearch] = useState(true);
   const [search, setSearch] = useState('');
   const [thumbnail, setThumbnail] = useState('');
-
+  const [saveSearch, setSaveSearch] = useState([]);
   const [UsedViewOpen, setUsedViewOpen] = useState(false);
   const [saveUsedWrite, setSaveUsedWrite] = useState([]); //댓글저장소
   const [myListOpen, setMyListOpen] = useState(true);
-  const [saveSearch, setSaveSearch] = useState([]);
+
   const [usedTitle, setUsedTitle] = useState(''); //목록
   const [title, setTitle] = useState(data[0].title); //들어가고있음
   const [state, setState] = useState({
@@ -38,12 +39,17 @@ const Used = ({ authRegi, isLogin }) => {
   console.log('123123', saveUsedWrite);
   const [UsedList, setUsedList] = useState([]);
   console.log(saveUsedWrite);
-  const onSubmit = () => {
+  const onSubmitSearch = () => {
     //서버에 제출
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/filteredpost?search=${search}`)
+      .get(
+        `${process.env.REACT_APP_SERVER_URL}/filteredpost/used?search=${search}`,
+      )
 
-      .then((res) => {});
+      .then((res) => {
+        setSaveSearch(res.data.filtered);
+        setAfterSearch(false);
+      });
   };
 
   const onMyList = () => {
@@ -53,6 +59,18 @@ const Used = ({ authRegi, isLogin }) => {
   const handleChange = (value) => {
     //본문
     setState({ value });
+  };
+  const onKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      axios
+        .get(
+          `${process.env.REACT_APP_SERVER_URL}/filteredpost/used?search=${search}`,
+        )
+        .then((res) => {
+          setSaveSearch(res.data.filtered);
+          setAfterSearch(false);
+        });
+    }
   };
 
   // eslint-disable-next-line no-use-before-define
@@ -84,13 +102,35 @@ const Used = ({ authRegi, isLogin }) => {
       });
     setCommentWrite('');
   };
+  const searchChangeHanle = (e) => {
+    setSearch(e.target.value);
+  };
 
   return (
     <div>
-      <BoardNav authRegi={authRegi} />
+      <BoardNav
+        authRegi={authRegi}
+        afterSearch={afterSearch}
+        onMyList={onMyList}
+        setMyListOpen={setMyListOpen}
+        myListOpen={myListOpen}
+        isLogin={isLogin}
+      />
+
+      <BoardSearch
+        afterSearch={afterSearch}
+        saveSearch={saveSearch}
+        onKeyPress={onKeyPress}
+        onSubmit={onSubmitSearch}
+        searchChangeHanle={searchChangeHanle}
+        search={search}
+      />
 
       <Route path="/used/store">
         <UsedStore
+          myListOpen={myListOpen}
+          setMyListOpen={setMyListOpen}
+          afterSearch={afterSearch}
           authRegi={authRegi}
           isLogin={isLogin}
           setSaveUsedWrite={setSaveUsedWrite}
@@ -98,7 +138,7 @@ const Used = ({ authRegi, isLogin }) => {
           PostusedComment={PostusedComment}
           commentWrite={commentWrite}
           onCommentChange={onCommentChange}
-          // readData={data}
+          saveSearch={saveSearch}
           setUsedViewOpen={setUsedViewOpen}
           setUsedList={setUsedList}
           UsedList={UsedList}
