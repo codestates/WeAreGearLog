@@ -84,23 +84,28 @@ const Used = ({ authRegi, isLogin }) => {
   };
 
   const PostusedComment = (id) => {
-    axios
-      .post(
-        `${process.env.REACT_APP_SERVER_URL}/post/comment/`,
-        {
-          postId: id,
-          content: commentWrite,
-        },
-        {
-          headers: { authorization: `Bearer ${token}` },
-        },
-      )
-      .then((res) => {
-        console.log('@@@@@@@', res);
-        setSaveUsedWrite(res.data.postList);
-      });
-    setCommentWrite('');
+    if (isLogin) {
+      axios
+        .post(
+          `${process.env.REACT_APP_SERVER_URL}/post/comment/`,
+          {
+            postId: id,
+            content: commentWrite,
+          },
+          {
+            headers: { authorization: `Bearer ${token}` },
+          },
+        )
+        .then((res) => {
+          console.log('@@@@@@@', res);
+          setSaveUsedWrite(res.data.postList);
+        });
+      setCommentWrite('');
+    } else {
+      alert('로그인을 해주세요');
+    }
   };
+
   const searchChangeHanle = (e) => {
     setSearch(e.target.value);
   };
