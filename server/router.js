@@ -42,7 +42,9 @@ router.patch("/post", postController.update);
 router.delete("/post/comment/:id", postController.delete.deleteComment);
 router.delete("/post/:id", postController.delete.deletePost);
 
-//message routing
+// chat routing
+// router.get("/chats", controllers.chats.get);
+// router.post("/chats/messages", controllers.messages.post);
 // router.get("/message/chatlist", messageController.chatlist);
 // router.get("/message", messageController.get);
 // router.post("/message", messageController.post);

@@ -10,17 +10,7 @@ import BoardSearch from '../Components/board/Used/BoardSearch';
 const Used = ({ authRegi, isLogin }) => {
   const data = useSelector((state) => [state.board.used]);
   const dataId = data.map((el) => el.id);
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/post/${dataId[0]}`, {
-        headers: { authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        setSaveUsedWrite(res.data.comment);
-      });
-  }, []);
   let token = localStorage.getItem('token');
-
   const [commentWrite, setCommentWrite] = useState('');
   const [afterSearch, setAfterSearch] = useState(true);
   const [search, setSearch] = useState('');
@@ -35,9 +25,19 @@ const Used = ({ authRegi, isLogin }) => {
   const [state, setState] = useState({
     value: null,
   }); //글쓰기쪽
-
   const [UsedList, setUsedList] = useState([]);
   console.log(saveUsedWrite);
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/post/${dataId[0]}`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setSaveUsedWrite(res.data.comment);
+      });
+  }, []);
+
   const onSubmitSearch = () => {
     //서버에 제출
     axios
