@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-
+import logo from '../Img/LOGO.png';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
@@ -58,6 +58,16 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
       });
   };
 
+  const onMypage = (id) => {
+    console.log(id);
+    if (id === '/account/mypage' && isLogin === false) {
+      history.push('/');
+      alert('로그인을 해주세요');
+    } else {
+      history.push(id);
+    }
+  };
+
   return (
     <div>
       <IconContext.Provider value={{ color: '#fff' }}>
@@ -67,24 +77,27 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
               <GiHamburgerMenu className="close" onClick={showSidebar} />
             </Link>
           </i>
-          <Link className="Logo-name" to="/">
-            GEARLOG
-          </Link>
+          <div className="Logo-box">
+            <Link to="/">
+              <img className="Logo-name" alt="" src={logo} />
+            </Link>
+          </div>
+
           <div className="nav-list">
             <Link to="/brands/list">
               <li className="nav-pad-1">Gear Review</li>
             </Link>
+          </div>
 
-            <Link to="/board">
-              <li className="nav-pad-1">게시판</li>
+          <div className="nav-list">
+            <Link to="/board/">
+              <li className="nav-pad-1">Board</li>
             </Link>
+          </div>
+          <div className="nav-list">
             <Link to="/used/store">
-              <li className="nav-pad-1">중고거래</li>
+              <li className="nav-pad-1">Used</li>
             </Link>
-            <Link to="/chat/chathome">
-              <li className="nav-pad-1">채팅</li>
-            </Link>
-            
           </div>
 
           <div>
@@ -124,13 +137,12 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
             {SidebarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    <span>{item.title}</span>
-                    <hr></hr>
-                  </Link>
+                  <span onClick={() => onMypage(item.path)}>{item.title}</span>
+                  <hr></hr>
                 </li>
               );
             })}
+            <div className="menu-p"></div>
           </ul>
         </nav>
       </IconContext.Provider>

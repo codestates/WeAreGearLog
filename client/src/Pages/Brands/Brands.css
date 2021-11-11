@@ -13,8 +13,8 @@
   height: 150px;
   font-weight: bolder;
   display: flex;
-  color: black;
-  background-color: #00b9f6;
+  color: white;
+  background-color: black;
 }
 .Razer-top {
   text-align: left;
@@ -32,6 +32,13 @@
   font-size: 50px;
   width: 100%;
   text-align: left;
+}
+.logi-top1 {
+  font-size: 50px;
+  font-family: Verdana;
+  font-weight: 800;
+  width: 100%;
+  text-align: center;
 }
 .logi-top2 {
   width: 50%;
