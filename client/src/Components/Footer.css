@@ -1,60 +1,48 @@
 .Footer {
-  width: 100%;
-  height: 70vh;
   display: flex;
+  width: 100%;
+  color: white;
   background-color: black;
   border-top: 1px solid gray;
+  height: 70vh;
 }
-
 .footer-left {
-  color: white;
-  display: flex;
-  flex-direction: column;
+  padding: 30px;
+  font-size: 25px;
   border-right: 1px solid gray;
-  width: 40%;
-}
-
-.Footer-member {
-  display: flex;
-  width: 60%;
-  color: white;
-  justify-content: center;
-}
-.member {
-  margin: 20px;
-}
-
-.footer-inside {
-  font-size: large;
   font-weight: 600;
 }
-.footer-log {
-  font-size: 70px;
-  font-weight: 900;
-}
-.member-name {
-  margin-top: 30px;
+
+.footer-right {
+  font-size: 25px;
+  width: 40%;
+  margin: 30px;
+  display: flex;
+  font-weight: 400;
 }
 
-@media screen and (max-width: 768px) {
+.footer-log {
+  width: 300px;
+}
+
+@media screen and (max-width: 375px) {
   .Footer {
-    display: flex;
-    background-color: black;
     flex-direction: column;
   }
-  .footer-left {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    border-right: none;
-    width: 40%;
-  }
-  .footer-inside {
-    font-size: large;
-    font-weight: 600;
-    display: flex;
-  }
-  .footer-log {
-    padding-right: 50px;
-  }
+}
+
+.member-1 {
+  margin: 15px;
+}
+
+.member-2 {
+  margin: 15px;
+}
+
+.member-3 {
+  margin: 15px;
+}
+
+.member-4 {
+  margin: 15px;
 }

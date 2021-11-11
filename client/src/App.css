@@ -19,6 +19,9 @@
   height: 200px;
   border-radius: 50%;
 }
+.nav-p {
+  width: 200px;
+}
 .pofile-bt {
   background-color: white;
   border: none;
@@ -114,6 +117,10 @@ i:hover {
   transition: 200ms;
 }
 
+.menu-p {
+  width: 100%;
+  background-color: black;
+}
 .nav-menu.active {
   left: 0;
   transition: 350ms;
@@ -125,8 +132,8 @@ i:hover {
   display: flex;
 }
 .nav-text {
-  height: 100px;
-
+  height: 70px;
+  margin-top: 50px;
   margin-left: 50px;
   margin-right: 50px;
 }
@@ -160,16 +167,8 @@ hr {
   height: 80px;
 }
 .Logo-name {
-  position: absolute;
-  font-size: 50px;
-}
-
-.nav-list {
-  justify-content: space-between;
-  margin-left: 250px;
-  margin-right: 150px;
-  display: flex;
-  width: 400px;
+  width: 450px;
+  float: left;
 }
 
 .nav-selector {
@@ -460,9 +459,19 @@ h1 {
   color: tomato;
 }
 
-.Razer-top {
-}
+.Logo-box {
+  display: flex;
+  width: 100%;
+  justify-content: left;
 
+  margin: 0%;
+}
+.nav-list {
+  display: flex;
+  font-size: 25px;
+  width: 50%;
+  font-weight: 700;
+}
 @media screen and (min-width: 1300px) {
   .Auth-temp-1 {
     width: 18%;
@@ -470,14 +479,38 @@ h1 {
   }
 }
 @media screen and (min-width: 1024px) {
+  /* .nav-p {
+    display: none;
+  } */
+
+  /* .nav-list {
+    justify-content: space-between;
+    margin-right: 50px;
+    display: flex;
+  } */
   .Auth-temp-1 {
     height: 70%;
 
     width: 30%;
     margin-bottom: 300px;
   }
+  .icons2 {
+    display: block;
+  }
+  /* .menu-bars {
+    font-size: 20px;
+    display: block;
+    z-index: 9999;
+  } */
 }
 @media screen and (max-width: 768px) {
+  .navbar {
+  }
+
+  .Logo-name {
+    display: flex;
+    text-align: center;
+  }
   .Auth-temp-1 {
     position: fixed;
     width: 70%;
@@ -492,8 +525,6 @@ h1 {
     justify-content: center;
   } */
 
-  .teamcards {
-  }
   .brand-image-name {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -510,10 +541,6 @@ h1 {
     width: 85%;
   }
 
-  .Logo-name {
-    left: 34%;
-    font-size: 30px;
-  }
   .nav-pad-1 {
     display: none;
   }
@@ -545,5 +572,11 @@ h1 {
   }
   .my {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Logo-name {
+    width: 300px;
   }
 }
