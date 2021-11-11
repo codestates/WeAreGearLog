@@ -18,7 +18,7 @@ const Used = ({ authRegi, isLogin }) => {
       .then((res) => {
         setSaveUsedWrite(res.data.comment);
       });
-  }, []);
+  },[]);
   let token = localStorage.getItem('token');
 
   const [commentWrite, setCommentWrite] = useState('');

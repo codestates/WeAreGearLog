@@ -73,9 +73,11 @@ const Brand2 = () => {
 
   const maps = img.map((el) => {
     return (
-      <a key={el.id} className="brand-link">
-        <img className="brand-image-name" src={el.src} alt="" />
-      </a>
+      <Link to={el.path}>
+        <a key={el.id} className="brand-link">
+          <img className="brand-image-name" src={el.src} alt="" />
+        </a>
+      </Link>
     );
   });
   {
