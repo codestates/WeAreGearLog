@@ -47,7 +47,7 @@ const App = () => {
       return;
     }
     axios
-      .get('http://52.79.233.29:8080/user', {
+      .get(`${process.env.REACT_APP_SERVER_URL}/user`, {
         headers: { authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -68,7 +68,7 @@ const App = () => {
 
   const getKakaoToken = (code) => {
     axios
-      .post('http://52.79.233.29:8080/callback/kakao', {
+      .post(`${process.env.REACT_APP_SERVER_URL}/callback/kakao`, {
         authorizationCode: code,
       })
       .then((res) => {
@@ -86,7 +86,7 @@ const App = () => {
 
   const getGoogleData = (token) => {
     axios
-      .post('http://52.79.233.29:8080/callback/google', {
+      .post(`${process.env.REACT_APP_SERVER_URL}/callback/google`, {
         accessToken: token,
       })
       .then((res) => {
