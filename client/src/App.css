@@ -241,7 +241,7 @@ hr {
   color: aliceblue;
   font-size: 20px;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 43px;
 
   left: 1%;
 
@@ -255,7 +255,7 @@ hr {
   font-size: 20px;
   position: absolute;
   right: 1%;
-  margin-top: 30px;
+  margin-top: 43px;
   margin-bottom: 50px;
   z-index: 1;
 }
@@ -578,5 +578,26 @@ h1 {
 @media screen and (max-width: 768px) {
   .Logo-name {
     width: 300px;
+  }
+  .slide-next {
+    color: aliceblue;
+    font-size: 20px;
+    position: absolute;
+    right: 1%;
+    margin-top: 60px;
+    margin-bottom: 50px;
+    z-index: 1;
+  }
+  .slide-prev {
+    color: aliceblue;
+    font-size: 20px;
+    justify-content: center;
+    margin-top: 60px;
+
+    left: 1%;
+
+    position: absolute;
+
+    z-index: 1;
   }
 }
