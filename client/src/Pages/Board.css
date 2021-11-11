@@ -1,0 +1,138 @@
+.board {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  border: 1px solid blue;
+  background-color: #ebeef1;
+  margin-bottom: 100px;
+}
+
+.board-list {
+  width: 60vh;
+  height: 100%;
+  border: 1px solid red;
+}
+.write {
+  width: 100%;
+  height: 100%;
+  border: 1px solid blue;
+}
+.write-title {
+  width: 100%;
+  height: 30px;
+}
+.write-page {
+  width: 100%;
+  height: 500px;
+}
+.write-button {
+  float: right;
+}
+
+.post-list {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  height: 50px;
+  width: 100%;
+  border: 1px solid turquoise;
+}
+
+.post-lists {
+  width: 100%;
+  height: 50px;
+  border: 1px solid saddlebrown;
+}
+.read-title {
+  background-color: white;
+  margin-bottom: 3px;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  border: 1px solid black;
+}
+.likeAndHate {
+  text-align: center;
+  background-color: white;
+  width: 15%;
+  height: 100%;
+  border: 1px solid gold;
+}
+.lists-click-title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.lists-title {
+  border: solid greenyellow;
+  width: 80%;
+  background-color: white;
+  display: flex;
+
+  height: 100%;
+}
+.board-username {
+  background-color: white;
+  height: 100%;
+  width: 15%;
+  display: flex;
+  border: solid grey;
+}
+.board-thumb {
+  background-color: white;
+  height: 100%;
+  border: 1px solid blue;
+  width: 20%;
+}
+.em {
+  margin-left: 5px;
+}
+
+.board-date {
+  background-color: white;
+  text-align: center;
+  width: 15%;
+  height: 100%;
+}
+.read-board-write {
+  white-space: pre-wrap;
+}
+.read-board {
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid palevioletred;
+  background-color: white;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.read-board-headline {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.headline-right {
+  margin-right: 10px;
+}
+
+.article {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.read-board-title {
+  padding: 30px;
+  border-bottom: 1px solid;
+}
+
+.likeOrHate {
+  border-top: 1px solid;
+  display: flex;
+}
+
+.pp {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.up {
+  margin-top: 13px;
+}

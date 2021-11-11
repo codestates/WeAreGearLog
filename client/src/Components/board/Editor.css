@@ -1,0 +1,63 @@
+.edit {
+  display: flex;
+}
+.Editor {
+  display: flex;
+  width: 1000px;
+  height: 75vh;
+}
+.write {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+}
+.h1 {
+  width: 100%;
+}
+.inputFile {
+}
+.inputz {
+  font-size: 30px;
+  width: 100%;
+  height: 50px;
+}
+
+.textarea {
+  resize: none;
+  white-space: pre-wrap;
+  width: 100%;
+  overflow-y: hidden;
+  height: 50vh;
+  border: 1px solid #ccc;
+}
+.e-p {
+  display: flex;
+  justify-content: left;
+  height: 20px;
+  border: 1px solid black;
+}
+.input-file-button {
+  color: green;
+  cursor: pointer;
+}
+.upload-b {
+  display: flex;
+  justify-content: right;
+  margin: 20px;
+}
+
+.u-b-1 {
+  margin-right: 10px;
+  width: 50px;
+}
+.b-n {
+  display: flex;
+  width: 100%;
+}
+.b-c {
+  margin: 20px;
+}
+.b-c-1 {
+  margin: 20px;
+  border-bottom: 1px solid black;
+}

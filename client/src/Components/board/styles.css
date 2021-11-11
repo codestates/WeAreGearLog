@@ -1,0 +1,8 @@
+.text-editor {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+.ql-editor {
+  min-height: 40vh;
+}

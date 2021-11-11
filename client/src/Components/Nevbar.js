@@ -1,0 +1,141 @@
+import { useState, useRef, useEffect } from 'react';
+
+import axios from 'axios';
+import { Link, useHistory } from 'react-router-dom';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { AiOutlineClose } from 'react-icons/ai';
+import { SidebarData } from './common/SidebarData';
+import { IconContext } from 'react-icons';
+import { FaUserCircle } from 'react-icons/fa';
+
+import InfoMd from './InfoMd';
+
+const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
+  const modalFalse = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const history = useHistory();
+  const [sidebar, setSidebar] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const showSidebar = () => setSidebar(!sidebar);
+  useEffect(() => {
+    setIsOpen(true);
+  }, [isLogin]);
+
+  const postLogout = () => {
+    return axios
+      .get(
+        `${process.env.REACT_APP_SERVER_URL}/user/logout`,
+        {},
+        {
+          withCredentials: true,
+        },
+      )
+      .then((res) => {
+        if (res.data.message === '로그아웃 성공') {
+          localStorage.clear();
+          setAuthRegi({
+            email: '',
+            username: '',
+            password: '',
+            passwordCornfirm: '',
+          });
+
+          setIsLogin(false);
+
+          alert('로그아웃되었습니다');
+          history.push('/');
+        }
+      })
+      .catch((err) => {
+        if (err) {
+          console.log(err);
+          alert('로그아웃이 되지않았습니다');
+        }
+      });
+  };
+
+  return (
+    <div>
+      <IconContext.Provider value={{ color: '#fff' }}>
+        <div className="navbar">
+          <i>
+            <Link to="#" className="menu-bars">
+              <GiHamburgerMenu className="close" onClick={showSidebar} />
+            </Link>
+          </i>
+          <Link className="Logo-name" to="/">
+            GEARLOG
+          </Link>
+          <div className="nav-list">
+            <Link to="/brands/list">
+              <li className="nav-pad-1">Gear Review</li>
+            </Link>
+
+            <Link to="/board">
+              <li className="nav-pad-1">게시판</li>
+            </Link>
+            <Link to="/used/store">
+              <li className="nav-pad-1">중고거래</li>
+            </Link>
+            <Link to="/chat/chathome">
+              <li className="nav-pad-1">채팅</li>
+            </Link>
+            
+          </div>
+
+          <div>
+            {!isLogin ? (
+              <i
+                className="icons"
+                onClick={() => history.push('/account/login')}
+              >
+                <FaUserCircle />
+              </i>
+            ) : (
+              <i>
+                {
+                  <div className="icons2" onClick={() => setIsOpen(!isOpen)}>
+                    <div>{authRegi.username} ▿</div>
+                  </div>
+                }
+              </i>
+            )}
+            {isLogin && !isOpen ? (
+              <InfoMd
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                postLogout={postLogout}
+              />
+            ) : null}
+          </div>
+        </div>
+
+        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+          <ul className="nav-menu-items" onClick={showSidebar}>
+            <li className="navbar-toggle">
+              <Link to="#" value="" className="menu-bars">
+                <AiOutlineClose />
+              </Link>
+            </li>
+            {SidebarData.map((item, index) => {
+              return (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    <span>{item.title}</span>
+                    <hr></hr>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </IconContext.Provider>
+    </div>
+  );
+};
+
+export default NavBar;

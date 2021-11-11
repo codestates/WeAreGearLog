@@ -1,0 +1,136 @@
+.NewBoard {
+  display: flex;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.Newboard-info {
+  text-align: center;
+  display: flex;
+}
+.b-img {
+  width: 40px;
+  height: 50px;
+}
+.Newboard-info-list {
+  width: 200px;
+}
+.Editor1 {
+  background-color: white;
+
+  display: flex;
+  width: 50%;
+  height: 100%;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+.Read {
+  width: 100%;
+}
+
+.titlez {
+  padding: 5px;
+  border: none;
+  font-size: 30px;
+  width: 100%;
+  height: 50px;
+  resize: none;
+}
+.Newboard-title {
+  padding: 20px;
+}
+.Newboard-info-list {
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #ccc;
+  resize: none;
+  margin-top: 2px;
+  margin-bottom: 10px;
+  color: #7f8891;
+  width: 100%;
+  padding-bottom: 20px;
+}
+.sss {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.textarea1 {
+  border-top: 1px solid #ccc;
+  resize: none;
+  white-space: pre-wrap;
+  width: 100%;
+  overflow-y: hidden;
+  height: 100%;
+}
+.crud-button {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  height: 80px;
+  display: flex;
+}
+.crud-bt {
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 70px;
+  height: 40px;
+}
+
+.c-top {
+  background-color: #fafafa;
+  padding: 10px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+
+.c-bottom {
+  display: flex;
+  border: 1px solid #ccc;
+  width: 100%;
+  height: 50px;
+}
+
+.textarea1 {
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  border-top: 1px solid #ccc;
+  resize: none;
+  width: 100%;
+  height: 80px;
+}
+
+.c-bottom {
+  display: flex;
+  justify-content: right;
+  border-right: none;
+}
+.c-u-b {
+  background-color: lightblue;
+  border: none;
+  width: 90px;
+  height: 50px;
+  color: cornflowerblue;
+}
+
+.em-1 {
+  font-size: 15px;
+  color: green;
+}
+.c-top-in {
+  background-color: #fafafa;
+}
+
+.c-padding {
+  height: 30px;
+}
+@media screen and (max-width: 1220px) {
+  .Editor1 {
+    background-color: white;
+
+    display: flex;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  }
+}
