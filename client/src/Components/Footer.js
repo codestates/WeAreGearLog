@@ -35,28 +35,28 @@ const Footer = () => {
           </div>
           <div className="member-2">
             <MdPerson />
-            이영광
-            <a href="https://github.com/DevLeeYG">
+            황성현
+            <a href="https://github.com/SH-HWA">
               <AiFillGithub />
-              DevLeeYG
+              SH-HWA
             </a>
           </div>
         </div>
         <div>
           <div className="member-3">
             <MdPerson />
-            이영광
-            <a href="https://github.com/DevLeeYG">
+            김동찬
+            <a href="https://github.com/kedm717">
               <AiFillGithub />
-              DevLeeYG
+              kedm717
             </a>
           </div>
           <div className="member-4">
             <MdPerson />
-            이영광
-            <a href="https://github.com/DevLeeYG">
+            이창윤
+            <a href="https://github.com/seismman">
               <AiFillGithub />
-              DevLeeYG
+              seismman
             </a>
           </div>
         </div>
