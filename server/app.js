@@ -7,14 +7,14 @@ const cookieParser = require("cookie-parser");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
   cors: {
-    origin: ["http://localhost:3000", "https://gearlog.ga"],
+    origin: true,
     credentials: true,
   },
 });
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://gearlog.ga"],
+    origin: true,
     credentials: true,
     methods: ["GET", "POST", "PATCH", "OPTIONS", "DELETE"],
   })
