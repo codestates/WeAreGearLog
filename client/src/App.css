@@ -225,6 +225,7 @@ hr {
   background-color: black;
 }
 .slide {
+  padding-bottom: 30px;
   overflow: hidden;
   font-size: 50px;
   text-align: center;
@@ -482,6 +483,15 @@ h1 {
     width: 70%;
     margin-bottom: 150px;
   }
+  /* .slide {
+    overflow: hidden;
+    font-size: 50px;
+    text-align: center;
+    background-color: black;
+
+    justify-content: center;
+  } */
+
   .teamcards {
   }
   .brand-image-name {

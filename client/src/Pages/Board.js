@@ -11,11 +11,11 @@ import axios from 'axios';
 const Board = ({ authRegi, isLogin }) => {
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/post/`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/category?board=free`, {
         withCredentials: true,
       })
       .then((res) => {
-        setGetList(res.data.data);
+        setGetList(res.data.categoryPost);
       });
   }, []);
 
@@ -36,7 +36,7 @@ const Board = ({ authRegi, isLogin }) => {
     if (e.key === 'Enter') {
       axios
         .get(
-          `${process.env.REACT_APP_SERVER_URL}/filteredpost?search=${search}`,
+          `${process.env.REACT_APP_SERVER_URL}/filteredpost/free?search=${search}`,
         )
         .then((res) => {
           setSaveSearch(res.data.filtered);
@@ -47,7 +47,9 @@ const Board = ({ authRegi, isLogin }) => {
 
   const onSubmitSearch = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/filteredpost?search=${search}`)
+      .get(
+        `${process.env.REACT_APP_SERVER_URL}/filteredpost/free?search=${search}`,
+      )
 
       .then((res) => {
         setSaveSearch(res.data.filtered);

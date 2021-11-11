@@ -10,6 +10,7 @@ import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import rootReducer from './modules';
 
+
 const store = createStore(rootReducer, composeWithDevTools());
 const persistor = persistStore(store);
 

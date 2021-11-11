@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-        <div>Gear log 채팅방</div>
+        <div className = "home_title">Gear log 채팅방</div>
       <input
         type="text"
         placeholder="채팅방 입력"
@@ -20,7 +20,7 @@ const Home = () => {
         onChange={handleRoomNameChange}
         className="text-input-field"
       />
-      <Link to={`/chatroom/?roomId=${roomName}`} className="enter-room-button">
+      <Link to={`/chatroom/${roomName}`} className="enter-room-button">
         Gear log 채팅방 입장!
       </Link>
     </div>

@@ -6,6 +6,7 @@ import axios from 'axios';
 import { CgProfile } from 'react-icons/cg';
 const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
   let token = localStorage.getItem('token');
+  let social = localStorage.getItem('social');
 
   const s3 = new AWS.S3({
     region: 'ap-northeast-2',
@@ -21,14 +22,9 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
     }),
   });
 
-  const basicImg =
-    'https://gearlogimagestorage.s3.ap-northeast-2.amazonaws.com/%EC%A7%80%EC%9A%B0%EB%A9%B4%EC%95%88%EB%90%98%EB%8A%94+%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%9E%85%EB%8B%88%EB%8B%A4.jpg';
   const history = useHistory();
   const [changeName, setChangeName] = useState('');
   const [istrue, setIsTrue] = useState(true);
-  const [imgBase64, setImgBase64] = useState(''); // 이미지태그에 미리보기를 하기위한 base64이미지
-  const [originalImg, setOriginalImg] = useState(basicImg); // 여기 오리지날을 서버에 전달
-  // username을 props로 가져오거나 해야합니다..!
 
   const onUsernameChange = (event) => {
     setChangeName(event.target.value);
@@ -123,26 +119,6 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
           alert('로그아웃이 되지않았습니다');
         }
       });
-  };
-
-  const handleFileInput = (event) => {
-    const file = event.target.files[0];
-
-    let reader = new FileReader();
-    // onloaded는 read가 완료되면 자동으로 실행되는 콜백
-    // base64형태의 결과물을 상태(base64)에 저장
-    reader.onloadend = async (e) => {
-      const base64 = await reader.result;
-      if (base64) {
-        setImgBase64(base64.toString());
-      }
-      console.log(imgBase64);
-    };
-    // 이벤트에 입력받은 파일이 있을경우 read실행 & 원본이미지 상태저장
-    if (event.target.files[0]) {
-      reader.readAsDataURL(event.target.files[0]);
-      setOriginalImg(event.target.files[0]);
-    }
   };
 
   // 저장 버튼 핸들러 -> 서버에 이 이미지를 저장하고 해당유저의 프로필이미지를 이 이미지로 저장하기 위한 핸들러
@@ -265,7 +241,15 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
           <p className="type-selector-slash">/</p>
 
           <p
-            onClick={() => history.push('/account/pwc')}
+            onClick={() => {
+              if (social) {
+                alert(
+                  '소셜로그인 회원은 (GEARLOG 웹사이트의)비밀번호가 필요하지 않습니다.',
+                );
+                return;
+              }
+              history.push('/account/pwc');
+            }}
             className="ac-detail-1"
           >
             비밀번호 변경

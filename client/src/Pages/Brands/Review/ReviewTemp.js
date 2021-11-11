@@ -12,51 +12,61 @@ import roccataimo from '../../../Img/brands/Roccat/roccataimo.png';
 import konepro from '../../../Img/brands/Roccat/konepro.png';
 import k70kbd from '../../../Img/brands/Corsair/k70keyboard.png';
 import k70tkl from '../../../Img/brands/Corsair/k70tkl1.png';
+import l7502pd from '../../../Img/brands/Roccat/750pd2.png';
 
 const gearimg = [
   {
     id: 0,
+    src: '',
+  },
+
+  {
+    id: 1,
     src: g304rv,
   },
   {
-    id: 1,
+    id: 2,
     src: gprox1,
   },
   {
-    id: 2,
+    id: 3,
     src: g915,
   },
   {
-    id: 3,
+    id: 4,
     src: g733,
   },
   {
-    id: 4,
+    id: 5,
     src: blackwidow,
   },
   {
-    id: 5,
+    id: 6,
     src: razerdeathadder,
   },
   {
-    id: 6,
+    id: 7,
     src: razerkraken,
   },
   {
-    id: 7,
+    id: 8,
     src: roccataimo,
   },
   {
-    id: 8,
+    id: 9,
     src: konepro,
   },
   {
-    id: 9,
+    id: 10,
     src: k70kbd,
   },
   {
-    id: 10,
+    id: 11,
     src: k70tkl,
+  },
+  {
+    id: 12,
+    src: l7502pd,
   },
 ];
 
@@ -85,11 +95,7 @@ const ReviewTemp = ({ setSaveId, saveId, LOGI }) => {
             <p className="Rv-text">{LOGI[saveId].intro}</p>
           </div>
           <div className=".main-review">
-            <img
-              className="title-img"
-              src={gearimg[saveId - 1].src}
-              alt=""
-            ></img>
+            <img className="title-img" src={gearimg[saveId].src} alt=""></img>
           </div>
         </div>
 

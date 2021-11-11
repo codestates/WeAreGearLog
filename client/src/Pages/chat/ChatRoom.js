@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import "./ChatRoom.css";
-import useChat from "./useChat";
+import useChat from '../chat/useChat'
 
 const ChatRoom = (props) => {
   const { roomId } = props.match.params; // Gets roomId from URL
@@ -18,7 +18,7 @@ const ChatRoom = (props) => {
 
   return (
     <div className="chat-room-container">
-      <h1 className="room-name">Room: {roomId}</h1>
+      <h1 className="room-name">채팅방: {roomId}</h1>
       <div className="messages-container">
         <ol className="messages-list">
           {messages.map((message, i) => (
@@ -33,15 +33,17 @@ const ChatRoom = (props) => {
           ))}
         </ol>
       </div>
+      <div className="inputbar">
       <textarea
         value={newMessage}
         onChange={handleNewMessageChange}
-        placeholder="Write message..."
+        placeholder="메세지를 입력해주세요"
         className="new-message-input-field"
       />
       <button onClick={handleSendMessage} className="send-message-button">
         Send
       </button>
+    </div>
     </div>
   );
 };
