@@ -96,21 +96,25 @@ const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
       });
   };
   const postComment = (id) => {
-    axios
-      .post(
-        `${process.env.REACT_APP_SERVER_URL}/post/comment/`,
-        {
-          postId: id,
-          content: changeC,
-        },
-        {
-          headers: { authorization: `Bearer ${token}` },
-        },
-      )
-      .then((res) => {
-        setUpdateC(res.data.postList);
-      });
-    setChangeC('');
+    if (isLogin) {
+      axios
+        .post(
+          `${process.env.REACT_APP_SERVER_URL}/post/comment/`,
+          {
+            postId: id,
+            content: changeC,
+          },
+          {
+            headers: { authorization: `Bearer ${token}` },
+          },
+        )
+        .then((res) => {
+          setUpdateC(res.data.postList);
+        });
+      setChangeC('');
+    } else {
+      alert('로그인을 해주세요');
+    }
   };
 
   const onChange1 = (e) => {
