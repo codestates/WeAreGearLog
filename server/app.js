@@ -43,10 +43,10 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(HTTP_PORT, () => {
-  console.log(HTTP_PORT, "번 포트에서 서버가 실행중 입니다.");
-});
-
-// app.listen(HTTP_PORT, () => {
+// server.listen(HTTP_PORT, () => {
 //   console.log(HTTP_PORT, "번 포트에서 서버가 실행중 입니다.");
 // });
+
+app.listen(HTTP_PORT, () => {
+  console.log(HTTP_PORT, "번 포트에서 서버가 실행중 입니다.");
+});
