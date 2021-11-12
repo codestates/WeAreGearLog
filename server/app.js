@@ -6,18 +6,18 @@ const port = 8080;
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const server = require("http").createServer(app);
-const io = require("socket.io")(server, {
-  cors: {
-    origin: [
-      "http://localhost:3000",
-      "http://localhost:3001",
-      "https://gearlog.ga",
-      "https://www.gearlog.ga",
-      "http://52.79.233.29/",
-    ],
-    methods: ["GET", "POST"],
-  },
-});
+// const io = require("socket.io")(server, {
+//   cors: {
+//     origin: [
+//       "http://localhost:3000",
+//       "http://localhost:3001",
+//       "https://gearlog.ga",
+//       "https://www.gearlog.ga",
+//       "http://52.79.233.29/",
+//     ],
+//     methods: ["GET", "POST"],
+//   },
+// });
 
 app.use(
   cors({
@@ -41,7 +41,7 @@ server.listen(port, () => {
 });
 
 //socket.io
-const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
+// const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
 
 // io.on("connection", (socket) => {
 //   console.log(`Client ${socket.id} connected`);
