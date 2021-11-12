@@ -13,7 +13,6 @@ const useChat = (roomId) => {
     socketRef.current = socketIOClient(SOCKET_SERVER_URL, {
       query: { roomId },
     });
-
     // Listens for incoming messages
     socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
       const incomingMessage = {
@@ -22,7 +21,6 @@ const useChat = (roomId) => {
       };
       setMessages((messages) => [...messages, incomingMessage]);
     });
-
     // Destroys the socket reference
     // when the connection is closed
     return () => {
