@@ -106,7 +106,7 @@ const NavBar = ({ isLogin, setIsLogin, setAuthRegi, authRegi }) => {
                 className="icons"
                 onClick={() => history.push('/account/login')}
               >
-                <FaUserCircle />
+                <FaUserCircle size="25" />
               </i>
             ) : (
               <i>

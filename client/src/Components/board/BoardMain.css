@@ -4,13 +4,15 @@
 }
 
 .search-b {
-  min-height: 29px;
+  width: 50px;
+  min-height: 36px;
   background-color: lavender;
   border: none;
 }
 .search-i {
-  min-height: 30px;
-  width: 300px;
+  border: none;
+  min-height: 36px;
+  width: 350px;
 }
 .board-search {
   display: flex;
