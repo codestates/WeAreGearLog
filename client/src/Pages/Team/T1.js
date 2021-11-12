@@ -116,7 +116,7 @@ const T1 = () => {
 
         <div className="maincontainer">
           <div className="thecard">
-            <div className="thefront">GUMAYUSI</div>
+            <div className="thefront-g">GUMAYUSI</div>
             <div className="theback">
               <img src={gumayusi} />
               <div className="user-name">GUMAYUSI</div>

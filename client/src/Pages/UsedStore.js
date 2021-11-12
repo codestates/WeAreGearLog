@@ -75,7 +75,7 @@ const UsedStore = ({
   const mylist = UsedList.filter((el) => {
     return el.username === authRegi.username;
   });
-  console.log('412414', mylist);
+
   const getMyList = mylist.slice(indexOfFirstPost, indexOfLastPost);
 
   const myLi = getMyList.map((el) => {
