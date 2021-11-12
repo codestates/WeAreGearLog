@@ -6,16 +6,16 @@ const port = 8080;
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const server = require("http").createServer(app);
-const io = require("socket.io")(server, {
-  cors: {
-    origin: [
-      "http://localhost:3000",
-      "http://localhost:3001",
-      "https://gearlog.ga",
-      "https://www.gearlog.ga",
-    ],
-  },
-});
+// const io = require("socket.io")(server, {
+//   cors: {
+//     origin: [
+//       "http://localhost:3000",
+//       "http://localhost:3001",
+//       "https://gearlog.ga",
+//       "https://www.gearlog.ga",
+//     ],
+//   },
+// });
 
 app.use(
   cors({
