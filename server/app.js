@@ -13,7 +13,6 @@ const server = require("http").createServer(app);
 //       "http://localhost:3001",
 //       "https://gearlog.ga",
 //       "https://www.gearlog.ga",
-//       "http://52.79.233.29/",
 //     ],
 //     methods: ["GET", "POST"],
 //   },
@@ -26,7 +25,6 @@ app.use(
       "http://localhost:3001",
       "https://gearlog.ga",
       "https://www.gearlog.ga",
-      "http://52.79.233.29/",
     ],
     credentials: true,
     methods: ["GET", "POST", "PATCH", "OPTIONS", "DELETE"],
@@ -61,3 +59,5 @@ server.listen(port, () => {
 //     socket.leave(roomId);
 //   });
 // });
+
+module.exports = server;
