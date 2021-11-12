@@ -51,7 +51,9 @@ router.delete("/post/:id", postController.delete.deletePost);
 
 //check if server is running...
 router.get("/", (req, res) => {
-  res.send("GearLog 서버 정상적으로 작동중입니다. 배포 자동화 OK!!!");
+  res
+    .status(200)
+    .send("GearLog 서버 정상적으로 작동중입니다. 배포 자동화 OK!!!");
 });
 
 module.exports = router;
