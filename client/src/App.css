@@ -139,6 +139,7 @@ i:hover {
 }
 
 .nav-text :hover {
+  cursor: pointer;
   color: wheat;
 }
 
@@ -346,6 +347,10 @@ h1 {
   width: 170px;
   color: tomato;
 }
+.type-selector-1:hover {
+  cursor: pointer;
+}
+
 .type-selector-2 {
   color: tomato;
 }
@@ -372,6 +377,10 @@ h1 {
   width: 100%;
   padding: 15px;
   color: black;
+}
+
+.loginButton :hover {
+  cursor: pointer;
 }
 
 .userinfo {
@@ -512,7 +521,6 @@ h1 {
     text-align: center;
   }
   .Auth-temp-1 {
-    position: fixed;
     width: 70%;
     margin-bottom: 150px;
   }
@@ -576,6 +584,33 @@ h1 {
 }
 
 @media screen and (max-width: 768px) {
+  .Logo-name {
+    width: 300px;
+  }
+  .slide-next {
+    color: aliceblue;
+    font-size: 20px;
+    position: absolute;
+    right: 1%;
+    margin-top: 60px;
+    margin-bottom: 50px;
+    z-index: 1;
+  }
+  .slide-prev {
+    color: aliceblue;
+    font-size: 20px;
+    justify-content: center;
+    margin-top: 60px;
+
+    left: 1%;
+
+    position: absolute;
+
+    z-index: 1;
+  }
+}
+
+@media screen and (max-width: 375px) {
   .Logo-name {
     width: 300px;
   }

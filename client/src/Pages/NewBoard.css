@@ -112,6 +112,9 @@
   height: 50px;
   color: cornflowerblue;
 }
+.c-u-b :hover {
+  cursor: pointer;
+}
 
 .em-1 {
   font-size: 15px;
