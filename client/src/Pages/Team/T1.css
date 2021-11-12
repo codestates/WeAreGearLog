@@ -60,6 +60,20 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.thefront-g {
+  display: flex;
+
+  position: absolute;
+  font-size: 60px;
+  font-weight: 900;
+  width: 350px;
+  height: 350px;
+  backface-visibility: hidden;
+  background: white;
+  color: #e2062d;
+}
+
 .theback {
   position: absolute;
   text-align: center;
