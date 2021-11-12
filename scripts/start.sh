@@ -14,4 +14,5 @@ export GOOGLE_CLIENT_ID=$(aws ssm get-parameters --region ap-northeast-2 --names
 export GOOGLE_CLIENT_SECRET=$(aws ssm get-parameters --region ap-northeast-2 --names GOOGLE_CLIENT_SECRET --query Parameters[0].Value | sed 's/"//g')
 export DUMMY_PROFILE_IMG=$(aws ssm get-parameters --region ap-northeast-2 --names DUMMY_PROFILE_IMG --query Parameters[0].Value | sed 's/"//g')
 
-authbind --deep pm2 start app.js
+# authbind --deep pm2 start app.js
+npm start
