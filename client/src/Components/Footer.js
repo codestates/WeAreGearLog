@@ -1,3 +1,72 @@
+import logo from '../Img/LOGO.png';
+import React from 'react';
+import { MdPerson, MdEmail } from 'react-icons/md';
+import { AiFillGithub } from 'react-icons/ai';
+import './Footer.css';
+const Footer = () => {
+  return (
+    <div className="Footer">
+      <div className="footer-left">
+        <div className="footer-inside">
+          <img alt="" src={logo} className="footer-log" />
+
+          <span className="footer-inside-info">
+            <p className="f-1">
+              CodeStates SEP 31th Team AOC Copyrirght &copy;{' '}
+            </p>
+            <span className="f-2">
+              {' '}
+              {new Date().getFullYear()} Team Art of Code.
+            </span>
+            <br /> <span className="f-3">Gear Review Community</span>
+          </span>
+        </div>
+      </div>
+
+      <div className="footer-right">
+        <div>
+          <div className="member-1">
+            <MdPerson />
+            이영광
+            <a href="https://github.com/DevLeeYG">
+              <AiFillGithub />
+              DevLeeYG
+            </a>
+          </div>
+          <div className="member-2">
+            <MdPerson />
+            황성현
+            <a href="https://github.com/SH-HWA">
+              <AiFillGithub />
+              SH-HWA
+            </a>
+          </div>
+        </div>
+        <div>
+          <div className="member-3">
+            <MdPerson />
+            김동찬
+            <a href="https://github.com/kedm717">
+              <AiFillGithub />
+              kedm717
+            </a>
+          </div>
+          <div className="member-4">
+            <MdPerson />
+            이창윤
+            <a href="https://github.com/seismman">
+              <AiFillGithub />
+              seismman
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Footer;
+
 // import styled from 'styled-components';
 // import { MdPerson, MdEmail } from 'react-icons/md';
 // import { AiFillGithub } from 'react-icons/ai';
@@ -233,92 +302,3 @@
 //     </StyledFooter>
 //   );
 // }
-
-import React from 'react';
-import { MdPerson, MdEmail } from 'react-icons/md';
-import { AiFillGithub } from 'react-icons/ai';
-import './Footer.css';
-const Footer = () => {
-  return (
-    <div className="Footer">
-      <div className="footer-left">
-        <div className="footer-inside">
-          <span className="footer-log">Gear Log</span>
-
-          <span className="footer-inside-info">
-            <p>CodeStates SEP 31th Team AOC</p>
-            Copyrirght &copy; {new Date().getFullYear()} Team Art of Code.{' '}
-            <br /> Gear Review Community
-          </span>
-        </div>
-      </div>
-      <div className="Footer-member">
-        <div className="member">
-          <div className="member-name">
-            <MdPerson />
-            이영광
-          </div>
-          <div className="copy-email">
-            <MdEmail />
-            hi06077@gmail.com
-            {/* <CopyMessage className="copy-m">누르면 복사되요!</CopyMessage> */}
-          </div>
-          <div>
-            <a href="https://github.com/DevLeeYG">
-              <AiFillGithub />
-              DevLeeYG
-            </a>
-          </div>
-          <div className="member-name">
-            <MdPerson />
-            김동찬
-          </div>
-          <div className="copy-email">
-            <MdEmail />
-            dongchan1583@gmail.com
-          </div>
-          <div>
-            <a href="https://github.com/kedm717">
-              <AiFillGithub />
-              kedm717
-            </a>
-          </div>
-        </div>
-
-        <div className="member">
-          <div className="member-name">
-            <MdPerson />
-            황성현
-          </div>
-          <div className="copy-email">
-            <MdEmail />
-            raidi90@naver.com
-          </div>
-          <div>
-            <a href="https://github.com/SH-HWA">
-              <AiFillGithub />
-              SH-HWA
-            </a>
-          </div>
-          <div className="member-name">
-            <MdPerson />
-            이창윤
-          </div>
-          <div className="copy-email">
-            <MdEmail />
-            seismman@gmail.com
-            {/* <CopyMessage className="copy-m">누르면 복사되요!</CopyMessage> */}
-          </div>
-          <div>
-            <a href="https://github.com/seismman">
-              <AiFillGithub />
-              seismman
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Footer;

@@ -3,8 +3,6 @@
   display: flex;
 }
 
-.freeboard-title {
-}
 .search-b {
   min-height: 29px;
   background-color: lavender;
@@ -20,12 +18,17 @@
   background-color: black;
 }
 .b-n {
+  font-weight: 600;
   display: flex;
   min-height: 30px;
   border: none;
   color: aliceblue;
   background-color: black;
 }
+.b-n :hover {
+  cursor: pointer;
+}
+
 .b-list {
   background-color: white;
   display: flex;
@@ -121,6 +124,9 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+/* .b-c-1 :hover {
+  cursor: pointer;
+} */
 .freedoar {
   display: flex;
   color: #ebeef1;
