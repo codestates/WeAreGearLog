@@ -9,7 +9,7 @@ import Usedsujung from './Usedsujung';
 import BoardSearch from '../Components/board/Used/BoardSearch';
 const Used = ({ authRegi, isLogin }) => {
   const data = useSelector((state) => [state.board.used]);
-  console.log(data);
+
   const dataId = data.map((el) => el.id);
   let token = localStorage.getItem('token');
   const [commentWrite, setCommentWrite] = useState('');
@@ -28,8 +28,6 @@ const Used = ({ authRegi, isLogin }) => {
   }); //글쓰기쪽
   const [UsedList, setUsedList] = useState([]);
 
-  console.log(saveUsedWrite);
-
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/category?board=used`, {
@@ -40,7 +38,7 @@ const Used = ({ authRegi, isLogin }) => {
         setUsedList(useList);
       });
   }, []);
-  console.log();
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/post/${dataId[0]}`, {
