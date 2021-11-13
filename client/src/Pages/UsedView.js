@@ -13,6 +13,7 @@ import UsedChat from '../Components/board/Used/UsedChat';
 import { VscTriangleDown } from 'react-icons/vsc';
 import { GrView } from 'react-icons/gr';
 import { FcLike } from 'react-icons/fc';
+import { Link } from 'react-router-dom';
 const UsedView = ({
   authRegi,
   isLogin,
@@ -147,7 +148,11 @@ const UsedView = ({
           <span onClick={modalFalse} className="used-info-list1">
             {el.username}
             <VscTriangleDown />
-            {modal ? <UsedChat modal={modal} setModal={setModal} /> : null}
+            {modal ? (
+              <Link to={`/chatroom/${el.id}`}>
+                <UsedChat modal={modal} setModal={setModal} />
+              </Link>
+            ) : null}
           </span>
 
           <span className="used-info-list">{timeStamp}</span>
@@ -157,7 +162,7 @@ const UsedView = ({
           </span>
 
           <span className="used-info-list">
-            <FcLike />:{el.like}{' '}
+            <FcLike />:{el.like}
           </span>
         </div>
         <div
