@@ -15,6 +15,8 @@ import { GrView } from 'react-icons/gr';
 import { FcLike } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 const UsedView = ({
+  chatOpen,
+  setChatOpen,
   authRegi,
   isLogin,
   setSaveUsedWrite,
@@ -71,6 +73,9 @@ const UsedView = ({
   };
   const modalFalse = () => {
     setModal(!modal);
+  };
+  const chatO = () => {
+    setChatOpen(!chatOpen);
   };
 
   const onUnLikeHandle = (id) => {
@@ -149,8 +154,14 @@ const UsedView = ({
             {el.username}
             <VscTriangleDown />
             {modal ? (
-              <Link to={`/chatroom/${el.id}`}>
-                <UsedChat modal={modal} setModal={setModal} />
+              <Link to={`/used/store/${el.id}`}>
+                <UsedChat
+                  chatO={chatO}
+                  chatOpen={chatOpen}
+                  setChatOpen={setChatOpen}
+                  modal={modal}
+                  setModal={setModal}
+                />
               </Link>
             ) : null}
           </span>

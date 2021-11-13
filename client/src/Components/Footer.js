@@ -12,7 +12,7 @@ const Footer = () => {
 
           <span className="footer-inside-info">
             <p className="f-1">
-              CodeStates SEP 31th Team AOC Copyrirght &copy;{' '}
+              CodeStates SEB 31th Team AOC Copyrirght &copy;{' '}
             </p>
             <span className="f-2">
               {' '}

@@ -26,6 +26,7 @@ import ChatHome from '../src/Pages/chat/ChatHome';
 import ChatRoom from './Pages/chat/ChatRoom';
 
 const App = () => {
+  const [chatOpen, setChatOpen] = useState(false);
   const history = useHistory();
   const [saveId, setSaveId] = useState(0);
   const [isLogin, setIsLogin] = useState(false);
@@ -178,7 +179,12 @@ const App = () => {
           />
         </Route>
         <Route path="/used">
-          <Used isLogin={isLogin} authRegi={authRegi} />
+          <Used
+            chatOpen={chatOpen}
+            setChatOpen={setChatOpen}
+            isLogin={isLogin}
+            authRegi={authRegi}
+          />
         </Route>
 
         <Route path="/find/reset-password/send-email" component={FindPass} />
@@ -211,9 +217,14 @@ const App = () => {
           <Han />
           <Brand />
         </Route>
-        <Route exact path="/chat/chathome" component={ChatHome}></Route>
-        <Route exact path="/chatroom/:roomId" component={ChatRoom}></Route>
       </Switch>
+      {chatOpen ? (
+        <Route
+          path="/used/store/:roomId"
+          component={ChatRoom}
+          authRegi={authRegi}
+        ></Route>
+      ) : null}
 
       <Footer />
     </>

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './UserChat.css';
-const UsedChat = ({ postLogout, modal, setModal }) => {
+const UsedChat = ({ chatO, postLogout, modal, setModal }) => {
   const history = useHistory();
 
   const outsideRef = useRef(null);
@@ -23,7 +23,9 @@ const UsedChat = ({ postLogout, modal, setModal }) => {
   useOutsideClick(outsideRef);
   return (
     <div ref={outsideRef} className="userinfo1">
-      <li className="userinfo-mypage1">1:1채팅신청</li>
+      <li onClick={chatO} className="userinfo-mypage1">
+        1:1채팅신청
+      </li>
     </div>
   );
 };

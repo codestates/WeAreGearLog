@@ -7,7 +7,7 @@ import axios from 'axios';
 import UsedStore from './UsedStore';
 import Usedsujung from './Usedsujung';
 import BoardSearch from '../Components/board/Used/BoardSearch';
-const Used = ({ authRegi, isLogin }) => {
+const Used = ({ authRegi, isLogin, chatOpen, setChatOpen }) => {
   const data = useSelector((state) => [state.board.used]);
 
   const dataId = data.map((el) => el.id);
@@ -143,6 +143,8 @@ const Used = ({ authRegi, isLogin }) => {
 
       <Route path="/used/store">
         <UsedStore
+          chatOpen={chatOpen}
+          setChatOpen={setChatOpen}
           myListOpen={myListOpen}
           setMyListOpen={setMyListOpen}
           afterSearch={afterSearch}
