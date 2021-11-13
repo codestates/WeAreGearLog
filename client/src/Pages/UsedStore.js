@@ -38,16 +38,6 @@ const UsedStore = ({
 
   let token = localStorage.getItem('token');
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   axios
-  //     .get(`${process.env.REACT_APP_SERVER_URL}/category?board=used`, {
-  //       withCredentials: true,
-  //     })
-  //     .then((res) => {
-  //       let useList = res.data.categoryPost;
-  //       setUsedList(useList);
-  //     });
-  // }, []);
 
   const ReqRead = (id) => {
     window.scrollBy(0, -9999);
