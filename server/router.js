@@ -20,12 +20,6 @@ router.patch("/user/password", userController.update.password);
 router.patch("/user/profileimg", userController.update.profileImg);
 router.delete("/user", userController.signout);
 
-// gear routing
-router.get("/gear/:id", gearController.item);
-// router.post("/gear", gearController.list);
-
-// progamer routing
-
 // post routing
 router.get("/post", postController.read.readAll);
 router.get("/post/mypost", postController.read.readMine);
@@ -42,18 +36,13 @@ router.patch("/post", postController.update);
 router.delete("/post/comment/:id", postController.delete.deleteComment);
 router.delete("/post/:id", postController.delete.deletePost);
 
-// chat routing
-// router.get("/chats", controllers.chats.get);
-// router.post("/chats/messages", controllers.messages.post);
-// router.get("/message/chatlist", messageController.chatlist);
+// message routing
 // router.get("/message", messageController.get);
 // router.post("/message", messageController.post);
 
 //check if server is running...
 router.get("/", (req, res) => {
-  res
-    .status(200)
-    .send("GearLog 서버 정상적으로 작동중입니다. 배포 자동화 OK!!!");
+  res.status(200).send("GearLog 서버 정상적으로 작동중입니다. Hello World!");
 });
 
 module.exports = router;

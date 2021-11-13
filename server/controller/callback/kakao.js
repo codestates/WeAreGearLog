@@ -33,10 +33,8 @@ module.exports = (req, res) => {
         },
       })
         .then((result) => {
-          // console.log("HERE", result);
           const id = result.data.id;
-          const username = `${result.data.properties.nickname}_${id}_kakao`;
-          // const email = `${result.data.properties.nickname}@kakaoSocial`;
+          const username = `${result.data.properties.nickname}_K`;
           const email = result.data.kakao_account.email;
           if (!email) {
             email = `${result.data.properties.nickname}@kakaoSocial`;
