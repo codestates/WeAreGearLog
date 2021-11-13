@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ChatRoom.css';
 import useChat from './useChat';
+import axios from 'axios';
 
 const ChatRoom = (props) => {
   const { roomId } = props.match.params; // Gets roomId from URL
@@ -22,14 +23,27 @@ const ChatRoom = (props) => {
       <div className="messages-container">
         <ol className="messages-list">
           {messages.map((message, i) => (
-            <li
-              key={i}
-              className={`message-item ${
-                message.ownedByCurrentUser ? 'my-message' : 'received-message'
-              }`}
-            >
-              {message.body}
-            </li>
+            <div className="chat-user">
+              <li
+                key={i}
+                className={`message-item ${
+                  message.ownedByCurrentUser ? 'my-message' : 'received-message'
+                }`}
+              >
+                {message.body.slice(message.body.indexOf('!') + 1)}
+              </li>
+              {message.ownedByCurrentUser ? (
+                <img
+                  className="my-img"
+                  src={message.body.slice(0, message.body.indexOf('!'))}
+                />
+              ) : (
+                <img
+                  className="u-img"
+                  src={message.body.slice(0, message.body.indexOf('!'))}
+                />
+              )}
+            </div>
           ))}
         </ol>
       </div>

@@ -12,6 +12,8 @@ import AfterSearch from '../Components/board/Used/AfterSearch';
 import { GrView } from 'react-icons/gr';
 
 const UsedStore = ({
+  chatOpen,
+  setChatOpen,
   afterSearch,
   saveSearch,
   authRegi,
@@ -153,6 +155,8 @@ const UsedStore = ({
     <>
       {UsedViewOpen ? (
         <UsedView
+          chatOpen={chatOpen}
+          setChatOpen={setChatOpen}
           authRegi={authRegi}
           isLogin={isLogin}
           setSaveUsedWrite={setSaveUsedWrite}
