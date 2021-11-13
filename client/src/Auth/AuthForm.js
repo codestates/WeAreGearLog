@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import googleB from '../Img/google.png';
 import '../App.css';
 
-import { emailCheck, passwordCheck } from '../AuthModule/Verifi';
+import { emailCheck, passwordCheck, nickCheck } from '../AuthModule/Verifi';
 import axios from 'axios';
 
 const textMap = {
@@ -108,6 +108,9 @@ const AuthForm = ({ type, setIsLogin, setAuthRegi, authRegi }) => {
         alert(
           '패스워드는 특수문자,영문, 숫자 필수 포함 6~21자리로 만들어주세요.',
         );
+        return false;
+      }
+      if (!nickCheck(authRegi.username)) {
         return false;
       }
       postSignUp();

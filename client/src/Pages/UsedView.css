@@ -17,6 +17,16 @@
   width: 200px;
   border-bottom: 1px solid gainsboro;
 }
+.used-info-list1 {
+  margin-top: 10px;
+  padding-bottom: 10px;
+  width: 200px;
+  border-bottom: 1px solid gainsboro;
+}
+.used-info-list1:hover {
+  color: blueviolet;
+  cursor: pointer;
+}
 .used-view {
   background-color: white;
   display: flex;
@@ -49,18 +59,8 @@
 .used-main-view {
   padding: 25px;
 }
-.used-info-list1 {
-  float: right;
-  border: none;
-  width: 50px;
-  height: 20px;
-  border-radius: 5px;
-  color: white;
-  font-weight: 600;
-  background-color: deeppink;
-}
+
 .used-info-list1:hover {
-  background-color: violet;
   cursor: pointer;
 }
 

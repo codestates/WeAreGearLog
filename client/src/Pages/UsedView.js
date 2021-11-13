@@ -9,7 +9,10 @@ import displayedAt from '../AuthModule/TimeModule';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-
+import UsedChat from '../Components/board/Used/UsedChat';
+import { VscTriangleDown } from 'react-icons/vsc';
+import { GrView } from 'react-icons/gr';
+import { FcLike } from 'react-icons/fc';
 const UsedView = ({
   authRegi,
   isLogin,
@@ -27,6 +30,7 @@ const UsedView = ({
   const [isOpen, setIsOpen] = useState(false);
   const dataId = data.map((el) => el.id);
   const [udOpen, setUdOpen] = useState(true);
+  const [modal, setModal] = useState(false);
   const history = useHistory();
   useEffect(() => {
     axios
@@ -63,6 +67,9 @@ const UsedView = ({
     } else {
       alert('로그인을 해주세요');
     }
+  };
+  const modalFalse = () => {
+    setModal(!modal);
   };
 
   const onUnLikeHandle = (id) => {
@@ -137,13 +144,21 @@ const UsedView = ({
       <div key={el.id} className="used-read">
         <div className="used-title">{el.title}</div>
         <div className="used-info">
-          <span className="used-info-list">{el.username}</span>
+          <span onClick={modalFalse} className="used-info-list1">
+            {el.username}
+            <VscTriangleDown />
+            {modal ? <UsedChat modal={modal} setModal={setModal} /> : null}
+          </span>
 
           <span className="used-info-list">{timeStamp}</span>
 
-          <span className="used-info-list">{el.view}</span>
+          <span className="used-info-list">
+            <GrView />:{el.view}
+          </span>
 
-          <span className="used-info-list">{el.like} </span>
+          <span className="used-info-list">
+            <FcLike />:{el.like}{' '}
+          </span>
         </div>
         <div
           className="used-main-view"

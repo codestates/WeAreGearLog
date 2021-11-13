@@ -8,6 +8,9 @@ import { readUsedpost } from '../modules/board';
 import Pagination from '../Components/board/Used/Pagination';
 import { FcLike } from 'react-icons/fc';
 import AfterSearch from '../Components/board/Used/AfterSearch';
+
+import { GrView } from 'react-icons/gr';
+
 const UsedStore = ({
   afterSearch,
   saveSearch,
@@ -85,7 +88,7 @@ const UsedStore = ({
             <div className="used-user">{timeStamp}</div>
           </div>
           <div className="used-title2">
-            <div className="used-user">조회:{el.view}</div>
+            <div className="used-user">:{el.view}</div>
             <div className="used-user">관심{el.like}</div>
           </div>
         </div>
@@ -110,7 +113,7 @@ const UsedStore = ({
           </div>
           <div className="used-title2">
             <div className="used-user">조회:{el.view}</div>
-            <div className="used-user">관심{el.like}</div>
+            <div className="used-user">관심:{el.like}</div>
           </div>
         </div>
       </div>
@@ -134,8 +137,12 @@ const UsedStore = ({
             <div className="used-user">{timeStamp}</div>
           </div>
           <div className="used-title2">
-            <div className="used-user">조회:{el.view}</div>
-            <div className="used-user">관심{el.like}</div>
+            <div className="used-user">
+              <GrView />:{el.view}
+            </div>
+            <div className="used-user">
+              <FcLike />:{el.like}
+            </div>
           </div>
         </div>
       </div>

@@ -1,0 +1,27 @@
+.userinfo1 {
+  display: flex;
+  position: absolute;
+  border: 1px solid gainsboro;
+  border-radius: 3px;
+  text-align: left;
+  font-size: 15px;
+  margin-left: 60px;
+  background-color: rgb(249, 249, 249);
+  width: 100px;
+  color: aliceblue;
+  z-index: 3;
+}
+.userinfo1:hover {
+  cursor: pointer;
+}
+
+.userinfo-mypage1 {
+  z-index: 9999;
+
+  padding: 2px;
+  height: 22px;
+  color: gray;
+}
+.userinfo-mypage1:hover {
+  color: rebeccapurple;
+}

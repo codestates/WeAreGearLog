@@ -354,6 +354,9 @@ h1 {
 .type-selector-2 {
   color: tomato;
 }
+.type-selector-2:hover {
+  cursor: pointer;
+}
 .type-3 {
   color: tomato;
 }
@@ -405,6 +408,7 @@ h1 {
   color: white;
 }
 .userinfo :hover {
+  cursor: pointer;
   color: #cb6ce6;
 }
 .my {
@@ -414,6 +418,7 @@ h1 {
 
   height: 100vh;
 }
+
 .mypage {
   height: 60%;
   margin-bottom: 150px;
@@ -430,6 +435,10 @@ h1 {
 
   margin-left: 20px;
 }
+.mypage-acc-logout:hover {
+  cursor: pointer;
+}
+
 .ac-detail-wrap {
   color: black;
   display: flex;
@@ -442,6 +451,12 @@ h1 {
 .ac-detail-1 {
   font-size: 15px;
   color: tomato;
+}
+.ac-detail-wrap:hover {
+  cursor: pointer;
+}
+.ac-detail-1 :hover {
+  cursor: pointer;
 }
 .modal {
   color: black;
