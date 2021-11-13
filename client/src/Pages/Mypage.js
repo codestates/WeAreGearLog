@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import AWS from 'aws-sdk';
 import axios from 'axios';
+import { nickCheck } from '../AuthModule/Verifi';
 import { CgProfile } from 'react-icons/cg';
 const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
   let token = localStorage.getItem('token');
@@ -57,7 +58,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
   const onClickuserChange = () => {
     let change = window.confirm('변경하시겠습니까?');
 
-    if (change) {
+    if (change && nickCheck(changeName)) {
       axios
         .patch(
           `${process.env.REACT_APP_SERVER_URL}/user/username`,
@@ -70,7 +71,6 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
           },
         )
         .then((res) => {
-          console.log(res);
           if (res.status === 200) {
             let token = res.data.token;
             localStorage.setItem('token', token);
@@ -78,7 +78,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
             setIsTrue(true);
           } else {
             if (res.status === 202) {
-              alert('이미있는 유저네임입니다');
+              alert('이미있는 유저네임 이거나,사용할수 없는 닉네임입니다');
             }
           }
         });
@@ -169,7 +169,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
       },
     );
   };
-  console.log(authRegi.profileImg);
+
   const inputRef = useRef();
   return (
     <div className="my">
@@ -185,7 +185,6 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
           <button
             className="pofile-bt"
             onClick={() => {
-              console.log(inputRef);
               inputRef.current.click();
             }}
           >
