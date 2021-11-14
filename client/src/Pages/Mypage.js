@@ -99,7 +99,6 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
       )
       .then((res) => {
         if (res.data.message === '로그아웃 성공') {
-          console.log(res);
           localStorage.clear();
           setAuthRegi({
             email: '',
@@ -115,7 +114,6 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
       })
       .catch((err) => {
         if (err) {
-          console.log(err);
           alert('로그아웃이 되지않았습니다');
         }
       });
@@ -134,7 +132,6 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
         if (err) {
           throw err;
         }
-        console.log('s3 deleteObject ', data);
       },
     );
 
@@ -165,7 +162,7 @@ const Mypage = ({ setAuthRegi, setIsLogin, authorization, authRegi }) => {
           });
       },
       function (err) {
-        console.log('s3 이미지 업로드 실패');
+        alert('이미지 업로드 실패');
       },
     );
   };

@@ -76,7 +76,7 @@ const UsedStore = ({
   const myLi = getMyList.map((el) => {
     const timeStamp = displayesAt(new Date(el.createdAt));
     return (
-      <div className="used-card">
+      <div key={el.id} className="used-card">
         <div className="img-box">
           <img width="100vh" className="used-img" alt="" src={el.img}></img>
         </div>
@@ -100,7 +100,7 @@ const UsedStore = ({
   const searchAfter = SearchSave.map((el) => {
     const timeStamp = displayesAt(new Date(el.createdAt));
     return (
-      <div className="used-card">
+      <div key={el.id} className="used-card">
         <div className="img-box">
           <img width="100vh" className="used-img" alt="" src={el.img}></img>
         </div>
@@ -125,7 +125,7 @@ const UsedStore = ({
   const list = currentPosts.map((el) => {
     const timeStamp = displayesAt(new Date(el.createdAt));
     return (
-      <div className="used-card">
+      <div key={el.id} className="used-card">
         <div className="img-box">
           <img width="100vh" className="used-img" alt="" src={el.img}></img>
         </div>

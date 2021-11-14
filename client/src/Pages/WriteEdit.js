@@ -17,7 +17,6 @@ export const WriteEdit = ({ title, onTitleChange }) => {
     value: `<div contenteditable='false'>${data[0].content}</div>`,
   }); //글수정쪽
 
-  console.log(state);
   const [asstate, setAsState] = useState({
     title: data[0].title,
   });
@@ -51,14 +50,11 @@ export const WriteEdit = ({ title, onTitleChange }) => {
         if (res.status === 201) {
           history.push('/board');
           location.reload();
-          console.log('수정요청성공');
         }
       });
   };
 
   const imageHandler = () => {
-    console.log('에디터에서 이미지 버튼을 클릭하면 이 핸들러가 시작됩니다!');
-
     const input = document.createElement('input');
 
     input.setAttribute('type', 'file');
@@ -66,7 +62,6 @@ export const WriteEdit = ({ title, onTitleChange }) => {
     input.click();
 
     input.addEventListener('change', async () => {
-      console.log('온체인지');
       const file = input.files[0];
 
       const upload = new AWS.S3.ManagedUpload({
@@ -89,7 +84,7 @@ export const WriteEdit = ({ title, onTitleChange }) => {
           editor.insertEmbed(range, 'image', IMG_URL);
         },
         function (err) {
-          console.log('s3 이미지 업로드 실패');
+          alert(' 이미지 업로드 실패');
         },
       );
     });

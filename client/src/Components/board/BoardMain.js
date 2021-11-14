@@ -57,7 +57,6 @@ const BoardMain = ({
             headers: { authorization: `Bearer ${token}` },
           })
           .then((res) => {
-            console.log('post', res);
             dispatch(readpost(res.data.post));
           })
           .catch((err) => console.log(err));
