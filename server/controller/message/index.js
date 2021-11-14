@@ -25,13 +25,11 @@ module.exports = {
       return res.status(200).send("nothing to save");
     }
 
-    const [saved, created] = await message.findOrCreate({
-      where: {
-        userId: userId,
-        roomId: roomId,
-        body: body,
-        ownedByCurrentUser: ownedByCurrentUser,
-      },
+    const saved = await message.create({
+      userId: userId,
+      roomId: roomId,
+      body: body,
+      ownedByCurrentUser: ownedByCurrentUser,
     });
 
     res.status(201).json({
