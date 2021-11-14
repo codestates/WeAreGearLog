@@ -10,10 +10,11 @@ const useChat = (roomId) => {
   const socketRef = useRef();
   const [name, setName] = useState('');
   const [img, setImg] = useState('');
+  const [userId, setUserId] = useState('');
 
   useEffect(() => {
     getProfile();
-  });
+  }, []);
 
   const getProfile = () => {
     let token = localStorage.getItem('token');
@@ -27,9 +28,36 @@ const useChat = (roomId) => {
       .then((res) => {
         setName(res.data.data.userinfo.username);
         setImg(res.data.data.userinfo.profile_img);
+        setUserId(res.data.data.userinfo.id);
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const saveMessage = (message) => {
+    // console.log('저장중!!!!', message);
+    if (message.roomId) {
+      return;
+    }
+
+    axios.post(`${process.env.REACT_APP_SERVER_URL}/message`, {
+      userId: userId,
+      roomId: roomId,
+      body: message.body,
+      ownedByCurrentUser: message.ownedByCurrentUser,
+    });
+  };
+
+  const loadMessage = () => {
+    let token = localStorage.getItem('token');
+
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/message/${roomId}`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        setMessages(res.data.message);
       });
   };
 
@@ -62,7 +90,7 @@ const useChat = (roomId) => {
     });
   };
 
-  return { messages, sendMessage };
+  return { messages, sendMessage, saveMessage, loadMessage };
 };
 
 export default useChat;
