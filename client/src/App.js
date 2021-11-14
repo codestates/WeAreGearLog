@@ -219,7 +219,16 @@ const App = () => {
         </Route>
       </Switch>
       {chatOpen ? (
-        <Route path="/used/store/:roomId" component={ChatRoom}></Route>
+        <Route
+          path="/used/store/:roomId"
+          render={(props) => (
+            <ChatRoom
+              setChatOpen={setChatOpen}
+              chatOpen={chatOpen}
+              {...props}
+            />
+          )}
+        ></Route>
       ) : null}
 
       <Footer />

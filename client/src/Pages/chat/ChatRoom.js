@@ -4,8 +4,10 @@ import useChat from './useChat';
 import axios from 'axios';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import { GrClose } from 'react-icons/gr';
+import { useHistory } from 'react-router-dom';
 const ChatRoom = (props) => {
-  console.log(props.chatOpen);
+  console.log(props);
+  const history = useHistory();
   const { roomId } = props.match.params; // Gets roomId from URL
   const { messages, sendMessage } = useChat(roomId); // Creates a websocket and manages messaging
   const [newMessage, setNewMessage] = useState(''); // Message to be sent
@@ -21,14 +23,14 @@ const ChatRoom = (props) => {
 
   return (
     <div className="chat-room-container">
-      <div className="chat-close">
+      <div onClick={() => props.setChatOpen(false)} className="chat-close">
         <GrClose size="20" />
       </div>
       <h1 className="room-name">채팅방: {roomId}</h1>
       <div className="messages-container">
         <ol className="messages-list">
           {messages.map((message, i) => (
-            <div className="chat-user">
+            <div key={message.id} className="chat-user">
               <li
                 key={i}
                 className={`message-item ${
