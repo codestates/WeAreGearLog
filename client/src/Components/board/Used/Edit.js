@@ -22,7 +22,6 @@ export const Edit = ({ state, handleChange, thumbnail, setThumbnail }) => {
     input.click();
 
     input.addEventListener('change', async () => {
-      console.log('온체인지');
       const file = input.files[0];
 
       const upload = new AWS.S3.ManagedUpload({
@@ -49,7 +48,7 @@ export const Edit = ({ state, handleChange, thumbnail, setThumbnail }) => {
           // console.log('업로드 성공 썸네일은???', thumbnail);
         },
         function (err) {
-          console.log('s3 이미지 업로드 실패');
+          alert(' 이미지 업로드 실패');
         },
       );
     });
