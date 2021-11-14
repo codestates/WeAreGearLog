@@ -2,7 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import './ChatRoom.css';
 import useChat from './useChat';
 import axios from 'axios';
-
+import { RiSendPlaneFill } from 'react-icons/ri';
+import { GrClose } from 'react-icons/gr';
 const ChatRoom = (props) => {
   const { roomId } = props.match.params; // Gets roomId from URL
   const { messages, sendMessage, saveMessage, loadMessage } = useChat(roomId); // Creates a websocket and manages messaging
@@ -46,6 +47,9 @@ const ChatRoom = (props) => {
 
   return (
     <div className="chat-room-container">
+      <div onClick={() => props.setChatOpen(false)} className="chat-close">
+        <GrClose size="20" />
+      </div>
       <h1 className="room-name">채팅방: {roomId}</h1>
       <div className="messages-container">
         <ol className="messages-list" ref={scrollRef}>
@@ -83,7 +87,7 @@ const ChatRoom = (props) => {
           onKeyPress={handleKeyPress}
         />
         <button onClick={handleSendMessage} className="send-message-button">
-          Send
+          <RiSendPlaneFill size="30" color="white" />
         </button>
       </div>
     </div>
