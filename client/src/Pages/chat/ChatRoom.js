@@ -5,14 +5,24 @@ import axios from 'axios';
 
 const ChatRoom = (props) => {
   const { roomId } = props.match.params; // Gets roomId from URL
-  const { messages, sendMessage } = useChat(roomId); // Creates a websocket and manages messaging
+  const { messages, sendMessage, saveMessage, loadMessage } = useChat(roomId); // Creates a websocket and manages messaging
   const [newMessage, setNewMessage] = useState(''); // Message to be sent
+
+  useEffect(() => {
+    loadMessage();
+  }, []);
+  useEffect(() => {
+    if (messages.length !== 0) {
+      saveMessage(messages[messages.length - 1]);
+    }
+  }, [messages]);
 
   const handleNewMessageChange = (event) => {
     setNewMessage(event.target.value);
   };
 
   const handleSendMessage = () => {
+    // console.log(messages);
     sendMessage(newMessage);
     setNewMessage('');
   };

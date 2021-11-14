@@ -37,8 +37,8 @@ router.delete("/post/comment/:id", postController.delete.deleteComment);
 router.delete("/post/:id", postController.delete.deletePost);
 
 // message routing
-// router.get("/message", messageController.get);
-// router.post("/message", messageController.post);
+router.get("/message/:id", messageController.get);
+router.post("/message", messageController.post);
 
 //check if server is running...
 router.get("/", (req, res) => {
