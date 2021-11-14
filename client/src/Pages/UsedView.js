@@ -34,6 +34,9 @@ const UsedView = ({
   const dataId = data.map((el) => el.id);
   const [udOpen, setUdOpen] = useState(true);
   const [modal, setModal] = useState(false);
+
+  console.log(modal);
+
   const history = useHistory();
   useEffect(() => {
     axios
@@ -75,7 +78,7 @@ const UsedView = ({
     setModal(!modal);
   };
   const chatO = () => {
-    setChatOpen(!chatOpen);
+    setChatOpen(true);
   };
 
   const onUnLikeHandle = (id) => {
