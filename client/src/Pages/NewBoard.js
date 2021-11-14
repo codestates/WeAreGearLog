@@ -62,7 +62,6 @@ const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
           },
         )
         .then((res) => {
-          console.log(res);
           setLike(true);
           setLikeCount(res.data.likeCount);
         })
@@ -268,7 +267,12 @@ const NewBoard = ({ authRegi, setIsOpen, isLogin }) => {
                   <div className="c-padding"></div>
                   {updateC.map((el) => {
                     return (
-                      <Commnet authRegi={authRegi} el={el} deleteC={deleteC} />
+                      <Commnet
+                        key={el.id}
+                        authRegi={authRegi}
+                        el={el}
+                        deleteC={deleteC}
+                      />
                     );
                   })}
                 </div>
