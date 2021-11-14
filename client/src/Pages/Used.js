@@ -108,7 +108,6 @@ const Used = ({ authRegi, isLogin, chatOpen, setChatOpen }) => {
           },
         )
         .then((res) => {
-          console.log('@@@@@@@', res);
           setSaveUsedWrite(res.data.postList);
         });
       setCommentWrite('');
