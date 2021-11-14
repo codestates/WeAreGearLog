@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       userId: DataTypes.INTEGER,
       roomId: DataTypes.INTEGER,
       body: DataTypes.STRING,
-      ownedByCurrentUser: DataTypes.STRING,
+      ownedByCurrentUser: DataTypes.INTEGER,
     },
     {
       sequelize,

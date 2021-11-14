@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       ownedByCurrentUser: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
