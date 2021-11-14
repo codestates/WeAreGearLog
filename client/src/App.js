@@ -228,7 +228,7 @@ const App = () => {
               {...props}
             />
           )}
-        ></Route>
+        />
       ) : null}
 
       <Footer />
