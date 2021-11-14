@@ -147,11 +147,12 @@ i:hover {
   width: 100%;
 }
 .nav-toggle {
+  display: flex;
   background-color: black;
   width: 100%;
   height: 80px;
-  display: flex;
-  justify-content: start;
+
+  justify-content: flex-start;
 }
 .span {
   margin-left: 16px;
