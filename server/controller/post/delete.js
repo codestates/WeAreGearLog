@@ -1,4 +1,4 @@
-const { post, like, comment, sequelize } = require("../../models");
+const { post, like, comment, message, sequelize } = require("../../models");
 const { isAuthorized } = require("../tokenFunctions");
 const { QueryTypes } = require("sequelize");
 
@@ -37,6 +37,7 @@ module.exports = {
   },
   deletePost: async (req, res) => {
     // 1.댓글삭제(해당postId가진 댓글들 전부) 2. 좋아요 삭제(해당postId가진 좋아요들 전부) 3. 게시글삭제
+    // 4.게시글에서 파생된 채팅메시지도 모두 삭제
     const postId = req.params.id; // delete도 get처럼 요청에 body가 있을수 없다.
     const readerData = isAuthorized(req);
     if (!readerData) {
@@ -51,6 +52,7 @@ module.exports = {
     const deleteComment = await comment.destroy({ where: { postId: postId } });
     const deleteLike = await like.destroy({ where: { postId: postId } });
     const deletePost = await post.destroy({ where: { id: postId } });
+    const deleteMessage = await message.destroy({ where: { roomId: postId } });
     res.status(200).json({
       message: "deleted",
     });
