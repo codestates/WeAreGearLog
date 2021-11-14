@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './ChatRoom.css';
 import useChat from './useChat';
 import axios from 'axios';
@@ -6,7 +6,6 @@ import { RiSendPlaneFill } from 'react-icons/ri';
 import { GrClose } from 'react-icons/gr';
 import { useHistory } from 'react-router-dom';
 const ChatRoom = (props) => {
-  console.log(props);
   const history = useHistory();
   const { roomId } = props.match.params; // Gets roomId from URL
   const { messages, sendMessage, saveMessage, loadMessage } = useChat(roomId); // Creates a websocket and manages messaging
@@ -19,16 +18,32 @@ const ChatRoom = (props) => {
     if (messages.length !== 0) {
       saveMessage(messages[messages.length - 1]);
     }
+    scrollDown();
   }, [messages]);
-
   const handleNewMessageChange = (event) => {
     setNewMessage(event.target.value);
   };
 
-  const handleSendMessage = () => {
-    // console.log(messages);
+  const handleSendMessage = (e) => {
     sendMessage(newMessage);
     setNewMessage('');
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      sendMessage(newMessage);
+      setNewMessage('');
+    }
+  };
+
+  const scrollRef = useRef();
+
+  const scrollDown = () => {
+    scrollRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    });
   };
 
   return (
@@ -38,7 +53,7 @@ const ChatRoom = (props) => {
       </div>
       <h1 className="room-name">채팅방: {roomId}</h1>
       <div className="messages-container">
-        <ol className="messages-list">
+        <ol ref={scrollRef} className="messages-list">
           {messages.map((message, i) => (
             <div key={message.id} className="chat-user">
               <li
@@ -68,6 +83,7 @@ const ChatRoom = (props) => {
       </div>
       <div className="inputbar">
         <textarea
+          onKeyPress={handleKeyPress}
           value={newMessage}
           onChange={handleNewMessageChange}
           placeholder="메세지를 입력해주세요"

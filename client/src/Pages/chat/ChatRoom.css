@@ -118,6 +118,10 @@
   transition: 0.5s;
   border-radius: 0 0 3px 0;
 }
+.send-message-button:hover {
+  cursor: pointer;
+  background-color: rgba(78, 186, 57, 0.55);
+}
 .chat-img {
   width: 30px;
   height: 30px;
