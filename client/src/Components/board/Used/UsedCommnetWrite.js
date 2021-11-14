@@ -10,7 +10,6 @@ const UsedCommnetWrite = ({
   onCommentChange,
   el,
 }) => {
-  console.log('UsedCommnet', authRegi);
   return (
     <div className="c-top">
       <h3 className="c-top-in">
@@ -34,7 +33,12 @@ const UsedCommnetWrite = ({
           <div className="c-padding"></div>
           {saveUsedWrite.map((el) => {
             return (
-              <UsedCommnet authRegi={authRegi} deleteC={deleteC} el={el} />
+              <UsedCommnet
+                key={el.id}
+                authRegi={authRegi}
+                deleteC={deleteC}
+                el={el}
+              />
             );
           })}
         </div>

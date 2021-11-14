@@ -54,9 +54,8 @@ const ChatRoom = (props) => {
       <div className="messages-container">
         <ol className="messages-list" ref={scrollRef}>
           {messages.map((message, i) => (
-            <div className="chat-user">
+            <div key={i} className="chat-user">
               <li
-                key={i}
                 className={`message-item ${
                   message.ownedByCurrentUser ? 'my-message' : 'received-message'
                 }`}
@@ -65,11 +64,13 @@ const ChatRoom = (props) => {
               </li>
               {message.ownedByCurrentUser ? (
                 <img
+                  alt=""
                   className="my-img"
                   src={message.body.slice(0, message.body.indexOf('!'))}
                 />
               ) : (
                 <img
+                  alt=""
                   className="u-img"
                   src={message.body.slice(0, message.body.indexOf('!'))}
                 />

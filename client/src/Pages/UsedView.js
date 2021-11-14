@@ -25,7 +25,6 @@ const UsedView = ({
   commentWrite,
   onCommentChange,
 }) => {
-  console.log('auth', authRegi);
   let token = localStorage.getItem('token');
   const [like, setLike] = useState('');
   const [likeCount, setLikeCount] = useState('');
@@ -34,8 +33,6 @@ const UsedView = ({
   const dataId = data.map((el) => el.id);
   const [udOpen, setUdOpen] = useState(true);
   const [modal, setModal] = useState(false);
-
-  console.log(modal);
 
   const history = useHistory();
   useEffect(() => {
@@ -62,7 +59,6 @@ const UsedView = ({
           },
         )
         .then((res) => {
-          console.log(res);
           setLike(true);
           setLikeCount(res.data.likeCount);
         })
@@ -78,7 +74,12 @@ const UsedView = ({
     setModal(!modal);
   };
   const chatO = () => {
-    setChatOpen(true);
+    if (isLogin) {
+      setChatOpen(true);
+    } else {
+      alert('로그인이 필요합니다');
+      setChatOpen(false);
+    }
   };
 
   const onUnLikeHandle = (id) => {
@@ -120,7 +121,6 @@ const UsedView = ({
         )
         .then((res) => {
           if (res.status === 200) {
-            console.log(res);
             history.push('/used/store');
             location.reload();
           }
