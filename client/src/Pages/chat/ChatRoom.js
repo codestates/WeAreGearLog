@@ -2,11 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import './ChatRoom.css';
 import useChat from './useChat';
 import axios from 'axios';
-import { RiSendPlaneFill } from 'react-icons/ri';
-import { GrClose } from 'react-icons/gr';
-import { useHistory } from 'react-router-dom';
+
 const ChatRoom = (props) => {
-  const history = useHistory();
   const { roomId } = props.match.params; // Gets roomId from URL
   const { messages, sendMessage, saveMessage, loadMessage } = useChat(roomId); // Creates a websocket and manages messaging
   const [newMessage, setNewMessage] = useState(''); // Message to be sent
@@ -20,19 +17,20 @@ const ChatRoom = (props) => {
     }
     scrollDown();
   }, [messages]);
+
   const handleNewMessageChange = (event) => {
     setNewMessage(event.target.value);
   };
 
-  const handleSendMessage = (e) => {
+  const handleSendMessage = () => {
+    // console.log(messages);
     sendMessage(newMessage);
     setNewMessage('');
   };
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      sendMessage(newMessage);
-      setNewMessage('');
+      handleSendMessage();
     }
   };
 
@@ -48,14 +46,11 @@ const ChatRoom = (props) => {
 
   return (
     <div className="chat-room-container">
-      <div onClick={() => props.setChatOpen(false)} className="chat-close">
-        <GrClose size="20" />
-      </div>
       <h1 className="room-name">채팅방: {roomId}</h1>
       <div className="messages-container">
-        <ol ref={scrollRef} className="messages-list">
+        <ol className="messages-list" ref={scrollRef}>
           {messages.map((message, i) => (
-            <div key={message.id} className="chat-user">
+            <div className="chat-user">
               <li
                 key={i}
                 className={`message-item ${
@@ -66,13 +61,11 @@ const ChatRoom = (props) => {
               </li>
               {message.ownedByCurrentUser ? (
                 <img
-                  alt=""
                   className="my-img"
                   src={message.body.slice(0, message.body.indexOf('!'))}
                 />
               ) : (
                 <img
-                  alt=""
                   className="u-img"
                   src={message.body.slice(0, message.body.indexOf('!'))}
                 />
@@ -83,14 +76,14 @@ const ChatRoom = (props) => {
       </div>
       <div className="inputbar">
         <textarea
-          onKeyPress={handleKeyPress}
           value={newMessage}
           onChange={handleNewMessageChange}
           placeholder="메세지를 입력해주세요"
           className="new-message-input-field"
+          onKeyPress={handleKeyPress}
         />
         <button onClick={handleSendMessage} className="send-message-button">
-          <RiSendPlaneFill size="30" color="white" />
+          Send
         </button>
       </div>
     </div>
