@@ -69,6 +69,10 @@
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+## 데이터베이스 스키마
+
+![스크린샷 2021-11-14 오후 9 02 46](https://user-images.githubusercontent.com/81807542/141680214-1a950755-feda-4569-a9bf-6ea6471b3d15.png)
+
 
 <!-- LICENSE -->
 ## Api Docs
