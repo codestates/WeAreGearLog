@@ -77,9 +77,9 @@
 <!-- LICENSE -->
 ## Api Docs
 
-* get : https://raidi9069.gitbook.io/gearlog-1/reference/api-reference/user
-* post: https://raidi9069.gitbook.io/gearlog-1/reference/api-reference/post
-* message : https://raidi9069.gitbook.io/gearlog-1/reference/api-reference/message
+* users : https://raidi9069.gitbook.io/gearlog-1/reference/api-reference/user
+* posts : https://raidi9069.gitbook.io/gearlog-1/reference/api-reference/post
+* messages : https://raidi9069.gitbook.io/gearlog-1/reference/api-reference/message
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
