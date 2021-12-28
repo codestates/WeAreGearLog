@@ -6,7 +6,7 @@
 - **팀 명 :** Art of Code
 - **프로젝트 명 :** Gear log
 - **프로젝트 형태 :** 수강생 프로젝트
-- **배포 링크 :** https://gearlog.ga/
+- **배포 링크 :** https://gearlog.site/
 - **노션 링크 :** https://www.notion.so/2-AOC-Gear-Log-70b74c8fb3f24204aa12fe17b0c372dc
 ## 프로젝트 소개
 
